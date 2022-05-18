@@ -1,5 +1,7 @@
 ![Codefi](images/CodefiBanner.png)
 
+[![Run tests](https://github.com/ConsenSys/va-platform-extendable-tokens-pkg/actions/workflows/pr.yml/badge.svg)](https://github.com/ConsenSys/va-platform-extendable-tokens-pkg/actions/workflows/pr.yml)
+
 The Universal Token is a smart-contract framework for creating customisable tokens. Tokens created following the framework are composed of a Token contract to which one or multiple Extension contracts can be connected. 
 
 The Universal Token is compatible with Ethereum’s most used token standards including ERC20, ERC721, ERC1155 and ERC1400.  
