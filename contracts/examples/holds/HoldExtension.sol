@@ -1,7 +1,7 @@
 pragma solidity ^0.8.0;
 
 import {SafeMath} from "@openzeppelin/contracts/utils/math/SafeMath.sol";
-import {TokenExtension, TransferData, TokenStandard} from "../TokenExtension.sol";
+import {TokenExtension, TransferData, TokenStandard} from "../../extensions/TokenExtension.sol";
 import {IHoldableToken, ERC20HoldData, HoldStatusCode} from "./IHoldableToken.sol";
 
 contract HoldExtension is TokenExtension, IHoldableToken {
