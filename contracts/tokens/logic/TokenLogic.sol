@@ -1,10 +1,10 @@
 pragma solidity ^0.8.0;
 
 import {ITokenLogic} from "./ITokenLogic.sol";
-import {TokenRoles} from "../../roles/TokenRoles.sol";
-import {ExtendableHooks} from "../extension/ExtendableHooks.sol";
-import {ERC1820Client} from "../../erc1820/ERC1820Client.sol";
-import {ERC1820Implementer} from "../../erc1820/ERC1820Implementer.sol";
+import {TokenRoles} from "../../utils/roles/TokenRoles.sol";
+import {TokenEventManager} from "../eventmanager/TokenEventManager.sol";
+import {ERC1820Client} from "../../utils/erc1820/ERC1820Client.sol";
+import {ERC1820Implementer} from "../../utils/erc1820/ERC1820Implementer.sol";
 import {TokenERC1820Provider} from "../TokenERC1820Provider.sol";
 import {StorageSlot} from "@openzeppelin/contracts/utils/StorageSlot.sol";
 import {BytesLib} from "solidity-bytes-utils/contracts/BytesLib.sol";
@@ -23,7 +23,7 @@ import {BytesLib} from "solidity-bytes-utils/contracts/BytesLib.sol";
 * The child contract should override _onInitialize to determine how the logic contract should initalize
 * when it's attached to a proxy. This occurs during deployment and during upgrading.
 */
-abstract contract TokenLogic is TokenERC1820Provider, TokenRoles, ExtendableHooks, ITokenLogic {
+abstract contract TokenLogic is TokenERC1820Provider, TokenRoles, TokenEventManager, ITokenLogic {
     using BytesLib for bytes;
 
     bytes32 private constant UPGRADING_FLAG_SLOT = keccak256("token.proxy.upgrading");
@@ -48,7 +48,7 @@ abstract contract TokenLogic is TokenERC1820Provider, TokenRoles, ExtendableHook
             //The size of the slice will be the difference
             //in expected size to actual size
             uint256 size = cdata.length - normalCallsize;
-            
+ 
             bytes memory extraData = cdata.slice(start, size);
 
             return extraData;

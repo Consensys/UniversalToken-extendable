@@ -1,9 +1,9 @@
 pragma solidity ^0.8.0;
 
-import {ERC1820Client} from "../../erc1820/ERC1820Client.sol";
-import {ERC1820Implementer} from "../../erc1820/ERC1820Implementer.sol";
-import {TokenRoles} from "../../roles/TokenRoles.sol";
-import {DomainAware} from "../../tools/DomainAware.sol";
+import {ERC1820Client} from "../../utils/erc1820/ERC1820Client.sol";
+import {ERC1820Implementer} from "../../utils/erc1820/ERC1820Implementer.sol";
+import {TokenRoles} from "../../utils/roles/TokenRoles.sol";
+import {DomainAware} from "../../utils/DomainAware.sol";
 import {ITokenLogic} from "../logic/ITokenLogic.sol";
 import {ITokenProxy} from "./ITokenProxy.sol";
 import {TokenERC1820Provider} from "../TokenERC1820Provider.sol";
@@ -47,7 +47,7 @@ abstract contract TokenProxy is TokenERC1820Provider, TokenRoles, DomainAware, I
     */
     constructor(address logicAddress, address owner) {
         if (owner != address(0) && owner != _msgSender()) {
-            transferOwnership(owner);
+            TokenRoles.transferOwnership(owner);
             StorageSlot.getAddressSlot(TOKEN_MANAGER_ADDRESS).value = owner;
         } else {
             StorageSlot.getAddressSlot(TOKEN_MANAGER_ADDRESS).value = _msgSender();
@@ -94,7 +94,7 @@ abstract contract TokenProxy is TokenERC1820Provider, TokenRoles, DomainAware, I
     * event
     */
     function _setLogic(address logic) internal {
-        bytes32 EIP1967_LOCATION = bytes32(uint256(keccak256('eip1967.proxy.implementation')) - 1);
+        bytes32 EIP1967_LOCATION = bytes32(uint256(keccak256("eip1967.proxy.implementation")) - 1);
 
         //Update registry
         ERC1820Client.setInterfaceImplementation(__tokenLogicInterfaceName(), logic);
@@ -113,6 +113,10 @@ abstract contract TokenProxy is TokenERC1820Provider, TokenRoles, DomainAware, I
     * @param data Any arbitrary data, will be passed to the new logic contract's initialize function
     */
     function upgradeTo(address logic, bytes memory data) external override onlyManager {
+        if (data.length == 0) {
+            data = bytes("f");
+        }
+        
         StorageSlot.getUint256Slot(UPGRADING_FLAG_SLOT).value = data.length;
 
         _setLogic(logic);

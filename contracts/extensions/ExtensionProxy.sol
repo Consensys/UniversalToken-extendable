@@ -1,8 +1,8 @@
 pragma solidity ^0.8.0;
 
 import {IToken} from "../tokens/IToken.sol";
-import {IExtension} from "../interface/IExtension.sol";
-import {IExtensionMetadata, TokenStandard} from "../interface/IExtensionMetadata.sol";
+import {IExtension} from "./IExtension.sol";
+import {IExtensionMetadata, TokenStandard} from "./IExtensionMetadata.sol";
 import {ExtensionBase} from "./ExtensionBase.sol";
 import {StorageSlot} from "@openzeppelin/contracts/utils/StorageSlot.sol";
 
@@ -21,25 +21,26 @@ contract ExtensionProxy is IExtensionMetadata, ExtensionBase {
     event ExtensionUpgraded(address indexed extension, address indexed newExtension);
 
     constructor(address token, address extension, address callsite) {
+        //Ensure we support this token standard
+        TokenStandard standard = IToken(token).tokenStandard();
+
         //Setup proxy data
         ProxyData storage ds = _proxyData();
 
         ds.token = token;
         ds.extension = extension;
         ds.callsite = callsite;
-        
-        //Ensure we support this token standard
-        TokenStandard standard = IToken(token).tokenStandard();
+        ds.standard = standard;
 
         require(isTokenStandardSupported(standard), "Extension does not support token standard");
         
         //Update EIP1967 Storage Slot
-        bytes32 EIP1967_LOCATION = bytes32(uint256(keccak256('eip1967.proxy.implementation')) - 1);
+        bytes32 EIP1967_LOCATION = bytes32(uint256(keccak256("eip1967.proxy.implementation")) - 1);
         StorageSlot.getAddressSlot(EIP1967_LOCATION).value = extension;
     }
 
     function _extension() internal view returns (IExtension) {
-        ProxyData storage ds = _proxyData();
+        ProxyData storage ds = ExtensionBase._proxyData();
         return IExtension(ds.extension);
     }
 
@@ -64,7 +65,7 @@ contract ExtensionProxy is IExtensionMetadata, ExtensionBase {
         //TODO Check interfaces?
 
         //Ensure we support this token standard
-        ProxyData storage ds = _proxyData();
+        ProxyData storage ds = ExtensionBase._proxyData();
         TokenStandard standard = IToken(ds.token).tokenStandard();
 
         require(ext.isTokenStandardSupported(standard), "Token standard is not supported in new extension");
@@ -73,20 +74,13 @@ contract ExtensionProxy is IExtensionMetadata, ExtensionBase {
         ds.extension = extensionImplementation;
 
         //Update EIP1967 Storage Slot
-        bytes32 EIP1967_LOCATION = bytes32(uint256(keccak256('eip1967.proxy.implementation')) - 1);
+        bytes32 EIP1967_LOCATION = bytes32(uint256(keccak256("eip1967.proxy.implementation")) - 1);
         StorageSlot.getAddressSlot(EIP1967_LOCATION).value = extensionImplementation;
 
         emit ExtensionUpgraded(old, extensionImplementation);
     }
 
     fallback() external payable {
-        if (msg.sender != _authorizedCaller()) {
-            //This specific function is restricted when using the proxy directly
-            //Only the "admin" can invoke this, everyone else (include ourselves) 
-            //shouldn't invoke this
-            require(msg.sig != IExtension.onTransferExecuted.selector, "Cannot directly invoke transferExecuted");
-        }
-        
         ProxyData storage ds = _proxyData();
         
         _delegate(ds.extension);
@@ -150,5 +144,9 @@ contract ExtensionProxy is IExtensionMetadata, ExtensionBase {
 
     function version() public view override returns (uint256) {
         return _extension().version();
+    }
+
+    function interfaceLabel() public view override returns (string memory) {
+        return _extension().interfaceLabel();
     }
 }

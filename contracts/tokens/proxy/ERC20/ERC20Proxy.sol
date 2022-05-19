@@ -7,6 +7,9 @@ import {IToken, TransferData, TokenStandard} from "../../IToken.sol";
 import {ExtendableTokenProxy} from "../ExtendableTokenProxy.sol";
 import {ERC20TokenInterface} from "../../registry/ERC20TokenInterface.sol";
 import {BytesLib} from "solidity-bytes-utils/contracts/BytesLib.sol";
+import {RolesBase} from "../../../utils/roles/RolesBase.sol";
+import {DomainAware} from "../../../utils/DomainAware.sol";
+import {TokenProxy} from "../TokenProxy.sol";
 
 /**
 * @title Extendable ERC20 Proxy
@@ -36,7 +39,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
     * @dev The storage slot that will be used to store the ProtectedTokenData struct inside
     * this TokenProxy
     */
-    bytes32 constant ERC20_PROTECTED_TOKEN_DATA_SLOT = bytes32(uint256(keccak256("erc20.token.meta")) - 1);
+    bytes32 constant internal ERC20_PROTECTED_TOKEN_DATA_SLOT = bytes32(uint256(keccak256("erc20.token.meta")) - 1);
 
     /**
     * @notice Protected ERC20 token metadata stored in the proxy storage in a special storage slot.
@@ -81,7 +84,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
         require(maxSupply_ > 0, "Max supply must be non-zero");
 
         if (allowMint) {
-            _addRole(owner, TOKEN_MINTER_ROLE);
+            RolesBase._addRole(owner, TOKEN_MINTER_ROLE);
         }
 
         ProtectedTokenData storage m = _getProtectedTokenData();
@@ -93,7 +96,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
 
         //Update the doamin seperator now that 
         //we've setup everything
-        _updateDomainSeparator();
+        DomainAware._updateDomainSeparator();
 
         m.initialized = true;
     }
@@ -130,7 +133,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @notice Returns the amount of tokens in existence.
      */
     function totalSupply() public override view returns (uint256) {
-        (,bytes memory result) = _staticDelegateCall(abi.encodeWithSelector(this.totalSupply.selector));
+        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.totalSupply.selector));
 
         return result.toUint256(0);
     }
@@ -156,7 +159,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @param account The account to check the balance of
      */
     function balanceOf(address account) public override view returns (uint256) {
-        (,bytes memory result) = _staticDelegateCall(abi.encodeWithSelector(this.balanceOf.selector, account));
+        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.balanceOf.selector, account));
 
         return result.toUint256(0);
     }
@@ -191,7 +194,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             return false; //We cannot do partition transfers
         }
 
-        _delegateCurrentCall();
+        TokenProxy._delegateCurrentCall();
     }
 
     /**
@@ -262,9 +265,12 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
     /// #if_succeeds {:msg "The receiver receives amount"} _msgSender() != recipient ==> old(balanceOf(recipient)) + amount == balanceOf(recipient);
     /// #if_succeeds {:msg "Transfer to self won't change the senders balance" } _msgSender() == recipient ==> old(balanceOf(_msgSender())) == balanceOf(_msgSender());
     function transferWithData(address recipient, uint256 amount, bytes calldata data) public returns (bool) {
-        bytes memory cdata = abi.encodeWithSelector(IERC20.transfer.selector, recipient, amount, data);
+        bytes memory normalData = abi.encodeWithSelector(IERC20.transfer.selector, recipient, amount);
 
-        (bool result,) = _delegatecall(cdata);
+        //append any extra data packed
+        bytes memory cdata = abi.encodePacked(normalData, data);
+
+        (bool result,) = TokenProxy._delegatecall(cdata);
 
         return result;
     }
@@ -287,7 +293,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
     function transferFromWithData(address sender, address recipient, uint256 amount, bytes calldata data) public returns (bool) {
         bytes memory cdata = abi.encodeWithSelector(IERC20.transferFrom.selector, sender, recipient, amount, data);
 
-        (bool result,) = _delegatecall(cdata);
+        (bool result,) = TokenProxy._delegatecall(cdata);
 
         return result;
     }
@@ -338,7 +344,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @param spender The address of the spender that will spend owner's tokens
      */
     function allowance(address owner, address spender) public override view returns (uint256) {
-        (,bytes memory result) = _staticDelegateCall(abi.encodeWithSelector(this.allowance.selector, owner, spender));
+        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.allowance.selector, owner, spender));
 
         return result.toUint256(0);
      }
@@ -404,7 +410,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
     * @dev Execute a controlled transfer of tokens `from` -> `to`.
     */
     function _transfer(TransferData memory td) internal returns (bool) {
-        (bool result,) = _delegatecall(abi.encodeWithSelector(IToken.tokenTransfer.selector, td));
+        (bool result,) = TokenProxy._delegatecall(abi.encodeWithSelector(IToken.tokenTransfer.selector, td));
         return result;
     }
 
@@ -420,7 +426,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @param amount The amount of new tokens to mint
      */
     function _mint(address receipient, uint256 amount) internal returns (bool) {
-        (bool result,) = _delegatecall(abi.encodeWithSelector(IERC20Proxy.mint.selector, receipient, amount));
+        (bool result,) = TokenProxy._delegatecall(abi.encodeWithSelector(IERC20Proxy.mint.selector, receipient, amount));
         return result;
     }
 
@@ -431,7 +437,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @param amount The amount of tokens to burn from the caller.
      */
     function _burn(uint256 amount) internal returns (bool) {
-        (bool result,) = _delegatecall(abi.encodeWithSelector(IERC20Proxy.burn.selector, amount));
+        (bool result,) = TokenProxy._delegatecall(abi.encodeWithSelector(IERC20Proxy.burn.selector, amount));
         return result;
     }
 
@@ -449,7 +455,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @param amount The amount of tokens to burn
      */
     function _burnFrom(address account, uint256 amount) internal returns (bool) {
-        (bool result,) = _delegatecall(abi.encodeWithSelector(IERC20Proxy.burnFrom.selector, account, amount));
+        (bool result,) = TokenProxy._delegatecall(abi.encodeWithSelector(IERC20Proxy.burnFrom.selector, account, amount));
         return result;
     }
 
@@ -470,7 +476,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @param subtractedValue How much the allowance should be decreased by
      */
     function _decreaseAllowance(address spender, uint256 subtractedValue) internal returns (bool) {
-        (bool result,) = _delegatecall(abi.encodeWithSelector(IERC20Proxy.decreaseAllowance.selector, spender, subtractedValue));
+        (bool result,) = TokenProxy._delegatecall(abi.encodeWithSelector(IERC20Proxy.decreaseAllowance.selector, spender, subtractedValue));
         return result;
     }
 
@@ -489,7 +495,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @param addedValue How much the allowance should be increased by
      */
     function _increaseAllowance(address spender, uint256 addedValue) internal returns (bool) {
-        (bool result,) = _delegatecall(abi.encodeWithSelector(IERC20Proxy.increaseAllowance.selector, spender, addedValue));
+        (bool result,) = TokenProxy._delegatecall(abi.encodeWithSelector(IERC20Proxy.increaseAllowance.selector, spender, addedValue));
         return result;
     }
 
@@ -506,7 +512,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @param amount The amount of tokens to send to the recipient from the sender's account 
      */
     function _transferFrom(address sender, address recipient, uint256 amount) internal returns (bool) {
-        (bool result,) = _delegatecall(abi.encodeWithSelector(IERC20.transferFrom.selector, sender, recipient, amount));
+        (bool result,) = TokenProxy._delegatecall(abi.encodeWithSelector(IERC20.transferFrom.selector, sender, recipient, amount));
         return result;
     }
 
@@ -527,7 +533,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @param amount The total amount of tokens the spender is approved to spend on behalf of the caller
      */
     function _approve(address spender, uint256 amount) internal returns (bool) {
-        (bool result,) = _delegatecall(abi.encodeWithSelector(IERC20.approve.selector, spender, amount));
+        (bool result,) = TokenProxy._delegatecall(abi.encodeWithSelector(IERC20.approve.selector, spender, amount));
         return result;
     }
 
@@ -541,7 +547,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @param amount The amount from the caller's account to transfer
      */
     function _transfer(address recipient, uint256 amount) internal returns (bool) {
-        (bool result,) = _delegatecall(abi.encodeWithSelector(IERC20.transfer.selector, recipient, amount));
+        (bool result,) = TokenProxy._delegatecall(abi.encodeWithSelector(IERC20.transfer.selector, recipient, amount));
         return result;
     }
 

@@ -11,17 +11,19 @@ const { bytes32 } = require("./utils/regex");
 
 
 const BlockExtension = artifacts.require("BlockExtension");
-const ERC20Extendable = artifacts.require("ERC20Extendable");
+const ERC20Extendable = artifacts.require("ERC20");
 const ERC20Logic = artifacts.require("ERC20Logic");
 const ERC20LogicMock = artifacts.require("ERC20LogicMock");
+const MockBlockExtension = artifacts.require("MockBlockExtension");
+const MockAllowExtension = artifacts.require("MockAllowExtension");
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 const ZERO_BYTES32 =
   "0x0000000000000000000000000000000000000000000000000000000000000000";
 contract(
-  "ERC20Extendable",
+  "ERC20",
   function ([deployer, sender, holder, recipient, recipient2, notary]) {
-    describe("ERC20Extendable with Blocklist Extension", function () {
+    describe("ERC20 with Blocklist Extension", function () {
       const initialSupply = 1000;
       const maxSupply = 5000;
       let token;
@@ -53,12 +55,12 @@ contract(
       });
 
       it("Deployer can registers extension", async () => {
-        assert.equal((await token.allExtensions()).length, 0);
+        assert.equal((await token.allExtensionsRegistered()).length, 0);
 
         const result = await token.registerExtension(blockExt, { from: deployer });
         assert.equal(result.receipt.status, 1);
 
-        assert.equal((await token.allExtensions()).length, 1);
+        assert.equal((await token.allExtensionsRegistered()).length, 1);
       });
 
       it("Transfers work if not on block list (100 tokens from deployer to recipient)", async () => {
@@ -132,6 +134,56 @@ contract(
         assert.equal(result.receipt.status, 1);
 
         assert.equal(await blocklistToken.isBlocklisted(recipient), false);
+      });
+
+      it("Revert if non-manager attempts extension upgrade", async () => {
+        let newExt = await MockBlockExtension.new();
+
+        await expectRevert.unspecified(
+          token.upgradeExtension(blockExt, newExt.address, { from: holder })
+        );
+      });
+
+      it("Cant upgrade extension to different package", async () => {
+        let newExt = await MockAllowExtension.new();
+
+        await expectRevert.unspecified(
+          token.upgradeExtension(blockExt, newExt.address, { from: deployer })
+        );
+      });
+
+      it("Cant upgrade extension to same package version", async () => {
+        let newExt = await BlockExtension.new();
+
+        await expectRevert.unspecified(
+          token.upgradeExtension(blockExt, newExt.address, { from: deployer })
+        );
+      });
+
+      it("Cant upgrade extension from different deployer", async () => {
+        let newExt = await MockBlockExtension.new({ from: holder });
+
+        await expectRevert.unspecified(
+          token.upgradeExtension(blockExt, newExt.address, { from: deployer })
+        );
+      });
+
+      
+      it("Manager can upgrade registered extensions", async () => {
+        let newExt = await MockBlockExtension.new();
+
+        assert.equal((await token.allExtensionsRegistered()).length, 1);
+
+        const result = await token.upgradeExtension(blockExt, newExt.address, { from: deployer });
+
+        assert.equal(result.receipt.status, 1);
+        assert.equal((await token.allExtensionsRegistered()).length, 1);
+
+        const blocklistToken = await MockBlockExtension.at(token.address);
+
+        assert.equal((await blocklistToken.mockUpgradeTest()), "This upgrade worked");
+
+        blockExt = newExt.address;
       });
 
       
@@ -439,5 +491,14 @@ contract(
         assert.equal(await upgradedTokenApi.isMock(), "This is a mock!");
       });
 
+      it("Deployer can remove extensions", async () => {
+        assert.equal((await token.allExtensionsRegistered()).length, 1);
+
+        const result2 = await token.removeExtension(blockExt, { from: deployer });
+
+        assert.equal(result2.receipt.status, 1);
+
+        assert.equal((await token.allExtensionsRegistered()).length, 0);
+      });
     });
-})
+  })

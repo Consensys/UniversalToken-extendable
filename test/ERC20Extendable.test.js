@@ -9,7 +9,7 @@ const {
 const { newSecretHashPair } = require("./utils/crypto");
 const { bytes32 } = require("./utils/regex");
 
-const ERC20Extendable = artifacts.require("ERC20Extendable");
+const ERC20Extendable = artifacts.require("ERC20");
 const ERC20Logic = artifacts.require("ERC20Logic");
 const ERC20LogicMock = artifacts.require("ERC20LogicMock");
 
@@ -17,9 +17,9 @@ const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 const ZERO_BYTES32 =
   "0x0000000000000000000000000000000000000000000000000000000000000000";
 contract(
-  "ERC20Extendable",
+  "ERC20",
   function ([deployer, sender, holder, recipient, recipient2, notary]) {
-    describe("ERC20Extendable with no extensions", function () {
+    describe("ERC20 with no extensions", function () {
       const initialSupply = 1000;
       const maxSupply = 5000;
       let token;
@@ -237,4 +237,4 @@ contract(
       });
 
     });
-})
+  })
