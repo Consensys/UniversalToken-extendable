@@ -15,9 +15,7 @@ contract ERC20 is ERC20Proxy {
 
     /**
      * @dev Constructor takes the ERC20 logic contract address, important for proper functioning
-     * @param name_ The name of the token
-     * @param symbol_ The symbol of the token
-     * @param symbol_ The symbol of the token
+     * @param _initalSupply Initial token supply to mint
      */
     constructor(
         string memory name_,
