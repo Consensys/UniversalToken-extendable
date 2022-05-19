@@ -18,6 +18,10 @@ interface IERC20Proxy is IERC20Metadata, ITokenProxy {
     */
     function burningAllowed() external view returns (bool);
 
+    /**
+    * @notice Returns the maximum value the totalSupply() can be for this token
+    */
+    function maxSupply() external view returns (uint256);
 
     /**
      * @notice Creates `amount` new tokens for `to`.

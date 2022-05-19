@@ -42,28 +42,6 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
     bytes32 constant internal ERC20_PROTECTED_TOKEN_DATA_SLOT = bytes32(uint256(keccak256("erc20.token.meta")) - 1);
 
     /**
-    * @notice Protected ERC20 token metadata stored in the proxy storage in a special storage slot.
-    * Includes thing such as name, symbol and deployment options.
-    * @dev This struct should only be written to inside the constructor and should be treated as readonly.
-    * Solidity 0.8.7 does not have anything for marking storage slots as read-only, so we'll just use
-    * the honor system for now.
-    * @param initialized Whether this proxy is initialized
-    * @param name The name of this ERC20 token
-    * @param symbol The symbol of this ERC20 token
-    * @param maxSupply The max supply of token allowed
-    * @param allowMint Whether minting is allowed
-    * @param allowBurn Whether burning is allowed
-    */
-    struct ProtectedTokenData {
-        bool initialized;
-        string name;
-        string symbol;
-        uint256 maxSupply;
-        bool allowMint;
-        bool allowBurn;
-    }
-
-    /**
     * @notice Deploy a new ERC20 Token Proxy with a given token logic contract. You must
     * also provide the token's name/symbol, max supply, owner and whether token minting or
     * token buning is allowed
@@ -78,27 +56,21 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
     */
     constructor(
         string memory name_, string memory symbol_, 
-        bool allowMint, bool allowBurn, address owner,
-        uint256 maxSupply_, address logicAddress
-    ) ExtendableTokenProxy(logicAddress, owner) { 
+        bool allowMint, bool allowBurn, uint256 maxSupply_,
+        address owner, address logicAddress
+    ) ExtendableTokenProxy(
+        abi.encode(name_, symbol_, allowMint, allowBurn, maxSupply_), 
+        logicAddress, owner
+    ) { 
         require(maxSupply_ > 0, "Max supply must be non-zero");
 
         if (allowMint) {
             RolesBase._addRole(owner, TOKEN_MINTER_ROLE);
         }
 
-        ProtectedTokenData storage m = _getProtectedTokenData();
-        m.name = name_;
-        m.symbol = symbol_;
-        m.maxSupply = maxSupply_;
-        m.allowMint = allowMint;
-        m.allowBurn = allowBurn;
-
         //Update the doamin seperator now that 
         //we've setup everything
         DomainAware._updateDomainSeparator();
-
-        m.initialized = true;
     }
     
     /**
@@ -120,16 +92,6 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
     }
 
     /**
-     * @dev Get the ProtectedTokenData struct stored in this contract
-     */
-    function _getProtectedTokenData() internal pure returns (ProtectedTokenData storage r) {
-        bytes32 slot = ERC20_PROTECTED_TOKEN_DATA_SLOT;
-        assembly {
-            r.slot := slot
-        }
-    }
-
-    /**
      * @notice Returns the amount of tokens in existence.
      */
     function totalSupply() public override view returns (uint256) {
@@ -138,20 +100,28 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
         return result.toUint256(0);
     }
 
+    function maxSupply() public override view returns (uint256) {
+        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.maxSupply.selector));
+
+        return result.toUint256(0);
+    }
+
     /**
     * @notice Returns true if minting is allowed on this token, otherwise false
     */
     function mintingAllowed() public override view returns (bool) {
-        ProtectedTokenData storage m = _getProtectedTokenData();
-        return m.allowMint;
+        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.mintingAllowed.selector));
+
+        return result.equal(TRUE);
     }
 
     /**
     * @notice Returns true if burning is allowed on this token, otherwise false
     */
     function burningAllowed() public override view returns (bool) {
-        ProtectedTokenData storage m = _getProtectedTokenData();
-        return m.allowBurn;
+        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.burningAllowed.selector));
+
+        return result.equal(TRUE);
     }
 
     /**
@@ -168,14 +138,18 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @notice Returns the name of the token.
      */
     function name() public override view returns (string memory) {
-        return _getProtectedTokenData().name;
+        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.name.selector));
+
+        return _bytesToString(result);
     }
 
     /**
      * @notice Returns the symbol of the token.
      */
     function symbol() public override view returns (string memory) {
-        return _getProtectedTokenData().symbol;
+        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.symbol.selector));
+
+        return _bytesToString(result);
     }
 
     /**
@@ -212,7 +186,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
     /// #if_succeeds {:msg "Minting is enabled"} mintingAllowed()
     /// #if_succeeds {:msg "The to address balance increases"} old(balanceOf(to)) + amount == balanceOf(to)
     /// #if_succeeds {:msg "The total supply has increases as expected"} old(totalSupply()) + amount == totalSupply()
-    /// #if_succeeds {:msg "The total supply is not bigger than the max cap"} old(totalSupply()) + amount <= _getProtectedTokenData().maxSupply
+    /// #if_succeeds {:msg "The total supply is not bigger than the max cap"} old(totalSupply()) + amount <= maxSupply()
     function mint(address to, uint256 amount) public override virtual onlyMinter mintingEnabled delegated returns (bool) { }
 
     /**

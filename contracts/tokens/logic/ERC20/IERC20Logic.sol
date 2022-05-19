@@ -77,4 +77,19 @@ interface IERC20Logic is IERC20Metadata, ITokenLogic {
      * @param amount How much the allowance should be increased by
      */
     function increaseAllowance(address spender, uint256 amount) external returns (bool);
+
+    /**
+    * @notice Returns true if minting is allowed on this token, otherwise false
+    */
+    function mintingAllowed() external view returns (bool);
+
+    /**
+    * @notice Returns true if burning is allowed on this token, otherwise false
+    */
+    function burningAllowed() external view returns (bool);
+
+    /**
+    * @notice Returns the maximum value the totalSupply() can be for this token
+    */
+    function maxSupply() external view returns (uint256);
 }

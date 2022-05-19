@@ -1,7 +1,7 @@
 pragma solidity ^0.8.0;
 
 import {ICertificateValidator} from "./ICertificateValidator.sol";
-import {TokenExtension, TransferData} from "../TokenExtension.sol";
+import {TokenExtension, TransferData} from "../../extensions/TokenExtension.sol";
 import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import {CertificateLib, CertificateValidationType} from "./CertificateLib.sol";
 
