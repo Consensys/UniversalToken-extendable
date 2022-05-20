@@ -72,6 +72,15 @@ abstract contract ExtensionBase is ContextUpgradeable {
     }
 
     /**
+     * @dev The current token standard that registered this extension instance
+     * @return a token standard
+     */
+    function _tokenStandard() internal view returns (TokenStandard) {
+        ProxyData storage ds = _proxyData();
+        return ds.standard;
+    }
+
+    /**
     * @dev The current admin address for this registered extension instance
     */
     function _authorizedCaller() internal view returns (address) {

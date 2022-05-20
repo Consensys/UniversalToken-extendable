@@ -39,11 +39,22 @@ contract ExtensionProxy is IExtensionMetadata, ExtensionBase {
         StorageSlot.getAddressSlot(EIP1967_LOCATION).value = extension;
     }
 
+    /**
+    * @return IExtension. The interface of the actual extension registered (logic contract).
+    */
     function _extension() internal view returns (IExtension) {
         ProxyData storage ds = ExtensionBase._proxyData();
         return IExtension(ds.extension);
     }
 
+    /**
+    * @dev Upgrade the ExtensionProxy logic contract. Can only be executed by the current
+    * admin of the extension address
+    * @notice Perform an upgrade on the proxy and replace the current logic
+    * contract with a new one. You must provide the new address of the
+    * logic contract.
+    * @param extensionImplementation The address of the new logic contract
+    */
     function upgradeTo(address extensionImplementation) external onlyAuthorizedCaller {
         IExtension ext = IExtension(extensionImplementation);
 
@@ -86,6 +97,11 @@ contract ExtensionProxy is IExtensionMetadata, ExtensionBase {
         _delegate(ds.extension);
     }
 
+    /**
+    * @notice This function cannot be invoked directly
+    * @dev This function is invoked when the Extension is registered
+    * with a TokenProxy 
+    */
     function initialize() external onlyAuthorizedCaller {
         ProxyData storage ds = _proxyData();
 
@@ -122,30 +138,59 @@ contract ExtensionProxy is IExtensionMetadata, ExtensionBase {
         }
     }
 
+    /**
+    * @notice An array of function signatures this extension adds when
+    * registered when a TokenProxy
+    * @dev This function is used by the TokenProxy to determine what
+    * function selectors to add to the TokenProxy
+    */
     function externalFunctions() external override view returns (bytes4[] memory) {
         return _extension().externalFunctions();
     }
 
+    /**
+    * @notice An array of role IDs that this extension requires from the Token
+    * in order to function properly
+    * @dev This function is used by the TokenProxy to determine what
+    * roles to grant to the extension after registration and what roles to remove
+    * when removing the extension
+    */
     function requiredRoles() external override view returns (bytes32[] memory) {
         return _extension().requiredRoles();
     }
 
+    /**
+    * @notice Whether a given Token standard is supported by this Extension
+    * @param standard The standard to check support for
+    */
     function isTokenStandardSupported(TokenStandard standard) public override view returns (bool) {
         return _extension().isTokenStandardSupported(standard);
     }
 
+    /**
+    * @notice The address that deployed this extension.
+    */
     function extensionDeployer() public view override returns (address) {
         return _extension().extensionDeployer();
     }
 
+    /**
+    * @notice The hash of the package string this extension was deployed with
+    */
     function packageHash() public view override returns (bytes32) {
         return _extension().packageHash();
     }
 
+    /**
+    * @notice The version of this extension, represented as a number
+    */
     function version() public view override returns (uint256) {
         return _extension().version();
     }
 
+    /**
+    * @notice The ERC1820 interface label the extension will be registered as in the ERC1820 registry
+    */
     function interfaceLabel() public view override returns (string memory) {
         return _extension().interfaceLabel();
     }

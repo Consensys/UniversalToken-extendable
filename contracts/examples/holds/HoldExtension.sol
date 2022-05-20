@@ -170,6 +170,18 @@ contract HoldExtension is TokenExtension, IHoldableToken {
         return data.holds[holdId];
     }
 
+
+    function _buildTransferWithOperatorData(
+        address from,
+        address to,
+        uint256 amountOrTokenId,
+        bytes memory data
+    ) internal view returns (TransferData memory) {
+        TransferData memory t = _buildTransfer(from, to, amountOrTokenId);
+        t.operatorData = data;
+        return t;
+    }
+
         /**
      @notice Called by the notary to transfer the held tokens to the set at the hold recipient if there is no hash lock.
      @param holdId a unique identifier for the hold.
