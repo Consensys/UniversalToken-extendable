@@ -365,7 +365,7 @@ abstract contract TokenExtension is
     /**
      * @dev Listen for token transfers and invoke the provided callback function.
      * When the callback is invoked, the transfer has already occured.
-     * It is important the the callback has the onlyToken modifier in order to ensure that
+     * It is important that the callback has the onlyToken modifier in order to ensure that
      * only the token can execute the callback function.
      * @param callback an external/public function that has TransferData as argument.
      */
