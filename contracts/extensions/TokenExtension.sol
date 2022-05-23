@@ -55,7 +55,7 @@ abstract contract TokenExtension is
     }
 
     /**
-     * @dev Generates an hash given the deployer and package name
+     * @dev Generates a hash given the deployer and package name
      */
     function __update_package_hash() private {
         _packageHash = keccak256(abi.encodePacked(_deployer, _package));
