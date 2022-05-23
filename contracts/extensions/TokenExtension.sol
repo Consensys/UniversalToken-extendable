@@ -298,7 +298,7 @@ abstract contract TokenExtension is
         return addr == _tokenOwner();
     }
 
-    // MOVE to specific Erc20Extension contract?!?
+    // TODO Move to specific Erc20TokenExtension contract?!?
     /**
      * @dev Explicit method for erc20 tokens. I returns an erc20 proxy contract interface
      * @return IERC20Proxy. Returns an erc20 proxy contract interface.
