@@ -308,7 +308,7 @@ abstract contract TokenExtension is
     }
 
     /**
-     * @dev Explicit method for erc20 tokens. I returns an erc20 proxy contract interface
+     * @dev Get the current owner address of the registered token
      * @return address. Owner address of the registered token
      */
     function _tokenOwner() internal view returns (address) {
