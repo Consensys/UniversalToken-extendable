@@ -309,7 +309,7 @@ abstract contract TokenExtension is
 
     /**
      * @dev Explicit method for erc20 tokens. I returns an erc20 proxy contract interface
-     * @return IERC20Proxy. Returns an erc20 proxy contract interface.
+     * @return address. Owner address of the registered token
      */
     function _tokenOwner() internal view returns (address) {
         Ownable token = Ownable(_tokenAddress());
