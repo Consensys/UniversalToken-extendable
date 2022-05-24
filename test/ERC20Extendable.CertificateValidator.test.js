@@ -1,14 +1,5 @@
 const { assert } = require("chai");
 const { expectRevert } = require("@openzeppelin/test-helpers");
-const {
-  nowSeconds,
-  advanceTime,
-  takeSnapshot,
-  revertToSnapshot,
-} = require("./utils/time");
-const { soliditySha3 } = require("web3-utils");
-const { newSecretHashPair } = require("./utils/crypto");
-const { bytes32 } = require("./utils/regex");
 const Account = require('eth-lib/lib/account');
 
 const CERTIFICATE_VALIDATION_NONE = 0;
@@ -18,7 +9,6 @@ const CERTIFICATE_VALIDATION_DEFAULT = CERTIFICATE_VALIDATION_SALT;
 const EMPTY_CERTIFICATE = "0x";
 const CERTIFICATE_VALIDITY_PERIOD = 1; // Certificate will be valid for 1 hour
 const SECONDS_IN_AN_HOUR = 3600;
-const SECONDS_IN_A_DAY = 24*SECONDS_IN_AN_HOUR;
 
 const CertificateValidatorExtension = artifacts.require("CertificateValidatorExtension");
 const ERC20Extendable = artifacts.require("ERC20");
@@ -27,10 +17,6 @@ const ClockMock = artifacts.require("ClockMock");
 
 const CERTIFICATE_SIGNER_PRIVATE_KEY = "0x1699611cc662aad2db30d5cf44bd531a8b16710e43624fc0e801c6592f72f9ab";
 const CERTIFICATE_SIGNER = "0x2A3cE238F1903B1cA935D734e6160aBA029ff80a";
-
-const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
-const ZERO_BYTES32 =
-  "0x0000000000000000000000000000000000000000000000000000000000000000";
 
 const numberToHexa = (num, pushTo) => {
   const arr1 = [];
@@ -110,7 +96,7 @@ const craftNonceBasedCertificate = async (
     );
   } */
 
-  const packedAndHashedParameters = soliditySha3(
+  const packedAndHashedParameters = web3.utils.soliditySha3(
     { type: 'address', value: _txSender.toString() },
     { type: 'address', value: _token.address.toString() },
     { type: 'bytes', value: rawTxPayload },
@@ -118,7 +104,7 @@ const craftNonceBasedCertificate = async (
     { type: 'uint256', value: nonce.toString()  },
   );
 
-  const packedAndHashedData = soliditySha3(
+  const packedAndHashedData = web3.utils.soliditySha3(
     { type: 'bytes32', value: _domain },
     { type: 'bytes32', value: packedAndHashedParameters }
   );
@@ -147,7 +133,7 @@ const craftSaltBasedCertificate = async (
 ) => {
   const extension = await CertificateValidatorExtension.at(_token.address);
   // Generate a random salt, which has never been used before
-  const salt = soliditySha3(new Date().getTime().toString());
+  const salt = web3.utils.soliditySha3(new Date().getTime().toString());
 
   // Check if salt has already been used, even though that very un likely to happen (statistically impossible)
   const saltHasAlreadyBeenUsed = await extension.usedCertificateSalt(salt);
@@ -175,7 +161,7 @@ const craftSaltBasedCertificate = async (
     );
   } */
 
-  const packedAndHashedParameters = soliditySha3(
+  const packedAndHashedParameters = web3.utils.soliditySha3(
     { type: 'address', value: _txSender.toString() },
     { type: 'address', value: _token.address.toString() },
     { type: 'bytes', value: rawTxPayload },
@@ -183,7 +169,7 @@ const craftSaltBasedCertificate = async (
     { type: 'bytes32', value: salt.toString() },
   );
 
-  const packedAndHashedData = soliditySha3(
+  const packedAndHashedData = web3.utils.soliditySha3(
     { type: 'bytes32', value: _domain },
     { type: 'bytes32', value: packedAndHashedParameters }
   );

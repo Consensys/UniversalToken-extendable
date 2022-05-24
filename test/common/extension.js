@@ -1,4 +1,3 @@
-const { soliditySha3 } = require("web3-utils");
 const { assert } = require("chai");
 
 const ERC1400_TOKENS_VALIDATOR = "ERC1400TokensValidator";
@@ -15,7 +14,7 @@ const assertTokenHasExtension = async (
 ) => {
   let extensionImplementer = await _registry.getInterfaceImplementer(
     _token.address,
-    soliditySha3(ERC1400_TOKENS_VALIDATOR)
+    web3.utils.soliditySha3(ERC1400_TOKENS_VALIDATOR)
   );
   assert.equal(extensionImplementer, _extension.address);
 }
