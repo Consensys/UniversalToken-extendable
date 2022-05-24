@@ -20,7 +20,8 @@
     "start:chain": "truffle develop",
     "test": "truffle test",
     "generate-types": "typechain --target=truffle-v5 'build/contracts/*.json'",
-    "postinstall": "yarn run build"
+    "postinstall": "yarn run build",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -65,16 +66,11 @@
     "chai-bignumber": "^3.0.0",
     "del-cli": "^4.0.1",
     "dotenv": "^8.2.0",
-    "eslint": "^7.9.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-truffle": "^0.3.1",
+    "eslint": "^8.16.0",
+    "eslint-plugin-import": "^2.26.0",
     "eth-lib": "^0.1.29",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.1",
     "solhint": "^3.3.7",
     "solidity-coverage": "0.8.0-beta.0",
     "truffle": "^5.5.15",
@@ -91,14 +87,12 @@
   "resolutions": {
     "web3": "1.7.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.js": [
       "eslint --fix"
+    ],
+    "*.sol": [
+      "solhint --fix"
     ]
   }
 }
