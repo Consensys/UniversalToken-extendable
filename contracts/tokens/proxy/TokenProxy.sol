@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.0;
 
 import {ERC1820Client} from "../../utils/erc1820/ERC1820Client.sol";
