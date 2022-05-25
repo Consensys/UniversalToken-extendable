@@ -32,6 +32,8 @@ contract ERC721Logic is
 
     struct TokenMeta {
         bool initialized;
+        string name;
+        string symbol;
         uint256 maxSupply;
         bool allowMint;
         bool allowBurn;
@@ -70,6 +72,8 @@ contract ERC721Logic is
         ) = abi.decode(data, (string, string, bool, bool, uint256));
 
         TokenMeta storage m = _getTokenMeta();
+        m.name = name_;
+        m.symbol = symbol_;
         m.maxSupply = maxSupply_;
         m.allowMint = allowMint;
         m.allowBurn = allowBurn;

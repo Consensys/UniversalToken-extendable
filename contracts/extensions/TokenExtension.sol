@@ -32,13 +32,13 @@ abstract contract TokenExtension is TokenRolesConstants, TokenEventConstants, IE
     }
 
     function _setVersion(uint256 __version) internal {
-        require(isInsideConstructorCall(), "Function must be called inside the constructor");
+        require(_isInsideConstructorCall(), "Function must be called inside the constructor");
 
         _version = __version;
     }
 
     function _setPackageName(string memory package) internal {
-        require(isInsideConstructorCall(), "Function must be called inside the constructor");
+        require(_isInsideConstructorCall(), "Function must be called inside the constructor");
 
         _package = package;
 
@@ -46,12 +46,12 @@ abstract contract TokenExtension is TokenRolesConstants, TokenEventConstants, IE
     }
     
     function _supportsTokenStandard(TokenStandard tokenStandard) internal {
-        require(isInsideConstructorCall(), "Function must be called inside the constructor");
+        require(_isInsideConstructorCall(), "Function must be called inside the constructor");
         supportedTokenStandards[tokenStandard] = true;
     }
 
     function _setInterfaceLabel(string memory interfaceLabel_) internal {
-        require(isInsideConstructorCall(), "Function must be called inside the constructor");
+        require(_isInsideConstructorCall(), "Function must be called inside the constructor");
 
         _interfaceLabel = interfaceLabel_;
     }
@@ -91,12 +91,12 @@ abstract contract TokenExtension is TokenRolesConstants, TokenEventConstants, IE
     }
 
     function _requireRole(bytes32 roleId) internal {
-        require(isInsideConstructorCall(), "Function must be called inside the constructor");
+        require(_isInsideConstructorCall(), "Function must be called inside the constructor");
         _requiredRoles.push(roleId);
     }
 
     function _supportInterface(bytes4 interfaceId) internal {
-        require(isInsideConstructorCall(), "Function must be called inside the constructor");
+        require(_isInsideConstructorCall(), "Function must be called inside the constructor");
         _interfaceMap[interfaceId] = true;
     }
 
@@ -105,7 +105,7 @@ abstract contract TokenExtension is TokenRolesConstants, TokenEventConstants, IE
     }
 
     function _registerFunction(bytes4 selector) internal {
-        require(isInsideConstructorCall(), "Function must be called inside the constructor");
+        require(_isInsideConstructorCall(), "Function must be called inside the constructor");
         _exposedFuncSigs.push(selector);
     }
 
@@ -118,7 +118,7 @@ abstract contract TokenExtension is TokenRolesConstants, TokenEventConstants, IE
         return _requiredRoles;
     }
 
-    function isInsideConstructorCall() internal view returns (bool) {
+    function _isInsideConstructorCall() internal view returns (bool) {
         uint size;
         address addr = address(this);
         assembly { size := extcodesize(addr) }

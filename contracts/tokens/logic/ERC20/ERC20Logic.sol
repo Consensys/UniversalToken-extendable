@@ -11,15 +11,12 @@ import {ERC1820Implementer} from "../../../utils/erc1820/ERC1820Implementer.sol"
 import {BytesLib} from "solidity-bytes-utils/contracts/BytesLib.sol";
 import {ERC20TokenInterface} from "../../registry/ERC20TokenInterface.sol";
 import {TokenEventManager} from "../../eventmanager/TokenEventManager.sol";
+import {ERC20ProtectedTokenData} from "./IERC20Logic.sol";
 
 /**
  * @title Extendable ERC20 Logic
  * @notice An ERC20 logic contract that implements the IERC20 interface. This contract
  * can be deployed as-is.
- *
- * The logic contract is not responsible for the logic required for name() and symbol() (The proxy
- * contract handles this). This means that no constructor arguments are required for deployment.
- *
  *
  * @dev This logic contract inherits from OpenZeppelin's ERC20Upgradeable, TokenLogic and ERC20TokenInterface.
  * This meaning it supports the full ERC20 spec along with any OpenZeppelin (or other 3rd party) contract extensions.
@@ -52,32 +49,12 @@ contract ERC20Logic is ERC20TokenInterface, TokenLogic, ERC20Upgradeable {
         bytes32(uint256(keccak256("erc20.token.meta")) - 1);
 
     /**
-     * @notice Protected ERC20 token metadata stored in the proxy storage in a special storage slot.
-     * Includes thing such as name, symbol and deployment options.
-     * @dev This struct should only be written to inside the constructor and should be treated as readonly.
-     * Solidity 0.8.7 does not have anything for marking storage slots as read-only, so we'll just use
-     * the honor system for now.
-     * @param initialized Whether this proxy is initialized
-     * @param name The name of this ERC20 token
-     * @param symbol The symbol of this ERC20 token
-     * @param maxSupply The max supply of token allowed
-     * @param allowMint Whether minting is allowed
-     * @param allowBurn Whether burning is allowed
-     */
-    struct ProtectedTokenData {
-        bool initialized;
-        uint256 maxSupply;
-        bool allowMint;
-        bool allowBurn;
-    }
-
-    /**
      * @dev Get the ProtectedTokenData struct stored in this contract
      */
     function _getProtectedTokenData()
         internal
         pure
-        returns (ProtectedTokenData storage r)
+        returns (ERC20ProtectedTokenData storage r)
     {
         bytes32 slot = ERC20_PROTECTED_TOKEN_DATA_SLOT;
         assembly {
@@ -110,7 +87,9 @@ contract ERC20Logic is ERC20TokenInterface, TokenLogic, ERC20Upgradeable {
             uint256 maxSupply_
         ) = abi.decode(data, (string, string, bool, bool, uint256));
 
-        ProtectedTokenData storage m = _getProtectedTokenData();
+        ERC20ProtectedTokenData storage m = _getProtectedTokenData();
+        m.name = name_;
+        m.symbol = symbol_;
         m.maxSupply = maxSupply_;
         m.allowMint = allowMint;
         m.allowBurn = allowBurn;

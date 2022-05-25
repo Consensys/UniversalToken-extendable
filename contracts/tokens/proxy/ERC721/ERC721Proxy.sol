@@ -17,6 +17,27 @@ contract ERC721Proxy is
 {
     using BytesLib for bytes;
 
+    bytes32 private constant ERC721_TOKEN_META = keccak256("erc721.token.meta");
+
+    struct TokenMeta {
+        bool initialized;
+        string name;
+        string symbol;
+        uint256 maxSupply;
+        bool allowMint;
+        bool allowBurn;
+    }
+
+    /**
+     * @dev Returns an `AddressSlot` with member `value` located at `slot`.
+     */
+    function _getTokenMeta() internal pure returns (TokenMeta storage r) {
+        bytes32 slot = ERC721_TOKEN_META;
+        assembly {
+            r.slot := slot
+        }
+    }
+
     constructor(
         string memory name_,
         string memory symbol_,
@@ -110,6 +131,12 @@ contract ERC721Proxy is
      * @dev Returns the name of the token.
      */
     function name() public view override returns (string memory) {
+        if (_isInsideConstructorCall()) {
+            //_staticDelegateCall doesn't work inside the constructor
+            //See if we can grab from the storage slot ERC721Logic uses
+            return _getTokenMeta().name;
+        }
+
         (, bytes memory result) = TokenProxy._staticDelegateCall(
             abi.encodeWithSelector(this.name.selector)
         );
@@ -121,6 +148,12 @@ contract ERC721Proxy is
      * @dev Returns the symbol of the token.
      */
     function symbol() public view override returns (string memory) {
+        if (_isInsideConstructorCall()) {
+            //_staticDelegateCall doesn't work inside the constructor
+            //See if we can grab from the storage slot ERC721Logic uses
+            return _getTokenMeta().symbol;
+        }
+
         (, bytes memory result) = TokenProxy._staticDelegateCall(
             abi.encodeWithSelector(this.symbol.selector)
         );

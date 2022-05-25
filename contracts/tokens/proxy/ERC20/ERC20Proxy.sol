@@ -2,7 +2,7 @@ pragma solidity ^0.8.0;
 
 import {IERC20Proxy} from "./IERC20Proxy.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {IERC20Logic} from "../../logic/ERC20/IERC20Logic.sol";
+import {IERC20Logic, ERC20ProtectedTokenData} from "../../logic/ERC20/IERC20Logic.sol";
 import {IToken, TransferData, TokenStandard} from "../../IToken.sol";
 import {ExtendableTokenProxy} from "../ExtendableTokenProxy.sol";
 import {ERC20TokenInterface} from "../../registry/ERC20TokenInterface.sol";
@@ -40,6 +40,20 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
     * this TokenProxy
     */
     bytes32 constant internal ERC20_PROTECTED_TOKEN_DATA_SLOT = bytes32(uint256(keccak256("erc20.token.meta")) - 1);
+
+    /**
+     * @dev Get the ProtectedTokenData struct stored in this contract
+     */
+    function _getProtectedTokenData()
+        internal
+        pure
+        returns (ERC20ProtectedTokenData storage r)
+    {
+        bytes32 slot = ERC20_PROTECTED_TOKEN_DATA_SLOT;
+        assembly {
+            r.slot := slot
+        }
+    }
 
     /**
     * @notice Deploy a new ERC20 Token Proxy with a given token logic contract. You must
@@ -138,6 +152,13 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @notice Returns the name of the token.
      */
     function name() public override view returns (string memory) {
+        if (_isInsideConstructorCall()) {
+            //_staticDelegateCall doesn't work inside the constructor
+            //See if we can grab from the storage slot ERC20Logic uses
+            ERC20ProtectedTokenData storage data = _getProtectedTokenData();
+            return data.name;
+        }
+
         (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.name.selector));
 
         return _bytesToString(result);
@@ -147,6 +168,13 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @notice Returns the symbol of the token.
      */
     function symbol() public override view returns (string memory) {
+        if (_isInsideConstructorCall()) {
+            //_staticDelegateCall doesn't work inside the constructor
+            //See if we can grab from the storage slot ERC20Logic uses
+            ERC20ProtectedTokenData storage data = _getProtectedTokenData();
+            return data.symbol;
+        }
+
         (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.symbol.selector));
 
         return _bytesToString(result);

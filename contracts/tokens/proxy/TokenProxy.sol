@@ -300,6 +300,9 @@ abstract contract TokenProxy is
         internal
         view
     {
+        //The static-delegatecall trick doesn't work if we don't have code yet   
+        require(!_isInsideConstructorCall(), "_staticDelegateCallAndReturn does not work inside constructor");
+
         bytes memory finalData = abi.encodePacked(STATICCALLMAGIC, _calldata);
         address self = address(this);
 
@@ -311,7 +314,7 @@ abstract contract TokenProxy is
                 gas(),
                 self,
                 add(finalData, 0x20),
-                mload(_calldata),
+                mload(finalData),
                 0,
                 0
             )
@@ -346,7 +349,10 @@ abstract contract TokenProxy is
         internal
         view
         returns (bool success, bytes memory result)
-    {
+    {   
+        //The static-delegatecall trick doesn't work if we don't have code yet   
+        require(!_isInsideConstructorCall(), "_staticDelegateCall does not work inside constructor");
+
         bytes memory finalData = abi.encodePacked(STATICCALLMAGIC, _calldata);
 
         // Forward the external call using call and return any value
@@ -369,8 +375,10 @@ abstract contract TokenProxy is
                 msg.sender == address(this),
                 "STATICCALLMAGIC can only be used by the Proxy"
             );
+            require(msg.data.length >= 8, "Invalid STATICCALLMAGIC calldata");
 
             bytes memory _calldata = msg.data.slice(4, msg.data.length - 4);
+
             _delegatecallAndReturn(_calldata);
         } else {
             _delegateCurrentCall();
@@ -400,11 +408,33 @@ abstract contract TokenProxy is
         return bytes32(uint256(uint160(_getLogicContractAddress())));
     }
 
+    /**
+     * @dev Child contracts may override this function
+     * @param input The bytes input to convert to a string
+     * @return string The abi decoded input as a string
+     */
     function _bytesToString(bytes memory input)
         internal
         pure
         returns (string memory)
     {
-        return string(input.slice(64, input.length - 64));
+        if (input.length == 0) {
+            return "";
+        }
+
+        return abi.decode(input, (string));
     }
+
+    /**
+    * @dev Checks whether the current call context is the constructor of this contract
+    * @return bool This will return true if address(this) is still being constructed (we are inside the constructor call context),
+    * otherwise returns false
+    */
+    function _isInsideConstructorCall() internal view returns (bool) {
+        uint size;
+        address addr = address(this);
+        assembly { size := extcodesize(addr) }
+        return size == 0;
+    }
+
 }
