@@ -1,6 +1,6 @@
 pragma solidity ^0.8.0;
 
-import {BlockExtension} from "../../extensions/allowblock/block/BlockExtension.sol";
+import {BlockExtension} from "../../examples/allowblock/block/BlockExtension.sol";
 
 contract MockBlockExtension is BlockExtension {
 

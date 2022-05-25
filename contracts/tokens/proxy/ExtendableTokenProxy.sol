@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.0;
 
 import {RolesBase} from "../../utils/roles/RolesBase.sol";
@@ -91,7 +92,7 @@ abstract contract ExtendableTokenProxy is TokenProxy, RegisteredExtensionStorage
     * @param extension The global extension address to register
     */
     function registerExtension(address extension) external override onlyManager {
-        _registerExtension(extension, address(this), _msgSender());
+        _registerExtension(extension);
 
         address proxyAddress = _proxyAddressForExtension(extension);
         ExtensionProxy proxy = ExtensionProxy(payable(proxyAddress));
@@ -203,7 +204,7 @@ abstract contract ExtendableTokenProxy is TokenProxy, RegisteredExtensionStorage
         }
     }
 
-        /**
+    /**
     * @dev Register an extension at the given global extension address. This will
     * deploy a new ExtensionProxy contract to act as the extension proxy and register
     * all function selectors the extension exposes.
@@ -212,10 +213,8 @@ abstract contract ExtendableTokenProxy is TokenProxy, RegisteredExtensionStorage
     * Registering an extension automatically enables it for use.
     *
     * @param extension The global extension address to register
-    * @param token The token address that will be using this extension
-    * @param caller The current caller that will be initalizing the extension proxy
     */
-    function _registerExtension(address extension, address token, address caller) internal returns (bool) {
+    function _registerExtension(address extension) internal returns (bool) {
         MappedExtensions storage extLibStorage = RegisteredExtensionStorage._extensionStorage();
         require(extLibStorage.extensions[extension].state == ExtensionState.EXTENSION_NOT_EXISTS, "The extension must not already exist");
 
@@ -224,7 +223,7 @@ abstract contract ExtendableTokenProxy is TokenProxy, RegisteredExtensionStorage
 
         //Next we need to deploy the ExtensionProxy contract
         //To sandbox our extension's storage
-        ExtensionProxy extProxy = new ExtensionProxy(token, extension, address(this));
+        ExtensionProxy extProxy = new ExtensionProxy(address(this), extension, address(this));
 
         _saveExtension(extProxy, extension);
 

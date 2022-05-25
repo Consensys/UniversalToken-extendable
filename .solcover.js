@@ -11,16 +11,12 @@ module.exports = {
     "extensions/allowblock/block/IBlocklistedRole.sol",
     "tokens/storage/TokenEventManagerStorage.sol",
     "utils/erc1820/ERC1820Registry.sol",
-    "utils/mocks/legacy/erc1400/ERC1400.sol",
-    "utils/mocks/legacy/MinterRole.sol",
-    "utils/mocks/FakeERC1400Mock.sol",
     "utils/mocks/MockAllowExtension.sol",
     "utils/mocks/MockBlockExtension.sol",
-    "utils/mocks/legacy/erc20/ERC20Token.sol",
-    "utils/mocks/legacy/erc721/ERC721Token.sol"],
+  ],
   copyPackages: ["@openzeppelin/contracts"],
   mocha: {
     enableTimeouts: false,
-    before_timeout: 0
-  }
+    before_timeout: 0,
+  },
 };

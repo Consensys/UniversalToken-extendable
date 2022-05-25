@@ -1,22 +1,11 @@
 const { assert } = require("chai");
 const { expectRevert } = require("@openzeppelin/test-helpers");
-const {
-  nowSeconds,
-  advanceTime,
-  takeSnapshot,
-  revertToSnapshot,
-} = require("./utils/time");
-const { newSecretHashPair } = require("./utils/crypto");
-const { bytes32 } = require("./utils/regex");
 
 const AllowExtension = artifacts.require("AllowExtension");
 const ERC20Extendable = artifacts.require("ERC20");
 const ERC20Logic = artifacts.require("ERC20Logic");
 const ERC20LogicMock = artifacts.require("ERC20LogicMock");
 
-const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
-const ZERO_BYTES32 =
-  "0x0000000000000000000000000000000000000000000000000000000000000000";
 contract(
   "ERC20",
   function ([deployer, sender, holder, recipient, recipient2, notary]) {
