@@ -65,7 +65,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
         bool allowMint;
         bool allowBurn;
     }
-    
+
     /**
      * @dev Get the ProtectedTokenData struct stored in this contract
      */
@@ -101,10 +101,13 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
         uint256 _maxSupply,
         address _owner,
         address _logicAddress
-    ) ExtendableTokenProxy(
-        abi.encode(name_, symbol_, allowMint, allowBurn, maxSupply_), 
-        logicAddress, owner
-    ) {
+    )
+        ExtendableTokenProxy(
+            abi.encode(_name, _symbol, _allowMint, _allowBurn, _maxSupply),
+            _logicAddress,
+            _owner
+        )
+    {
         require(_maxSupply > 0, "Max supply must be non-zero");
 
         if (_allowMint) {
@@ -146,8 +149,10 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
         return result.toUint256(0);
     }
 
-    function maxSupply() public override view returns (uint256) {
-        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.maxSupply.selector));
+    function maxSupply() public view override returns (uint256) {
+        (, bytes memory result) = TokenProxy._staticDelegateCall(
+            abi.encodeWithSelector(this.maxSupply.selector)
+        );
 
         return result.toUint256(0);
     }
@@ -156,8 +161,10 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @notice Returns true if minting is allowed on this token, otherwise false
      * @return if minting is allowed on this token or not
      */
-    function mintingAllowed() public override view returns (bool) {
-        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.mintingAllowed.selector));
+    function mintingAllowed() public view override returns (bool) {
+        (, bytes memory result) = TokenProxy._staticDelegateCall(
+            abi.encodeWithSelector(this.mintingAllowed.selector)
+        );
 
         return result.equal(TRUE);
     }
@@ -166,8 +173,10 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @notice Returns true if burning is allowed on this token, otherwise false
      * @return if burning is allowed or not
      */
-    function burningAllowed() public override view returns (bool) {
-        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.burningAllowed.selector));
+    function burningAllowed() public view override returns (bool) {
+        (, bytes memory result) = TokenProxy._staticDelegateCall(
+            abi.encodeWithSelector(this.burningAllowed.selector)
+        );
 
         return result.equal(TRUE);
     }
@@ -194,7 +203,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @notice Returns the name of the token.
      * @return the name of the token.
      */
-    function name() public override view returns (string memory) {
+    function name() public view override returns (string memory) {
         if (_isInsideConstructorCall()) {
             //_staticDelegateCall doesn't work inside the constructor
             //See if we can grab from the storage slot ERC20Logic uses
@@ -202,7 +211,9 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             return data.name;
         }
 
-        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.name.selector));
+        (, bytes memory result) = TokenProxy._staticDelegateCall(
+            abi.encodeWithSelector(this.name.selector)
+        );
 
         return _bytesToString(result);
     }
@@ -211,7 +222,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @notice Returns the symbol of the token.
      * @return the symbol of the token.
      */
-    function symbol() public override view returns (string memory) {
+    function symbol() public view override returns (string memory) {
         if (_isInsideConstructorCall()) {
             //_staticDelegateCall doesn't work inside the constructor
             //See if we can grab from the storage slot ERC20Logic uses
@@ -219,7 +230,9 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             return data.symbol;
         }
 
-        (,bytes memory result) = TokenProxy._staticDelegateCall(abi.encodeWithSelector(this.symbol.selector));
+        (, bytes memory result) = TokenProxy._staticDelegateCall(
+            abi.encodeWithSelector(this.symbol.selector)
+        );
 
         return _bytesToString(result);
     }
