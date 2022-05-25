@@ -17,6 +17,8 @@
     "lint:sol:fix": "solhint contracts/**/*.sol --fix",
     "lint:all": "yarn run lint && yarn run lint:sol",
     "lint:all:fix": "yarn run lint:fix && yarn run lint:sol:fix",
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check .",
     "start:chain": "truffle develop",
     "test": "truffle test",
     "generate-types": "typechain --target=truffle-v5 'build/contracts/*.json'",
@@ -67,10 +69,13 @@
     "del-cli": "^4.0.1",
     "dotenv": "^16.0.1",
     "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eth-lib": "^0.1.29",
     "husky": "^8.0.1",
     "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
     "solhint": "^3.3.7",
     "solidity-coverage": "0.8.0-beta.0",
     "truffle": "^5.5.15",
@@ -88,6 +93,9 @@
     "web3": "1.7.3"
   },
   "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
     "*.js": [
       "eslint --fix"
     ],
