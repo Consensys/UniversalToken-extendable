@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.0;
 
 import {SafeMath} from "@openzeppelin/contracts/utils/math/SafeMath.sol";
@@ -6,19 +7,17 @@ import {IHoldableToken, ERC20HoldData, HoldStatusCode} from "./IHoldableToken.so
 
 contract HoldExtension is TokenExtension, IHoldableToken {
     using SafeMath for uint256;
-    bytes32 constant internal HOLD_DATA_SLOT = keccak256("consensys.contracts.token.ext.storage.holdable.data");
+    bytes32 internal constant HOLD_DATA_SLOT =
+        keccak256("consensys.contracts.token.ext.storage.holdable.data");
 
     struct HoldExtensionData {
         // mapping of accounts to hold data
         mapping(bytes32 => ERC20HoldData) holds;
         // mapping of accounts and their total amount on hold
         mapping(address => uint256) accountHoldBalances;
-
         mapping(bytes32 => bytes32) holdHashToId;
-
         uint256 totalSupplyOnHold;
     }
-
 
     constructor() {
         _setPackageName("net.consensys.tokenext.HoldExtension");
@@ -55,7 +54,7 @@ contract HoldExtension is TokenExtension, IHoldableToken {
         HoldExtensionData storage data = holdData();
         require(
             data.holds[holdId].status == HoldStatusCode.Ordered ||
-            data.holds[holdId].status == HoldStatusCode.ExecutedAndKeptOpen,
+                data.holds[holdId].status == HoldStatusCode.ExecutedAndKeptOpen,
             "Hold is not in Ordered status"
         );
         _;
@@ -80,22 +79,29 @@ contract HoldExtension is TokenExtension, IHoldableToken {
     }
 
     /**
-    * @dev Retrieve hold hash, and ID for given parameters
-    */
-    function retrieveHoldHashId(address notary, address sender, address recipient, uint value) public view returns (bytes32, bytes32) {
+     * @dev Retrieve hold hash, and ID for given parameters
+     */
+    function retrieveHoldHashId(
+        address notary,
+        address sender,
+        address recipient,
+        uint256 value
+    ) public view returns (bytes32, bytes32) {
         HoldExtensionData storage data = holdData();
         // Pack and hash hold parameters
-        bytes32 holdHash = keccak256(abi.encodePacked(
-            address(this), //Include the token address to indicate domain
-            sender,
-            recipient,
-            notary,
-            value
-        ));
+        bytes32 holdHash = keccak256(
+            abi.encodePacked(
+                address(this), //Include the token address to indicate domain
+                sender,
+                recipient,
+                notary,
+                value
+            )
+        );
         bytes32 holdId = data.holdHashToId[holdHash];
 
         return (holdHash, holdId);
-    }  
+    }
 
     /**
      @notice Called by the sender to hold some tokens for a recipient that the sender can not release back to themself until after the expiration date.
@@ -126,7 +132,7 @@ contract HoldExtension is TokenExtension, IHoldableToken {
 
         HoldExtensionData storage data = holdData();
 
-        (bytes32 holdHash,) = retrieveHoldHashId(
+        (bytes32 holdHash, ) = retrieveHoldHashId(
             notary,
             _msgSender(),
             recipient,
@@ -148,9 +154,9 @@ contract HoldExtension is TokenExtension, IHoldableToken {
             lockHash,
             HoldStatusCode.Ordered
         );
-        data.accountHoldBalances[_msgSender()] = data.accountHoldBalances[_msgSender()].add(
-            amount
-        );
+        data.accountHoldBalances[_msgSender()] = data
+            .accountHoldBalances[_msgSender()]
+            .add(amount);
         data.totalSupplyOnHold = data.totalSupplyOnHold.add(amount);
 
         emit NewHold(
@@ -165,12 +171,28 @@ contract HoldExtension is TokenExtension, IHoldableToken {
         return true;
     }
 
-    function retrieveHoldData(bytes32 holdId) external override view returns (ERC20HoldData memory) {
+    function retrieveHoldData(bytes32 holdId)
+        external
+        view
+        override
+        returns (ERC20HoldData memory)
+    {
         HoldExtensionData storage data = holdData();
         return data.holds[holdId];
     }
 
-        /**
+    function _buildTransferWithOperatorData(
+        address from,
+        address to,
+        uint256 amountOrTokenId,
+        bytes memory data
+    ) internal view returns (TransferData memory) {
+        TransferData memory t = _buildTransfer(from, to, amountOrTokenId);
+        t.operatorData = data;
+        return t;
+    }
+
+    /**
      @notice Called by the notary to transfer the held tokens to the set at the hold recipient if there is no hash lock.
      @param holdId a unique identifier for the hold.
      */
@@ -258,18 +280,24 @@ contract HoldExtension is TokenExtension, IHoldableToken {
 
         data.holds[holdId].status = HoldStatusCode.Executing;
 
-        TransferData memory transferData = _buildTransferWithOperatorData(data.holds[holdId].sender, recipient, data.holds[holdId].amount, abi.encode(holdId));
+        TransferData memory transferData = _buildTransferWithOperatorData(
+            data.holds[holdId].sender,
+            recipient,
+            data.holds[holdId].amount,
+            abi.encode(holdId)
+        );
         _tokenTransfer(transferData);
         //super._transfer(holds[holdId].sender, recipient, holds[holdId].amount);
 
         data.holds[holdId].status = HoldStatusCode.Executed;
-        data.accountHoldBalances[data.holds[holdId]
-            .sender] = data.accountHoldBalances[data.holds[holdId].sender].sub(
+        data.accountHoldBalances[data.holds[holdId].sender] = data
+            .accountHoldBalances[data.holds[holdId].sender]
+            .sub(data.holds[holdId].amount);
+        data.totalSupplyOnHold = data.totalSupplyOnHold.sub(
             data.holds[holdId].amount
         );
-        data.totalSupplyOnHold = data.totalSupplyOnHold.sub(data.holds[holdId].amount);
 
-        (bytes32 holdHash,) = retrieveHoldHashId(
+        (bytes32 holdHash, ) = retrieveHoldHashId(
             data.holds[holdId].notary,
             data.holds[holdId].sender,
             data.holds[holdId].recipient,
@@ -300,11 +328,12 @@ contract HoldExtension is TokenExtension, IHoldableToken {
             data.holds[holdId].status = HoldStatusCode.ReleasedByNotary;
         }
 
-        data.accountHoldBalances[data.holds[holdId]
-            .sender] = data.accountHoldBalances[data.holds[holdId].sender].sub(
+        data.accountHoldBalances[data.holds[holdId].sender] = data
+            .accountHoldBalances[data.holds[holdId].sender]
+            .sub(data.holds[holdId].amount);
+        data.totalSupplyOnHold = data.totalSupplyOnHold.sub(
             data.holds[holdId].amount
         );
-        data.totalSupplyOnHold = data.totalSupplyOnHold.sub(data.holds[holdId].amount);
 
         emit ReleaseHold(holdId, _msgSender());
     }
@@ -313,7 +342,12 @@ contract HoldExtension is TokenExtension, IHoldableToken {
      @notice Amount of tokens owned by an account that are held pending execution or release.
      @param account owner of the tokens
      */
-    function balanceOnHold(address account) public override view returns (uint256) {
+    function balanceOnHold(address account)
+        public
+        view
+        override
+        returns (uint256)
+    {
         HoldExtensionData storage data = holdData();
         return data.accountHoldBalances[account];
     }
@@ -322,17 +356,24 @@ contract HoldExtension is TokenExtension, IHoldableToken {
      @notice Total amount of tokens owned by an account including all the held tokens pending execution or release.
      @param account owner of the tokens
      */
-    function spendableBalanceOf(address account) public override view returns (uint256) {
+    function spendableBalanceOf(address account)
+        public
+        view
+        override
+        returns (uint256)
+    {
         HoldExtensionData storage data = holdData();
         //if (_tokenStandard() == TokenStandard.ERC20) {
-        return _erc20Token().balanceOf(account) - data.accountHoldBalances[account];
+        return
+            _erc20Token().balanceOf(account) -
+            data.accountHoldBalances[account];
         //} else {
-            //TODO Add support for other tokens
+        //TODO Add support for other tokens
         //    revert("Stnadard not supported");
         //}
     }
 
-    function totalSupplyOnHold() external override view returns (uint256) {
+    function totalSupplyOnHold() external view override returns (uint256) {
         HoldExtensionData storage data = holdData();
         return data.totalSupplyOnHold;
     }
@@ -341,29 +382,56 @@ contract HoldExtension is TokenExtension, IHoldableToken {
      @param holdId a unique identifier for the hold.
      @return hold status code.
      */
-    function holdStatus(bytes32 holdId) public override view returns (HoldStatusCode) {
+    function holdStatus(bytes32 holdId)
+        public
+        view
+        override
+        returns (HoldStatusCode)
+    {
         HoldExtensionData storage data = holdData();
         return data.holds[holdId].status;
     }
 
-    function onTransferExecuted(TransferData memory data) external virtual onlyToken returns (bool) {
+    function onTransferExecuted(TransferData memory data)
+        external
+        virtual
+        onlyToken
+        returns (bool)
+    {
         //only check if not a mint
         if (data.from != address(0)) {
-            if (data.operatorData.length > 0 && data.operator == _extensionAddress()) {
+            if (
+                data.operatorData.length > 0 &&
+                data.operator == _extensionAddress()
+            ) {
                 //Dont trigger normal spendableBalanceOf check
                 //if we triggered this transfer as a result of _executeHold
-                (bytes32 holdId) = abi.decode(data.operatorData, (bytes32));
+                bytes32 holdId = abi.decode(data.operatorData, (bytes32));
                 HoldExtensionData storage hd = holdData();
-                require(hd.holds[holdId].status == HoldStatusCode.Executing, "Hold in weird state");
+                require(
+                    hd.holds[holdId].status == HoldStatusCode.Executing,
+                    "Hold in weird state"
+                );
             } else {
-                require(spendableBalanceOf(data.from) >= data.value, "HoldableToken: amount exceeds available balance (transfer)");
+                require(
+                    spendableBalanceOf(data.from) >= data.value,
+                    "HoldableToken: amount exceeds available balance (transfer)"
+                );
             }
         }
         return true;
     }
 
-    function onApproveExecuted(TransferData memory data) external virtual onlyToken returns (bool) {
-        require(spendableBalanceOf(data.from) >= data.value, "HoldableToken: amount exceeds available balance (approve)");
+    function onApproveExecuted(TransferData memory data)
+        external
+        virtual
+        onlyToken
+        returns (bool)
+    {
+        require(
+            spendableBalanceOf(data.from) >= data.value,
+            "HoldableToken: amount exceeds available balance (approve)"
+        );
         return true;
     }
 }
