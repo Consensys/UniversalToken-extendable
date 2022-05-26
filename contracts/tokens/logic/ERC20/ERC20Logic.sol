@@ -12,7 +12,7 @@ import {ERC1820Implementer} from "../../../utils/erc1820/ERC1820Implementer.sol"
 import {BytesLib} from "solidity-bytes-utils/contracts/BytesLib.sol";
 import {ERC20TokenInterface} from "../../registry/ERC20TokenInterface.sol";
 import {TokenEventManager} from "../../eventmanager/TokenEventManager.sol";
-import {ERC20ProtectedTokenData} from "./IERC20Logic.sol";
+import {ERC20ProtectedTokenData, _getProtectedTokenData} from "./IERC20Logic.sol";
 
 /**
  * @title Extendable ERC20 Logic
@@ -41,27 +41,6 @@ contract ERC20Logic is ERC20TokenInterface, TokenLogic, ERC20Upgradeable {
     bytes private _currentData;
     bytes private _currentOperatorData;
     address private _currentOperator;
-
-    /**
-     * @dev The storage slot that will be used to store the ProtectedTokenData struct inside
-     * this TokenProxy
-     */
-    bytes32 internal constant ERC20_PROTECTED_TOKEN_DATA_SLOT =
-        bytes32(uint256(keccak256("erc20.token.meta")) - 1);
-
-    /**
-     * @dev Get the ProtectedTokenData struct stored in this contract
-     */
-    function _getProtectedTokenData()
-        internal
-        pure
-        returns (ERC20ProtectedTokenData storage r)
-    {
-        bytes32 slot = ERC20_PROTECTED_TOKEN_DATA_SLOT;
-        assembly {
-            r.slot := slot
-        }
-    }
 
     /**
      * @dev We don't need to do anything here
