@@ -1,8 +1,8 @@
 pragma solidity ^0.8.0;
 
-import {ERC20Logic} from "../../tokens/logic/ERC20/ERC20Logic.sol";
+import {ERC721Logic} from "../../tokens/logic/ERC721/ERC721Logic.sol";
 
-contract ERC20LogicMock is ERC20Logic {
+contract ERC721LogicMock is ERC721Logic {
     string private test;
 
     function _onInitialize(bytes memory data) internal override returns (bool) {

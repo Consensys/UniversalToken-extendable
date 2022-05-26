@@ -5,22 +5,22 @@ import {RolesBase} from "./utils/roles/RolesBase.sol";
 
 contract ERC721 is ERC721Proxy {
     constructor(
-        string memory name_,
-        string memory symbol_,
-        bool allowMint,
-        bool allowBurn,
-        uint256 maxSupply,
-        address owner,
-        address logicAddress
+        string memory _name,
+        string memory _symbol,
+        bool _allowMint,
+        bool _allowBurn,
+        uint256 _maxSupply,
+        address _owner,
+        address _logicAddress
     )
         ERC721Proxy(
-            name_,
-            symbol_,
-            allowMint,
-            allowBurn,
-            maxSupply,
-            owner,
-            logicAddress
+            _name,
+            _symbol,
+            _allowMint,
+            _allowBurn,
+            _maxSupply,
+            _owner,
+            _logicAddress
         )
     {}
 }

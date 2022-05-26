@@ -34,9 +34,6 @@ abstract contract TokenProxy is
 {
     using BytesLib for bytes;
 
-    bytes internal constant TRUE =
-        hex"0000000000000000000000000000000000000000000000000000000000000001";
-
     bytes32 private constant UPGRADING_FLAG_SLOT =
         keccak256("token.proxy.upgrading");
 
@@ -301,8 +298,11 @@ abstract contract TokenProxy is
         internal
         view
     {
-        //The static-delegatecall trick doesn't work if we don't have code yet   
-        require(!_isInsideConstructorCall(), "_staticDelegateCallAndReturn does not work inside constructor");
+        //The static-delegatecall trick doesn't work if we don't have code yet
+        require(
+            !_isInsideConstructorCall(),
+            "_staticDelegateCallAndReturn does not work inside constructor"
+        );
 
         bytes memory finalData = abi.encodePacked(STATICCALLMAGIC, _calldata);
         address self = address(this);
@@ -350,9 +350,12 @@ abstract contract TokenProxy is
         internal
         view
         returns (bool success, bytes memory result)
-    {   
-        //The static-delegatecall trick doesn't work if we don't have code yet   
-        require(!_isInsideConstructorCall(), "_staticDelegateCall does not work inside constructor");
+    {
+        //The static-delegatecall trick doesn't work if we don't have code yet
+        require(
+            !_isInsideConstructorCall(),
+            "_staticDelegateCall does not work inside constructor"
+        );
 
         bytes memory finalData = abi.encodePacked(STATICCALLMAGIC, _calldata);
 
@@ -414,7 +417,7 @@ abstract contract TokenProxy is
      * @param input The bytes input to convert to a string
      * @return string The abi decoded input as a string
      */
-    function _bytesToString(bytes memory input)
+    function _safeBytesToString(bytes memory input)
         internal
         pure
         returns (string memory)
@@ -427,15 +430,16 @@ abstract contract TokenProxy is
     }
 
     /**
-    * @dev Checks whether the current call context is the constructor of this contract
-    * @return bool This will return true if address(this) is still being constructed (we are inside the constructor call context),
-    * otherwise returns false
-    */
+     * @dev Checks whether the current call context is the constructor of this contract
+     * @return bool This will return true if address(this) is still being constructed (we are inside the constructor call context),
+     * otherwise returns false
+     */
     function _isInsideConstructorCall() internal view returns (bool) {
-        uint size;
+        uint256 size;
         address addr = address(this);
-        assembly { size := extcodesize(addr) }
+        assembly {
+            size := extcodesize(addr)
+        }
         return size == 0;
     }
-
 }

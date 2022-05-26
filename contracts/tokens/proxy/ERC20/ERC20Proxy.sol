@@ -7,7 +7,6 @@ import {IERC20Logic, ERC20ProtectedTokenData, _getProtectedTokenData} from "../.
 import {IToken, TransferData, TokenStandard} from "../../IToken.sol";
 import {ExtendableTokenProxy} from "../ExtendableTokenProxy.sol";
 import {ERC20TokenInterface} from "../../registry/ERC20TokenInterface.sol";
-import {BytesLib} from "solidity-bytes-utils/contracts/BytesLib.sol";
 import {RolesBase} from "../../../utils/roles/RolesBase.sol";
 import {DomainAware} from "../../../utils/DomainAware.sol";
 import {TokenProxy} from "../TokenProxy.sol";
@@ -35,8 +34,6 @@ import {TokenProxy} from "../TokenProxy.sol";
  * The domain name of this contract is the ERC20 token name()
  */
 contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
-    using BytesLib for bytes;
-
     /**
      * @notice Deploy a new ERC20 Token Proxy with a given token logic contract. You must
      * also provide the token's name/symbol, max supply, owner and whether token minting or
@@ -103,7 +100,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             abi.encodeWithSelector(this.totalSupply.selector)
         );
 
-        return result.toUint256(0);
+        return abi.decode(result, (uint256));
     }
 
     function maxSupply() public view override returns (uint256) {
@@ -111,7 +108,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             abi.encodeWithSelector(this.maxSupply.selector)
         );
 
-        return result.toUint256(0);
+        return abi.decode(result, (uint256));
     }
 
     /**
@@ -123,7 +120,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             abi.encodeWithSelector(this.mintingAllowed.selector)
         );
 
-        return result.equal(TRUE);
+        return abi.decode(result, (bool));
     }
 
     /**
@@ -135,7 +132,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             abi.encodeWithSelector(this.burningAllowed.selector)
         );
 
-        return result.equal(TRUE);
+        return abi.decode(result, (bool));
     }
 
     /**
@@ -153,7 +150,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             abi.encodeWithSelector(this.balanceOf.selector, _account)
         );
 
-        return result.toUint256(0);
+        return abi.decode(result, (uint256));
     }
 
     /**
@@ -172,7 +169,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             abi.encodeWithSelector(this.name.selector)
         );
 
-        return _bytesToString(result);
+        return _safeBytesToString(result);
     }
 
     /**
@@ -191,7 +188,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             abi.encodeWithSelector(this.symbol.selector)
         );
 
-        return _bytesToString(result);
+        return _safeBytesToString(result);
     }
 
     /**
@@ -439,7 +436,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             abi.encodeWithSelector(this.allowance.selector, _owner, _spender)
         );
 
-        return result.toUint256(0);
+        return abi.decode(result, (uint256));
     }
 
     /**

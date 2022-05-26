@@ -7,7 +7,6 @@ import {IERC721Logic, _getProtectedTokenData, ERC721ProtectedTokenData} from "..
 import {IToken, TokenStandard, TransferData} from "../../IToken.sol";
 import {ExtendableTokenProxy} from "../ExtendableTokenProxy.sol";
 import {ERC721TokenInterface} from "../../registry/ERC721TokenInterface.sol";
-import {BytesLib} from "solidity-bytes-utils/contracts/BytesLib.sol";
 import {TokenProxy} from "../TokenProxy.sol";
 
 contract ERC721Proxy is
@@ -15,8 +14,6 @@ contract ERC721Proxy is
     ExtendableTokenProxy,
     ERC721TokenInterface
 {
-    using BytesLib for bytes;
-
     constructor(
         string memory name_,
         string memory symbol_,
@@ -35,7 +32,7 @@ contract ERC721Proxy is
         require(maxSupply_ > 0, "Max supply must be non-zero");
 
         if (allowMint) {
-            _addRole(owner, TOKEN_MANAGER_ADDRESS);
+            _addRole(owner, TOKEN_MINTER_ROLE);
         }
 
         //Update the doamin seperator now that
@@ -81,7 +78,7 @@ contract ERC721Proxy is
             abi.encodeWithSelector(this.mintingAllowed.selector)
         );
 
-        return result.equal(TRUE);
+        return abi.decode(result, (bool));
     }
 
     /**
@@ -93,7 +90,7 @@ contract ERC721Proxy is
             abi.encodeWithSelector(this.burningAllowed.selector)
         );
 
-        return result.equal(TRUE);
+        return abi.decode(result, (bool));
     }
 
     /**
@@ -104,7 +101,7 @@ contract ERC721Proxy is
             abi.encodeWithSelector(this.balanceOf.selector, account)
         );
 
-        return result.toUint256(0);
+        return abi.decode(result, (uint256));
     }
 
     /**
@@ -119,7 +116,7 @@ contract ERC721Proxy is
             abi.encodeWithSelector(this.ownerOf.selector, tokenId)
         );
 
-        return result.toAddress(0);
+        return abi.decode(result, (address));
     }
 
     /**
@@ -136,7 +133,7 @@ contract ERC721Proxy is
             abi.encodeWithSelector(this.name.selector)
         );
 
-        return _bytesToString(result);
+        return _safeBytesToString(result);
     }
 
     /**
@@ -153,7 +150,7 @@ contract ERC721Proxy is
             abi.encodeWithSelector(this.symbol.selector)
         );
 
-        return _bytesToString(result);
+        return _safeBytesToString(result);
     }
 
     function tokenURI(uint256 tokenId)
@@ -166,7 +163,7 @@ contract ERC721Proxy is
             abi.encodeWithSelector(this.tokenURI.selector, tokenId)
         );
 
-        return _bytesToString(result);
+        return _safeBytesToString(result);
     }
 
     /**
@@ -187,7 +184,7 @@ contract ERC721Proxy is
             )
         );
 
-        return result.toUint256(0);
+        return abi.decode(result, (uint256));
     }
 
     /**
@@ -198,7 +195,7 @@ contract ERC721Proxy is
             abi.encodeWithSelector(this.totalSupply.selector)
         );
 
-        return result.toUint256(0);
+        return abi.decode(result, (uint256));
     }
 
     /**
@@ -215,7 +212,7 @@ contract ERC721Proxy is
             abi.encodeWithSelector(this.tokenByIndex.selector, index)
         );
 
-        return result.toUint256(0);
+        return abi.decode(result, (uint256));
     }
 
     function mint(address to, uint256 tokenId)
@@ -262,7 +259,7 @@ contract ERC721Proxy is
             abi.encodeWithSelector(this.contractURI.selector)
         );
 
-        return _bytesToString(result);
+        return _safeBytesToString(result);
     }
 
     /**
@@ -369,7 +366,7 @@ contract ERC721Proxy is
             abi.encodeWithSelector(this.getApproved.selector, tokenId)
         );
 
-        return result.toAddress(0);
+        return abi.decode(result, (address));
     }
 
     /**
@@ -422,7 +419,7 @@ contract ERC721Proxy is
             )
         );
 
-        return result.equal(TRUE);
+        return abi.decode(result, (bool));
     }
 
     /**

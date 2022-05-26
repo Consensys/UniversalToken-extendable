@@ -72,7 +72,7 @@ contract ERC20Logic is ERC20TokenInterface, TokenLogic, ERC20Upgradeable {
         override
         returns (bool)
     {
-        if (initData.length > 0) {
+        if (initData.length > 1) {
             _init(initData);
         }
 

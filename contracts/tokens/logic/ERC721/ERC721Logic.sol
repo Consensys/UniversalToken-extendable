@@ -35,7 +35,7 @@ contract ERC721Logic is
         override
         returns (bool)
     {
-        if (data.length > 0) {
+        if (data.length > 1) {
             _init(data);
         }
 
