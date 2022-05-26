@@ -5,8 +5,12 @@ import {ERC721Logic} from "../../tokens/logic/ERC721/ERC721Logic.sol";
 contract ERC721LogicMock is ERC721Logic {
     string private test;
 
-    function _onInitialize(bytes memory data) internal override returns (bool) {
-        super._onInitialize(data);
+    function _onInitialize(bool isConstructor, bytes memory data)
+        internal
+        override
+        returns (bool)
+    {
+        super._onInitialize(isConstructor, data);
 
         test = "This is a mock!";
 

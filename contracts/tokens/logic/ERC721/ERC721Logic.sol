@@ -29,14 +29,14 @@ contract ERC721Logic is
 
     string internal _contractUri;
 
-    function _onInitialize(bytes memory data)
+    function _onInitialize(bool isConstructor, bytes memory initData)
         internal
         virtual
         override
         returns (bool)
     {
-        if (data.length > 1) {
-            _init(data);
+        if (isConstructor) {
+            _init(initData);
         }
 
         return true;

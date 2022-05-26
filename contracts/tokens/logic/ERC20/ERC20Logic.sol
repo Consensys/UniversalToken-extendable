@@ -45,13 +45,13 @@ contract ERC20Logic is ERC20TokenInterface, TokenLogic, ERC20Upgradeable {
     /**
      * @dev We don't need to do anything here
      */
-    function _onInitialize(bytes memory initData)
+    function _onInitialize(bool isConstructor, bytes memory initData)
         internal
         virtual
         override
         returns (bool)
     {
-        if (initData.length > 1) {
+        if (isConstructor) {
             _init(initData);
         }
 

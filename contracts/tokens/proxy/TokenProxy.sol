@@ -84,14 +84,17 @@ abstract contract TokenProxy is
 
         _setLogic(logicAddress);
 
-        StorageSlot.getUint256Slot(UPGRADING_FLAG_SLOT).value = initializeData
-            .length;
+        bytes memory logicInitCalldata = abi.encode(true, initializeData);
+
+        StorageSlot
+            .getUint256Slot(UPGRADING_FLAG_SLOT)
+            .value = logicInitCalldata.length;
 
         //invoke the initialize function during deployment
         (bool success, ) = _delegatecall(
             abi.encodeWithSelector(
                 ITokenLogic.initialize.selector,
-                initializeData
+                logicInitCalldata
             )
         );
 
@@ -155,13 +158,20 @@ abstract contract TokenProxy is
             data = bytes("f");
         }
 
-        StorageSlot.getUint256Slot(UPGRADING_FLAG_SLOT).value = data.length;
+        bytes memory logicInitCalldata = abi.encode(false, data);
+
+        StorageSlot
+            .getUint256Slot(UPGRADING_FLAG_SLOT)
+            .value = logicInitCalldata.length;
 
         _setLogic(logic);
 
         //invoke the initialize function whenever we upgrade
         (bool success, ) = _delegatecall(
-            abi.encodeWithSelector(ITokenLogic.initialize.selector, data)
+            abi.encodeWithSelector(
+                ITokenLogic.initialize.selector,
+                logicInitCalldata
+            )
         );
 
         //Invoke initialize
