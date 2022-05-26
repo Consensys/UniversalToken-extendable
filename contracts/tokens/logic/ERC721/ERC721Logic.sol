@@ -13,6 +13,7 @@ import {TransferData} from "../../../extensions/IExtension.sol";
 import {TokenRoles} from "../../../utils/roles/TokenRoles.sol";
 import {ERC721TokenInterface} from "../../registry/ERC721TokenInterface.sol";
 import {TokenEventManager} from "../../eventmanager/TokenEventManager.sol";
+import {_getProtectedTokenData, ERC721ProtectedTokenData} from "../../logic/ERC721/IERC721Logic.sol";
 
 contract ERC721Logic is
     ERC721TokenInterface,
@@ -27,27 +28,6 @@ contract ERC721Logic is
     address private _currentOperator;
 
     string internal _contractUri;
-
-    bytes32 private constant ERC721_TOKEN_META = keccak256("erc721.token.meta");
-
-    struct TokenMeta {
-        bool initialized;
-        string name;
-        string symbol;
-        uint256 maxSupply;
-        bool allowMint;
-        bool allowBurn;
-    }
-
-    /**
-     * @dev Returns an `AddressSlot` with member `value` located at `slot`.
-     */
-    function _getTokenMeta() internal pure returns (TokenMeta storage r) {
-        bytes32 slot = ERC721_TOKEN_META;
-        assembly {
-            r.slot := slot
-        }
-    }
 
     function _onInitialize(bytes memory data)
         internal
@@ -71,7 +51,7 @@ contract ERC721Logic is
             uint256 maxSupply_
         ) = abi.decode(data, (string, string, bool, bool, uint256));
 
-        TokenMeta storage m = _getTokenMeta();
+        ERC721ProtectedTokenData storage m = _getProtectedTokenData();
         m.name = name_;
         m.symbol = symbol_;
         m.maxSupply = maxSupply_;
@@ -101,7 +81,7 @@ contract ERC721Logic is
         _mint(to, tokenId);
 
         require(
-            totalSupply() <= _getTokenMeta().maxSupply,
+            totalSupply() <= _getProtectedTokenData().maxSupply,
             "Max supply has been exceeded"
         );
 
@@ -378,22 +358,22 @@ contract ERC721Logic is
     }
 
     function mintingAllowed() public view returns (bool) {
-        TokenMeta storage m = _getTokenMeta();
+        ERC721ProtectedTokenData storage m = _getProtectedTokenData();
         return m.allowMint;
     }
 
     function burningAllowed() public view returns (bool) {
-        TokenMeta storage m = _getTokenMeta();
+        ERC721ProtectedTokenData storage m = _getProtectedTokenData();
         return m.allowBurn;
     }
 
     function _toggleMinting(bool allowMinting) internal {
-        TokenMeta storage m = _getTokenMeta();
+        ERC721ProtectedTokenData storage m = _getProtectedTokenData();
         m.allowMint = allowMinting;
     }
 
     function _toggleBurning(bool allowBurning) internal {
-        TokenMeta storage m = _getTokenMeta();
+        ERC721ProtectedTokenData storage m = _getProtectedTokenData();
         m.allowBurn = allowBurning;
     }
 }

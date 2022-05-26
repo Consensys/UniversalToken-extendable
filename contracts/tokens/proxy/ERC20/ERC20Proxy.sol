@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import {IERC20Proxy} from "./IERC20Proxy.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {IERC20Logic, ERC20ProtectedTokenData} from "../../logic/ERC20/IERC20Logic.sol";
+import {IERC20Logic, ERC20ProtectedTokenData, _getProtectedTokenData} from "../../logic/ERC20/IERC20Logic.sol";
 import {IToken, TransferData, TokenStandard} from "../../IToken.sol";
 import {ExtendableTokenProxy} from "../ExtendableTokenProxy.sol";
 import {ERC20TokenInterface} from "../../registry/ERC20TokenInterface.sol";
@@ -36,49 +36,6 @@ import {TokenProxy} from "../TokenProxy.sol";
  */
 contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
     using BytesLib for bytes;
-
-    /**
-     * @dev The storage slot that will be used to store the ProtectedTokenData struct inside
-     * this TokenProxy
-     */
-    bytes32 internal constant ERC20_PROTECTED_TOKEN_DATA_SLOT =
-        bytes32(uint256(keccak256("erc20.token.meta")) - 1);
-
-    /**
-     * @notice Protected ERC20 token metadata stored in the proxy storage in a special storage slot.
-     * Includes thing such as name, symbol and deployment options.
-     * @dev This struct should only be written to inside the constructor and should be treated as readonly.
-     * Solidity 0.8.7 does not have anything for marking storage slots as read-only, so we'll just use
-     * the honor system for now.
-     * @param initialized Whether this proxy is initialized
-     * @param name The name of this ERC20 token
-     * @param symbol The symbol of this ERC20 token
-     * @param maxSupply The max supply of token allowed
-     * @param allowMint Whether minting is allowed
-     * @param allowBurn Whether burning is allowed
-     */
-    struct ProtectedTokenData {
-        bool initialized;
-        string name;
-        string symbol;
-        uint256 maxSupply;
-        bool allowMint;
-        bool allowBurn;
-    }
-
-    /**
-     * @dev Get the ProtectedTokenData struct stored in this contract
-     */
-    function _getProtectedTokenData()
-        internal
-        pure
-        returns (ERC20ProtectedTokenData storage r)
-    {
-        bytes32 slot = ERC20_PROTECTED_TOKEN_DATA_SLOT;
-        assembly {
-            r.slot := slot
-        }
-    }
 
     /**
      * @notice Deploy a new ERC20 Token Proxy with a given token logic contract. You must

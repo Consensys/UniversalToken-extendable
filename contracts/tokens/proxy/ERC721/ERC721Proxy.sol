@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 import {IERC721Metadata} from "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import {IERC721Proxy} from "./IERC721Proxy.sol";
-import {IERC721Logic} from "../../logic/ERC721/IERC721Logic.sol";
+import {IERC721Logic, _getProtectedTokenData, ERC721ProtectedTokenData} from "../../logic/ERC721/IERC721Logic.sol";
 import {IToken, TokenStandard, TransferData} from "../../IToken.sol";
 import {ExtendableTokenProxy} from "../ExtendableTokenProxy.sol";
 import {ERC721TokenInterface} from "../../registry/ERC721TokenInterface.sol";
@@ -16,27 +16,6 @@ contract ERC721Proxy is
     ERC721TokenInterface
 {
     using BytesLib for bytes;
-
-    bytes32 private constant ERC721_TOKEN_META = keccak256("erc721.token.meta");
-
-    struct TokenMeta {
-        bool initialized;
-        string name;
-        string symbol;
-        uint256 maxSupply;
-        bool allowMint;
-        bool allowBurn;
-    }
-
-    /**
-     * @dev Returns an `AddressSlot` with member `value` located at `slot`.
-     */
-    function _getTokenMeta() internal pure returns (TokenMeta storage r) {
-        bytes32 slot = ERC721_TOKEN_META;
-        assembly {
-            r.slot := slot
-        }
-    }
 
     constructor(
         string memory name_,
@@ -75,16 +54,28 @@ contract ERC721Proxy is
             interfaceId == type(IERC721Metadata).interfaceId;
     }
 
+    /**
+     * @dev A function modifier to place on minting functions to ensure those
+     * functions get disabled if minting is disabled
+     */
     modifier mintingEnabled() {
         require(mintingAllowed(), "Minting is disabled");
         _;
     }
 
+    /**
+     * @dev A function modifier to place on burning functions to ensure those
+     * functions get disabled if burning is disabled
+     */
     modifier burningEnabled() {
         require(burningAllowed(), "Burning is disabled");
         _;
     }
 
+    /**
+     * @notice Returns true if minting is allowed on this token, otherwise false
+     * @return if minting is allowed on this token or not
+     */
     function mintingAllowed() public view override returns (bool) {
         (, bytes memory result) = TokenProxy._staticDelegateCall(
             abi.encodeWithSelector(this.mintingAllowed.selector)
@@ -93,6 +84,10 @@ contract ERC721Proxy is
         return result.equal(TRUE);
     }
 
+    /**
+     * @notice Returns true if burning is allowed on this token, otherwise false
+     * @return if burning is allowed or not
+     */
     function burningAllowed() public view override returns (bool) {
         (, bytes memory result) = TokenProxy._staticDelegateCall(
             abi.encodeWithSelector(this.burningAllowed.selector)
@@ -134,7 +129,7 @@ contract ERC721Proxy is
         if (_isInsideConstructorCall()) {
             //_staticDelegateCall doesn't work inside the constructor
             //See if we can grab from the storage slot ERC721Logic uses
-            return _getTokenMeta().name;
+            return _getProtectedTokenData().name;
         }
 
         (, bytes memory result) = TokenProxy._staticDelegateCall(
@@ -151,7 +146,7 @@ contract ERC721Proxy is
         if (_isInsideConstructorCall()) {
             //_staticDelegateCall doesn't work inside the constructor
             //See if we can grab from the storage slot ERC721Logic uses
-            return _getTokenMeta().symbol;
+            return _getProtectedTokenData().symbol;
         }
 
         (, bytes memory result) = TokenProxy._staticDelegateCall(
