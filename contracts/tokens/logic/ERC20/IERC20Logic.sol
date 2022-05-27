@@ -5,9 +5,54 @@ import {ITokenLogic} from "../ITokenLogic.sol";
 import {IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 /**
-* @title Upgradable ERC20 Logic Interface
-* @notice An interface to interact with an ERC20 Token (logic).
-*/
+ * @notice Protected ERC20 token metadata stored in the proxy storage in a special storage slot.
+ * Includes thing such as name, symbol and deployment options.
+ * @dev This struct should only be written to inside the constructor and should be treated as readonly.
+ * Solidity 0.8.7 does not have anything for marking storage slots as read-only, so we'll just use
+ * the honor system for now.
+ * @param initialized Whether this proxy is initialized
+ * @param name The name of this ERC20 token. This is stored here as a backup (required for _domainName inside constructor)
+ * @param symbol The symbol of this ERC20 token. This is stored here as a backup
+ * @param maxSupply The max supply of token allowed
+ * @param allowMint Whether minting is allowed
+ * @param allowBurn Whether burning is allowed
+ */
+struct ERC20ProtectedTokenData {
+    bool initialized;
+    string name;
+    string symbol;
+    uint256 maxSupply;
+    bool allowMint;
+    bool allowBurn;
+}
+
+/**
+ * @dev The storage slot that will be used to store the ProtectedTokenData struct inside
+ * this TokenProxy
+ */
+bytes32 constant ERC20_PROTECTED_TOKEN_DATA_SLOT = bytes32(
+    uint256(keccak256("erc20.token.meta")) - 1
+);
+
+/**
+ * @dev Get the ProtectedTokenData struct stored in this contract
+ */
+// free functions have no visibility, tell solhint to ignore
+// solhint-disable-next-line func-visibility
+function _getProtectedTokenData()
+    pure
+    returns (ERC20ProtectedTokenData storage r)
+{
+    bytes32 slot = ERC20_PROTECTED_TOKEN_DATA_SLOT;
+    assembly {
+        r.slot := slot
+    }
+}
+
+/**
+ * @title Upgradable ERC20 Logic Interface
+ * @notice An interface to interact with an ERC20 Token (logic).
+ */
 interface IERC20Logic is IERC20Metadata, ITokenLogic {
     /**
      * @notice Destroys `amount` tokens from the caller.
@@ -61,9 +106,11 @@ interface IERC20Logic is IERC20Metadata, ITokenLogic {
      * @param spender The address that will be given the allownace decrease
      * @param amount How much the allowance should be decreased by
      */
-    function decreaseAllowance(address spender, uint256 amount) external returns (bool);
+    function decreaseAllowance(address spender, uint256 amount)
+        external
+        returns (bool);
 
-    /** 
+    /**
      * @notice Atomically increases the allowance granted to `spender` by the caller.
      *
      * @dev This is an alternative to {approve} that can be used as a mitigation for
@@ -77,5 +124,22 @@ interface IERC20Logic is IERC20Metadata, ITokenLogic {
      * @param spender The address that will be given the allownace increase
      * @param amount How much the allowance should be increased by
      */
-    function increaseAllowance(address spender, uint256 amount) external returns (bool);
+    function increaseAllowance(address spender, uint256 amount)
+        external
+        returns (bool);
+
+    /**
+     * @notice Returns true if minting is allowed on this token, otherwise false
+     */
+    function mintingAllowed() external view returns (bool);
+
+    /**
+     * @notice Returns true if burning is allowed on this token, otherwise false
+     */
+    function burningAllowed() external view returns (bool);
+
+    /**
+     * @notice Returns the maximum value the totalSupply() can be for this token
+     */
+    function maxSupply() external view returns (uint256);
 }

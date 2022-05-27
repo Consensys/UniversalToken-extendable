@@ -43,7 +43,7 @@ abstract contract ExtendableTokenProxy is TokenProxy, RegisteredExtensionStorage
     * @param logicAddress The address to use for the logic contract. Must be non-zero
     * @param owner The address to use as the owner + manager.
     */
-    constructor(address logicAddress, address owner) TokenProxy(logicAddress, owner) {
+    constructor(bytes memory initializeData, address logicAddress, address owner) TokenProxy(initializeData, logicAddress, owner) {
         ERC1820Client.setInterfaceImplementation(EXTENDABLE_INTERFACE_NAME, address(this));
     }
 

@@ -40,8 +40,8 @@ contract ERC20 is ERC20Proxy {
             _symbol,
             _allowMint,
             _allowBurn,
-            _owner,
             _maxSupply,
+            _owner,
             _logicAddress
         )
     {

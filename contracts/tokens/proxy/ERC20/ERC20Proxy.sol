@@ -3,11 +3,10 @@ pragma solidity ^0.8.0;
 
 import {IERC20Proxy} from "./IERC20Proxy.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {IERC20Logic} from "../../logic/ERC20/IERC20Logic.sol";
+import {IERC20Logic, ERC20ProtectedTokenData, _getProtectedTokenData} from "../../logic/ERC20/IERC20Logic.sol";
 import {IToken, TransferData, TokenStandard} from "../../IToken.sol";
 import {ExtendableTokenProxy} from "../ExtendableTokenProxy.sol";
 import {ERC20TokenInterface} from "../../registry/ERC20TokenInterface.sol";
-import {BytesLib} from "solidity-bytes-utils/contracts/BytesLib.sol";
 import {RolesBase} from "../../../utils/roles/RolesBase.sol";
 import {DomainAware} from "../../../utils/DomainAware.sol";
 import {TokenProxy} from "../TokenProxy.sol";
@@ -35,37 +34,6 @@ import {TokenProxy} from "../TokenProxy.sol";
  * The domain name of this contract is the ERC20 token name()
  */
 contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
-    using BytesLib for bytes;
-
-    /**
-     * @dev The storage slot that will be used to store the ProtectedTokenData struct inside
-     * this TokenProxy
-     */
-    bytes32 internal constant ERC20_PROTECTED_TOKEN_DATA_SLOT =
-        bytes32(uint256(keccak256("erc20.token.meta")) - 1);
-
-    /**
-     * @notice Protected ERC20 token metadata stored in the proxy storage in a special storage slot.
-     * Includes thing such as name, symbol and deployment options.
-     * @dev This struct should only be written to inside the constructor and should be treated as readonly.
-     * Solidity 0.8.7 does not have anything for marking storage slots as read-only, so we'll just use
-     * the honor system for now.
-     * @param initialized Whether this proxy is initialized
-     * @param name The name of this ERC20 token
-     * @param symbol The symbol of this ERC20 token
-     * @param maxSupply The max supply of token allowed
-     * @param allowMint Whether minting is allowed
-     * @param allowBurn Whether burning is allowed
-     */
-    struct ProtectedTokenData {
-        bool initialized;
-        string name;
-        string symbol;
-        uint256 maxSupply;
-        bool allowMint;
-        bool allowBurn;
-    }
-
     /**
      * @notice Deploy a new ERC20 Token Proxy with a given token logic contract. You must
      * also provide the token's name/symbol, max supply, owner and whether token minting or
@@ -84,28 +52,25 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
         string memory _symbol,
         bool _allowMint,
         bool _allowBurn,
-        address _owner,
         uint256 _maxSupply,
+        address _owner,
         address _logicAddress
-    ) ExtendableTokenProxy(_logicAddress, _owner) {
+    )
+        ExtendableTokenProxy(
+            abi.encode(_name, _symbol, _allowMint, _allowBurn, _maxSupply),
+            _logicAddress,
+            _owner
+        )
+    {
         require(_maxSupply > 0, "Max supply must be non-zero");
 
         if (_allowMint) {
             RolesBase._addRole(_owner, TOKEN_MINTER_ROLE);
         }
 
-        ProtectedTokenData storage m = _getProtectedTokenData();
-        m.name = _name;
-        m.symbol = _symbol;
-        m.maxSupply = _maxSupply;
-        m.allowMint = _allowMint;
-        m.allowBurn = _allowBurn;
-
         //Update the doamin seperator now that
         //we've setup everything
         DomainAware._updateDomainSeparator();
-
-        m.initialized = true;
     }
 
     /**
@@ -127,20 +92,6 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
     }
 
     /**
-     * @dev Get the ProtectedTokenData struct stored in this contract
-     */
-    function _getProtectedTokenData()
-        internal
-        pure
-        returns (ProtectedTokenData storage r)
-    {
-        bytes32 slot = ERC20_PROTECTED_TOKEN_DATA_SLOT;
-        assembly {
-            r.slot := slot
-        }
-    }
-
-    /**
      * @notice Gets the amount of tokens in existence.
      * @return the amount of tokens in existence
      */
@@ -149,7 +100,15 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             abi.encodeWithSelector(this.totalSupply.selector)
         );
 
-        return result.toUint256(0);
+        return abi.decode(result, (uint256));
+    }
+
+    function maxSupply() public view override returns (uint256) {
+        (, bytes memory result) = TokenProxy._staticDelegateCall(
+            abi.encodeWithSelector(this.maxSupply.selector)
+        );
+
+        return abi.decode(result, (uint256));
     }
 
     /**
@@ -157,8 +116,11 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @return if minting is allowed on this token or not
      */
     function mintingAllowed() public view override returns (bool) {
-        ProtectedTokenData storage m = _getProtectedTokenData();
-        return m.allowMint;
+        (, bytes memory result) = TokenProxy._staticDelegateCall(
+            abi.encodeWithSelector(this.mintingAllowed.selector)
+        );
+
+        return abi.decode(result, (bool));
     }
 
     /**
@@ -166,8 +128,11 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @return if burning is allowed or not
      */
     function burningAllowed() public view override returns (bool) {
-        ProtectedTokenData storage m = _getProtectedTokenData();
-        return m.allowBurn;
+        (, bytes memory result) = TokenProxy._staticDelegateCall(
+            abi.encodeWithSelector(this.burningAllowed.selector)
+        );
+
+        return abi.decode(result, (bool));
     }
 
     /**
@@ -185,7 +150,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             abi.encodeWithSelector(this.balanceOf.selector, _account)
         );
 
-        return result.toUint256(0);
+        return abi.decode(result, (uint256));
     }
 
     /**
@@ -193,7 +158,18 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @return the name of the token.
      */
     function name() public view override returns (string memory) {
-        return _getProtectedTokenData().name;
+        if (_isInsideConstructorCall()) {
+            //_staticDelegateCall doesn't work inside the constructor
+            //See if we can grab from the storage slot ERC20Logic uses
+            ERC20ProtectedTokenData storage data = _getProtectedTokenData();
+            return data.name;
+        }
+
+        (, bytes memory result) = TokenProxy._staticDelegateCall(
+            abi.encodeWithSelector(this.name.selector)
+        );
+
+        return _safeBytesToString(result);
     }
 
     /**
@@ -201,7 +177,18 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
      * @return the symbol of the token.
      */
     function symbol() public view override returns (string memory) {
-        return _getProtectedTokenData().symbol;
+        if (_isInsideConstructorCall()) {
+            //_staticDelegateCall doesn't work inside the constructor
+            //See if we can grab from the storage slot ERC20Logic uses
+            ERC20ProtectedTokenData storage data = _getProtectedTokenData();
+            return data.symbol;
+        }
+
+        (, bytes memory result) = TokenProxy._staticDelegateCall(
+            abi.encodeWithSelector(this.symbol.selector)
+        );
+
+        return _safeBytesToString(result);
     }
 
     /**
@@ -449,7 +436,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy, IERC20Proxy {
             abi.encodeWithSelector(this.allowance.selector, _owner, _spender)
         );
 
-        return result.toUint256(0);
+        return abi.decode(result, (uint256));
     }
 
     /**
