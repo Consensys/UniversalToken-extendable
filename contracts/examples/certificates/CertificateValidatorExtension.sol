@@ -6,14 +6,23 @@ import {TokenExtension, TransferData} from "../../extensions/TokenExtension.sol"
 import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import {CertificateLib, CertificateValidationType} from "./CertificateLib.sol";
 
-contract CertificateValidatorExtension is TokenExtension, ICertificateValidator {
-    
-    bytes32 constant internal CERTIFICATE_SIGNER_ROLE = keccak256("certificates.roles.certificatesigner");
+contract CertificateValidatorExtension is
+    TokenExtension,
+    ICertificateValidator
+{
+    bytes32 internal constant CERTIFICATE_SIGNER_ROLE =
+        keccak256("certificates.roles.certificatesigner");
 
     constructor() {
-        _registerFunction(CertificateValidatorExtension.addCertificateSigner.selector);
-        _registerFunction(CertificateValidatorExtension.removeCertificateSigner.selector);
-        _registerFunction(CertificateValidatorExtension.setValidationMode.selector);
+        _registerFunction(
+            CertificateValidatorExtension.addCertificateSigner.selector
+        );
+        _registerFunction(
+            CertificateValidatorExtension.removeCertificateSigner.selector
+        );
+        _registerFunction(
+            CertificateValidatorExtension.setValidationMode.selector
+        );
 
         _registerFunctionName("isCertificateSigner(address)");
         _registerFunctionName("usedCertificateNonce(address)");
@@ -29,8 +38,11 @@ contract CertificateValidatorExtension is TokenExtension, ICertificateValidator 
         _setVersion(1);
     }
 
-    modifier onlyCertificateSigner {
-        require(hasRole(_msgSender(), CERTIFICATE_SIGNER_ROLE), "Only certificate signers");
+    modifier onlyCertificateSigner() {
+        require(
+            hasRole(_msgSender(), CERTIFICATE_SIGNER_ROLE),
+            "Only certificate signers"
+        );
         _;
     }
 
@@ -39,49 +51,102 @@ contract CertificateValidatorExtension is TokenExtension, ICertificateValidator 
         _listenForTokenTransfers(this.onTransferExecuted);
     }
 
-    function isCertificateSigner(address account) external override view returns (bool) {
+    function isCertificateSigner(address account)
+        external
+        view
+        override
+        returns (bool)
+    {
         return hasRole(account, CERTIFICATE_SIGNER_ROLE);
     }
-    
-    function addCertificateSigner(address account) external override onlyCertificateSigner {
+
+    function addCertificateSigner(address account)
+        external
+        override
+        onlyCertificateSigner
+    {
         _addRole(account, CERTIFICATE_SIGNER_ROLE);
     }
 
-    function removeCertificateSigner(address account) external override onlyCertificateSigner {
+    function removeCertificateSigner(address account)
+        external
+        override
+        onlyCertificateSigner
+    {
         _removeRole(account, CERTIFICATE_SIGNER_ROLE);
     }
 
-    function usedCertificateNonce(address sender) external override view returns (uint256) {
+    function usedCertificateNonce(address sender)
+        external
+        view
+        override
+        returns (uint256)
+    {
         return CertificateLib.usedCertificateNonce(sender);
     }
 
-    function usedCertificateSalt(bytes32 salt) external override view returns (bool) {
+    function usedCertificateSalt(bytes32 salt)
+        external
+        view
+        override
+        returns (bool)
+    {
         return CertificateLib.usedCertificateSalt(salt);
     }
 
-    function getValidationMode() external override view returns (CertificateValidationType) {
+    function getValidationMode()
+        external
+        view
+        override
+        returns (CertificateValidationType)
+    {
         return CertificateLib.certificateData()._certificateType;
     }
 
-    function setValidationMode(CertificateValidationType mode) external override onlyCertificateSigner {
+    function setValidationMode(CertificateValidationType mode)
+        external
+        override
+        onlyCertificateSigner
+    {
         CertificateLib.certificateData()._certificateType = mode;
     }
 
-    function onTransferExecuted(TransferData memory data) external onlyToken returns (bool) {
+    function onTransferExecuted(TransferData memory data)
+        external
+        onlyToken
+        returns (bool)
+    {
         require(data.data.length > 0, "Data cannot be empty");
-        
-        CertificateValidationType validationType = CertificateLib.certificateData()._certificateType;
 
-        require(validationType > CertificateValidationType.None, "Validation mode not set");
+        CertificateValidationType validationType = CertificateLib
+            .certificateData()
+            ._certificateType;
+
+        require(
+            validationType > CertificateValidationType.None,
+            "Validation mode not set"
+        );
 
         bool valid = false;
         if (validationType == CertificateValidationType.NonceBased) {
-            valid = CertificateLib._checkNonceBasedCertificate(data.token, data.operator, data.payload, data.data);
+            valid = CertificateLib._checkNonceBasedCertificate(
+                data.token,
+                data.operator,
+                data.payload,
+                data.data
+            );
 
-            CertificateLib.certificateData()._usedCertificateNonce[data.operator]++;
+            CertificateLib.certificateData()._usedCertificateNonce[
+                data.operator
+            ]++;
         } else if (validationType == CertificateValidationType.SaltBased) {
             bytes32 salt;
-            (valid, salt) = CertificateLib._checkSaltBasedCertificate(data.token, data.operator, data.payload, data.data);
+            (valid, salt) = CertificateLib._checkSaltBasedCertificate(
+                data.token,
+                data.operator,
+                data.payload,
+                data.data
+            );
 
             CertificateLib.certificateData()._usedCertificateSalt[salt] = true;
         }

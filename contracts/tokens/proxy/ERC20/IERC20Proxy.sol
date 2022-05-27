@@ -5,23 +5,23 @@ import {IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/extensions/IER
 import {ITokenProxy} from "../ITokenProxy.sol";
 
 /**
-* @title Extendable ERC20 Proxy Interface
-* @notice An interface to interact with an ERC20 Token (proxy).
-*/
+ * @title Extendable ERC20 Proxy Interface
+ * @notice An interface to interact with an ERC20 Token (proxy).
+ */
 interface IERC20Proxy is IERC20Metadata, ITokenProxy {
     /**
-    * @notice Returns true if minting is allowed on this token, otherwise false
-    */
+     * @notice Returns true if minting is allowed on this token, otherwise false
+     */
     function mintingAllowed() external view returns (bool);
 
     /**
-    * @notice Returns true if burning is allowed on this token, otherwise false
-    */
+     * @notice Returns true if burning is allowed on this token, otherwise false
+     */
     function burningAllowed() external view returns (bool);
 
     /**
-    * @notice Returns the maximum value the totalSupply() can be for this token
-    */
+     * @notice Returns the maximum value the totalSupply() can be for this token
+     */
     function maxSupply() external view returns (uint256);
 
     /**
@@ -44,7 +44,7 @@ interface IERC20Proxy is IERC20Metadata, ITokenProxy {
      * @param amount The amount of tokens to burn from the caller.
      */
     function burn(uint256 amount) external returns (bool);
-    
+
     /**
      * @notice Destroys `amount` tokens from `account`, deducting from the caller's
      * allowance.
@@ -60,7 +60,7 @@ interface IERC20Proxy is IERC20Metadata, ITokenProxy {
      */
     function burnFrom(address account, uint256 amount) external returns (bool);
 
-    /** 
+    /**
      * @notice Atomically increases the allowance granted to `spender` by the caller.
      *
      * @dev This is an alternative to {approve} that can be used as a mitigation for
@@ -74,7 +74,9 @@ interface IERC20Proxy is IERC20Metadata, ITokenProxy {
      * @param spender The address that will be given the allownace increase
      * @param addedValue How much the allowance should be increased by
      */
-    function increaseAllowance(address spender, uint256 addedValue) external returns (bool);
+    function increaseAllowance(address spender, uint256 addedValue)
+        external
+        returns (bool);
 
     /**
      * @notice Atomically decreases the allowance granted to `spender` by the caller.
@@ -92,5 +94,7 @@ interface IERC20Proxy is IERC20Metadata, ITokenProxy {
      * @param spender The address that will be given the allownace decrease
      * @param subtractedValue How much the allowance should be decreased by
      */
-    function decreaseAllowance(address spender, uint256 subtractedValue) external returns (bool);
+    function decreaseAllowance(address spender, uint256 subtractedValue)
+        external
+        returns (bool);
 }

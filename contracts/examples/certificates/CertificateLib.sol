@@ -6,7 +6,6 @@ import {Roles} from "../../utils/roles/Roles.sol";
 import {DomainAware} from "../../utils/DomainAware.sol";
 import {BytesLib} from "solidity-bytes-utils/contracts/BytesLib.sol";
 
-
 enum CertificateValidationType {
     None,
     NonceBased,
@@ -18,20 +17,24 @@ library CertificateLib {
     using BytesLib for bytes;
     using Roles for Roles.Role;
 
-    bytes32 constant internal CERTIFICATE_DATA_SLOT = keccak256("certificates.data");
-    bytes32 constant internal CERTIFICATE_SIGNER_ROLE = keccak256("certificates.roles.certificatesigner");
+    bytes32 internal constant CERTIFICATE_DATA_SLOT =
+        keccak256("certificates.data");
+    bytes32 internal constant CERTIFICATE_SIGNER_ROLE =
+        keccak256("certificates.roles.certificatesigner");
 
     struct CertificateData {
         // Mapping from (token, certificateNonce) to "used" status to ensure a certificate can be used only once
         mapping(address => uint256) _usedCertificateNonce;
-
         // Mapping from (token, certificateSalt) to "used" status to ensure a certificate can be used only once
         mapping(bytes32 => bool) _usedCertificateSalt;
-
         CertificateValidationType _certificateType;
     }
 
-    function certificateData() internal pure returns (CertificateData storage ds) {
+    function certificateData()
+        internal
+        pure
+        returns (CertificateData storage ds)
+    {
         bytes32 position = CERTIFICATE_DATA_SLOT;
         assembly {
             ds.slot := position
@@ -42,7 +45,11 @@ library CertificateLib {
         return Roles.roleStorage(CERTIFICATE_SIGNER_ROLE).has(account);
     }
 
-    function usedCertificateNonce(address sender) internal view returns (uint256) {
+    function usedCertificateNonce(address sender)
+        internal
+        view
+        returns (uint256)
+    {
         return certificateData()._usedCertificateNonce[sender];
     }
 
@@ -50,15 +57,24 @@ library CertificateLib {
         return certificateData()._usedCertificateSalt[salt];
     }
 
-    function certificateValidationType() internal view returns (CertificateValidationType) {
+    function certificateValidationType()
+        internal
+        view
+        returns (CertificateValidationType)
+    {
         return certificateData()._certificateType;
     }
 
     /**
-    * @dev Checks if a nonce-based certificate is correct
-    * @param certificate Certificate to control
-    */
-    function _checkNonceBasedCertificate(address token, address msgSender, bytes memory payloadWithCertificate,bytes memory certificate) internal view returns(bool) {
+     * @dev Checks if a nonce-based certificate is correct
+     * @param certificate Certificate to control
+     */
+    function _checkNonceBasedCertificate(
+        address token,
+        address msgSender,
+        bytes memory payloadWithCertificate,
+        bytes memory certificate
+    ) internal view returns (bool) {
         // Certificate should be 97 bytes long
         if (certificate.length != 97) {
             return false;
@@ -87,7 +103,8 @@ library CertificateLib {
         // Perform ecrecover to ensure message information corresponds to certificate
         if (v == 27 || v == 28) {
             // Extract certificate from payload
-            bytes memory payloadWithoutCertificate = payloadWithCertificate.slice(0, payloadWithCertificate.length - certificate.length);
+            bytes memory payloadWithoutCertificate = payloadWithCertificate
+                .slice(0, payloadWithCertificate.length - certificate.length);
 
             // Pack and hash
             bytes memory pack = abi.encodePacked(
@@ -123,10 +140,15 @@ library CertificateLib {
     }
 
     /**
-    * @dev Checks if a salt-based certificate is correct
-    * @param certificate Certificate to control
-    */
-    function _checkSaltBasedCertificate(address token, address msgSender, bytes memory payloadWithCertificate, bytes memory certificate) internal view returns(bool, bytes32) {
+     * @dev Checks if a salt-based certificate is correct
+     * @param certificate Certificate to control
+     */
+    function _checkSaltBasedCertificate(
+        address token,
+        address msgSender,
+        bytes memory payloadWithCertificate,
+        bytes memory certificate
+    ) internal view returns (bool, bytes32) {
         // Certificate should be 129 bytes long
         if (certificate.length != 129) {
             return (false, "");
@@ -157,7 +179,8 @@ library CertificateLib {
         // Perform ecrecover to ensure message information corresponds to certificate
         if (v == 27 || v == 28) {
             // Extract certificate from payload
-            bytes memory payloadWithoutCertificate = payloadWithCertificate.slice(0, payloadWithCertificate.length - certificate.length);
+            bytes memory payloadWithoutCertificate = payloadWithCertificate
+                .slice(0, payloadWithCertificate.length - certificate.length);
 
             // Pack and hash
             bytes32 pack = keccak256(
@@ -190,7 +213,10 @@ library CertificateLib {
             address signer = ecrecover(hashVal, v, r, s);
 
             // Check if certificate match expected transactions parameters
-            if (isCertificateSigner(signer) && !certificateData()._usedCertificateSalt[salt]) {
+            if (
+                isCertificateSigner(signer) &&
+                !certificateData()._usedCertificateSalt[salt]
+            ) {
                 return (true, salt);
             }
         }

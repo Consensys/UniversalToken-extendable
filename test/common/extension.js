@@ -7,23 +7,15 @@ const CERTIFICATE_VALIDATION_NONCE = 1;
 const CERTIFICATE_VALIDATION_SALT = 2;
 const CERTIFICATE_VALIDATION_DEFAULT = CERTIFICATE_VALIDATION_SALT;
 
-const assertTokenHasExtension = async (
-  _registry,
-  _extension,
-  _token,
-) => {
+const assertTokenHasExtension = async (_registry, _extension, _token) => {
   let extensionImplementer = await _registry.getInterfaceImplementer(
     _token.address,
     web3.utils.soliditySha3(ERC1400_TOKENS_VALIDATOR)
   );
   assert.equal(extensionImplementer, _extension.address);
-}
+};
 
-const setNewExtensionForToken = async (
-  _extension,
-  _token,
-  _sender,
-) => {
+const setNewExtensionForToken = async (_extension, _token, _sender) => {
   const controllers = await _token.controllers();
   await _extension.registerTokenSetup(
     _token.address,
@@ -44,7 +36,7 @@ const setNewExtensionForToken = async (
     true,
     { from: _sender }
   );
-}
+};
 
 const assertCertificateActivated = async (
   _extension,
@@ -53,14 +45,9 @@ const assertCertificateActivated = async (
 ) => {
   const tokenSetup = await _extension.retrieveTokenSetup(_token.address);
   assert.equal(_expectedValue, parseInt(tokenSetup[0]));
-}
+};
 
-const setCertificateActivated = async (
-  _extension,
-  _token,
-  _sender,
-  _value
-) => {
+const setCertificateActivated = async (_extension, _token, _sender, _value) => {
   const tokenSetup = await _extension.retrieveTokenSetup(_token.address);
   await _extension.registerTokenSetup(
     _token.address,
@@ -72,23 +59,14 @@ const setCertificateActivated = async (
     tokenSetup[5],
     { from: _sender }
   );
-}
+};
 
-const assertAllowListActivated = async (
-  _extension,
-  _token,
-  _expectedValue
-) => {
+const assertAllowListActivated = async (_extension, _token, _expectedValue) => {
   const tokenSetup = await _extension.retrieveTokenSetup(_token.address);
   assert.equal(_expectedValue, tokenSetup[1]);
-}
+};
 
-const setAllowListActivated = async (
-  _extension,
-  _token,
-  _sender,
-  _value
-) => {
+const setAllowListActivated = async (_extension, _token, _sender, _value) => {
   const tokenSetup = await _extension.retrieveTokenSetup(_token.address);
   await _extension.registerTokenSetup(
     _token.address,
@@ -100,23 +78,14 @@ const setAllowListActivated = async (
     tokenSetup[5],
     { from: _sender }
   );
-}
+};
 
-const assertBlockListActivated = async (
-  _extension,
-  _token,
-  _expectedValue
-) => {
+const assertBlockListActivated = async (_extension, _token, _expectedValue) => {
   const tokenSetup = await _extension.retrieveTokenSetup(_token.address);
   assert.equal(_expectedValue, tokenSetup[2]);
-}
+};
 
-const setBlockListActivated = async (
-  _extension,
-  _token,
-  _sender,
-  _value
-) => {
+const setBlockListActivated = async (_extension, _token, _sender, _value) => {
   const tokenSetup = await _extension.retrieveTokenSetup(_token.address);
   await _extension.registerTokenSetup(
     _token.address,
@@ -128,7 +97,7 @@ const setBlockListActivated = async (
     tokenSetup[5],
     { from: _sender }
   );
-}
+};
 
 const assertGranularityByPartitionActivated = async (
   _extension,
@@ -137,7 +106,7 @@ const assertGranularityByPartitionActivated = async (
 ) => {
   const tokenSetup = await _extension.retrieveTokenSetup(_token.address);
   assert.equal(_expectedValue, tokenSetup[3]);
-}
+};
 
 const setGranularityByPartitionActivated = async (
   _extension,
@@ -156,23 +125,14 @@ const setGranularityByPartitionActivated = async (
     tokenSetup[5],
     { from: _sender }
   );
-}
+};
 
-const assertHoldsActivated = async (
-  _extension,
-  _token,
-  _expectedValue
-) => {
+const assertHoldsActivated = async (_extension, _token, _expectedValue) => {
   const tokenSetup = await _extension.retrieveTokenSetup(_token.address);
   assert.equal(_expectedValue, tokenSetup[4]);
-}
+};
 
-const setHoldsActivated = async (
-  _extension,
-  _token,
-  _sender,
-  _value
-) => {
+const setHoldsActivated = async (_extension, _token, _sender, _value) => {
   const tokenSetup = await _extension.retrieveTokenSetup(_token.address);
   await _extension.registerTokenSetup(
     _token.address,
@@ -184,18 +144,18 @@ const setHoldsActivated = async (
     tokenSetup[5],
     { from: _sender }
   );
-}
+};
 
 const assertIsTokenController = async (
   _extension,
   _token,
   _controller,
-  _value,
+  _value
 ) => {
   const tokenSetup = await _extension.retrieveTokenSetup(_token.address);
   const controllerList = tokenSetup[5];
-  assert.equal(_value, controllerList.includes(_controller))
-}
+  assert.equal(_value, controllerList.includes(_controller));
+};
 
 const addTokenController = async (
   _extension,
@@ -219,7 +179,7 @@ const addTokenController = async (
     controllerList,
     { from: _sender }
   );
-}
+};
 
 module.exports = {
   CERTIFICATE_VALIDATION_NONE,
@@ -239,5 +199,5 @@ module.exports = {
   assertHoldsActivated,
   setHoldsActivated,
   assertIsTokenController,
-  addTokenController
-}
+  addTokenController,
+};

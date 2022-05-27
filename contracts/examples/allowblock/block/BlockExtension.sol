@@ -6,23 +6,30 @@ import {IBlocklistedAdminRole} from "./IBlocklistedAdminRole.sol";
 import {TokenExtension, TransferData} from "../../../extensions/TokenExtension.sol";
 import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 
-contract BlockExtension is TokenExtension, IBlocklistedRole, IBlocklistedAdminRole {
+contract BlockExtension is
+    TokenExtension,
+    IBlocklistedRole,
+    IBlocklistedAdminRole
+{
+    bytes32 internal constant BLOCKLIST_ROLE =
+        keccak256("allowblock.roles.blocklisted");
+    bytes32 internal constant BLOCKLIST_ADMIN_ROLE =
+        keccak256("allowblock.roles.blocklisted.admin");
 
-    bytes32 constant internal BLOCKLIST_ROLE = keccak256("allowblock.roles.blocklisted");
-    bytes32 constant internal BLOCKLIST_ADMIN_ROLE = keccak256("allowblock.roles.blocklisted.admin");
-
-    modifier onlyBlocklistedAdmin {
-        require(this.isBlocklistedAdmin(_msgSender()), "Not on block list admin");
+    modifier onlyBlocklistedAdmin() {
+        require(
+            this.isBlocklistedAdmin(_msgSender()),
+            "Not on block list admin"
+        );
         _;
     }
 
-    
-    modifier onlyNotBlocklisted {
+    modifier onlyNotBlocklisted() {
         require(!this.isBlocklisted(_msgSender()), "Already on block list");
         _;
     }
 
-    modifier onlyBlocklisted {
+    modifier onlyBlocklisted() {
         require(this.isBlocklisted(_msgSender()), "Not on block list");
         _;
     }
@@ -50,39 +57,75 @@ contract BlockExtension is TokenExtension, IBlocklistedRole, IBlocklistedAdminRo
         _listenForTokenTransfers(this.onTransferExecuted);
     }
 
-    function isBlocklisted(address account) external override view returns (bool) {
+    function isBlocklisted(address account)
+        external
+        view
+        override
+        returns (bool)
+    {
         return hasRole(account, BLOCKLIST_ROLE);
     }
 
-    function addBlocklisted(address account) external override onlyBlocklistedAdmin {
+    function addBlocklisted(address account)
+        external
+        override
+        onlyBlocklistedAdmin
+    {
         _addRole(account, BLOCKLIST_ROLE);
     }
 
-    function removeBlocklisted(address account) external override onlyBlocklistedAdmin {
+    function removeBlocklisted(address account)
+        external
+        override
+        onlyBlocklistedAdmin
+    {
         _removeRole(account, BLOCKLIST_ROLE);
     }
 
-    function isBlocklistedAdmin(address account) external override view returns (bool) {
+    function isBlocklistedAdmin(address account)
+        external
+        view
+        override
+        returns (bool)
+    {
         return hasRole(account, BLOCKLIST_ADMIN_ROLE);
     }
 
-    function addBlocklistedAdmin(address account) external override onlyBlocklistedAdmin {
+    function addBlocklistedAdmin(address account)
+        external
+        override
+        onlyBlocklistedAdmin
+    {
         _addRole(account, BLOCKLIST_ADMIN_ROLE);
     }
 
-    function removeBlocklistedAdmin(address account) external override onlyBlocklistedAdmin {
+    function removeBlocklistedAdmin(address account)
+        external
+        override
+        onlyBlocklistedAdmin
+    {
         _removeRole(account, BLOCKLIST_ADMIN_ROLE);
     }
 
-    function onTransferExecuted(TransferData memory data) external onlyToken returns (bool) {
+    function onTransferExecuted(TransferData memory data)
+        external
+        onlyToken
+        returns (bool)
+    {
         if (data.from != address(0)) {
-            require(!hasRole(data.from, BLOCKLIST_ROLE), "from address is blocklisted");
+            require(
+                !hasRole(data.from, BLOCKLIST_ROLE),
+                "from address is blocklisted"
+            );
         }
 
         if (data.to != address(0)) {
-            require(!hasRole(data.to, BLOCKLIST_ROLE), "to address is blocklisted");
+            require(
+                !hasRole(data.to, BLOCKLIST_ROLE),
+                "to address is blocklisted"
+            );
         }
-        
+
         return true;
     }
 }

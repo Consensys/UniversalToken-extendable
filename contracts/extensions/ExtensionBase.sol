@@ -25,9 +25,7 @@ import {StorageSlot} from "@openzeppelin/contracts/utils/StorageSlot.sol";
  * invokation
  */
 abstract contract ExtensionBase is ContextUpgradeable {
-    bytes32 internal constant PROXY_DATA_SLOT = keccak256("ext.proxy.data");
-    bytes32 internal constant MSG_SENDER_SLOT =
-        keccak256("ext.proxy.data.msgsender");
+    bytes32 internal constant _PROXY_DATA_SLOT = keccak256("ext.proxy.data");
 
     /**
      * @dev Considered the storage to be shared between the proxy
@@ -51,7 +49,9 @@ abstract contract ExtensionBase is ContextUpgradeable {
      * @dev The ProxyData struct stored in this registered Extension instance.
      */
     function _proxyData() internal pure returns (ProxyData storage ds) {
-        bytes32 position = PROXY_DATA_SLOT;
+        bytes32 position = _PROXY_DATA_SLOT;
+
+        // solhint-disable-next-line no-inline-assembly
         assembly {
             ds.slot := position
         }
@@ -125,6 +125,8 @@ abstract contract ExtensionBase is ContextUpgradeable {
             // At this point we know that the sender is a token proxy,
             // so we trust that the last bytes of msg.data are the verified sender address.
             // extract sender address from the end of msg.data
+
+            // solhint-disable-next-line no-inline-assembly
             assembly {
                 ret := shr(96, calldataload(sub(calldatasize(), 20)))
             }

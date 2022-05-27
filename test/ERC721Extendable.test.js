@@ -51,9 +51,7 @@ contract(
       it("Only Holder can Burn token 1", async () => {
         assert.equal(await token.totalSupply(), initialSupply + 1);
         assert.equal(await token.balanceOf(holder), 1);
-        await expectRevert.unspecified(
-          token.burn(1, { from: deployer })
-        );
+        await expectRevert.unspecified(token.burn(1, { from: deployer }));
       });
 
       it("Holder Burns token 1", async () => {
@@ -67,13 +65,18 @@ contract(
         assert.equal(await token.balanceOf(recipient), 0);
         assert.equal(await token.balanceOf(recipient2), 0);
         assert.equal(await token.balanceOf(notary), 0);
-        assert.equal(await token.totalSupply(),  initialSupply);
+        assert.equal(await token.totalSupply(), initialSupply);
       });
 
       it("Mint token 2 to holder using mintAndSetTokenURI", async () => {
         assert.equal(await token.totalSupply(), initialSupply);
         assert.equal(await token.balanceOf(holder), 0);
-        const result = await token.mintAndSetTokenURI(holder, 2, "example.com", { from: deployer });
+        const result = await token.mintAndSetTokenURI(
+          holder,
+          2,
+          "example.com",
+          { from: deployer }
+        );
         assert.equal(result.receipt.status, 1);
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 1);
@@ -89,7 +92,9 @@ contract(
       it("Minter can change token URI of token 2", async () => {
         assert.equal(await token.ownerOf(2), holder);
         assert.equal(await token.tokenURI(2), "example.com");
-        const result = await token.setTokenURI(2, "example.com/test.json", { from: deployer });
+        const result = await token.setTokenURI(2, "example.com/test.json", {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
         assert.equal(await token.ownerOf(2), holder);
         assert.equal(await token.tokenURI(2), "example.com/test.json");
@@ -106,7 +111,9 @@ contract(
       it("Transfer token 1 from holder to recipient", async () => {
         assert.equal(await token.totalSupply(), initialSupply + 1);
         assert.equal(await token.balanceOf(holder), 1);
-        const result = await token.safeTransferFrom(holder, recipient, 2, { from: holder });
+        const result = await token.safeTransferFrom(holder, recipient, 2, {
+          from: holder,
+        });
         assert.equal(result.receipt.status, 1);
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 0);
@@ -135,14 +142,16 @@ contract(
         await expectRevert.unspecified(
           token.safeTransferFrom(recipient, recipient2, 2, { from: notary })
         );
-        
+
         assert.equal(await token.totalSupply(), initialSupply + 1);
         assert.equal(await token.balanceOf(recipient), 1);
         assert.equal(await token.getApproved(2), ZERO_ADDRESS);
 
         const result = await token.approve(notary, 2, { from: recipient });
         assert.equal(await token.getApproved(2), notary);
-        const result2 = await token.safeTransferFrom(recipient, recipient2, 2, { from: notary });
+        const result2 = await token.safeTransferFrom(recipient, recipient2, 2, {
+          from: notary,
+        });
 
         assert.equal(result.receipt.status, 1);
         assert.equal(result2.receipt.status, 1);
@@ -160,14 +169,18 @@ contract(
         await expectRevert.unspecified(
           token.safeTransferFrom(recipient2, recipient, 2, { from: notary })
         );
-        
+
         assert.equal(await token.totalSupply(), initialSupply + 1);
         assert.equal(await token.balanceOf(recipient2), 1);
         assert.equal(await token.isApprovedForAll(recipient2, notary), false);
 
-        const result = await token.setApprovalForAll(notary, true, { from: recipient2 });
+        const result = await token.setApprovalForAll(notary, true, {
+          from: recipient2,
+        });
         assert.equal(await token.isApprovedForAll(recipient2, notary), true);
-        const result2 = await token.safeTransferFrom(recipient2, recipient, 2, { from: notary });
+        const result2 = await token.safeTransferFrom(recipient2, recipient, 2, {
+          from: notary,
+        });
 
         assert.equal(result.receipt.status, 1);
         assert.equal(result2.receipt.status, 1);
@@ -202,6 +215,6 @@ contract(
         //Only mock contract has the isMock function
         assert.equal(await upgradedTokenApi.isMock(), "This is a mock!");
       });
-
     });
-  })
+  }
+);
