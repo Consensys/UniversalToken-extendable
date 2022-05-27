@@ -4,9 +4,8 @@ module.exports = {
     node: true,
     mocha: true,
   },
-  extends: ["eslint:recommended"],
+  extends: ["eslint:recommended", "prettier"],
   rules: {
-    indent: ["error", 2],
     "no-undef": 0,
     "no-unused-vars": 0,
   },
