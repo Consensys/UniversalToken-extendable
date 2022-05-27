@@ -58,7 +58,7 @@ contract(
         assert.equal(await token.balanceOf(recipient), 0);
         assert.equal(await token.balanceOf(recipient2), 0);
         assert.equal(await token.balanceOf(notary), 0);
-        assert.equal(await token.totalSupply(),  initialSupply + 1000 - 100);
+        assert.equal(await token.totalSupply(), initialSupply + 1000 - 100);
       });
 
       it("Transfer 100 tokens from holder to recipient", async () => {
@@ -98,14 +98,16 @@ contract(
         await expectRevert.unspecified(
           token.transfer(recipient2, 200, { from: notary })
         );
-        
+
         assert.equal(await token.totalSupply(), initialSupply + 1000 - 100);
         assert.equal(await token.balanceOf(holder), 800);
         assert.equal(await token.allowance(holder, notary), 0);
 
         const result = await token.approve(notary, 200, { from: holder });
         assert.equal(await token.allowance(holder, notary), 200);
-        const result2 = await token.transferFrom(holder, recipient2, 200, { from: notary });
+        const result2 = await token.transferFrom(holder, recipient2, 200, {
+          from: notary,
+        });
 
         assert.equal(result.receipt.status, 1);
         assert.equal(result2.receipt.status, 1);
@@ -123,21 +125,27 @@ contract(
         await expectRevert.unspecified(
           token.transfer(recipient2, 200, { from: notary })
         );
-        
+
         assert.equal(await token.totalSupply(), initialSupply + 1000 - 100);
         assert.equal(await token.balanceOf(holder), 600);
         assert.equal(await token.allowance(holder, notary), 0);
-  
-        const result = await token.increaseAllowance(notary, 300, { from: holder });
-        const result2 = await token.decreaseAllowance(notary, 100, { from: holder });
+
+        const result = await token.increaseAllowance(notary, 300, {
+          from: holder,
+        });
+        const result2 = await token.decreaseAllowance(notary, 100, {
+          from: holder,
+        });
 
         assert.equal(await token.allowance(holder, notary), 200);
-        const result3 = await token.transferFrom(holder, recipient2, 200, { from: notary });
-  
+        const result3 = await token.transferFrom(holder, recipient2, 200, {
+          from: notary,
+        });
+
         assert.equal(result.receipt.status, 1);
         assert.equal(result2.receipt.status, 1);
         assert.equal(result3.receipt.status, 1);
-  
+
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 400);
         assert.equal(await token.balanceOf(sender), 0);
@@ -152,21 +160,25 @@ contract(
         await expectRevert.unspecified(
           token.transfer(recipient2, 200, { from: notary })
         );
-        
+
         assert.equal(await token.totalSupply(), initialSupply + 1000 - 100);
         assert.equal(await token.balanceOf(holder), 400);
         assert.equal(await token.allowance(holder, notary), 0);
-  
-        const result = await token.increaseAllowance(notary, 300, { from: holder });
-        const result2 = await token.decreaseAllowance(notary, 100, { from: holder });
+
+        const result = await token.increaseAllowance(notary, 300, {
+          from: holder,
+        });
+        const result2 = await token.decreaseAllowance(notary, 100, {
+          from: holder,
+        });
 
         assert.equal(await token.allowance(holder, notary), 200);
         const result3 = await token.burnFrom(holder, 200, { from: notary });
-  
+
         assert.equal(result.receipt.status, 1);
         assert.equal(result2.receipt.status, 1);
         assert.equal(result3.receipt.status, 1);
-  
+
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 200);
         assert.equal(await token.balanceOf(sender), 0);
@@ -181,19 +193,19 @@ contract(
         await expectRevert.unspecified(
           token.transfer(recipient2, 200, { from: notary })
         );
-        
+
         assert.equal(await token.totalSupply(), initialSupply + 1000 - 300);
         assert.equal(await token.balanceOf(holder), 200);
         assert.equal(await token.allowance(holder, notary), 0);
-  
+
         const result = await token.approve(notary, 200, { from: holder });
 
         assert.equal(await token.allowance(holder, notary), 200);
         const result3 = await token.burnFrom(holder, 200, { from: notary });
-  
+
         assert.equal(result.receipt.status, 1);
         assert.equal(result3.receipt.status, 1);
-  
+
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 0);
         assert.equal(await token.balanceOf(sender), 0);
@@ -224,6 +236,6 @@ contract(
         //Only mock contract has the isMock function
         assert.equal(await upgradedTokenApi.isMock(), "This is a mock!");
       });
-
     });
-  })
+  }
+);

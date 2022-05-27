@@ -14,7 +14,7 @@ module.exports = {
     "utils/mocks/MockAllowExtension.sol",
     "utils/mocks/MockBlockExtension.sol",
     "tokens/logic/ERC20/IERC20Logic.sol",
-    "tokens/logic/ERC721/IERC721Logic.sol"
+    "tokens/logic/ERC721/IERC721Logic.sol",
   ],
   copyPackages: ["@openzeppelin/contracts"],
   mocha: {

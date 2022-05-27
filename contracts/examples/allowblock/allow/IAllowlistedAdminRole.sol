@@ -6,7 +6,7 @@ interface IAllowlistedAdminRole {
     event AllowlistedAdminRemoved(address indexed account);
 
     function isAllowlistedAdmin(address account) external view returns (bool);
-    
+
     function addAllowlistedAdmin(address account) external;
 
     function removeAllowlistedAdmin(address account) external;

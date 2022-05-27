@@ -6,8 +6,7 @@ import {TokenExtension, TransferData} from "../../extensions/TokenExtension.sol"
 import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 
 contract PauseExtension is TokenExtension, IPausable {
-
-    bytes32 constant internal PAUSER_ROLE = keccak256("pausable.roles.pausers");
+    bytes32 internal constant PAUSER_ROLE = keccak256("pausable.roles.pausers");
 
     bool private _isPaused;
     mapping(address => bool) private _pausedFor;
@@ -20,7 +19,7 @@ contract PauseExtension is TokenExtension, IPausable {
         _registerFunction(PauseExtension.unpause.selector);
         _registerFunction(PauseExtension.pauseFor.selector);
         _registerFunction(PauseExtension.unpauseFor.selector);
-        
+
         _registerFunctionName("isPaused()");
         _registerFunctionName("isPausedFor(address)");
 
@@ -31,7 +30,7 @@ contract PauseExtension is TokenExtension, IPausable {
         _setPackageName("net.consensys.tokenext.PauseExtension");
         _setVersion(1);
     }
-    
+
     /**
      * @dev Modifier to make a function callable only when the contract is not paused.
      */
@@ -49,11 +48,14 @@ contract PauseExtension is TokenExtension, IPausable {
     }
 
     modifier onlyPauser() {
-        require(hasRole(_msgSender(), PAUSER_ROLE), "Only pausers can use this function");
+        require(
+            hasRole(_msgSender(), PAUSER_ROLE),
+            "Only pausers can use this function"
+        );
         _;
     }
 
-    function isPaused() public override view returns (bool) {
+    function isPaused() public view override returns (bool) {
         return _isPaused;
     }
 
@@ -73,7 +75,7 @@ contract PauseExtension is TokenExtension, IPausable {
         emit Unpaused(_msgSender());
     }
 
-    function isPausedFor(address caller) public override view returns (bool) {
+    function isPausedFor(address caller) public view override returns (bool) {
         return isPaused() || _pausedFor[caller];
     }
 
@@ -81,7 +83,7 @@ contract PauseExtension is TokenExtension, IPausable {
         _pausedFor[caller] = true;
     }
 
-    function isPauser(address caller) external override view returns (bool) {
+    function isPauser(address caller) external view override returns (bool) {
         return hasRole(caller, PAUSER_ROLE);
     }
 
@@ -111,7 +113,11 @@ contract PauseExtension is TokenExtension, IPausable {
         emit PauserRemoved(account);
     }
 
-    function onTransferExecuted(TransferData memory data) external onlyToken returns (bool) {
+    function onTransferExecuted(TransferData memory data)
+        external
+        onlyToken
+        returns (bool)
+    {
         bool isPaused = isPausedFor(data.from);
 
         require(!isPaused, "Transfers are paused");

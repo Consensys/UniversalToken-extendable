@@ -7,23 +7,34 @@ import {IAllowlistedAdminRole} from "./IAllowlistedAdminRole.sol";
 import {TokenExtension, TransferData} from "../../../extensions/TokenExtension.sol";
 import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 
-contract AllowExtension is TokenExtension, IAllowlistedRole, IAllowlistedAdminRole {
+contract AllowExtension is
+    TokenExtension,
+    IAllowlistedRole,
+    IAllowlistedAdminRole
+{
+    bytes32 internal constant ALLOWLIST_ROLE =
+        keccak256("allowblock.roles.allowlisted");
+    bytes32 internal constant ALLOWLIST_ADMIN_ROLE =
+        keccak256("allowblock.roles.allowlisted.admin");
 
-    bytes32 constant internal ALLOWLIST_ROLE = keccak256("allowblock.roles.allowlisted");
-    bytes32 constant internal ALLOWLIST_ADMIN_ROLE = keccak256("allowblock.roles.allowlisted.admin");
-
-    modifier onlyAllowlistedAdmin {
-        require(hasRole(_msgSender(), ALLOWLIST_ADMIN_ROLE), "Not an allow list admin");
+    modifier onlyAllowlistedAdmin() {
+        require(
+            hasRole(_msgSender(), ALLOWLIST_ADMIN_ROLE),
+            "Not an allow list admin"
+        );
         _;
     }
 
-    modifier onlyAllowlisted {
+    modifier onlyAllowlisted() {
         require(hasRole(_msgSender(), ALLOWLIST_ROLE), "Not on allow list");
         _;
     }
 
-    modifier onlyNotAllowlisted {
-        require(!hasRole(_msgSender(), ALLOWLIST_ROLE), "Already on allow list");
+    modifier onlyNotAllowlisted() {
+        require(
+            !hasRole(_msgSender(), ALLOWLIST_ROLE),
+            "Already on allow list"
+        );
         _;
     }
 
@@ -54,34 +65,66 @@ contract AllowExtension is TokenExtension, IAllowlistedRole, IAllowlistedAdminRo
         _listenForTokenTransfers(this.onTransferExecuted);
     }
 
-    function isAllowlisted(address account) external override view returns (bool) {
+    function isAllowlisted(address account)
+        external
+        view
+        override
+        returns (bool)
+    {
         return hasRole(account, ALLOWLIST_ROLE);
     }
-    
-    function addAllowlisted(address account) external override onlyAllowlistedAdmin {
+
+    function addAllowlisted(address account)
+        external
+        override
+        onlyAllowlistedAdmin
+    {
         _addRole(account, ALLOWLIST_ROLE);
     }
 
-    function removeAllowlisted(address account) external override onlyAllowlistedAdmin {
+    function removeAllowlisted(address account)
+        external
+        override
+        onlyAllowlistedAdmin
+    {
         _removeRole(account, ALLOWLIST_ROLE);
     }
 
-    function isAllowlistedAdmin(address account) external override view returns (bool) {
+    function isAllowlistedAdmin(address account)
+        external
+        view
+        override
+        returns (bool)
+    {
         return hasRole(account, ALLOWLIST_ADMIN_ROLE);
     }
-    
-    function addAllowlistedAdmin(address account) external override onlyAllowlistedAdmin {
+
+    function addAllowlistedAdmin(address account)
+        external
+        override
+        onlyAllowlistedAdmin
+    {
         _addRole(account, ALLOWLIST_ADMIN_ROLE);
     }
 
-    function removeAllowlistedAdmin(address account) external override onlyAllowlistedAdmin {
+    function removeAllowlistedAdmin(address account)
+        external
+        override
+        onlyAllowlistedAdmin
+    {
         _removeRole(account, ALLOWLIST_ADMIN_ROLE);
     }
 
-    function onTransferExecuted(TransferData memory data) external onlyToken returns (bool) {
-        bool fromAllowed = data.from == address(0) || hasRole(data.from, ALLOWLIST_ROLE);
-        bool toAllowed = data.to == address(0) || hasRole(data.to, ALLOWLIST_ROLE);
-        
+    function onTransferExecuted(TransferData memory data)
+        external
+        onlyToken
+        returns (bool)
+    {
+        bool fromAllowed = data.from == address(0) ||
+            hasRole(data.from, ALLOWLIST_ROLE);
+        bool toAllowed = data.to == address(0) ||
+            hasRole(data.to, ALLOWLIST_ROLE);
+
         require(fromAllowed, "from address is not allowlisted");
         require(toAllowed, "to address is not allowlisted");
 

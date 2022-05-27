@@ -24,11 +24,14 @@ const HoldStatusCode = Object.freeze({
   ExecutedAndKeptOpen: 3,
   Released: 4,
   ReleasedByPayee: 5,
-  ReleasedOnExpiration: 6
+  ReleasedOnExpiration: 6,
 });
 
 const initialSupply = 0;
-const maxSupply = web3.utils.toBN(2).pow(web3.utils.toBN(256)).sub(web3.utils.toBN(1));
+const maxSupply = web3.utils
+  .toBN(2)
+  .pow(web3.utils.toBN(256))
+  .sub(web3.utils.toBN(1));
 
 contract(
   "ERC20",
@@ -55,17 +58,19 @@ contract(
         );
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
-        
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 0);
 
-        const result = await this.token.registerExtension(this.holdExtension, { from: deployer });
+        const result = await this.token.registerExtension(this.holdExtension, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
- 
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 1);
 
         this.holdExtensionBind = await HoldExtension.at(this.token.address);
-        
-        //combine both objects 
+
+        //combine both objects
         this.token = Object.assign(this.token, this.holdExtensionBind);
       });
       after(async () => {
@@ -94,7 +99,7 @@ contract(
             inOneHour,
             hashLock.hash,
             { from: holder }
-          ),
+          )
         );
         assert.equal(await this.token.spendableBalanceOf(recipient), 0);
         assert.equal(await this.token.balanceOnHold(recipient), 0);
@@ -212,9 +217,14 @@ contract(
       });
       it("Notary can not execute hold with the wrong execute function", async () => {
         await expectRevert.unspecified(
-          this.token.methods["executeHold(bytes32,bytes32,address)"](holdId, hashLock.secret, recipient2, {
-            from: notary,
-          })
+          this.token.methods["executeHold(bytes32,bytes32,address)"](
+            holdId,
+            hashLock.secret,
+            recipient2,
+            {
+              from: notary,
+            }
+          )
         );
         assert.equal(await this.token.spendableBalanceOf(holder), 100);
         assert.equal(await this.token.balanceOnHold(holder), 900);
@@ -315,9 +325,7 @@ contract(
       });
       it("Notary can not execute the hold without the lock hash", async () => {
         await expectRevert.unspecified(
-          this.token.methods[
-            "executeHold(bytes32)"
-          ](holdId, { from: notary })
+          this.token.methods["executeHold(bytes32)"](holdId, { from: notary })
         );
         assert.equal(await this.token.spendableBalanceOf(holder), 20);
         assert.equal(await this.token.spendableBalanceOf(recipient), 0);
@@ -412,17 +420,19 @@ contract(
         );
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
-        
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 0);
 
-        const result = await this.token.registerExtension(this.holdExtension, { from: deployer });
+        const result = await this.token.registerExtension(this.holdExtension, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
- 
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 1);
 
         this.holdExtensionBind = await HoldExtension.at(this.token.address);
-        
-        //combine both objects 
+
+        //combine both objects
         this.token = Object.assign(this.token, this.holdExtensionBind);
       });
       after(async () => {
@@ -560,17 +570,19 @@ contract(
         );
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
-        
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 0);
 
-        const result = await this.token.registerExtension(this.holdExtension, { from: deployer });
+        const result = await this.token.registerExtension(this.holdExtension, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
- 
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 1);
 
         this.holdExtensionBind = await HoldExtension.at(this.token.address);
-        
-        //combine both objects 
+
+        //combine both objects
         this.token = Object.assign(this.token, this.holdExtensionBind);
       });
       after(async () => {
@@ -667,17 +679,19 @@ contract(
         );
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
-        
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 0);
 
-        const result = await this.token.registerExtension(this.holdExtension, { from: deployer });
+        const result = await this.token.registerExtension(this.holdExtension, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
- 
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 1);
 
         this.holdExtensionBind = await HoldExtension.at(this.token.address);
-        
-        //combine both objects 
+
+        //combine both objects
         this.token = Object.assign(this.token, this.holdExtensionBind);
       });
       after(async () => {
@@ -772,17 +786,19 @@ contract(
         );
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
-        
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 0);
 
-        const result = await this.token.registerExtension(this.holdExtension, { from: deployer });
+        const result = await this.token.registerExtension(this.holdExtension, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
- 
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 1);
 
         this.holdExtensionBind = await HoldExtension.at(this.token.address);
-        
-        //combine both objects 
+
+        //combine both objects
         this.token = Object.assign(this.token, this.holdExtensionBind);
       });
       after(async () => {
@@ -860,18 +876,20 @@ contract(
         );
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
-        
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 0);
 
-        const result = await this.token.registerExtension(this.holdExtension, { from: deployer });
+        const result = await this.token.registerExtension(this.holdExtension, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
- 
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 1);
 
         this.holdExtensionBind = await HoldExtension.at(this.token.address);
-        
-        //combine both objects 
-        this.token = Object.assign(this.token, this.holdExtensionBind)
+
+        //combine both objects
+        this.token = Object.assign(this.token, this.holdExtensionBind);
       });
       after(async () => {
         await revertToSnapshot(snapshotId);
@@ -912,9 +930,12 @@ contract(
       });
       it("Recipient can not execute a hold", async () => {
         await expectRevert.unspecified(
-          this.token.methods[
-            "executeHold(bytes32,bytes32,address)"
-          ](holdId, hashLock.secret, recipient, { from: recipient })
+          this.token.methods["executeHold(bytes32,bytes32,address)"](
+            holdId,
+            hashLock.secret,
+            recipient,
+            { from: recipient }
+          )
         );
         assert.equal(await this.token.spendableBalanceOf(holder), 876543210);
         assert.equal(await this.token.balanceOnHold(holder), 9000000000);
@@ -940,9 +961,12 @@ contract(
       });
       it("Recipient can not execute a hold with zero address as the recipient", async () => {
         await expectRevert.unspecified(
-          this.token.methods[
-            "executeHold(bytes32,bytes32,address)"
-          ](holdId, hashLock.secret, ZERO_ADDRESS, { from: notary })
+          this.token.methods["executeHold(bytes32,bytes32,address)"](
+            holdId,
+            hashLock.secret,
+            ZERO_ADDRESS,
+            { from: notary }
+          )
         );
         assert.equal(await this.token.spendableBalanceOf(holder), 876543210);
         assert.equal(await this.token.balanceOnHold(holder), 9000000000);
@@ -954,9 +978,7 @@ contract(
       });
       it("Notary can not execute the hold without the lock hash", async () => {
         await expectRevert.unspecified(
-          this.token.methods[
-            "executeHold(bytes32)"
-          ](holdId, { from: notary })
+          this.token.methods["executeHold(bytes32)"](holdId, { from: notary })
         );
         assert.equal(await this.token.spendableBalanceOf(holder), 876543210);
         assert.equal(await this.token.balanceOnHold(holder), 9000000000);
@@ -965,9 +987,12 @@ contract(
       it("Notary can not execute hold with the wrong lock hash", async () => {
         const incorrectHashLock = newSecretHashPair();
         await expectRevert.unspecified(
-          this.token.methods[
-            "executeHold(bytes32,bytes32,address)"
-          ](holdId, incorrectHashLock.secret, recipient, { from: notary })
+          this.token.methods["executeHold(bytes32,bytes32,address)"](
+            holdId,
+            incorrectHashLock.secret,
+            recipient,
+            { from: notary }
+          )
         );
         assert.equal(await this.token.spendableBalanceOf(holder), 876543210);
         assert.equal(await this.token.balanceOnHold(holder), 9000000000);
@@ -985,7 +1010,10 @@ contract(
         assert.equal(await this.token.spendableBalanceOf(holder), 876543210);
         assert.equal(await this.token.balanceOnHold(holder), 0);
         assert.equal(await this.token.balanceOf(holder), 876543210);
-        assert.equal(await this.token.spendableBalanceOf(recipient), 9000000000);
+        assert.equal(
+          await this.token.spendableBalanceOf(recipient),
+          9000000000
+        );
         assert.equal(await this.token.balanceOnHold(recipient), 0);
         assert.equal(await this.token.balanceOf(recipient), 9000000000);
         assert.equal(await this.token.totalSupply(), 9876543210);
@@ -1012,17 +1040,19 @@ contract(
         );
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
-        
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 0);
 
-        const result = await this.token.registerExtension(this.holdExtension, { from: deployer });
+        const result = await this.token.registerExtension(this.holdExtension, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
- 
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 1);
 
         this.holdExtensionBind = await HoldExtension.at(this.token.address);
-        
-        //combine both objects 
+
+        //combine both objects
         this.token = Object.assign(this.token, this.holdExtensionBind);
       });
       after(async () => {
@@ -1100,17 +1130,19 @@ contract(
         );
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
-        
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 0);
 
-        const result = await this.token.registerExtension(this.holdExtension, { from: deployer });
+        const result = await this.token.registerExtension(this.holdExtension, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
- 
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 1);
 
         this.holdExtensionBind = await HoldExtension.at(this.token.address);
-        
-        //combine both objects 
+
+        //combine both objects
         this.token = Object.assign(this.token, this.holdExtensionBind);
       });
       after(async () => {
@@ -1187,17 +1219,19 @@ contract(
         );
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
-        
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 0);
 
-        const result = await this.token.registerExtension(this.holdExtension, { from: deployer });
+        const result = await this.token.registerExtension(this.holdExtension, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
- 
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 1);
 
         this.holdExtensionBind = await HoldExtension.at(this.token.address);
-        
-        //combine both objects 
+
+        //combine both objects
         this.token = Object.assign(this.token, this.holdExtensionBind);
       });
       after(async () => {
@@ -1269,17 +1303,19 @@ contract(
         );
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
-        
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 0);
 
-        const result = await this.token.registerExtension(this.holdExtension, { from: deployer });
+        const result = await this.token.registerExtension(this.holdExtension, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
- 
+
         assert.equal((await this.token.allExtensionsRegistered()).length, 1);
 
         this.holdExtensionBind = await HoldExtension.at(this.token.address);
-        
-        //combine both objects 
+
+        //combine both objects
         this.token = Object.assign(this.token, this.holdExtensionBind);
       });
       after(async () => {
@@ -1319,9 +1355,7 @@ contract(
         assert.equal(await this.token.totalSupply(), 123);
       });
       it("Holder can not burn on hold tokens", async () => {
-        await expectRevert.unspecified(
-          this.token.burn(24, { from: holder })
-        );
+        await expectRevert.unspecified(this.token.burn(24, { from: holder }));
         assert.equal(await this.token.spendableBalanceOf(holder), 23);
         assert.equal(await this.token.balanceOnHold(holder), 100);
         assert.equal(await this.token.balanceOf(holder), 123);
@@ -1398,9 +1432,7 @@ contract(
         assert.equal(await this.token.totalSupply(), 104);
       });
       it("Holder can not burn on hold tokens", async () => {
-        await expectRevert.unspecified(
-          this.token.burn(1, { from: holder })
-        );
+        await expectRevert.unspecified(this.token.burn(1, { from: holder }));
       });
       it("Notary executes hold to the recipient", async () => {
         const result = await this.token.methods[

@@ -35,7 +35,7 @@ abstract contract TokenExtension is
     RolesBase
 {
     // map of supported token standards
-    mapping(TokenStandard => bool) private supportedTokenStandards;
+    mapping(TokenStandard => bool) private _supportedTokenStandards;
     //Should only be modified inside the constructor
     bytes4[] private _exposedFuncSigs;
     mapping(bytes4 => bool) private _interfaceMap;
@@ -103,7 +103,7 @@ abstract contract TokenExtension is
             _isInsideConstructorCall(),
             "Function must be called inside the constructor"
         );
-        supportedTokenStandards[tokenStandard] = true;
+        _supportedTokenStandards[tokenStandard] = true;
     }
 
     /**
@@ -168,7 +168,7 @@ abstract contract TokenExtension is
         override
         returns (bool)
     {
-        return supportedTokenStandards[standard];
+        return _supportedTokenStandards[standard];
     }
 
     /**
@@ -276,6 +276,7 @@ abstract contract TokenExtension is
     function _isInsideConstructorCall() internal view returns (bool) {
         uint256 size;
         address addr = address(this);
+        // solhint-disable-next-line no-inline-assembly
         assembly {
             size := extcodesize(addr)
         }
