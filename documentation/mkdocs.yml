@@ -33,11 +33,10 @@ nav:
       - Remove extensions: tokens/remove-extensions.md
   - Extensions: 
       - Getting started: extensions/getting-started.md
-      - Register functions: extensions/register-functions.md
-      - Extension roles: extensions/extension-roles.md
+      - Building extensions: extensions/building-extensions.md
       - Token roles: extensions/token-roles.md
-      - Transfer events: extensions/transfer-events.md
-      - Interoperability: extensions/interoperability.md
+      - Controlled transfers: extensions/controlled-transfers.md
+      - Token events: extensions/token-events.md
       - API: extensions/api.md
   - Contracts: 
       - Overview: contracts/architecture.md
@@ -181,6 +180,11 @@ markdown_extensions:
   - def_list
   - attr_list
   - abbr
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all

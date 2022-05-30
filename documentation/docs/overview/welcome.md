@@ -1,6 +1,8 @@
 # Universal Token
 
-The Universal Token is a token-agnostic, smart contract standard with multiple extensions. 
+The Universal Token is a smart-contract framework for creating customisable tokens. Tokens created following the framework are composed of a Token contract to which one or multiple Extension contracts can be connected. 
+
+The Universal Token is compatible with Ethereum’s most used token standards including ERC20 and ERC721. With potential support for ERC1155 or ERC1400  
 
 Extensions, deployed on-chain, are reusable across token deployments and standards. 
 
@@ -8,7 +10,8 @@ Extensions can do the following:
 
 * Add external (user-facing) functions to your token.
 * Store additional data for your token.
-* Add custom functionality to token transfers.
+* Listen for token events on-chain such as transfers and approvals
+    - This enables custom functionality for token transfers and other token releated events
 
 Using the Universal Token API, developers can deploy smart contract extensions. Token contracts can then plug-and-play these extensions, either at token deployment or in real-time on-chain. 
 
@@ -16,24 +19,129 @@ If you want to jump straight into extension building, head over to the [Extensio
 
 ## Getting started
 
-!!! todo
-    TODO: How to deploy an ERC20 or ERC721.
+### Building
 
-## How it works
+The easiest way to get started is by first compiling all contracts in your clone repo
 
-Extensions live at the address they are deployed to on-chain. All tokens use this address to register the extension.
+```shell
+yarn build
+```
 
-When a token registers an extension, it deploys a [Storage Proxy](https://github.com/ConsenSys/UniversalToken/blob/develop/contracts/extensions/ExtensionStorage.sol) which is where the extension's storage is kept for the registration. This means that extensions *by default* have no sense of global state; each registration is essentially a new deployment of that extension.
+For this example we will deploy an ERC20 token. However, the steps would be the same for ERC721 or any other supported token standard.
 
-Extensions can, therefore, store their own data. The stored data is sandboxed to each token deployment. When a token registers an extension, the extension is initialized and storage is created. This makes writing extension
-code easier, because the storage for your smart contract extension is different across deployments (where deployments means registrations). However, extensions *by default* do not have any access to the token's storage or state outside of what is already allowed by the token's standard. 
+The only differences between token standards would be the constructor arguments used in the token deployment
 
-Extensions can still be granted roles inside a token to perform specialized operations; for example `MinterRole` for an extension that mints tokens.
+### Deploy Logic contract
+Once you have the contracts compiled, you will then need to obtain an ERC20 logic contract address on the network you plan on using. You can do this by
 
-An example of an extension that a token may want to register is an `AllowListExtension`. This extension only allows addresses with an `AllowListed`
-role to make token transfers. The logic for this extension is universal across all token standards [and only requires one smart contract](https://github.com/ConsenSys/UniversalToken/blob/develop/contracts/extensions/allowblock/allow/AllowExtension.sol) in this system.
+1. Deploying a new ERC20Logic contract
+    1. Run the `3_erc20_global_logic` truffle migration file, OR
+    2. Manually deploying the `ERC20Logic` contract
 
-This extension is deployed [on rinkeby](#) and can be registered by any new Universal Token deployment to add this feature to a new token.
+            // artifacts is an object provided by truffle
+            // it is automatically available in migration files, tests, and exec scripts 
+            const ERC20Logic = artifacts.require("./ERC20Logic.sol");
+            let logic = await ERC20Logic.deployed();
+            if (!logic) {
+                console.log("No ERC20Logic contract deployed, deploying new one...");
+                logic = await ERC20Logic.new();
+            }
+
+            const logicAddress = logic.address;
+
+            console.log("Logic address:", logicAddress);
+
+2. Using one of the already deployed ERC20 logic contract
+    1. Rinkeby: `0x00`
+    2. Kovan: `0x00`
+    3. Ropsten: `0x00`
+    4. Goreli: `0x00`
+
+### Setup ERC20 token deployment
+
+Once you have an ERC20 logic contract address, you then must decide on values for the different token constructor arguments. 
+
+    // The name for the token
+    const tokenName = "ERC20Extendable";
+    // The symbol for the token
+    const tokenSymbol = "DAU";
+    // Whether to enable the token minting functions
+    const allowMint = true;
+    // Whether to enable the token burning functions
+    const allowBurn = true;
+    // Who the inital token owner/manager address should be. This address will also get any inital supply tokens
+    const owner = "0x78F7911996e6803f26e180d21d78949f0fa386EA"
+    // How many tokens to give to the assigned inital owner/manager address 
+    const initialSupply = 100;
+    // The max total supply of tokens is 5,000,000,000
+    const maxSupply = 5000000000; 
+
+### Deploy token
+
+Now you have all variables you need to deploy the `ERC20` token. First import the token contract from truffle `artifacts`
+
+    const ERC20 = artifacts.require("./ERC20.sol");
+
+Then, simply execute the `new` function providing all required constructor arguments
+
+    const token = await ERC20.new(
+        tokenName,
+        tokenSymbol,
+        allowMint,
+        allowBurn,
+        owner,
+        initialSupply,
+        maxSupply,
+        logicAddress
+    );
+
+### Full Example
+
+    // Deploy token logic contract, or obtain currently deployed logic contract
+    const ERC20Logic = artifacts.require("./ERC20Logic.sol");
+    let logic = await ERC20Logic.deployed();
+    if (!logic) {
+        console.log("No ERC20Logic contract deployed, deploying new one...");
+        logic = await ERC20Logic.new();
+    }
+
+    const logicAddress = logic.address;
+
+    console.log("Logic address:", logic.address);
+
+    // Setup constructor arguments
+
+    // The name for the token
+    const tokenName = "ERC20Extendable";
+    // The symbol for the token
+    const tokenSymbol = "DAU";
+    // Whether to enable the token minting functions
+    const allowMint = true;
+    // Whether to enable the token burning functions
+    const allowBurn = true;
+    // Who the inital token owner/manager address should be. This address will also get any inital supply tokens
+    const owner = "0x78F7911996e6803f26e180d21d78949f0fa386EA"
+    // How many tokens to give to the assigned inital owner/manager address 
+    const initialSupply = 100;
+    // The max total supply of tokens is 5,000,000,000
+    const maxSupply = 5000000000; 
+
+    // Import ERC20
+    const ERC20 = artifacts.require("./ERC20.sol");
+
+    // Deploy ERC20
+    const token = await ERC20.new(
+        tokenName,
+        tokenSymbol,
+        allowMint,
+        allowBurn,
+        owner,
+        initialSupply,
+        maxSupply,
+        logicAddress
+    );
+
+    console.log("New ERC20 token deployed ataddress:", token.address);
 
 ## Token Standards Supported
 
