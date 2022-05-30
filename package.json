@@ -11,7 +11,7 @@
     "clean": "del-cli --force ./build && del-cli --force ./types",
     "coverage": "truffle run coverage",
     "env": "cp ./.env.example ./.env && echo .env file generated, please update to continue",
-    "lint": "eslint ./migrations ./test ",
+    "lint": "eslint ./migrations ./test",
     "lint:fix": "eslint ./test ./migrations --fix",
     "lint:sol": "solhint contracts/**/*.sol",
     "lint:sol:fix": "solhint contracts/**/*.sol --fix",
