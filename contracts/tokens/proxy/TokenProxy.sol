@@ -7,6 +7,7 @@ import {TokenRoles} from "../../utils/roles/TokenRoles.sol";
 import {DomainAware} from "../../utils/DomainAware.sol";
 import {ITokenLogic} from "../logic/ITokenLogic.sol";
 import {ITokenProxy} from "./ITokenProxy.sol";
+import {IToken} from "../IToken.sol";
 import {TokenERC1820Provider} from "../TokenERC1820Provider.sol";
 import {StorageSlot} from "@openzeppelin/contracts/utils/StorageSlot.sol";
 import {TransferData} from "../IToken.sol";

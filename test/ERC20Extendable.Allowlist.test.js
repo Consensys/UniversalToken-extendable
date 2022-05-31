@@ -30,6 +30,11 @@ contract(
           this.logic.address
         );
 
+        let tokenLogic = await ERC20Logic.at(token.address);
+
+        //combine both objects so we can use all the functions
+        token = Object.assign(token, tokenLogic);
+
         allowExtContract = await AllowExtension.new();
         allowExt = allowExtContract.address;
         assert.equal(await token.isMinter(deployer), true);

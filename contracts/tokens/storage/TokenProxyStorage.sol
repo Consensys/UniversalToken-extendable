@@ -73,4 +73,12 @@ abstract contract TokenProxyStorage {
             storage protectedFunctions = _getProtectedFunctionData();
         return protectedFunctions.isProtected[selector];
     }
+
+    function _functionSigToSelector(string memory selector)
+        internal
+        pure
+        returns (bytes4)
+    {
+        return bytes4(keccak256(abi.encodePacked(selector)));
+    }
 }

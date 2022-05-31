@@ -56,6 +56,12 @@ contract(
           this.logic.address,
           { from: deployer }
         );
+
+        let tokenLogic = await ERC20Logic.at(this.token.address);
+
+        //combine both objects so we can use all the functions
+        this.token = Object.assign(this.token, tokenLogic);
+
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
 
@@ -418,6 +424,11 @@ contract(
           this.logic.address,
           { from: deployer }
         );
+        let tokenLogic = await ERC20Logic.at(this.token.address);
+
+        //combine both objects so we can use all the functions
+        this.token = Object.assign(this.token, tokenLogic);
+
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
 
@@ -568,6 +579,12 @@ contract(
           this.logic.address,
           { from: deployer }
         );
+
+        let tokenLogic = await ERC20Logic.at(this.token.address);
+
+        //combine both objects so we can use all the functions
+        this.token = Object.assign(this.token, tokenLogic);
+
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
 
@@ -677,6 +694,11 @@ contract(
           this.logic.address,
           { from: deployer }
         );
+        let tokenLogic = await ERC20Logic.at(this.token.address);
+
+        //combine both objects so we can use all the functions
+        this.token = Object.assign(this.token, tokenLogic);
+
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
 
@@ -784,6 +806,11 @@ contract(
           this.logic.address,
           { from: deployer }
         );
+        let tokenLogic = await ERC20Logic.at(this.token.address);
+
+        //combine both objects so we can use all the functions
+        this.token = Object.assign(this.token, tokenLogic);
+
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
 
@@ -874,6 +901,11 @@ contract(
           this.logic.address,
           { from: deployer }
         );
+        let tokenLogic = await ERC20Logic.at(this.token.address);
+
+        //combine both objects so we can use all the functions
+        this.token = Object.assign(this.token, tokenLogic);
+
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
 
@@ -1038,6 +1070,11 @@ contract(
           this.logic.address,
           { from: deployer }
         );
+        let tokenLogic = await ERC20Logic.at(this.token.address);
+
+        //combine both objects so we can use all the functions
+        this.token = Object.assign(this.token, tokenLogic);
+
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
 
@@ -1128,6 +1165,11 @@ contract(
           this.logic.address,
           { from: deployer }
         );
+        let tokenLogic = await ERC20Logic.at(this.token.address);
+
+        //combine both objects so we can use all the functions
+        this.token = Object.assign(this.token, tokenLogic);
+
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
 
@@ -1217,6 +1259,11 @@ contract(
           this.logic.address,
           { from: deployer }
         );
+        let tokenLogic = await ERC20Logic.at(this.token.address);
+
+        //combine both objects so we can use all the functions
+        this.token = Object.assign(this.token, tokenLogic);
+
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
 
@@ -1301,6 +1348,11 @@ contract(
           this.logic.address,
           { from: deployer }
         );
+        let tokenLogic = await ERC20Logic.at(this.token.address);
+
+        //combine both objects so we can use all the functions
+        this.token = Object.assign(this.token, tokenLogic);
+
         this.holdExtensionContract = await HoldExtension.new();
         this.holdExtension = this.holdExtensionContract.address;
 

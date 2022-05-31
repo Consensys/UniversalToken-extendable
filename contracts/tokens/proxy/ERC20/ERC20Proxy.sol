@@ -115,6 +115,10 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy {
             return false; //We cannot do partition transfers
         }
 
+        if (_td.tokenId > 0) {
+            return false; //We cannot do tokenId transfers
+        }
+
         TokenProxy._delegateCurrentCall();
     }
 

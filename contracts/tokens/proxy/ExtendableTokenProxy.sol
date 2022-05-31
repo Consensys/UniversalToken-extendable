@@ -56,8 +56,6 @@ abstract contract ExtendableTokenProxy is
         address logicAddress,
         address owner
     ) TokenProxy(initializeData, logicAddress, owner) {
-        _protectFunction(ITokenProxy.upgradeTo.selector);
-
         ERC1820Client.setInterfaceImplementation(
             EXTENDABLE_INTERFACE_NAME,
             address(this)
