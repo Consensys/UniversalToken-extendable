@@ -6,8 +6,7 @@ import {TokenProxy} from "./TokenProxy.sol";
 import {IExtendableTokenProxy} from "./IExtendableTokenProxy.sol";
 import {ERC1820Client} from "../../utils/erc1820/ERC1820Client.sol";
 import {ExtensionProxy} from "../../extensions/ExtensionProxy.sol";
-import {ITokenProxy} from "./ITokenProxy.sol";
-import {IExtension, TransferData} from "../../extensions/IExtension.sol";
+import {TransferData} from "../../extensions/IExtension.sol";
 import {RegisteredExtensionStorage} from "../storage/RegisteredExtensionStorage.sol";
 import {TokenEventManagerStorage} from "../storage/TokenEventManagerStorage.sol";
 

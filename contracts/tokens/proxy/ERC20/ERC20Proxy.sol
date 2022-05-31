@@ -3,11 +3,10 @@ pragma solidity ^0.8.0;
 
 import {IERC20Proxy} from "./IERC20Proxy.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {IERC20Logic, ERC20ProtectedTokenData, _getProtectedTokenData} from "../../logic/ERC20/IERC20Logic.sol";
-import {IToken, TransferData, TokenStandard} from "../../IToken.sol";
+import {ERC20ProtectedTokenData, _getProtectedTokenData} from "../../logic/ERC20/IERC20Logic.sol";
+import {TransferData, TokenStandard} from "../../IToken.sol";
 import {ExtendableTokenProxy} from "../ExtendableTokenProxy.sol";
 import {ERC20TokenInterface} from "../../registry/ERC20TokenInterface.sol";
-import {RolesBase} from "../../../utils/roles/RolesBase.sol";
 import {DomainAware} from "../../../utils/DomainAware.sol";
 import {TokenProxy} from "../TokenProxy.sol";
 import {IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
@@ -45,6 +44,7 @@ contract ERC20Proxy is ERC20TokenInterface, ExtendableTokenProxy {
      * @param _allowMint Whether the mint function will be enabled on this token
      * @param _allowBurn Whether the burn/burnFrom function will be enabled on this token
      * @param _owner The owner of this ERC20 Token
+     * @param _initalSupply Initial token supply to mint to the owner
      * @param _maxSupply The max supply of tokens allowed. Must be greater-than 0
      * @param _logicAddress The logic contract address to use for this ERC20 proxy
      */
