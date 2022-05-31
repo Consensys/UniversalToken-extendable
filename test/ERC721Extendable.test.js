@@ -75,7 +75,9 @@ contract(
           holder,
           2,
           "example.com",
-          { from: deployer }
+          {
+            from: deployer,
+          }
         );
         assert.equal(result.receipt.status, 1);
         assert.equal(await token.balanceOf(deployer), initialSupply);

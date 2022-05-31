@@ -334,7 +334,9 @@ contract(
           recipient,
           100,
           certificate,
-          { from: deployer }
+          {
+            from: deployer,
+          }
         );
         assert.equal(result.receipt.status, 1);
         assert.equal(await token.balanceOf(deployer), initialSupply - 100);
@@ -389,7 +391,9 @@ contract(
 
         const result = await ext.setValidationMode(
           CERTIFICATE_VALIDATION_NONCE,
-          { from: deployer }
+          {
+            from: deployer,
+          }
         );
         assert.equal(result.receipt.status, 1);
 
@@ -413,7 +417,9 @@ contract(
           recipient,
           200,
           certificate,
-          { from: deployer }
+          {
+            from: deployer,
+          }
         );
         assert.equal(result.receipt.status, 1);
         assert.equal(await token.balanceOf(deployer), initialSupply - 300);

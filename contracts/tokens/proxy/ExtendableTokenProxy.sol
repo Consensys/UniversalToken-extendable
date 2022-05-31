@@ -56,6 +56,8 @@ abstract contract ExtendableTokenProxy is
         address logicAddress,
         address owner
     ) TokenProxy(initializeData, logicAddress, owner) {
+        _protectFunction(ITokenProxy.upgradeTo.selector);
+
         ERC1820Client.setInterfaceImplementation(
             EXTENDABLE_INTERFACE_NAME,
             address(this)
@@ -485,6 +487,9 @@ abstract contract ExtendableTokenProxy is
                 );
                 //STATICCALLMAGIC not allowed
                 require(func != hex"ffffffff", "Invalid function signature");
+
+                //Make sure the function is not protected
+                require(!_isFunctionProtected(func), "Function is protected");
 
                 extLibStorage.funcToExtension[func] = extension;
             }
