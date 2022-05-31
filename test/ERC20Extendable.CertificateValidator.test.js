@@ -1,6 +1,6 @@
 const { assert } = require("chai");
 const { expectRevert } = require("@openzeppelin/test-helpers");
-const Account = require("eth-lib/lib/account");
+const { ecsign } = require("ethereumjs-util");
 
 const CERTIFICATE_VALIDATION_NONE = 0;
 const CERTIFICATE_VALIDATION_NONCE = 1;
@@ -112,19 +112,18 @@ const craftNonceBasedCertificate = async (
     { type: "bytes32", value: packedAndHashedParameters }
   );
 
-  const signature = Account.sign(
-    packedAndHashedData,
-    CERTIFICATE_SIGNER_PRIVATE_KEY
+  const { r, s, v } = ecsign(
+    new Uint8Array(Buffer.from(packedAndHashedData.slice(2), "hex")),
+    new Uint8Array(Buffer.from(CERTIFICATE_SIGNER_PRIVATE_KEY.slice(2), "hex"))
   );
-  const vrs = Account.decodeSignature(signature);
-  const v = vrs[0].substring(2).replace("1b", "00").replace("1c", "01");
-  const r = vrs[1].substring(2);
-  const s = vrs[2].substring(2);
+  const _v = (v - 27).toString().padStart(2, "0");
+  const _r = r.toString("hex");
+  const _s = s.toString("hex");
 
   const certificate = `0x${numberToHexa(
     expirationTimeAsNumber,
     32
-  )}${r}${s}${v}`;
+  )}${_r}${_s}${_v}`;
 
   return certificate;
 };
@@ -181,19 +180,18 @@ const craftSaltBasedCertificate = async (
     { type: "bytes32", value: packedAndHashedParameters }
   );
 
-  const signature = Account.sign(
-    packedAndHashedData,
-    CERTIFICATE_SIGNER_PRIVATE_KEY
+  const { r, s, v } = ecsign(
+    new Uint8Array(Buffer.from(packedAndHashedData.slice(2), "hex")),
+    new Uint8Array(Buffer.from(CERTIFICATE_SIGNER_PRIVATE_KEY.slice(2), "hex"))
   );
-  const vrs = Account.decodeSignature(signature);
-  const v = vrs[0].substring(2).replace("1b", "00").replace("1c", "01");
-  const r = vrs[1].substring(2);
-  const s = vrs[2].substring(2);
+  const _v = (v - 27).toString().padStart(2, "0");
+  const _r = r.toString("hex");
+  const _s = s.toString("hex");
 
   const certificate = `0x${salt.substring(2)}${numberToHexa(
     expirationTimeAsNumber,
     32
-  )}${r}${s}${v}`;
+  )}${_r}${_s}${_v}`;
 
   return certificate;
 };
