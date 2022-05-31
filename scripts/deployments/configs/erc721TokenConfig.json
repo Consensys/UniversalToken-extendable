@@ -1,8 +1,8 @@
 {
-    "tokenName": "ERC20Extendable",
-    "tokenSymbol": "DAU",
-    "allowMint": true,
-    "allowBurn": true,
-    "owner": "0x78F7911996e6803f26e180d21d78949f0fa386EA",
-    "maxSupply": 5000000000
+  "tokenName": "ERC20Extendable",
+  "tokenSymbol": "DAU",
+  "allowMint": true,
+  "allowBurn": true,
+  "owner": "0x78F7911996e6803f26e180d21d78949f0fa386EA",
+  "maxSupply": 5000000000
 }
