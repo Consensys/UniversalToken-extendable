@@ -17,9 +17,50 @@ Using the Universal Token API, developers can deploy smart contract extensions. 
 
 If you want to jump straight into extension building, head over to the [Extensions](/extensions/extensions) page.
 
-## Getting started
+# Getting started
 
-### Building
+## Deploying
+
+The repo comes with a few truffle execute scripts that you can use to deploy tokens, extensions and the ERC1820 registry. To run any of these, simply execute
+
+```shell
+yarn truffle exec scripts/...
+```
+
+### ERC1820
+
+!!! note
+    The UniversalToken library uses the ERC1820 registry throughout the smart contract arcitecture. You **MUST** make sure you have an ERC1820 registry deployed on your network. To be safe, you can run this script, which will deploy the ERC1820 registry at `0x1820a4B7618BdE71Dce8cdc73aAB6C95905faD24` or do nothing if the registry already exists in the network
+
+To deploy the ERC1820 registry, run the following command
+
+```shell
+yarn truffle exec scripts/deployments/registry.js
+```
+
+If the ERC1820 registry is already deployed on-chain, then the script does nothing.
+
+### ERC20
+
+To deploy a new ERC20 token, first edit the config file in `scripts/deployments/configs/erc20TokenConfig.json`. Then, run the following command
+
+```shell
+yarn truffle exec scripts/deployments/tokens/erc20.js
+```
+
+### ERC721
+
+To deploy a new ERC20 token, first edit the config file in `scripts/deployments/configs/erc721TokenConfig.json`. Then, run the following command
+
+```shell
+yarn truffle exec scripts/deployments/tokens/erc721.js
+```
+
+### Extensions
+
+There are several `truffle exec` scripts to deploy extensions on-chain. You can find them in `scripts/deployments/extensions/`
+
+## Building
 
 The easiest way to get started is by first compiling all contracts in your clone repo
 

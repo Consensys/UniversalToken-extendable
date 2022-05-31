@@ -14,6 +14,34 @@
             "test"
         ]
 
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy erc20 [development]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/tokens/erc20.js",
+          "--network",
+          "development"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy registry [development]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/registry.js",
+          "--network",
+          "development"
+      ]
+
     }
   ]
 }
