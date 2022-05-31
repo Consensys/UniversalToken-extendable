@@ -15,6 +15,21 @@ Using the Universal Token API, developers can deploy extensions contracts and pl
 
 # Quickstart
 
+## Usage
+
+### Deploying Registry
+
+TODO: Show how to execute scripts
+
+
+### Deploying ERC20 Token
+
+
+### Deploying ERC721 Token
+
+
+### Deploying Extensions
+
 ## Building
 
 The easiest way to get started is by first compiling all contracts 
@@ -23,100 +38,14 @@ The easiest way to get started is by first compiling all contracts
 yarn build
 ```
 
-## Deploying a Token
+## Explore
 
-deploying the `ERC20` smart contract requires an `ERC20Logic` contract to be already deployed on-chain
+Explore the [documentation site](#) to learn how to
 
-### Truffle
+* Build custom Token Extensions
+* Extend token logic contracts to add custom token functionality
+* Build support for custom token standards
 
-```javascript
-  const ERC20Logic = artifacts.require("ERC20Logic");
-  const logic = await ERC20Logic.new();
-```
+# Contributing
 
-### Hardhat
-
-```javascript
-  const ERC20Logic = await hre.ethers.getContractFactory("ERC20Logic");
-  const logic = await ERC20Logic.deploy();
-  await logic.deployed();
-```
-
-When you have an `ERC20Logic` contract address, you can now deploy the `ERC20` contract
-
-### Truffle
-
-```javascript
-  const ERC20 = artifacts.require("ERC20");
-  const token = await ERC20.new(
-    "ERC20Extendable", //Token Name
-    "DAU",             //Token Symbol
-    true,              //Allow Minting?
-    true,              //Allow Burning?
-    deployer,          //The owner address for this token
-    initialSupply,     //The inital supply for this token (will be given to owner address)
-    maxSupply,         //The absolute max supply for this token
-    logic.address      //The address of the ERC20Logic contract
-  );
-```
-
-### Hardhat
-
-```javascript
-  const ERC20 = await hre.ethers.getContractFactory("ERC20");
-  const token = await ERC20.deploy(
-    "ERC20Extendable", //Token Name
-    "DAU",             //Token Symbol
-    true,              //Allow Minting?
-    true,              //Allow Burning?
-    deployer,          //The owner address for this token
-    initialSupply,     //The inital supply for this token (will be given to owner address)
-    maxSupply,         //The absolute max supply for this token
-    logic.address      //The address of the ERC20Logic contract
-  );
-  await erc20.deployed();
-```
-
-## Extensions Included
-
-Extensions are a key part of the UniversalToken, the repo comes with 5 extensions ready to be used with a deployed token.
-
-* AllowExtension
-  - Only allowlisted addresses can transfer/mint/burn tokens
-* BlockExtensions
-  - Blocklisted addresses cannot transfer/mint/burn tokens
-* PauseExtension
-  - Pause all transfer/mint/burns or pause transfer/mint/burns for a specific address
-* HoldExtension
-  - Token holds are an alternative to escrows allowing to lock tokens while keeping them in the wallet of the investor.
-
-## Deploying Extensions
-
-Before you can attach an extension to your token you must first deploy the extension on-chain. If the extension
-is already deployed on-chain then you can skip this step. There shouldn't be any constructor arguments when deploying
-an extension, as these arguments will not be accessible by the Extension when it's attached to the token
-
-### Truffle
-
-```javascript
-  const AllowExtension = artifacts.require("AllowExtension");
-  const allowExtContract = await AllowExtension.new();
-```
-
-### Hardhat
-
-```javascript
-  const AllowExtension = await hre.ethers.getContractFactory("AllowExtension");
-  const allowExtContract = await AllowExtension.deploy();
-  await allowExtContract.deployed();
-```
-
-## Registering Extensions
-
-Once an extension is deployed on-chain and you have the extension's contract address, you can register the extension to a deployed token. To register an extension, simply use the `function registerExtension(address extension)` function. 
-
-**NOTE: This function can only be executed by the current token manager address. To determine the current token manager address, you can use the `function manager() public view returns (address)` function.**
-
-```javascript
-    await token.registerExtension(allowExtContract.address);
-```
+is built on open source and we invite you to contribute enhancements. Upon review you will be required to complete a Contributor License Agreement (CLA) before we are able to merge. If you have any questions about the contribution process, please feel free to send an email to [email@consensys.net](mailto:email@consensys.net). Please see the [Contributors guide](.github/CONTRIBUTING.md) for more information about the process.
