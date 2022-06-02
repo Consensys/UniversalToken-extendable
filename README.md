@@ -15,6 +15,131 @@ Using the Universal Token API, developers can deploy extensions contracts and pl
 
 # Quickstart
 
+The repo uses Truffle to manage unit tests, deployment scripts and migrations. 
+
+There are several Truffle exec scripts to get started with the extendable UniversalToken framework. Before you can interact with the scripts, you must install the required dependencies.
+
+```shell
+yarn
+```
+
+## Usage
+
+All scripts are located under `scripts/`, tests are located under `test/` and Truffle migration files are located under `migrations/`.
+
+### Deploying Registry
+
+The extendable UniversalToken framework uses the [ERC1820 Registry](https://eips.ethereum.org/EIPS/eip-1820) for introspection validation. Therefore you must make sure you have the registry deployed on your blockchain before usage, otherwise token deployment will fail.
+
+If you need to deploy the ERC1820 Registry on-chain, you can use the `scripts/deployments/registry.js` file
+
+```shell
+yarn truffle exec scripts/deployments/registry.js
+```
+
+
+### Deploying ERC20 Token
+
+To deploy the extendable `ERC20` token contract, you must first configure your token deployment config. The config file can be found under `scripts/deployments/configs/erc20TokenConfig.json`
+
+```json
+{
+  "tokenName": "ERC20Extendable",
+  "tokenSymbol": "DAU",
+  "allowMint": true,
+  "allowBurn": true,
+  "owner": "0x78F7911996e6803f26e180d21d78949f0fa386EA",
+  "initialSupply": 100,
+  "maxSupply": 5000000000,
+  "extensions": [""]
+}
+
+```
+
+The config file lets you configure the following settings for deployment:
+
+* tokenName - The name of the token.
+* tokenSymbol - The symbol for the token.
+* allowMint - Whether the `mint` function(s) should be enabled or disabled.
+* allowBurn - Whether the `burn` function(s) should be enabled or disabled.
+* owner - The initial owner address for the token. This address is also granted the token manager role. This address is used to register any extensions listed under the `extensions` option.
+* initialSupply - The number of tokens to `mint` to the `owner` address.
+* maxSupply - The maximum value of `totalSupply` for this token.
+* extensions - A list of extensions to register after token deployment. This can be on-chain addresses of extensions, or contract names that can be imported by `artifacts.require`.
+
+When you have the configuration set, you can deploy your token by running
+
+```shell
+yarn truffle exec scripts/deployments/tokens/erc20.js
+```
+
+### Deploying ERC721 Token
+
+To deploy the extendable `ERC721` token contract, you must first configure your token deployment config. The config file can be found under `scripts/deployments/configs/erc721TokenConfig.json`
+
+```json
+{
+  "tokenName": "ERC721Extendable",
+  "tokenSymbol": "DAU",
+  "allowMint": true,
+  "allowBurn": true,
+  "owner": "0x78F7911996e6803f26e180d21d78949f0fa386EA",
+  "maxSupply": 5000000000,
+  "extensions": []
+}
+
+```
+
+The config file lets you configure the following settings for deployment:
+
+* tokenName - The name of the token.
+* tokenSymbol - The symbol for the token.
+* allowMint - Whether the `mint` function(s) should be enabled or disabled.
+* allowBurn - Whether the `burn` function(s) should be enabled or disabled.
+* owner - The initial owner address for the token. This address is also granted the token manager role. This address is used to register any extensions listed under the `extensions` option.
+* maxSupply - The maximum value of `totalSupply` for this token.
+* extensions - A list of extensions to register after token deployment. This can be on-chain addresses of extensions, or contract names that can be imported by `artifacts.require`.
+
+When you have the configuration set, you can deploy your token by running
+
+```shell
+yarn truffle exec scripts/deployments/tokens/erc721.js
+```
+
+### Deploying Extensions
+
+All extension deployment scripts are in the `scripts/deployments/extensions` folder. No configuration is required to deploy extensions. 
+
+To deploy the AllowExtension, run the following command:
+
+```shell
+yarn truffle exec scripts/deployments/extensions/allowExtension.js
+```
+
+To deploy the BlockExtension, run the following command:
+
+```shell
+yarn truffle exec scripts/deployments/extensions/blockExtension.js
+```
+
+To deploy the CertificateValidatorExtension, run the following command:
+
+```shell
+yarn truffle exec scripts/deployments/extensions/certificateValidatorExtension.js
+```
+
+To deploy the HoldExtension, run the following command:
+
+```shell
+yarn truffle exec scripts/deployments/extensions/holdExtension.js
+```
+
+To deploy the PauseExtension, run the following command:
+
+```shell
+yarn truffle exec scripts/deployments/extensions/pauseExtension.js
+```
+
 ## Building
 
 The easiest way to get started is by first compiling all contracts 
@@ -23,100 +148,14 @@ The easiest way to get started is by first compiling all contracts
 yarn build
 ```
 
-## Deploying a Token
+## Explore
 
-deploying the `ERC20` smart contract requires an `ERC20Logic` contract to be already deployed on-chain
+Explore the [documentation site](#) to learn how to
 
-### Truffle
+* Build custom Token Extensions
+* Extend token logic contracts to add custom token functionality
+* Build support for custom token standards
 
-```javascript
-  const ERC20Logic = artifacts.require("ERC20Logic");
-  const logic = await ERC20Logic.new();
-```
+# Contributing
 
-### Hardhat
-
-```javascript
-  const ERC20Logic = await hre.ethers.getContractFactory("ERC20Logic");
-  const logic = await ERC20Logic.deploy();
-  await logic.deployed();
-```
-
-When you have an `ERC20Logic` contract address, you can now deploy the `ERC20` contract
-
-### Truffle
-
-```javascript
-  const ERC20 = artifacts.require("ERC20");
-  const token = await ERC20.new(
-    "ERC20Extendable", //Token Name
-    "DAU",             //Token Symbol
-    true,              //Allow Minting?
-    true,              //Allow Burning?
-    deployer,          //The owner address for this token
-    initialSupply,     //The inital supply for this token (will be given to owner address)
-    maxSupply,         //The absolute max supply for this token
-    logic.address      //The address of the ERC20Logic contract
-  );
-```
-
-### Hardhat
-
-```javascript
-  const ERC20 = await hre.ethers.getContractFactory("ERC20");
-  const token = await ERC20.deploy(
-    "ERC20Extendable", //Token Name
-    "DAU",             //Token Symbol
-    true,              //Allow Minting?
-    true,              //Allow Burning?
-    deployer,          //The owner address for this token
-    initialSupply,     //The inital supply for this token (will be given to owner address)
-    maxSupply,         //The absolute max supply for this token
-    logic.address      //The address of the ERC20Logic contract
-  );
-  await erc20.deployed();
-```
-
-## Extensions Included
-
-Extensions are a key part of the UniversalToken, the repo comes with 5 extensions ready to be used with a deployed token.
-
-* AllowExtension
-  - Only allowlisted addresses can transfer/mint/burn tokens
-* BlockExtensions
-  - Blocklisted addresses cannot transfer/mint/burn tokens
-* PauseExtension
-  - Pause all transfer/mint/burns or pause transfer/mint/burns for a specific address
-* HoldExtension
-  - Token holds are an alternative to escrows allowing to lock tokens while keeping them in the wallet of the investor.
-
-## Deploying Extensions
-
-Before you can attach an extension to your token you must first deploy the extension on-chain. If the extension
-is already deployed on-chain then you can skip this step. There shouldn't be any constructor arguments when deploying
-an extension, as these arguments will not be accessible by the Extension when it's attached to the token
-
-### Truffle
-
-```javascript
-  const AllowExtension = artifacts.require("AllowExtension");
-  const allowExtContract = await AllowExtension.new();
-```
-
-### Hardhat
-
-```javascript
-  const AllowExtension = await hre.ethers.getContractFactory("AllowExtension");
-  const allowExtContract = await AllowExtension.deploy();
-  await allowExtContract.deployed();
-```
-
-## Registering Extensions
-
-Once an extension is deployed on-chain and you have the extension's contract address, you can register the extension to a deployed token. To register an extension, simply use the `function registerExtension(address extension)` function. 
-
-**NOTE: This function can only be executed by the current token manager address. To determine the current token manager address, you can use the `function manager() public view returns (address)` function.**
-
-```javascript
-    await token.registerExtension(allowExtContract.address);
-```
+UniversalToken framework is built on open source and we invite you to contribute enhancements. Upon review you will be required to complete a Contributor License Agreement (CLA) before we are able to merge. If you have any questions about the contribution process, please feel free to send an email to [email@consensys.net](mailto:email@consensys.net). Please see the [Contributors guide](.github/CONTRIBUTING.md) for more information about the process.
