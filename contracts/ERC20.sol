@@ -11,8 +11,6 @@ import {RolesBase} from "./utils/roles/RolesBase.sol";
  * @dev All inherited functions are called by using the convention: ContractName.functionToCall()
  */
 contract ERC20 is ERC20Proxy {
-    uint256 public initalSupply;
-
     /**
      * @notice Deploy a new ERC20 Token with a given token logic contract and initial supply
      * @dev Constructor takes the ERC20 logic contract address, important for proper functioning

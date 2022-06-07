@@ -93,10 +93,10 @@ Once you have the contracts compiled, you will then need to obtain an ERC20 logi
             console.log("Logic address:", logicAddress);
 
 2. Using one of the already deployed ERC20 logic contract
-    1. Rinkeby: `0x00`
-    2. Kovan: `0x00`
-    3. Ropsten: `0x00`
-    4. Goreli: `0x00`
+    1. Rinkeby: `0x9FE61B546b4bBCdf28fAe9588d18aD7233fFa4b9`
+    2. Kovan: 
+    3. Ropsten: 
+    4. Goreli: 
 
 ### Setup ERC20 token deployment
 
