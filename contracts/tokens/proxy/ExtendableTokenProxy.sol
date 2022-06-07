@@ -126,18 +126,6 @@ abstract contract ExtendableTokenProxy is
         onlyManager
     {
         _registerExtension(extension);
-
-        address proxyAddress = _proxyAddressForExtension(extension);
-        ExtensionProxy proxy = ExtensionProxy(payable(proxyAddress));
-
-        bytes32[] memory requiredRoles = proxy.requiredRoles();
-
-        //If we have roles we need to register, then lets register them
-        if (requiredRoles.length > 0) {
-            for (uint256 i = 0; i < requiredRoles.length; i++) {
-                RolesBase._addRole(proxyAddress, requiredRoles[i]);
-            }
-        }
     }
 
     /**
@@ -285,6 +273,18 @@ abstract contract ExtendableTokenProxy is
 
         if (!success) {
             revert(string(result));
+        }
+
+        address proxyAddress = _proxyAddressForExtension(extension);
+        ExtensionProxy proxy = ExtensionProxy(payable(proxyAddress));
+
+        bytes32[] memory requiredRoles = proxy.requiredRoles();
+
+        //If we have roles we need to register, then lets register them
+        if (requiredRoles.length > 0) {
+            for (uint256 i = 0; i < requiredRoles.length; i++) {
+                RolesBase._addRole(proxyAddress, requiredRoles[i]);
+            }
         }
 
         return true;
