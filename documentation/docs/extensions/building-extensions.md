@@ -10,7 +10,7 @@ First import the `TokenExtension` and `TransferData` from the `TokenExtension.so
 
     import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
 
-Once you have thesee imported, you can create a new contract that inherits from `TokenExtension` with an empty constructor and override the `initialize` function
+Once you have these imported, you can create a new contract that inherits from `TokenExtension` with an empty constructor and override the `initialize` function
 
     import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
 
@@ -33,6 +33,68 @@ Therefore, the use of `msg.sender` is considered unsafe as the value may not be 
 
 !!! warning
     You must always use `_msgSender()` to obtain the proper `msg.sender` for the current context. Never use `msg.sender` directly unless you know what you are doing.
+
+## Extension Functions
+
+First start by writing all the logic for your extension, including any event callback functions that may be used. Any external function you want to register on the token must be declared in the [Extension Constructor](#extension-constructor) and must be marked as `external` or `public`. Besides these two requirements, extension functions can do anything a normal smart contract function can do, and can also be marked as `view`. 
+
+An example extension function could be toggling a `pause` state to pause/unpause token transfers
+
+    import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
+
+    contract PauseExtension is TokenExtension {
+        bool paused;
+
+        constructor() {
+            // ...
+        }
+
+        function initialize() external override {
+            // ...
+        }
+        
+        function pause() external {
+            require(_msgSender() == _tokenOwner(), "Only token owner can invoke");
+            paused = true;
+        }
+    
+        function unpause() external {
+            require(_msgSender() == _tokenOwner(), "Only token owner can invoke");
+            paused = false;
+        }
+    }
+
+We can then use the `paused` state variable inside a transfer callback to prevent transfers if the `paused` variable is `true`
+
+    import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
+
+    contract PauseExtension is TokenExtension {
+        bool paused;
+
+        constructor() {
+            // ...
+        }
+
+        function initialize() external override {
+            _listenForTokenTransfers(this.onTransferExecuted);
+        }
+        
+        function pause() external {
+            // ...
+        }
+    
+        function unpause() external {
+            // ...
+        }
+        
+        function onTransferExecuted(TransferData memory data) external onlyToken returns (bool) {
+            require(!paused, "Transfers paused by PauseExtension");
+
+            return true;
+        }
+    }
+
+For more information about transfer events and callbacks, see [Token Events](./token-events.md).
 
 ## Extension Constructor
 
@@ -70,7 +132,7 @@ Example:
             // ...
         }
         
-        function updatePrice() external returns (uint256) {
+        function updatePrice() external {
             // ...
         }
     
@@ -88,3 +150,8 @@ When your extension deployment is registered to a new token deployment, a new Ex
 * Providing extension roles to the current `_msgSender()` (the current token admin)
 * Setting up callback listeners for specific token events
     - See [Token Events](./token-events.md)
+
+
+## Deploy
+
+Once you have your custom token extension built, you can deploy it on-chain and begin using it with any deployed UniversalToken compatible ERC20/ERC721 token. See [How to deploy an Extension](./getting-started.md#deploying-extensions)

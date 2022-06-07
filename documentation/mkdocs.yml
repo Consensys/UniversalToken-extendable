@@ -24,21 +24,17 @@ nav:
   - Overview: 
       - Welcome: overview/welcome.md
       - Releases: overview/releases.md
-      - Stability: overview/stability.md
   - Extensions: 
       - Getting started: extensions/getting-started.md
       - Building extensions: extensions/building-extensions.md
-      - Token roles: extensions/token-roles.md
-      - Controlled transfers: extensions/controlled-transfers.md
       - Token events: extensions/token-events.md
+      - Controlled transfers: extensions/controlled-transfers.md
       - API: extensions/api.md
   - Token API: 
-      - Token roles: tokens/token-roles.md
-      - Upgrading token logic: tokens/upgrading.md
-      - Register extensions: tokens/register-extensions.md
-      - Enable/disable extensions: tokens/enable-disable-extensions.md
-      - Remove extensions: tokens/remove-extensions.md
-      - Upgrading extensions: tokens/upgrading-extensions.md
+      - Overview: tokens/overview.md
+      - Token Logic: tokens/token-logic.md
+      - Token Roles: tokens/token-roles.md
+      - Upgrading Token Logic: tokens/upgrading.md
   - Contracts: 
       - Overview: contracts/architecture.md
       - Proxies: contracts/proxies.md

@@ -9,13 +9,13 @@ When a token registers an extension, it deploys a [Extension Proxy](https://gith
 Extensions are a key part of the UniversalToken, the repo comes with 5 extensions ready to be used with a deployed token.
 
 * AllowExtension
-  - Only allowlisted addresses can transfer/mint/burn tokens
+    - Only allowlisted addresses can transfer/mint/burn tokens
 * BlockExtensions
-  - Blocklisted addresses cannot transfer/mint/burn tokens
+    - Blocklisted addresses cannot transfer/mint/burn tokens
 * PauseExtension
-  - Pause all transfer/mint/burns or pause transfer/mint/burns for a specific address
+    - Pause all transfer/mint/burns or pause transfer/mint/burns for a specific address
 * HoldExtension
-  - Token holds are an alternative to escrows allowing to lock tokens while keeping them in the wallet of the investor.
+    - Token holds are an alternative to escrows allowing to lock tokens while keeping them in the wallet of the investor.
 
 # Deploying Extensions
 
@@ -35,4 +35,4 @@ Once an extension is deployed on-chain and you have the extension's contract add
     await token.registerExtension(allowExtContract.address);
 
 !!! note
-    This function can only be executed by the current token manager address. To determine the current token manager address, you can use the `function manager() public view returns (address)` function.
+    This function can only be executed by the current token manager address. To determine the current token manager address, you can use the `function manager() public view returns (address)` function. Example: `const manager = await token.manager()`
