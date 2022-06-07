@@ -230,21 +230,21 @@ abstract contract TokenRoles is
     }
 
     /**
-    * @notice Add a given roleId to the provided caller address. Only the current
-    * token manager can invoke this function
-    * @param caller The address to add the roleId to
-    * @param roleId The role ID to assign to the caller address
-    */
+     * @notice Add a given roleId to the provided caller address. Only the current
+     * token manager can invoke this function
+     * @param caller The address to add the roleId to
+     * @param roleId The role ID to assign to the caller address
+     */
     function addRole(address caller, bytes32 roleId) external onlyManager {
         _addRole(caller, roleId);
     }
 
     /**
-    * @notice Remove a given roleId from the provided caller address. Only the current
-    * token manager can invoke this function
-    * @param caller The address to remove the roleId from
-    * @param roleId The role ID to remove from the caller address
-    */
+     * @notice Remove a given roleId from the provided caller address. Only the current
+     * token manager can invoke this function
+     * @param caller The address to remove the roleId from
+     * @param roleId The role ID to remove from the caller address
+     */
     function removeRole(address caller, bytes32 roleId) external onlyManager {
         _removeRole(caller, roleId);
     }
