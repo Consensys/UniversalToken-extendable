@@ -15,13 +15,14 @@ module.exports = execFromPromise(
     "0x1820a4B7618BdE71Dce8cdc73aAB6C95905faD24"
   )
     .then(async function () {
+      const accounts = await web3.eth.getAccounts();
       await web3.eth.sendTransaction({
         from: accounts[0],
         to: deployerAddress,
         value: web3.utils.toWei("0.1"),
       });
       try {
-        await web3.eth.sendSignedTransaction(rawTx);
+        const res = await web3.eth.sendSignedTransaction(rawTx);
         console.log(
           "\n   > ERC1820 deployment: Success -->",
           res.contractAddress
@@ -41,7 +42,7 @@ module.exports = execFromPromise(
         }
       }
     })
-    .catch(function () {
+    .catch(function (e) {
       console.log(
         "\n   > ERC1820 deployment: Already deployed --> 0x1820a4B7618BdE71Dce8cdc73aAB6C95905faD24"
       );

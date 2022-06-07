@@ -45,7 +45,8 @@ module.exports = {
     let registry;
     try {
       registry = await ContractFactory.at(contractAddress);
-      throw "Already deployed"; // Already deployed
+      const test = await registry.getManager(registry.address);
+      if (test == registry.address) throw "Already deployed"; // Already deployed
     } catch {
       return true;
     }
