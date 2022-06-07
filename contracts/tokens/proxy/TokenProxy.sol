@@ -9,8 +9,8 @@ import {ITokenLogic} from "../logic/ITokenLogic.sol";
 import {ITokenProxy} from "./ITokenProxy.sol";
 import {TokenERC1820Provider} from "../TokenERC1820Provider.sol";
 import {StorageSlot} from "@openzeppelin/contracts/utils/StorageSlot.sol";
-import {TransferData} from "../IToken.sol";
 import {BytesLib} from "solidity-bytes-utils/contracts/BytesLib.sol";
+import {TokenProxyStorage} from "../storage/TokenProxyStorage.sol";
 
 /**
  * @title Token Proxy base Contract
@@ -27,15 +27,13 @@ import {BytesLib} from "solidity-bytes-utils/contracts/BytesLib.sol";
  * name must be implemented by the final token proxy.
  */
 abstract contract TokenProxy is
+    TokenProxyStorage,
     TokenERC1820Provider,
     TokenRoles,
     DomainAware,
     ITokenProxy
 {
     using BytesLib for bytes;
-
-    bytes32 private constant UPGRADING_FLAG_SLOT =
-        keccak256("token.proxy.upgrading");
 
     /**
      * @dev This event is invoked when the logic contract is upgraded to a new contract
@@ -84,26 +82,28 @@ abstract contract TokenProxy is
 
         _setLogic(logicAddress);
 
-        bytes memory logicInitCalldata = abi.encode(true, initializeData);
+        // Initialize the logic contract
+        __init_logicContract(true, initializeData);
 
-        StorageSlot
-            .getUint256Slot(UPGRADING_FLAG_SLOT)
-            .value = logicInitCalldata.length;
+        emit Upgraded(logicAddress);
+    }
+
+    function __init_logicContract(
+        bool isConstructor,
+        bytes memory initializeData
+    )
+        private
+        initializeCaller(abi.encode(isConstructor, initializeData).length)
+    {
+        bytes memory cdata = abi.encode(isConstructor, initializeData);
 
         //invoke the initialize function during deployment
         (bool success, ) = _delegatecall(
-            abi.encodeWithSelector(
-                ITokenLogic.initialize.selector,
-                logicInitCalldata
-            )
+            abi.encodeWithSelector(ITokenLogic.initialize.selector, cdata)
         );
 
         //Check initialize
         require(success, "Logic initializing failed");
-
-        StorageSlot.getUint256Slot(UPGRADING_FLAG_SLOT).value = 0;
-
-        emit Upgraded(logicAddress);
     }
 
     /**
@@ -154,30 +154,13 @@ abstract contract TokenProxy is
         override
         onlyManager
     {
+        _setLogic(logic);
+
         if (data.length == 0) {
             data = bytes("f");
         }
 
-        bytes memory logicInitCalldata = abi.encode(false, data);
-
-        StorageSlot
-            .getUint256Slot(UPGRADING_FLAG_SLOT)
-            .value = logicInitCalldata.length;
-
-        _setLogic(logic);
-
-        //invoke the initialize function whenever we upgrade
-        (bool success, ) = _delegatecall(
-            abi.encodeWithSelector(
-                ITokenLogic.initialize.selector,
-                logicInitCalldata
-            )
-        );
-
-        //Invoke initialize
-        require(success, "Logic initializing failed");
-
-        StorageSlot.getUint256Slot(UPGRADING_FLAG_SLOT).value = 0;
+        __init_logicContract(false, data);
 
         emit Upgraded(logic);
     }
@@ -437,19 +420,5 @@ abstract contract TokenProxy is
         }
 
         return abi.decode(input, (string));
-    }
-
-    /**
-     * @dev Checks whether the current call context is the constructor of this contract
-     * @return bool This will return true if address(this) is still being constructed (we are inside the constructor call context),
-     * otherwise returns false
-     */
-    function _isInsideConstructorCall() internal view returns (bool) {
-        uint256 size;
-        address addr = address(this);
-        assembly {
-            size := extcodesize(addr)
-        }
-        return size == 0;
     }
 }

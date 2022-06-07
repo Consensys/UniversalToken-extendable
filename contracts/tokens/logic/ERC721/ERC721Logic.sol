@@ -51,6 +51,8 @@ contract ERC721Logic is
             uint256 maxSupply_
         ) = abi.decode(data, (string, string, bool, bool, uint256));
 
+        require(maxSupply_ > 0, "Max supply must be non-zero");
+
         ERC721ProtectedTokenData storage m = _getProtectedTokenData();
         m.name = name_;
         m.symbol = symbol_;
@@ -61,6 +63,10 @@ contract ERC721Logic is
         m.initialized = true;
 
         __ERC721_init(name_, symbol_);
+
+        if (allowMint) {
+            _addRole(owner(), TOKEN_MINTER_ROLE);
+        }
     }
 
     /**

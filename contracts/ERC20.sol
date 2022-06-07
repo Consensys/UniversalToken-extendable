@@ -40,25 +40,10 @@ contract ERC20 is ERC20Proxy {
             _symbol,
             _allowMint,
             _allowBurn,
+            _initalSupply,
             _maxSupply,
             _owner,
             _logicAddress
         )
-    {
-        initalSupply = _initalSupply;
-
-        if (_owner != _msgSender()) {
-            //Temporaroly add minter role to msg.sender
-            //If the sender is not the final owner
-            RolesBase._addRole(_msgSender(), TOKEN_MINTER_ROLE);
-        }
-
-        _mint(_owner, initalSupply);
-
-        if (_owner != _msgSender()) {
-            //Remove after mint is complete
-            //If the sender is not the final owner
-            RolesBase._removeRole(_msgSender(), TOKEN_MINTER_ROLE);
-        }
-    }
+    {}
 }

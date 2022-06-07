@@ -26,6 +26,12 @@ contract(
           deployer,
           this.logic.address
         );
+
+        let tokenLogic = await ERC721Logic.at(token.address);
+
+        //combine both objects so we can use all the functions
+        token = Object.assign(token, tokenLogic);
+
         assert.equal(await token.isMinter(deployer), true);
         assert.equal(await token.name(), "ERC721Extendable");
         assert.equal(await token.symbol(), "DAU");
@@ -75,7 +81,9 @@ contract(
           holder,
           2,
           "example.com",
-          { from: deployer }
+          {
+            from: deployer,
+          }
         );
         assert.equal(result.receipt.status, 1);
         assert.equal(await token.balanceOf(deployer), initialSupply);

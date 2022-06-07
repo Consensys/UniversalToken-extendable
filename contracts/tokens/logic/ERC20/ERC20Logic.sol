@@ -62,20 +62,29 @@ contract ERC20Logic is ERC20TokenInterface, TokenLogic, ERC20Upgradeable {
         (
             string memory name_,
             string memory symbol_,
-            bool allowMint,
-            bool allowBurn,
+            bool allowMint_,
+            bool allowBurn_,
+            uint256 initalSupply_,
             uint256 maxSupply_
-        ) = abi.decode(data, (string, string, bool, bool, uint256));
+        ) = abi.decode(data, (string, string, bool, bool, uint256, uint256));
+
+        require(maxSupply_ > 0, "Max supply must be non-zero");
 
         ERC20ProtectedTokenData storage m = _getProtectedTokenData();
         m.name = name_;
         m.symbol = symbol_;
         m.maxSupply = maxSupply_;
-        m.allowMint = allowMint;
-        m.allowBurn = allowBurn;
+        m.allowMint = allowMint_;
+        m.allowBurn = allowBurn_;
         m.initialized = true;
 
         __ERC20_init_unchained(name_, symbol_);
+
+        _mint(_msgSender(), initalSupply_);
+
+        if (allowMint_) {
+            _addRole(owner(), TOKEN_MINTER_ROLE);
+        }
     }
 
     /**
