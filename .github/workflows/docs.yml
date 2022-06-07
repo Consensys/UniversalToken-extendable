@@ -1,0 +1,31 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - main
+permissions: 
+  contents: write
+jobs:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+      
+      - name: Setup Python 🐍
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.7' # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+
+      - name: Install and Build 🔧
+        run: |
+          cd documentation
+          pip3 install -r requirements.txt
+          mkdocs build --strict
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: documentation/site # The folder the action should deploy.

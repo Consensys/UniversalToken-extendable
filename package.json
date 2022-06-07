@@ -12,8 +12,8 @@
     "clean": "del-cli --force ./build && del-cli --force ./types",
     "coverage": "truffle run coverage",
     "env": "cp ./.env.example ./.env && echo .env file generated, please update to continue",
-    "lint": "eslint ./migrations ./test",
-    "lint:fix": "eslint ./test ./migrations --fix",
+    "lint": "eslint ./migrations ./test ./scripts",
+    "lint:fix": "eslint ./test ./migrations ./scripts --fix",
     "lint:sol": "solhint contracts/**/*.sol",
     "lint:sol:fix": "solhint contracts/**/*.sol --fix",
     "lint:all": "yarn run lint && yarn run lint:sol",
@@ -83,6 +83,7 @@
   "dependencies": {
     "@openzeppelin/contracts": "^4.6.0",
     "@openzeppelin/contracts-upgradeable": "^4.6.0",
+    "@truffle/hdwallet-provider": "^2.0.8",
     "solidity-bytes-utils": "^0.8.0",
     "solidity-docgen": "^0.6.0-beta.10"
   },

@@ -221,6 +221,11 @@ contract(
           this.logic.address
         );
 
+        let tokenLogic = await ERC20Logic.at(token.address);
+
+        //combine both objects so we can use all the functions
+        token = Object.assign(token, tokenLogic);
+
         clock = await ClockMock.new();
         certificateValidatorContract =
           await CertificateValidatorExtension.new();
@@ -332,7 +337,9 @@ contract(
           recipient,
           100,
           certificate,
-          { from: deployer }
+          {
+            from: deployer,
+          }
         );
         assert.equal(result.receipt.status, 1);
         assert.equal(await token.balanceOf(deployer), initialSupply - 100);
@@ -387,7 +394,9 @@ contract(
 
         const result = await ext.setValidationMode(
           CERTIFICATE_VALIDATION_NONCE,
-          { from: deployer }
+          {
+            from: deployer,
+          }
         );
         assert.equal(result.receipt.status, 1);
 
@@ -411,7 +420,9 @@ contract(
           recipient,
           200,
           certificate,
-          { from: deployer }
+          {
+            from: deployer,
+          }
         );
         assert.equal(result.receipt.status, 1);
         assert.equal(await token.balanceOf(deployer), initialSupply - 300);

@@ -2,6 +2,11 @@ require("dotenv").config();
 require("@babel/register");
 require("@babel/polyfill");
 
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+
+const providerWithMnemonic = (mnemonic, rpcEndpoint) => () =>
+  new HDWalletProvider(mnemonic, rpcEndpoint);
+
 module.exports = {
   networks: {
     development: {
@@ -17,6 +22,13 @@ module.exports = {
       gas: 0xfffffffffff,
       gasPrice: 0x01,
       // disableConfirmationListener: true,
+    },
+    env: {
+      provider: providerWithMnemonic(
+        process.env.MNEMONIC,
+        process.env.RPC_ENDPOINT
+      ),
+      network_id: parseInt(process.env.NETWORK_ID) || "*", // eslint-disable-line camelcase
     },
   },
   plugins: [

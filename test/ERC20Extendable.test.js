@@ -26,6 +26,12 @@ contract(
           maxSupply,
           this.logic.address
         );
+
+        let tokenLogic = await ERC20Logic.at(token.address);
+
+        //combine both objects so we can use all the functions
+        token = Object.assign(token, tokenLogic);
+
         assert.equal(await token.isMinter(deployer), true);
         assert.equal(await token.name(), "ERC20Extendable");
         assert.equal(await token.symbol(), "DAU");

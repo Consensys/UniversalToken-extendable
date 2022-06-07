@@ -14,6 +14,228 @@
             "test"
         ]
 
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy registry [development]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/registry.js",
+          "--network",
+          "development"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy erc20 [development]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/tokens/erc20.js",
+          "--network",
+          "development"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy erc721 [development]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/tokens/erc721.js",
+          "--network",
+          "development"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy allowlist extension [development]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/extensions/allowExtension.js",
+          "--network",
+          "development"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy blocklist extension [development]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/extensions/blockExtension.js",
+          "--network",
+          "development"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy certificate validator extension [development]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/extensions/certificateValidatorExtension.js",
+          "--network",
+          "development"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy token hold extension [development]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/extensions/holdExtension.js",
+          "--network",
+          "development"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy pause extension [development]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/extensions/pauseExtension.js",
+          "--network",
+          "development"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy erc20 [env]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/tokens/erc20.js",
+          "--network",
+          "env"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy erc721 [env]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/tokens/erc721.js",
+          "--network",
+          "env"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy allowlist extension [env]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/extensions/allowExtension.js",
+          "--network",
+          "env"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy blocklist extension [env]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/extensions/blockExtension.js",
+          "--network",
+          "env"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy certificate validator extension [env]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/extensions/certificateValidatorExtension.js",
+          "--network",
+          "env"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy token hold extension [env]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/extensions/holdExtension.js",
+          "--network",
+          "env"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy pause extension [env]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/extensions/pauseExtension.js",
+          "--network",
+          "env"
+      ]
+
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "truffle deploy registry [env]",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+          "exec",
+          "scripts/deployments/registry.js",
+          "--network",
+          "env"
+      ]
     }
   ]
 }

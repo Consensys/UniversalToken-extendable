@@ -32,6 +32,11 @@ contract(
           this.logic.address
         );
 
+        let tokenLogic = await ERC20Logic.at(token.address);
+
+        //combine both objects so we can use all the functions
+        token = Object.assign(token, tokenLogic);
+
         blockExtContract = await BlockExtension.new();
         blockExt = blockExtContract.address;
 

@@ -1,7 +1,9 @@
-## Release schedule
+This page has both released versions and milestone commits. Each release/commit has a changelog
 
+# Versions
 
-## Semver/calver
+There are currently no released versions of UniversalToken
 
+# Commits
 
-## Major/minor
+* [434c657](./changelogs/434c657.md)
