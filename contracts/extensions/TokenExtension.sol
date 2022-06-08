@@ -5,7 +5,7 @@ import {ExtensionBase} from "./ExtensionBase.sol";
 import {IExtension, TransferData, TokenStandard} from "./IExtension.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {RolesBase} from "../utils/roles/RolesBase.sol";
-import {IERC20Proxy} from "../tokens/proxy/ERC20/IERC20Proxy.sol";
+import {IERC20Extendable} from "../IERC20Extendable.sol";
 import {TokenRolesConstants} from "../utils/roles/TokenRolesConstants.sol";
 import {IToken} from "../tokens/IToken.sol";
 import {ITokenEventManager} from "../tokens/eventmanager/ITokenEventManager.sol";
@@ -305,8 +305,8 @@ abstract contract TokenExtension is
      * @dev Explicit method for erc20 tokens. I returns an erc20 proxy contract interface
      * @return IERC20Proxy. Returns an erc20 proxy contract interface.
      */
-    function _erc20Token() internal view returns (IERC20Proxy) {
-        return IERC20Proxy(_tokenAddress());
+    function _erc20Token() internal view returns (IERC20Extendable) {
+        return IERC20Extendable(_tokenAddress());
     }
 
     /**
