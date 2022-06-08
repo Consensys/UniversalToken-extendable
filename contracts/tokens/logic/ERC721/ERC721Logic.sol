@@ -257,9 +257,15 @@ contract ERC721Logic is
         override
         returns (bool)
     {
-        require(td.partition == bytes32(0), "Invalid transfer data: partition");
         require(td.token == address(this), "Invalid transfer data: token");
-        require(td.value == 0, "Invalid transfer data: value");
+
+        if (td.partition != bytes32(0)) {
+            return false; //We cannot do partition transfers
+        }
+
+        if (td.value > 0) {
+            return false; //We cannot do value transfers
+        }
 
         _currentData = td.data;
         _currentOperatorData = td.operatorData;

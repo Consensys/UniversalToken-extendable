@@ -64,41 +64,6 @@ contract ERC721 is ExtendableTokenProxy, ERC721TokenInterface {
         _updateDomainSeparator();
     }
 
-    /**
-     * @dev Performs a controlled transfer of tokens given a TransferData struct.
-     * Under the hood, this will Safely transfers `tokenId` token from `from` to `to`,
-     * checking first that contract recipients are aware of the ERC721 protocol to
-     * prevent tokens from being forever locked.
-     *
-     * Requirements:
-     *
-     * - The caller must have the controller role
-     * - `from` cannot be the zero address.
-     * - `to` cannot be the zero address.
-     * - `tokenId` token must exist and be owned by `from`.
-     * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.
-     *
-     * Emits a {Transfer} event.
-     */
-    function tokenTransfer(TransferData calldata td)
-        external
-        override
-        onlyControllers
-        returns (bool)
-    {
-        require(td.token == address(this), "Invalid token");
-
-        if (td.partition != bytes32(0)) {
-            return false; //We cannot do partition transfers
-        }
-
-        if (td.value > 0) {
-            return false; //We cannot do value transfers
-        }
-
-        TokenProxy._delegateCurrentCall();
-    }
-
     function _domainName()
         internal
         view

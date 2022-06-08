@@ -7,6 +7,7 @@ import {TokenRoles} from "../../utils/roles/TokenRoles.sol";
 import {DomainAware} from "../../utils/DomainAware.sol";
 import {ITokenLogic} from "../logic/ITokenLogic.sol";
 import {ITokenProxy} from "./ITokenProxy.sol";
+import {TransferData} from "../IToken.sol";
 import {TokenERC1820Provider} from "../TokenERC1820Provider.sol";
 import {StorageSlot} from "@openzeppelin/contracts/utils/StorageSlot.sol";
 import {BytesLib} from "solidity-bytes-utils/contracts/BytesLib.sol";
@@ -163,6 +164,22 @@ abstract contract TokenProxy is
         __init_logicContract(false, data);
 
         emit Upgraded(logic);
+    }
+
+    /**
+     * @notice Execute a controlled transfer of tokens `from` -> `to`. Only addresses with
+     * the token controllers role can invoke this function.
+     * @return wheter the transfer succeeded or not
+     */
+    function tokenTransfer(TransferData calldata _td)
+        external
+        override
+        onlyControllers
+        returns (bool)
+    {
+        require(_td.token == address(this), "Invalid token");
+
+        _delegateCurrentCall();
     }
 
     /**

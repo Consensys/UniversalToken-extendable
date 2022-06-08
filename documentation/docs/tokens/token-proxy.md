@@ -6,7 +6,19 @@ This is the contract you must inherit from to build custom token implementations
 
 # Building a custom token
 
-To build a custom token implementation, you must inherit from the `ExtendableTokenProxy` contract
+To build a custom token implementation, you must inherit from the `ExtendableTokenProxy` contract. The `ExtendableTokenProxy` contract requires that you 
+
+1. Invoke its constructor with the following arguments
+    - ABI encoded initialization data to send to logic contract's `_onInitialize` function. This data usually comes from the constructor arguments
+2. Protect any token standard functions so extensions don't override them with their own functions
+    - This can be done with the `protectFunction(bytes4)` function or the `protectFunctions(bytes4[])` function.
+3. Implement the `function _domainName() internal override view returns(bytes memory)` function.
+    - This function is used for building the [EIP712](https://eips.ethereum.org/EIPS/eip-712#definition-of-domainseparator) domain separator and should return a unique bytes. For example this can be the token name
+4. Implement the `function tokenStandard() external pure override returns (TokenStandard)`
+    - This function should return the token standard this contract implements
+    - This function is a pure function, so it shouldn't rely on storage or any input for its return value
+
+## Example ERC20 implementation
 
     pragma solidity ^0.8.0;
 
@@ -38,9 +50,38 @@ To build a custom token implementation, you must inherit from the `ExtendableTok
             // Mark the ERC20 standard functions as protected, meaning extensions cannot override them
             _protectFunctions(_protectedFunctions);
 
+
+            // ... constructor logic ...
+
+
             //Update the doamin seperator now that
             //we've setup everything
             _updateDomainSeparator();
-            // ... constructor logic ...
         }
+
+        /**
+        * @notice This Token Proxy supports the ERC20 standard
+        * @dev This value does not change, will always return TokenStandard.ERC20
+        * @return The name of this Token standard
+        */
+        function tokenStandard() external pure override returns (TokenStandard) {
+            return TokenStandard.ERC20;
+        }
+
+        /**
+        * @dev The domain name of this ERC20 Token Proxy will be the ERC20 Token name().
+        * This value does not change.
+        * @return The domain name of this ERC20 Token Proxy
+        */
+        function _domainName()
+            internal
+            view
+            virtual
+            override
+            returns (bytes memory)
+        {
+            // TODO You could also grab the name using the name() function
+            return abi.encode("TokenName");
+        }
+
 

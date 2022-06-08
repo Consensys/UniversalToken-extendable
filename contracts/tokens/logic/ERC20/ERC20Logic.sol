@@ -240,9 +240,15 @@ contract ERC20Logic is ERC20TokenInterface, TokenLogic, ERC20Upgradeable {
         onlyControllers
         returns (bool)
     {
-        require(td.partition == bytes32(0), "Invalid transfer data: partition");
         require(td.token == address(this), "Invalid transfer data: token");
-        require(td.tokenId == 0, "Invalid transfer data: tokenId");
+
+        if (td.partition != bytes32(0)) {
+            return false; //We cannot do partition transfers
+        }
+
+        if (td.tokenId > 0) {
+            return false; //We cannot do tokenId transfers
+        }
 
         _currentData = td.data;
         _currentOperatorData = td.operatorData;

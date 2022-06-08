@@ -24,27 +24,18 @@ nav:
   - Overview: 
       - Welcome: overview/welcome.md
       - Releases: overview/releases.md
-  - Extensions: 
-      - Getting started: extensions/getting-started.md
-      - Building extensions: extensions/building-extensions.md
-      - Token events: extensions/token-events.md
-      - Controlled transfers: extensions/controlled-transfers.md
-      - API: extensions/api.md
   - Token API: 
       - Overview: tokens/overview.md
       - Token Proxy: tokens/token-proxy.md
       - Token Logic: tokens/token-logic.md
       - Token Roles: tokens/token-roles.md
       - Upgrading Token Logic: tokens/upgrading.md
-  - Contracts: 
-      - Overview: contracts/architecture.md
-      - Proxies: contracts/proxies.md
-      - Storage contracts: contracts/storage-contracts.md
-      - Logic for token standards: contracts/logic-token-standard-contracts.md
-      - Extension support: contracts/extension-support.md    
-  - Utilities: 
-      - Overview: utilities/overview.md
-      - Hold status code: utilities/HoldStatusCode.md
+  - Extensions: 
+      - Getting started: extensions/getting-started.md
+      - Building extensions: extensions/building-extensions.md
+      - Token events: extensions/token-events.md
+      - Controlled transfers: extensions/controlled-transfers.md
+      - API: extensions/api.md
   - Solidity API:
       - ERC1400:  API/ERC1400.md
       - IERC1400:  API/IERC1400.md

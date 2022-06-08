@@ -99,30 +99,6 @@ contract ERC20 is ERC20TokenInterface, ExtendableTokenProxy {
     }
 
     /**
-     * @notice Execute a controlled transfer of tokens `from` -> `to`. Only addresses with
-     * the token controllers role can invoke this function.
-     * @return wheter the transfer succeeded or not
-     */
-    function tokenTransfer(TransferData calldata _td)
-        external
-        override
-        onlyControllers
-        returns (bool)
-    {
-        require(_td.token == address(this), "Invalid token");
-
-        if (_td.partition != bytes32(0)) {
-            return false; //We cannot do partition transfers
-        }
-
-        if (_td.tokenId > 0) {
-            return false; //We cannot do tokenId transfers
-        }
-
-        TokenProxy._delegateCurrentCall();
-    }
-
-    /**
      * @notice Moves `amount` tokens from the caller's account to `recipient`, passing arbitrary data to
      * any registered extensions.
      *

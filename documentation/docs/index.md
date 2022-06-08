@@ -131,18 +131,6 @@ h1 {
   <div class="grid-item"><a href="/extensions/getting-started"><h2>Extensions</h2>
         <img src="cdn/images/index-icons/12.png" alt=""></a>
   </div>
-
-  <div class="grid-item"><a href="/contracts/architecture"><h2>Contracts</h2>     
-        <img src="cdn/images/index-icons/7.png" alt=""></a>
-  </div> 
-
-  <div class="grid-item"><a href="/utilities/overview"><h2>Utilities</h2>
-        <img src="cdn/images/index-icons/3.png" alt=""></a>
-  </div>
-
-  <div class="grid-item"><a href="/api/migrations"><h2>Solidity API</h2>       
-        <img src="cdn/images/index-icons/4.png" alt=""></a>
-  </div>
   
 </div>
 
