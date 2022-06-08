@@ -73,8 +73,10 @@
     "lint-staged": "^12.5.0",
     "prettier": "^2.6.2",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "solc-0.8": "npm:solc@0.8.7-fixed",
     "solhint": "^3.3.7",
     "solidity-coverage": "0.8.0-beta.0",
+    "solidity-docgen": "0.5.16",
     "truffle": "^5.5.16",
     "truffle-contract-size": "^2.0.1",
     "truffle-plugin-verify": "^0.5.26",
@@ -84,8 +86,7 @@
     "@openzeppelin/contracts": "^4.6.0",
     "@openzeppelin/contracts-upgradeable": "^4.6.0",
     "@truffle/hdwallet-provider": "^2.0.8",
-    "solidity-bytes-utils": "^0.8.0",
-    "solidity-docgen": "^0.6.0-beta.10"
+    "solidity-bytes-utils": "^0.8.0"
   },
   "resolutions": {
     "web3": "1.7.3"

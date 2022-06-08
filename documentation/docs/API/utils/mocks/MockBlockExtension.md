@@ -1,0 +1,16 @@
+## `MockBlockExtension`
+
+
+
+
+
+
+### `mockUpgradeTest() → string` (external)
+
+
+
+
+
+
+
+
