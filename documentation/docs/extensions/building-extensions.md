@@ -8,11 +8,11 @@ Extensions live on-chain and can be used by many different token contracts at th
 
 First import the `TokenExtension` and `TransferData` from the `TokenExtension.sol` file
 
-    import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
+    import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/extensions/TokenExtension.sol";
 
 Once you have these imported, you can create a new contract that inherits from `TokenExtension` with an empty constructor and override the `initialize` function
 
-    import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
+    import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/extensions/TokenExtension.sol";
 
     contract PauseExtension is TokenExtension {
 
@@ -40,7 +40,7 @@ First start by writing all the logic for your extension, including any event cal
 
 An example extension function could be toggling a `pause` state to pause/unpause token transfers
 
-    import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
+    import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/extensions/TokenExtension.sol";
 
     contract PauseExtension is TokenExtension {
         bool paused;
@@ -66,7 +66,7 @@ An example extension function could be toggling a `pause` state to pause/unpause
 
 We can then use the `paused` state variable inside a transfer callback to prevent transfers if the `paused` variable is `true`
 
-    import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
+    import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/extensions/TokenExtension.sol";
 
     contract PauseExtension is TokenExtension {
         bool paused;
@@ -117,7 +117,7 @@ Optionally, extensions may also call the following inside the constructor
 
 Example:
 
-    import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
+    import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/extensions/TokenExtension.sol";
 
     contract PriceOracleExtension is TokenExtension {
 

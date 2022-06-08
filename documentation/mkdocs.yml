@@ -32,6 +32,7 @@ nav:
       - API: extensions/api.md
   - Token API: 
       - Overview: tokens/overview.md
+      - Token Proxy: tokens/token-proxy.md
       - Token Logic: tokens/token-logic.md
       - Token Roles: tokens/token-roles.md
       - Upgrading Token Logic: tokens/upgrading.md
