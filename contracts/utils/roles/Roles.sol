@@ -10,10 +10,14 @@ pragma solidity ^0.8.0;
  */
 library Roles {
     struct Role {
-        mapping (address => bool) bearer;
+        mapping(address => bool) bearer;
     }
 
-    function roleStorage(bytes32 _rolePosition) internal pure returns (Role storage ds) {
+    function roleStorage(bytes32 _rolePosition)
+        internal
+        pure
+        returns (Role storage ds)
+    {
         bytes32 position = _rolePosition;
         assembly {
             ds.slot := position
@@ -40,7 +44,11 @@ library Roles {
      * @dev Check if an account has this role.
      * @return bool
      */
-    function has(Role storage role, address account) internal view returns (bool) {
+    function has(Role storage role, address account)
+        internal
+        view
+        returns (bool)
+    {
         require(account != address(0), "Roles: account is the zero address");
         return role.bearer[account];
     }

@@ -1,4 +1,3 @@
-
 library Errors {
     //common errors
     string public constant TR_SENDER_NOT_ERC1400_TOKEN = "55";

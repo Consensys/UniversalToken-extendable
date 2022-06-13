@@ -1,0 +1,13 @@
+build
+.vscode
+.husky
+.github
+coverage
+documentation
+node_modules
+types
+dist
+.solhint.json
+coverage.json
+README.md
+contracts/tokens/storage/TokenEventManagerStorage.sol

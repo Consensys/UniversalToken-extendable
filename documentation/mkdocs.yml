@@ -24,96 +24,103 @@ nav:
   - Overview: 
       - Welcome: overview/welcome.md
       - Releases: overview/releases.md
-      - Stability: overview/stability.md
   - Token API: 
-      - Token roles: tokens/token-roles.md
-      - Upgrading: tokens/upgrading.md
-      - Register extensions: tokens/register-extensions.md
-      - Enable/disable extensions: tokens/enable-disable-extensions.md
-      - Remove extensions: tokens/remove-extensions.md
+      - Overview: tokens/overview.md
+      - Token Proxy: tokens/token-proxy.md
+      - Token Logic: tokens/token-logic.md
+      - Token Roles: tokens/token-roles.md
+      - Upgrading Token Logic: tokens/upgrading.md
   - Extensions: 
       - Getting started: extensions/getting-started.md
-      - Register functions: extensions/register-functions.md
-      - Extension roles: extensions/extension-roles.md
-      - Token roles: extensions/token-roles.md
-      - Transfer events: extensions/transfer-events.md
-      - Interoperability: extensions/interoperability.md
+      - Building extensions: extensions/building-extensions.md
+      - Token events: extensions/token-events.md
+      - Controlled transfers: extensions/controlled-transfers.md
       - API: extensions/api.md
-  - Contracts: 
-      - Overview: contracts/architecture.md
-      - Proxies: contracts/proxies.md
-      - Storage contracts: contracts/storage-contracts.md
-      - Logic for token standards: contracts/logic-token-standard-contracts.md
-      - Extension support: contracts/extension-support.md    
-  - Utilities: 
-      - Overview: utilities/overview.md
-      - Hold status code: utilities/HoldStatusCode.md
   - Solidity API:
-      - ERC1400:  API/ERC1400.md
-      - IERC1400:  API/IERC1400.md
+      - ERC20:  API/ERC20.md
+      - ERC721:  API/ERC721.md
+      - IERC20Extendable:  API/IERC20Extendable.md
+      - IERC721Extendable:  API/IERC721Extendable.md
       - Migrations:  API/Migrations.md
-      - Certificate:
-          - ERC1400HoldableCertificateToken:  API/certificate/ERC1400HoldableCertificateToken.md
-          - Extension:  API/certificate/Extension.md
-          - IExtensionTypes:  API/certificate/IExtensionTypes.md
+      - index:  API/index.md
+      - Examples:
+          - Allowblock:
+              - Allow:
+                  - AllowExtension:  API/examples/allowblock/allow/AllowExtension.md
+                  - IAllowlistedAdminRole:  API/examples/allowblock/allow/IAllowlistedAdminRole.md
+                  - IAllowlistedRole:  API/examples/allowblock/allow/IAllowlistedRole.md
+              - Block:
+                  - BlockExtension:  API/examples/allowblock/block/BlockExtension.md
+                  - IBlocklistedAdminRole:  API/examples/allowblock/block/IBlocklistedAdminRole.md
+                  - IBlocklistedRole:  API/examples/allowblock/block/IBlocklistedRole.md
+          - Certificates:
+              - CertificateLib:  API/examples/certificates/CertificateLib.md
+              - CertificateValidatorExtension:  API/examples/certificates/CertificateValidatorExtension.md
+              - ICertificateValidator:  API/examples/certificates/ICertificateValidator.md
+          - Holds:
+              - HoldExtension:  API/examples/holds/HoldExtension.md
+              - IHoldableToken:  API/examples/holds/IHoldableToken.md
+          - Pausable:
+              - IPausable:  API/examples/pausable/IPausable.md
+              - PauseExtension:  API/examples/pausable/PauseExtension.md
       - Extensions:
-          - Token extensions:
-              - ERC1400TokensChecker:  API/extensions/token extensions/ERC1400TokensChecker.md
-              - ERC1400TokensValidator:  API/extensions/token extensions/ERC1400TokensValidator.md
-              - IERC1400Extended:  API/extensions/token extensions/IERC1400Extended.md
-              - IERC1400TokensChecker:  API/extensions/token extensions/IERC1400TokensChecker.md
-              - IERC1400TokensValidator:  API/extensions/token extensions/IERC1400TokensValidator.md
-              - IMinterRole:  API/extensions/token extensions/IMinterRole.md
-          - User extensions:
-              - IERC1400TokensRecipient:  API/extensions/user extensions/IERC1400TokensRecipient.md
-              - IERC1400TokensSender:  API/extensions/user extensions/IERC1400TokensSender.md
-      - Interface:
-          - ERC1820Implementer:  API/interface/ERC1820Implementer.md
-          - IERC1643:  API/interface/IERC1643.md
-          - IERC20HoldableToken:  API/interface/IERC20HoldableToken.md
-          - IHoldableERC1400TokenExtension:  API/interface/IHoldableERC1400TokenExtension.md
-      - Mocks:
-          - AllowlistMock:  API/mocks/AllowlistMock.md
-          - BlocklistMock:  API/mocks/BlocklistMock.md
-          - CertificateSignerMock:  API/mocks/CertificateSignerMock.md
-          - ClockMock:  API/mocks/ClockMock.md
-          - ERC1400TokensRecipientMock:  API/mocks/ERC1400TokensRecipientMock.md
-          - ERC1400TokensSenderMock:  API/mocks/ERC1400TokensSenderMock.md
-          - ERC1400TokensValidatorMock:  API/mocks/ERC1400TokensValidatorMock.md
-          - ExtensionMock:  API/mocks/ExtensionMock.md
-          - FakeERC1400Mock:  API/mocks/FakeERC1400Mock.md
-          - IMinterMock:  API/mocks/IMinterMock.md
-          - MinterMock:  API/mocks/MinterMock.md
-          - PauserMock:  API/mocks/PauserMock.md
-      - Roles:
-          - AllowlistAdminRole:  API/roles/AllowlistAdminRole.md
-          - AllowlistedRole:  API/roles/AllowlistedRole.md
-          - BlocklistAdminRole:  API/roles/BlocklistAdminRole.md
-          - BlocklistedRole:  API/roles/BlocklistedRole.md
-          - CertificateSignerRole:  API/roles/CertificateSignerRole.md
-          - MinterRole:  API/roles/MinterRole.md
-          - PauserRole:  API/roles/PauserRole.md
-          - Roles:  API/roles/Roles.md
+          - ExtensionBase:  API/extensions/ExtensionBase.md
+          - ExtensionProxy:  API/extensions/ExtensionProxy.md
+          - IExtension:  API/extensions/IExtension.md
+          - IExtensionMetadata:  API/extensions/IExtensionMetadata.md
+          - TokenExtension:  API/extensions/TokenExtension.md
       - Tokens:
-          - ERC1400HoldableToken:  API/tokens/ERC1400HoldableToken.md
-          - ERC20HoldableToken:  API/tokens/ERC20HoldableToken.md
-          - ERC20Token:  API/tokens/ERC20Token.md
-          - ERC721Token:  API/tokens/ERC721Token.md
-          - Extension:  API/tokens/Extension.md
-          - IExtensionTypes:  API/tokens/IExtensionTypes.md
-      - Tools:
-          - BatchBalanceReader:  API/tools/BatchBalanceReader.md
-          - BatchReader:  API/tools/BatchReader.md
-          - BatchTokenIssuer:  API/tools/BatchTokenIssuer.md
-          - DomainAware:  API/tools/DomainAware.md
-          - ERC1820Client:  API/tools/ERC1820Client.md
-          - FundIssuer:  API/tools/FundIssuer.md
-          - IERC1400Extended:  API/tools/IERC1400Extended.md
-          - IERC1400TokensValidatorExtended:  API/tools/IERC1400TokensValidatorExtended.md
-          - IExtensionTypes:  API/tools/IExtensionTypes.md
-          - IMinterRole:  API/tools/IMinterRole.md
-          - Pausable:  API/tools/Pausable.md
-          - Swaps:  API/tools/Swaps.md
+          - IToken:  API/tokens/IToken.md
+          - TokenERC1820Provider:  API/tokens/TokenERC1820Provider.md
+          - Eventmanager:
+              - ITokenEventManager:  API/tokens/eventmanager/ITokenEventManager.md
+              - TokenEventConstants:  API/tokens/eventmanager/TokenEventConstants.md
+              - TokenEventManager:  API/tokens/eventmanager/TokenEventManager.md
+          - Logic:
+              - ITokenLogic:  API/tokens/logic/ITokenLogic.md
+              - TokenLogic:  API/tokens/logic/TokenLogic.md
+              - Erc20:
+                  - ERC20Logic:  API/tokens/logic/ERC20/ERC20Logic.md
+                  - IERC20Logic:  API/tokens/logic/ERC20/IERC20Logic.md
+              - Erc721:
+                  - ERC721Logic:  API/tokens/logic/ERC721/ERC721Logic.md
+                  - IERC721Logic:  API/tokens/logic/ERC721/IERC721Logic.md
+          - Proxy:
+              - ExtendableTokenProxy:  API/tokens/proxy/ExtendableTokenProxy.md
+              - IExtendableTokenProxy:  API/tokens/proxy/IExtendableTokenProxy.md
+              - ITokenProxy:  API/tokens/proxy/ITokenProxy.md
+              - TokenProxy:  API/tokens/proxy/TokenProxy.md
+          - Registry:
+              - ERC1155TokenInterface:  API/tokens/registry/ERC1155TokenInterface.md
+              - ERC20TokenInterface:  API/tokens/registry/ERC20TokenInterface.md
+              - ERC721TokenInterface:  API/tokens/registry/ERC721TokenInterface.md
+          - Storage:
+              - RegisteredExtensionStorage:  API/tokens/storage/RegisteredExtensionStorage.md
+              - TokenEventManagerStorage:  API/tokens/storage/TokenEventManagerStorage.md
+              - TokenProxyStorage:  API/tokens/storage/TokenProxyStorage.md
+      - Utils:
+          - DomainAware:  API/utils/DomainAware.md
+          - Errors:  API/utils/Errors.md
+          - IDomainAware:  API/utils/IDomainAware.md
+          - Erc1820:
+              - ERC1820Client:  API/utils/erc1820/ERC1820Client.md
+              - ERC1820Implementer:  API/utils/erc1820/ERC1820Implementer.md
+              - ERC1820ImplementerInterface:  API/utils/erc1820/ERC1820ImplementerInterface.md
+              - ERC1820Registry:  API/utils/erc1820/ERC1820Registry.md
+              - IERC1820Implementer:  API/utils/erc1820/IERC1820Implementer.md
+          - Mocks:
+              - ClockMock:  API/utils/mocks/ClockMock.md
+              - ERC20LogicMock:  API/utils/mocks/ERC20LogicMock.md
+              - ERC721LogicMock:  API/utils/mocks/ERC721LogicMock.md
+              - MockAllowExtension:  API/utils/mocks/MockAllowExtension.md
+              - MockBlockExtension:  API/utils/mocks/MockBlockExtension.md
+          - Roles:
+              - ITokenRoles:  API/utils/roles/ITokenRoles.md
+              - Roles:  API/utils/roles/Roles.md
+              - RolesBase:  API/utils/roles/RolesBase.md
+              - TokenRoles:  API/utils/roles/TokenRoles.md
+              - TokenRolesConstants:  API/utils/roles/TokenRolesConstants.md
+
 
 
 theme:
@@ -181,6 +188,11 @@ markdown_extensions:
   - def_list
   - attr_list
   - abbr
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all

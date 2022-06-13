@@ -7,8 +7,12 @@ abstract contract RolesBase {
 
     event RoleAdded(address indexed caller, bytes32 indexed roleId);
     event RoleRemoved(address indexed caller, bytes32 indexed roleId);
-    
-    function hasRole(address caller, bytes32 roleId) public view returns (bool) {
+
+    function hasRole(address caller, bytes32 roleId)
+        public
+        view
+        returns (bool)
+    {
         return Roles.roleStorage(roleId).has(caller);
     }
 

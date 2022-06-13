@@ -1,31 +1,34 @@
 {
-  "name": "ERC1400",
-  "version": "0.1.0-dev",
-  "description": "Codefi Asset's ERC1400 implementation",
+  "name": "universal-token-extendable",
+  "version": "0.1.0",
+  "description": "Smart Contract package for creating Extendable ERC20/ERC721 tokens and Token Extensions",
   "files": [
     "contracts",
-    "tests"
+    "test",
+    "types"
   ],
   "scripts": {
     "build": "yarn run clean && truffle compile && yarn run generate-types",
     "clean": "del-cli --force ./build && del-cli --force ./types",
-    "coverage": "yarn truffle run coverage --network coverage",
+    "coverage": "truffle run coverage",
     "env": "cp ./.env.example ./.env && echo .env file generated, please update to continue",
-    "lint": "eslint ./migrations ./test ",
-    "lint:fix": "eslint ./test ./migrations --fix",
-    "lint:sol": "yarn solhint contracts/**/*.sol",
-    "lint:sol:fix": "yarn solhint contracts/**/*.sol --fix",
+    "lint": "eslint ./migrations ./test ./scripts",
+    "lint:fix": "eslint ./test ./migrations ./scripts --fix",
+    "lint:sol": "solhint contracts/**/*.sol",
+    "lint:sol:fix": "solhint contracts/**/*.sol --fix",
     "lint:all": "yarn run lint && yarn run lint:sol",
     "lint:all:fix": "yarn run lint:fix && yarn run lint:sol:fix",
-    "console": "truffle console",
-    "start:chain": "ganache",
-    "test": "yarn truffle test",
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check .",
+    "start:chain": "truffle develop",
+    "test": "truffle test",
     "generate-types": "typechain --target=truffle-v5 'build/contracts/*.json'",
-    "postinstall": "yarn run build"
+    "postinstall": "yarn run build",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ConsenSys/UniversalToken"
+    "url": "https://github.com/ConsenSys/UniversalToken-extendable"
   },
   "keywords": [
     "boilerplate",
@@ -37,14 +40,10 @@
     "ERC1820",
     "ERC20",
     "ERC721",
-    "ERC1155",
     "extensions",
     "plugins",
     "token",
-    "proxy",
-    "ERC777",
-    "ERC1410",
-    "ERC1400"
+    "proxy"
   ],
   "author": "Edward Penta <ecp4224@gmail.com>",
   "contributors": [
@@ -52,66 +51,55 @@
     "Julien Marchand <julien.marchand4@gmail.com>",
     "Julien Tanay <julien.tanay@gmail.com>"
   ],
-  "license": "Apache",
+  "license": "Apache-2.0",
   "devDependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.0.4",
-    "@openzeppelin/test-helpers": "^0.5.6",
+    "@babel/core": "^7.18.0",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.18.0",
+    "@babel/register": "^7.17.7",
+    "@openzeppelin/test-helpers": "^0.5.15",
     "@typechain/ethers-v5": "^8.0.5",
-    "@typechain/truffle-v5": "^6.0.0",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-stage-2": "^6.18.0",
-    "babel-preset-stage-3": "^6.17.0",
-    "babel-register": "^6.23.0",
-    "chai": "^4.2.0",
+    "@typechain/truffle-v5": "^8.0.0",
+    "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
     "chai-bignumber": "^3.0.0",
     "del-cli": "^4.0.1",
-    "dotenv": "^8.2.0",
-    "eslint": "^7.9.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-truffle": "^0.3.1",
-    "eth-lib": "^0.1.29",
-    "ethereumjs-testrpc-sc": "6.1.6",
-    "ethereumjs-util": "^5.1.2",
-    "fs-extra": "^7.0.1",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
-    "sol-merger": "0.1.4",
+    "dotenv": "^16.0.1",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "ethereumjs-util": "^7.1.4",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.5.0",
+    "prettier": "^2.6.2",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "solc-0.8": "npm:solc@0.8.7-fixed",
     "solhint": "^3.3.7",
     "solidity-coverage": "0.8.0-beta.0",
-    "solium": "^1.2.5",
+    "solidity-docgen": "0.5.16",
+    "truffle": "^5.5.16",
     "truffle-contract-size": "^2.0.1",
-    "truffle-plugin-verify": "^0.5.19",
-    "typechain": "8.0.0",
-    "web3-utils": "^1.2.8"
+    "truffle-plugin-verify": "^0.5.26",
+    "typechain": "8.0.0"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.2.0",
-    "@openzeppelin/contracts-upgradeable": "^4.4.2",
+    "@openzeppelin/contracts": "^4.6.0",
+    "@openzeppelin/contracts-upgradeable": "^4.6.0",
     "@truffle/hdwallet-provider": "^2.0.8",
-    "crypto": "^1.0.1",
-    "ethereumjs-wallet": "^0.6.3",
-    "ethers": "^5.5.3",
-    "solidity-bytes-utils": "^0.8.0",
-    "solidity-docgen": "^0.6.0-beta.10",
-    "truffle": "5.4.5"
+    "solidity-bytes-utils": "^0.8.0"
   },
   "resolutions": {
     "web3": "1.7.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
     "*.js": [
       "eslint --fix"
+    ],
+    "*.sol": [
+      "solhint --fix"
     ]
   }
 }

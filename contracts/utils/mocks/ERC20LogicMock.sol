@@ -5,7 +5,13 @@ import {ERC20Logic} from "../../tokens/logic/ERC20/ERC20Logic.sol";
 contract ERC20LogicMock is ERC20Logic {
     string private test;
 
-    function _onInitialize(bytes memory data) internal override returns (bool) {
+    function _onInitialize(bool isConstructor, bytes memory data)
+        internal
+        override
+        returns (bool)
+    {
+        super._onInitialize(isConstructor, data);
+
         test = "This is a mock!";
 
         return true;
@@ -16,9 +22,9 @@ contract ERC20LogicMock is ERC20Logic {
     }
 
     /**
-    * This empty reserved space is put in place to allow future versions to add new
-    * variables without shifting down storage in the inheritance chain.
-    * See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
-    */
+     * This empty reserved space is put in place to allow future versions to add new
+     * variables without shifting down storage in the inheritance chain.
+     * See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+     */
     uint256[50] private __gap;
 }

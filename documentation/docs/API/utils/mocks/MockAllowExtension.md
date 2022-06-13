@@ -1,0 +1,16 @@
+## `MockAllowExtension`
+
+
+
+
+
+
+### `mockUpgradeTest() → string` (external)
+
+
+
+
+
+
+
+

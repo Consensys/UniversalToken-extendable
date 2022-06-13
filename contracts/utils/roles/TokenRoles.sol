@@ -23,23 +23,31 @@ import {TokenRolesConstants} from "./TokenRolesConstants.sol";
 * 
 * This contract also handles the storage of the burning/minting toggling.
 */
-abstract contract TokenRoles is TokenRolesConstants, ITokenRoles, RolesBase, ContextUpgradeable {
+abstract contract TokenRoles is
+    TokenRolesConstants,
+    ITokenRoles,
+    RolesBase,
+    ContextUpgradeable
+{
     using Roles for Roles.Role;
-    
+
     /**
-    * @notice This event is triggered when transferOwnership is invoked
-    * @param previousOwner The previous owner before the transfer
-    * @param newOwner The new owner of the token
-    */
-    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-    
+     * @notice This event is triggered when transferOwnership is invoked
+     * @param previousOwner The previous owner before the transfer
+     * @param newOwner The new owner of the token
+     */
+    event OwnershipTransferred(
+        address indexed previousOwner,
+        address indexed newOwner
+    );
+
     /**
-    * @notice This event is triggered when the manager address is updated. This
-    * can occur when transferOwnership is invoked or when changeManager is invoked.
-    * This event name is taken from EIP1967
-    * @param previousAdmin The previous manager before the update
-    * @param newAdmin The new manager of the token
-    */
+     * @notice This event is triggered when the manager address is updated. This
+     * can occur when transferOwnership is invoked or when changeManager is invoked.
+     * This event name is taken from EIP1967
+     * @param previousAdmin The previous manager before the update
+     * @param newAdmin The new manager of the token
+     */
     event AdminChanged(address previousAdmin, address newAdmin);
 
     /**
@@ -50,32 +58,41 @@ abstract contract TokenRoles is TokenRolesConstants, ITokenRoles, RolesBase, Con
     }
 
     /**
-    * @dev A function modifier that will only allow the current token manager to
-    * invoke the function
-    */
-    modifier onlyManager {
-        require(_msgSender() == manager(), "This function can only be invoked by the manager");
+     * @dev A function modifier that will only allow the current token manager to
+     * invoke the function
+     */
+    modifier onlyManager() {
+        require(
+            _msgSender() == manager(),
+            "This function can only be invoked by the manager"
+        );
         _;
     }
 
     /**
-    * @dev A function modifier that will only allow addresses with the Minter role granted
-    * to invoke the function
-    */
-    modifier onlyMinter {
-        require(isMinter(_msgSender()), "This function can only be invoked by a minter");
+     * @dev A function modifier that will only allow addresses with the Minter role granted
+     * to invoke the function
+     */
+    modifier onlyMinter() {
+        require(
+            isMinter(_msgSender()),
+            "This function can only be invoked by a minter"
+        );
         _;
     }
 
     /**
-    * @dev A function modifier that will only allow addresses with the Controller role granted
-    * to invoke the function
-    */
-    modifier onlyControllers {
-        require(isController(_msgSender()), "This function can only be invoked by a controller");
+     * @dev A function modifier that will only allow addresses with the Controller role granted
+     * to invoke the function
+     */
+    modifier onlyControllers() {
+        require(
+            isController(_msgSender()),
+            "This function can only be invoked by a controller"
+        );
         _;
     }
-    
+
     /**
      * @dev Throws if called by any account other than the owner.
      */
@@ -85,68 +102,68 @@ abstract contract TokenRoles is TokenRolesConstants, ITokenRoles, RolesBase, Con
     }
 
     /**
-    * @notice Returns the current token manager
-    */
-    function manager() public override view returns (address) {
+     * @notice Returns the current token manager
+     */
+    function manager() public view override returns (address) {
         return StorageSlot.getAddressSlot(TOKEN_MANAGER_ADDRESS).value;
     }
 
     /**
-    * @notice Returns true if `caller` has the Controller role granted
-    */
-    function isController(address caller) public override view returns (bool) {
+     * @notice Returns true if `caller` has the Controller role granted
+     */
+    function isController(address caller) public view override returns (bool) {
         return RolesBase.hasRole(caller, TOKEN_CONTROLLER_ROLE);
     }
 
     /**
-    * @notice Returns true if `caller` has the Minter role granted
-    */
-    function isMinter(address caller) public override view returns (bool) {
+     * @notice Returns true if `caller` has the Minter role granted
+     */
+    function isMinter(address caller) public view override returns (bool) {
         return RolesBase.hasRole(caller, TOKEN_MINTER_ROLE);
     }
 
     /**
-    * @notice Grant the Controller role to `caller`. Only addresses with
-    * the Controller role granted may invoke this function
-    * @param caller The address to grant the Controller role to
-    */
+     * @notice Grant the Controller role to `caller`. Only addresses with
+     * the Controller role granted may invoke this function
+     * @param caller The address to grant the Controller role to
+     */
     function addController(address caller) public override onlyControllers {
         RolesBase._addRole(caller, TOKEN_CONTROLLER_ROLE);
     }
 
     /**
-    * @notice Remove the Controller role from `caller`. Only addresses with
-    * the Controller role granted may invoke this function
-    * @param caller The address to remove the Controller role from
-    */
+     * @notice Remove the Controller role from `caller`. Only addresses with
+     * the Controller role granted may invoke this function
+     * @param caller The address to remove the Controller role from
+     */
     function removeController(address caller) public override onlyControllers {
         RolesBase._removeRole(caller, TOKEN_CONTROLLER_ROLE);
     }
 
     /**
-    * @notice Grant the Minter role to `caller`. Only addresses with
-    * the Minter role granted may invoke this function
-    * @param caller The address to grant the Minter role to
-    */
+     * @notice Grant the Minter role to `caller`. Only addresses with
+     * the Minter role granted may invoke this function
+     * @param caller The address to grant the Minter role to
+     */
     function addMinter(address caller) public override onlyMinter {
         RolesBase._addRole(caller, TOKEN_MINTER_ROLE);
     }
 
     /**
-    * @notice Remove the Minter role from `caller`. Only addresses with
-    * the Minter role granted may invoke this function
-    * @param caller The address to remove the Minter role from
-    */
+     * @notice Remove the Minter role from `caller`. Only addresses with
+     * the Minter role granted may invoke this function
+     * @param caller The address to remove the Minter role from
+     */
     function removeMinter(address caller) public override onlyMinter {
         RolesBase._removeRole(caller, TOKEN_MINTER_ROLE);
     }
 
     /**
-    * @notice Change the current token manager. Only the current token manager
-    * can set a new token manager.
-    * @dev This function is also invoked if transferOwnership is invoked
-    * when the current token owner is also the current manager. 
-    */
+     * @notice Change the current token manager. Only the current token manager
+     * can set a new token manager.
+     * @dev This function is also invoked if transferOwnership is invoked
+     * when the current token owner is also the current manager.
+     */
     function changeManager(address newManager) public override onlyManager {
         _changeManager(newManager);
     }
@@ -154,14 +171,14 @@ abstract contract TokenRoles is TokenRolesConstants, ITokenRoles, RolesBase, Con
     function _changeManager(address newManager) private {
         address oldManager = manager();
         StorageSlot.getAddressSlot(TOKEN_MANAGER_ADDRESS).value = newManager;
-        
+
         emit AdminChanged(oldManager, newManager);
     }
 
     /**
      * @dev Returns the address of the current owner.
      */
-    function owner() public override view virtual returns (address) {
+    function owner() public view virtual override returns (address) {
         return StorageSlot.getAddressSlot(TOKEN_OWNER).value;
     }
 
@@ -172,7 +189,7 @@ abstract contract TokenRoles is TokenRolesConstants, ITokenRoles, RolesBase, Con
      * NOTE: Renouncing ownership will leave the contract without an owner,
      * thereby removing any functionality that is only available to the owner.
      */
-    function renounceOwnership() public override virtual onlyOwner {
+    function renounceOwnership() public virtual override onlyOwner {
         _setOwner(address(0));
     }
 
@@ -183,8 +200,16 @@ abstract contract TokenRoles is TokenRolesConstants, ITokenRoles, RolesBase, Con
      * is also updated to be the new owner
      * @param newOwner The address of the new owner
      */
-    function transferOwnership(address newOwner) public override virtual onlyOwner {
-        require(newOwner != address(0), "Ownable: new owner is the zero address");
+    function transferOwnership(address newOwner)
+        public
+        virtual
+        override
+        onlyOwner
+    {
+        require(
+            newOwner != address(0),
+            "Ownable: new owner is the zero address"
+        );
         _setOwner(newOwner);
     }
 
@@ -202,5 +227,25 @@ abstract contract TokenRoles is TokenRolesConstants, ITokenRoles, RolesBase, Con
             _changeManager(newOwner);
         }
         emit OwnershipTransferred(oldOwner, newOwner);
+    }
+
+    /**
+     * @notice Add a given roleId to the provided caller address. Only the current
+     * token manager can invoke this function
+     * @param caller The address to add the roleId to
+     * @param roleId The role ID to assign to the caller address
+     */
+    function addRole(address caller, bytes32 roleId) external onlyManager {
+        _addRole(caller, roleId);
+    }
+
+    /**
+     * @notice Remove a given roleId from the provided caller address. Only the current
+     * token manager can invoke this function
+     * @param caller The address to remove the roleId from
+     * @param roleId The role ID to remove from the caller address
+     */
+    function removeRole(address caller, bytes32 roleId) external onlyManager {
+        _removeRole(caller, roleId);
     }
 }

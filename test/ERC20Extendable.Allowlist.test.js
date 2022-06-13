@@ -1,22 +1,11 @@
 const { assert } = require("chai");
 const { expectRevert } = require("@openzeppelin/test-helpers");
-const {
-  nowSeconds,
-  advanceTime,
-  takeSnapshot,
-  revertToSnapshot,
-} = require("./utils/time");
-const { newSecretHashPair } = require("./utils/crypto");
-const { bytes32 } = require("./utils/regex");
 
 const AllowExtension = artifacts.require("AllowExtension");
 const ERC20Extendable = artifacts.require("ERC20");
 const ERC20Logic = artifacts.require("ERC20Logic");
 const ERC20LogicMock = artifacts.require("ERC20LogicMock");
 
-const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
-const ZERO_BYTES32 =
-  "0x0000000000000000000000000000000000000000000000000000000000000000";
 contract(
   "ERC20",
   function ([deployer, sender, holder, recipient, recipient2, notary]) {
@@ -41,6 +30,11 @@ contract(
           this.logic.address
         );
 
+        let tokenLogic = await ERC20Logic.at(token.address);
+
+        //combine both objects so we can use all the functions
+        token = Object.assign(token, tokenLogic);
+
         allowExtContract = await AllowExtension.new();
         allowExt = allowExtContract.address;
         assert.equal(await token.isMinter(deployer), true);
@@ -53,7 +47,9 @@ contract(
       it("Deployer can registers extension", async () => {
         assert.equal((await token.allExtensionsRegistered()).length, 0);
 
-        const result = await token.registerExtension(allowExt, { from: deployer });
+        const result = await token.registerExtension(allowExt, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
 
         assert.equal((await token.allExtensionsRegistered()).length, 1);
@@ -71,7 +67,9 @@ contract(
 
         assert.equal(await allowlistToken.isAllowlisted(deployer), false);
 
-        const result = await allowlistToken.addAllowlisted(deployer, { from: deployer });
+        const result = await allowlistToken.addAllowlisted(deployer, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
 
         assert.equal(await allowlistToken.isAllowlisted(deployer), true);
@@ -85,7 +83,7 @@ contract(
         await expectRevert.unspecified(
           allowlistToken.addAllowlisted(holder, { from: holder })
         );
-        
+
         assert.equal(await allowlistToken.isAllowlisted(holder), false);
       });
 
@@ -94,7 +92,9 @@ contract(
 
         assert.equal(await allowlistToken.isAllowlistedAdmin(holder), false);
 
-        const result = await allowlistToken.addAllowlistedAdmin(holder, { from: deployer });
+        const result = await allowlistToken.addAllowlistedAdmin(holder, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
 
         assert.equal(await allowlistToken.isAllowlistedAdmin(holder), true);
@@ -105,7 +105,9 @@ contract(
 
         assert.equal(await allowlistToken.isAllowlisted(recipient), false);
 
-        const result = await allowlistToken.addAllowlisted(recipient, { from: holder });
+        const result = await allowlistToken.addAllowlisted(recipient, {
+          from: holder,
+        });
         assert.equal(result.receipt.status, 1);
 
         assert.equal(await allowlistToken.isAllowlisted(recipient), true);
@@ -145,19 +147,22 @@ contract(
 
         assert.equal(await allowlistToken.isAllowlisted(recipient), true);
 
-        const result = await allowlistToken.removeAllowlisted(recipient, { from: holder });
+        const result = await allowlistToken.removeAllowlisted(recipient, {
+          from: holder,
+        });
         assert.equal(result.receipt.status, 1);
 
         assert.equal(await allowlistToken.isAllowlisted(recipient), false);
       });
-
 
       it("Allow list admins can remove allow list admins", async () => {
         const allowlistToken = await AllowExtension.at(token.address);
 
         assert.equal(await allowlistToken.isAllowlistedAdmin(holder), true);
 
-        const result = await allowlistToken.removeAllowlistedAdmin(holder, { from: deployer });
+        const result = await allowlistToken.removeAllowlistedAdmin(holder, {
+          from: deployer,
+        });
         assert.equal(result.receipt.status, 1);
 
         assert.equal(await allowlistToken.isAllowlistedAdmin(holder), false);
@@ -171,12 +176,14 @@ contract(
         await expectRevert.unspecified(
           allowlistToken.addAllowlisted(holder, { from: holder })
         );
-        
+
         assert.equal(await allowlistToken.isAllowlisted(holder), false);
       });
 
       it("Deployer can disable extensions", async () => {
-        const result2 = await token.disableExtension(allowExt, { from: deployer });
+        const result2 = await token.disableExtension(allowExt, {
+          from: deployer,
+        });
 
         assert.equal(result2.receipt.status, 1);
       });
@@ -237,7 +244,9 @@ contract(
       });
 
       it("Only deployer can enable extensions", async () => {
-        const result2 = await token.enableExtension(allowExt, { from: deployer });
+        const result2 = await token.enableExtension(allowExt, {
+          from: deployer,
+        });
 
         assert.equal(result2.receipt.status, 1);
       });
@@ -251,16 +260,18 @@ contract(
       it("Allow list admin can allow list several addresses", async () => {
         const allowlistToken = await AllowExtension.at(token.address);
 
-        const addresses = [sender, holder, recipient, recipient2, notary]
+        const addresses = [sender, holder, recipient, recipient2, notary];
 
         for (let i = 0; i < addresses.length; i++) {
           const adr = addresses[i];
-          
+
           assert.equal(await allowlistToken.isAllowlisted(adr), false);
 
-          const result = await allowlistToken.addAllowlisted(adr, { from: deployer });
+          const result = await allowlistToken.addAllowlisted(adr, {
+            from: deployer,
+          });
           assert.equal(result.receipt.status, 1);
-  
+
           assert.equal(await allowlistToken.isAllowlisted(adr), true);
         }
       });
@@ -290,7 +301,7 @@ contract(
         assert.equal(await token.balanceOf(recipient), 0);
         assert.equal(await token.balanceOf(recipient2), 0);
         assert.equal(await token.balanceOf(notary), 0);
-        assert.equal(await token.totalSupply(),  initialSupply + 1000 - 100);
+        assert.equal(await token.totalSupply(), initialSupply + 1000 - 100);
       });
 
       it("Transfer 100 tokens from holder to recipient", async () => {
@@ -330,14 +341,16 @@ contract(
         await expectRevert.unspecified(
           token.transfer(recipient2, 200, { from: notary })
         );
-        
+
         assert.equal(await token.totalSupply(), initialSupply + 1000 - 100);
         assert.equal(await token.balanceOf(holder), 800);
         assert.equal(await token.allowance(holder, notary), 0);
 
         const result = await token.approve(notary, 200, { from: holder });
         assert.equal(await token.allowance(holder, notary), 200);
-        const result2 = await token.transferFrom(holder, recipient2, 200, { from: notary });
+        const result2 = await token.transferFrom(holder, recipient2, 200, {
+          from: notary,
+        });
 
         assert.equal(result.receipt.status, 1);
         assert.equal(result2.receipt.status, 1);
@@ -355,21 +368,27 @@ contract(
         await expectRevert.unspecified(
           token.transfer(recipient2, 200, { from: notary })
         );
-        
+
         assert.equal(await token.totalSupply(), initialSupply + 1000 - 100);
         assert.equal(await token.balanceOf(holder), 600);
         assert.equal(await token.allowance(holder, notary), 0);
-  
-        const result = await token.increaseAllowance(notary, 300, { from: holder });
-        const result2 = await token.decreaseAllowance(notary, 100, { from: holder });
+
+        const result = await token.increaseAllowance(notary, 300, {
+          from: holder,
+        });
+        const result2 = await token.decreaseAllowance(notary, 100, {
+          from: holder,
+        });
 
         assert.equal(await token.allowance(holder, notary), 200);
-        const result3 = await token.transferFrom(holder, recipient2, 200, { from: notary });
-  
+        const result3 = await token.transferFrom(holder, recipient2, 200, {
+          from: notary,
+        });
+
         assert.equal(result.receipt.status, 1);
         assert.equal(result2.receipt.status, 1);
         assert.equal(result3.receipt.status, 1);
-  
+
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 400);
         assert.equal(await token.balanceOf(sender), 0);
@@ -384,21 +403,25 @@ contract(
         await expectRevert.unspecified(
           token.transfer(recipient2, 200, { from: notary })
         );
-        
+
         assert.equal(await token.totalSupply(), initialSupply + 1000 - 100);
         assert.equal(await token.balanceOf(holder), 400);
         assert.equal(await token.allowance(holder, notary), 0);
-  
-        const result = await token.increaseAllowance(notary, 300, { from: holder });
-        const result2 = await token.decreaseAllowance(notary, 100, { from: holder });
+
+        const result = await token.increaseAllowance(notary, 300, {
+          from: holder,
+        });
+        const result2 = await token.decreaseAllowance(notary, 100, {
+          from: holder,
+        });
 
         assert.equal(await token.allowance(holder, notary), 200);
         const result3 = await token.burnFrom(holder, 200, { from: notary });
-  
+
         assert.equal(result.receipt.status, 1);
         assert.equal(result2.receipt.status, 1);
         assert.equal(result3.receipt.status, 1);
-  
+
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 200);
         assert.equal(await token.balanceOf(sender), 0);
@@ -413,19 +436,19 @@ contract(
         await expectRevert.unspecified(
           token.transfer(recipient2, 200, { from: notary })
         );
-        
+
         assert.equal(await token.totalSupply(), initialSupply + 1000 - 300);
         assert.equal(await token.balanceOf(holder), 200);
         assert.equal(await token.allowance(holder, notary), 0);
-  
+
         const result = await token.approve(notary, 200, { from: holder });
 
         assert.equal(await token.allowance(holder, notary), 200);
         const result3 = await token.burnFrom(holder, 200, { from: notary });
-  
+
         assert.equal(result.receipt.status, 1);
         assert.equal(result3.receipt.status, 1);
-  
+
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 0);
         assert.equal(await token.balanceOf(sender), 0);
@@ -460,12 +483,14 @@ contract(
       it("Deployer can remove extensions", async () => {
         assert.equal((await token.allExtensionsRegistered()).length, 1);
 
-        const result2 = await token.removeExtension(allowExt, { from: deployer });
+        const result2 = await token.removeExtension(allowExt, {
+          from: deployer,
+        });
 
         assert.equal(result2.receipt.status, 1);
 
         assert.equal((await token.allExtensionsRegistered()).length, 0);
       });
-
     });
-  })
+  }
+);
