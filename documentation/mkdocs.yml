@@ -23,7 +23,10 @@ nav:
   - Home: index.md
   - Overview: 
       - Welcome: overview/welcome.md
+      - Getting started: overview/getting-started.md
       - Releases: overview/releases.md
+      - Change logs: 
+          - 434c657: overview/changelogs/434c657.md
   - Token API: 
       - Overview: tokens/overview.md
       - Token Proxy: tokens/token-proxy.md
