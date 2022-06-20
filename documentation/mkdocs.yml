@@ -23,10 +23,15 @@ nav:
   - Home: index.md
   - Overview: 
       - Welcome: overview/welcome.md
-      - Getting started: overview/getting-started.md
       - Releases: overview/releases.md
       - Change logs: 
           - 434c657: overview/changelogs/434c657.md
+  - Getting started:
+      - Prequisites: getting-started/prerequisites.md
+      - Truffle set up: getting-started/truffle-setup.md
+      - ERC1820: getting-started/ERC1820.md
+      - Build and deploy contract: getting-started/build-deploy-contract.md
+      - Running deploy scripts: getting-started/run-deploy-scripts.md
   - Token API: 
       - Overview: tokens/overview.md
       - Token Proxy: tokens/token-proxy.md

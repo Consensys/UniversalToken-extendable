@@ -1,66 +1,3 @@
-# Getting started
-
-## Clone the repo
-
-```bash
-git clone https://github.com/ConsenSys/UniversalToken-extendable
-```
-
-```bash
-cd UniversalToken-extendable
-```
-
-## Prerequisites
-
-```bash
-yarn add truffle
-```
-
-## Deploying
-
-Use the repo's [Truffle execution scripts](https://github.com/ConsenSys/UniversalToken-extendable/tree/main/scripts/deployments) to deploy tokens, extensions, and the ERC1820 registry. 
-
-### ERC1820
-
-!!! important
-    The UniversalToken library uses the ERC1820 registry throughout the smart contract arcitecture. 
-
-    To use the library, you **MUST** have an ERC1820 registry deployed on your network. 
-
-    Run the registry deployment script which deploys the ERC1820 registry at `0x1820a4B7618BdE71Dce8cdc73aAB6C95905faD24`, or does nothing if the registry already exists in the network.
-
-To deploy the ERC1820 registry, run the following command:
-
-```shell
-yarn truffle exec scripts/deployments/registry.js
-```
-
-If the ERC1820 registry is already deployed on-chain, then the script does nothing.
-
-### ERC20
-
-To deploy a new ERC20 token, first edit the config file in `scripts/deployments/configs/erc20TokenConfig.json` with your own details. 
-
-Then, run the following command:
-
-```shell
-yarn truffle exec scripts/deployments/tokens/erc20.js
-```
-
-### ERC721
-
-To deploy a new ERC20 token, first edit the config file in `scripts/deployments/configs/erc721TokenConfig.json` with your own details. 
-
-Then, run the following command:
-
-```shell
-yarn truffle exec scripts/deployments/tokens/erc721.js
-```
-
-### Extensions
-
-In `scripts/deployments/extensions/`, there are several `truffle exec` scripts for deploying extensions on-chain. 
-
 ## Building
 
 First, compile all contracts in your cloned repo:
@@ -74,7 +11,7 @@ For this example, we will deploy an ERC20 token. However, the steps are the same
 !!! note
     The only difference between token standards are the constructor arguments used in the token deployment.
 
-### Deploy ERC20Logic contract
+## Deploy ERC20Logic contract
 
 Once you have compliled the contracts, get an ERC20 logic contract address for the network you plan on using. You can do this by:
 
@@ -103,7 +40,7 @@ Once you have compliled the contracts, get an ERC20 logic contract address for t
     3. Ropsten: 
     4. Goreli: 
 
-### Setup ERC20 token deployment
+## Setup ERC20 token deployment
 
 Once you have an ERC20 logic contract address, you then must decide on values for the different token constructor arguments. 
 
@@ -124,7 +61,7 @@ Once you have an ERC20 logic contract address, you then must decide on values fo
  const maxSupply = 5000000000; 
 ```
 
-### Deploy token
+## Deploy token
 
 Now you have all variables you need to deploy the `ERC20` token. 
 
@@ -149,7 +86,7 @@ const token = await ERC20.new(
 );
 ```
 
-### Full example
+## Full example
 
 ```javascript
 // Deploy token logic contract, or obtain currently deployed logic contract
