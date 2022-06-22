@@ -379,6 +379,13 @@ contract ERC721Logic is
         return m.allowBurn;
     }
 
+    /**
+     * @notice Returns the maximum value the totalSupply() can be for this token
+     */
+    function maxSupply() external view returns (uint256) {
+        return _getProtectedTokenData().maxSupply;
+    }
+
     function _toggleMinting(bool allowMinting) internal {
         ERC721ProtectedTokenData storage m = _getProtectedTokenData();
         m.allowMint = allowMinting;
