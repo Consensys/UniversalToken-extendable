@@ -40,8 +40,12 @@ contract(
         assert.equal(await token.isMinter(deployer), true);
         assert.equal(await token.name(), "ERC20Extendable");
         assert.equal(await token.symbol(), "DAU");
+        assert.equal(await token.mintingAllowed(), true);
+        assert.equal(await token.burningAllowed(), true);
         assert.equal(await token.totalSupply(), initialSupply);
+        assert.equal(await token.maxSupply(), maxSupply);
         assert.equal(await token.balanceOf(deployer), initialSupply);
+        assert.equal(await token.tokenStandard(), 0);
       });
 
       it("Deployer can registers extension", async () => {
@@ -71,6 +75,15 @@ contract(
           from: deployer,
         });
         assert.equal(result.receipt.status, 1);
+        // Test the RoleAdded event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "RoleAdded");
+        assert.equal(eventRes[0], deployer);
+        assert.equal(
+          eventRes[1],
+          web3.utils.keccak256("allowblock.roles.allowlisted")
+        );
 
         assert.equal(await allowlistToken.isAllowlisted(deployer), true);
       });
@@ -96,6 +109,15 @@ contract(
           from: deployer,
         });
         assert.equal(result.receipt.status, 1);
+        // Test the RoleAdded event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "RoleAdded");
+        assert.equal(eventRes[0], holder);
+        assert.equal(
+          eventRes[1],
+          web3.utils.keccak256("allowblock.roles.allowlisted.admin")
+        );
 
         assert.equal(await allowlistToken.isAllowlistedAdmin(holder), true);
       });
@@ -109,6 +131,15 @@ contract(
           from: holder,
         });
         assert.equal(result.receipt.status, 1);
+        // Test the RoleAdded event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "RoleAdded");
+        assert.equal(eventRes[0], recipient);
+        assert.equal(
+          eventRes[1],
+          web3.utils.keccak256("allowblock.roles.allowlisted")
+        );
 
         assert.equal(await allowlistToken.isAllowlisted(recipient), true);
       });
@@ -118,6 +149,14 @@ contract(
         assert.equal(await token.balanceOf(deployer), initialSupply);
         const result = await token.transfer(recipient, 100, { from: deployer });
         assert.equal(result.receipt.status, 1);
+        // Test the Transfer event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "Transfer");
+        assert.equal(eventRes[0], deployer);
+        assert.equal(eventRes[1], recipient);
+        assert.equal(eventRes[2], 100);
+
         assert.equal(await token.balanceOf(deployer), initialSupply - 100);
         assert.equal(await token.balanceOf(holder), 0);
         assert.equal(await token.balanceOf(sender), 0);
@@ -133,6 +172,13 @@ contract(
         assert.equal(await token.balanceOf(recipient), 100);
         const result = await token.transfer(deployer, 100, { from: recipient });
         assert.equal(result.receipt.status, 1);
+        // Test the Transfer event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "Transfer");
+        assert.equal(eventRes[0], recipient);
+        assert.equal(eventRes[1], deployer);
+        assert.equal(eventRes[2], 100);
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 0);
         assert.equal(await token.balanceOf(sender), 0);
@@ -151,6 +197,15 @@ contract(
           from: holder,
         });
         assert.equal(result.receipt.status, 1);
+        // Test the RoleRemoved event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "RoleRemoved");
+        assert.equal(eventRes[0], recipient);
+        assert.equal(
+          eventRes[1],
+          web3.utils.keccak256("allowblock.roles.allowlisted")
+        );
 
         assert.equal(await allowlistToken.isAllowlisted(recipient), false);
       });
@@ -164,6 +219,15 @@ contract(
           from: deployer,
         });
         assert.equal(result.receipt.status, 1);
+        // Test the RoleRemoved event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "RoleRemoved");
+        assert.equal(eventRes[0], holder);
+        assert.equal(
+          eventRes[1],
+          web3.utils.keccak256("allowblock.roles.allowlisted.admin")
+        );
 
         assert.equal(await allowlistToken.isAllowlistedAdmin(holder), false);
       });
@@ -193,6 +257,13 @@ contract(
         assert.equal(await token.balanceOf(deployer), initialSupply);
         const result = await token.transfer(recipient, 100, { from: deployer });
         assert.equal(result.receipt.status, 1);
+        // Test the Transfer event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "Transfer");
+        assert.equal(eventRes[0], deployer);
+        assert.equal(eventRes[1], recipient);
+        assert.equal(eventRes[2], 100);
         assert.equal(await token.balanceOf(deployer), initialSupply - 100);
         assert.equal(await token.balanceOf(holder), 0);
         assert.equal(await token.balanceOf(sender), 0);
@@ -208,6 +279,13 @@ contract(
         assert.equal(await token.balanceOf(recipient), 100);
         const result = await token.transfer(deployer, 100, { from: recipient });
         assert.equal(result.receipt.status, 1);
+        // Test the Transfer event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "Transfer");
+        assert.equal(eventRes[0], recipient);
+        assert.equal(eventRes[1], deployer);
+        assert.equal(eventRes[2], 100);
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 0);
         assert.equal(await token.balanceOf(sender), 0);
@@ -253,7 +331,7 @@ contract(
 
       it("No one else can disable extensions", async () => {
         await expectRevert.unspecified(
-          token.registerExtension(allowExt, { from: holder })
+          token.disableExtension(allowExt, { from: holder })
         );
       });
 
@@ -271,6 +349,15 @@ contract(
             from: deployer,
           });
           assert.equal(result.receipt.status, 1);
+          // Test the RoleAdded event
+          let eventName = result.logs[0].event;
+          let eventRes = result.logs[0].args;
+          assert.equal(eventName, "RoleAdded");
+          assert.equal(eventRes[0], adr);
+          assert.equal(
+            eventRes[1],
+            web3.utils.keccak256("allowblock.roles.allowlisted")
+          );
 
           assert.equal(await allowlistToken.isAllowlisted(adr), true);
         }
@@ -281,6 +368,13 @@ contract(
         assert.equal(await token.balanceOf(holder), 0);
         const result = await token.mint(holder, 1000, { from: deployer });
         assert.equal(result.receipt.status, 1);
+        // Test the Transfer event (minting from the zero address)
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "Transfer");
+        assert.equal(eventRes[0], "0x0000000000000000000000000000000000000000");
+        assert.equal(eventRes[1], holder);
+        assert.equal(eventRes[2], 1000);
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 1000);
         assert.equal(await token.balanceOf(sender), 0);
@@ -295,6 +389,13 @@ contract(
         assert.equal(await token.balanceOf(holder), 1000);
         const result = await token.burn(100, { from: holder });
         assert.equal(result.receipt.status, 1);
+        // Test the Transfer event (burn to the zero address)
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "Transfer");
+        assert.equal(eventRes[0], holder);
+        assert.equal(eventRes[1], "0x0000000000000000000000000000000000000000");
+        assert.equal(eventRes[2], 100);
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 1000 - 100);
         assert.equal(await token.balanceOf(sender), 0);
@@ -309,6 +410,13 @@ contract(
         assert.equal(await token.balanceOf(holder), 900);
         const result = await token.transfer(recipient, 100, { from: holder });
         assert.equal(result.receipt.status, 1);
+        // Test the Transfer event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "Transfer");
+        assert.equal(eventRes[0], holder);
+        assert.equal(eventRes[1], recipient);
+        assert.equal(eventRes[2], 100);
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 800);
         assert.equal(await token.balanceOf(sender), 0);
@@ -331,9 +439,11 @@ contract(
         );
       });
 
-      it("recipient cant transferFrom 200 tokens from holder to recipient2 no balance", async () => {
+      it("notary cant transferFrom 200 tokens from holder to recipient2 no balance", async () => {
         await expectRevert.unspecified(
-          token.transfer(recipient2, 200, { from: recipient })
+          token.transferFrom(holder, recipient2, 200, {
+            from: notary,
+          })
         );
       });
 
@@ -347,13 +457,33 @@ contract(
         assert.equal(await token.allowance(holder, notary), 0);
 
         const result = await token.approve(notary, 200, { from: holder });
+        assert.equal(result.receipt.status, 1);
+        // Test the Approval event
+        let eventName1 = result.logs[0].event;
+        let eventRes1 = result.logs[0].args;
+        assert.equal(eventName1, "Approval");
+        assert.equal(eventRes1[0], holder);
+        assert.equal(eventRes1[1], notary);
+        assert.equal(eventRes1[2], 200);
         assert.equal(await token.allowance(holder, notary), 200);
         const result2 = await token.transferFrom(holder, recipient2, 200, {
           from: notary,
         });
-
-        assert.equal(result.receipt.status, 1);
         assert.equal(result2.receipt.status, 1);
+        // Test the Approval and Transfer events for TransferFrom operation
+        let eventName2 = result2.logs[0].event;
+        let eventRes2 = result2.logs[0].args;
+        assert.equal(eventName2, "Approval");
+        assert.equal(eventRes2[0], holder);
+        assert.equal(eventRes2[1], notary);
+        assert.equal(eventRes2[2], 0);
+
+        let eventName3 = result2.logs[1].event;
+        let eventRes3 = result2.logs[1].args;
+        assert.equal(eventName3, "Transfer");
+        assert.equal(eventRes3[0], holder);
+        assert.equal(eventRes3[1], recipient2);
+        assert.equal(eventRes3[2], 200);
 
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 600);
@@ -376,18 +506,45 @@ contract(
         const result = await token.increaseAllowance(notary, 300, {
           from: holder,
         });
+        assert.equal(result.receipt.status, 1);
+        // Test the Approval event
+        let eventName1 = result.logs[0].event;
+        let eventRes1 = result.logs[0].args;
+        assert.equal(eventName1, "Approval");
+        assert.equal(eventRes1[0], holder);
+        assert.equal(eventRes1[1], notary);
+        assert.equal(eventRes1[2], 300);
         const result2 = await token.decreaseAllowance(notary, 100, {
           from: holder,
         });
+        assert.equal(result2.receipt.status, 1);
+        // Test the Approval event
+        let eventName2 = result2.logs[0].event;
+        let eventRes2 = result2.logs[0].args;
+        assert.equal(eventName2, "Approval");
+        assert.equal(eventRes2[0], holder);
+        assert.equal(eventRes2[1], notary);
+        assert.equal(eventRes2[2], 200);
 
         assert.equal(await token.allowance(holder, notary), 200);
         const result3 = await token.transferFrom(holder, recipient2, 200, {
           from: notary,
         });
-
-        assert.equal(result.receipt.status, 1);
-        assert.equal(result2.receipt.status, 1);
         assert.equal(result3.receipt.status, 1);
+        // Test the Approval and Transfer events for TransferFrom operation
+        let eventName3 = result3.logs[0].event;
+        let eventRes3 = result3.logs[0].args;
+        assert.equal(eventName3, "Approval");
+        assert.equal(eventRes3[0], holder);
+        assert.equal(eventRes3[1], notary);
+        assert.equal(eventRes3[2], 0);
+
+        let eventName4 = result3.logs[1].event;
+        let eventRes4 = result3.logs[1].args;
+        assert.equal(eventName4, "Transfer");
+        assert.equal(eventRes4[0], holder);
+        assert.equal(eventRes4[1], recipient2);
+        assert.equal(eventRes4[2], 200);
 
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 400);
@@ -411,16 +568,46 @@ contract(
         const result = await token.increaseAllowance(notary, 300, {
           from: holder,
         });
+        assert.equal(result.receipt.status, 1);
+        // Test the Approval event
+        let eventName1 = result.logs[0].event;
+        let eventRes1 = result.logs[0].args;
+        assert.equal(eventName1, "Approval");
+        assert.equal(eventRes1[0], holder);
+        assert.equal(eventRes1[1], notary);
+        assert.equal(eventRes1[2], 300);
         const result2 = await token.decreaseAllowance(notary, 100, {
           from: holder,
         });
+        assert.equal(result2.receipt.status, 1);
+        // Test the Approval event
+        let eventName2 = result2.logs[0].event;
+        let eventRes2 = result2.logs[0].args;
+        assert.equal(eventName2, "Approval");
+        assert.equal(eventRes2[0], holder);
+        assert.equal(eventRes2[1], notary);
+        assert.equal(eventRes2[2], 200);
 
         assert.equal(await token.allowance(holder, notary), 200);
         const result3 = await token.burnFrom(holder, 200, { from: notary });
-
-        assert.equal(result.receipt.status, 1);
-        assert.equal(result2.receipt.status, 1);
         assert.equal(result3.receipt.status, 1);
+        // Test the Approval and Transfer events for BurnFrom operation
+        let eventName3 = result3.logs[0].event;
+        let eventRes3 = result3.logs[0].args;
+        assert.equal(eventName3, "Approval");
+        assert.equal(eventRes3[0], holder);
+        assert.equal(eventRes3[1], notary);
+        assert.equal(eventRes3[2], 0);
+
+        let eventName4 = result3.logs[1].event;
+        let eventRes4 = result3.logs[1].args;
+        assert.equal(eventName4, "Transfer");
+        assert.equal(eventRes4[0], holder);
+        assert.equal(
+          eventRes4[1],
+          "0x0000000000000000000000000000000000000000"
+        );
+        assert.equal(eventRes4[2], 200);
 
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 200);
@@ -442,12 +629,35 @@ contract(
         assert.equal(await token.allowance(holder, notary), 0);
 
         const result = await token.approve(notary, 200, { from: holder });
+        assert.equal(result.receipt.status, 1);
+        // Test the Approval event
+        let eventName1 = result.logs[0].event;
+        let eventRes1 = result.logs[0].args;
+        assert.equal(eventName1, "Approval");
+        assert.equal(eventRes1[0], holder);
+        assert.equal(eventRes1[1], notary);
+        assert.equal(eventRes1[2], 200);
 
         assert.equal(await token.allowance(holder, notary), 200);
-        const result3 = await token.burnFrom(holder, 200, { from: notary });
+        const result2 = await token.burnFrom(holder, 200, { from: notary });
+        assert.equal(result2.receipt.status, 1);
+        // Test the Approval and Transfer events for BurnFrom operation
+        let eventName2 = result2.logs[0].event;
+        let eventRes2 = result2.logs[0].args;
+        assert.equal(eventName2, "Approval");
+        assert.equal(eventRes2[0], holder);
+        assert.equal(eventRes2[1], notary);
+        assert.equal(eventRes2[2], 0);
 
-        assert.equal(result.receipt.status, 1);
-        assert.equal(result3.receipt.status, 1);
+        let eventName3 = result2.logs[1].event;
+        let eventRes3 = result2.logs[1].args;
+        assert.equal(eventName3, "Transfer");
+        assert.equal(eventRes3[0], holder);
+        assert.equal(
+          eventRes3[1],
+          "0x0000000000000000000000000000000000000000"
+        );
+        assert.equal(eventRes3[2], 200);
 
         assert.equal(await token.balanceOf(deployer), initialSupply);
         assert.equal(await token.balanceOf(holder), 0);
@@ -470,7 +680,9 @@ contract(
       it("when the owner upgrades, it's successful", async () => {
         let newLogic = await ERC20LogicMock.new();
 
-        await token.upgradeTo(newLogic.address, "0x", { from: deployer });
+        const res = await token.upgradeTo(newLogic.address, "0x", {
+          from: deployer,
+        });
 
         //Bind the token address to the mock ABI
         //so we can invoke new functions
@@ -478,6 +690,13 @@ contract(
 
         //Only mock contract has the isMock function
         assert.equal(await upgradedTokenApi.isMock(), "This is a mock!");
+
+        // Test the Upgraded event
+        let eventName = res.logs[0].event;
+        let eventRes = res.logs[0].args;
+
+        assert.equal(eventName, "Upgraded");
+        assert.equal(eventRes[0], newLogic.address);
       });
 
       it("Deployer can remove extensions", async () => {

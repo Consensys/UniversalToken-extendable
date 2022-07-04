@@ -30,6 +30,11 @@ abstract contract ExtendableTokenProxy is
     TokenEventManagerStorage,
     IExtendableTokenProxy
 {
+    event ExtensionUpgraded(
+        address indexed extension,
+        address indexed newExtension
+    );
+
     string internal constant EXTENDABLE_INTERFACE_NAME = "ExtendableToken";
 
     /**
@@ -153,6 +158,8 @@ abstract contract ExtendableTokenProxy is
 
         //Save new extension data
         _saveExtension(proxy, newExtension);
+
+        emit ExtensionUpgraded(extension, newExtension);
     }
 
     /**
