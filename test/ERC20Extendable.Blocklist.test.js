@@ -43,8 +43,12 @@ contract(
         assert.equal(await token.isMinter(deployer), true);
         assert.equal(await token.name(), "ERC20Extendable");
         assert.equal(await token.symbol(), "DAU");
+        assert.equal(await token.mintingAllowed(), true);
+        assert.equal(await token.burningAllowed(), true);
         assert.equal(await token.totalSupply(), initialSupply);
+        assert.equal(await token.maxSupply(), maxSupply);
         assert.equal(await token.balanceOf(deployer), initialSupply);
+        assert.equal(await token.tokenStandard(), 0);
       });
 
       it("Deployer can registers extension", async () => {
@@ -63,6 +67,14 @@ contract(
         assert.equal(await token.balanceOf(deployer), initialSupply);
         const result = await token.transfer(recipient, 100, { from: deployer });
         assert.equal(result.receipt.status, 1);
+        // Test the Transfer event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "Transfer");
+        assert.equal(eventRes[0], deployer);
+        assert.equal(eventRes[1], recipient);
+        assert.equal(eventRes[2], 100);
+
         assert.equal(await token.balanceOf(deployer), initialSupply - 100);
         assert.equal(await token.balanceOf(holder), 0);
         assert.equal(await token.balanceOf(sender), 0);
@@ -81,6 +93,15 @@ contract(
           from: deployer,
         });
         assert.equal(result.receipt.status, 1);
+        // Test the RoleAdded event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "RoleAdded");
+        assert.equal(eventRes[0], recipient);
+        assert.equal(
+          eventRes[1],
+          web3.utils.keccak256("allowblock.roles.blocklisted")
+        );
 
         assert.equal(await blocklistToken.isBlocklisted(recipient), true);
       });
@@ -120,6 +141,15 @@ contract(
           from: deployer,
         });
         assert.equal(result.receipt.status, 1);
+        // Test the RoleAdded event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "RoleAdded");
+        assert.equal(eventRes[0], holder);
+        assert.equal(
+          eventRes[1],
+          web3.utils.keccak256("allowblock.roles.blocklisted.admin")
+        );
 
         assert.equal(await blocklistToken.isBlocklistedAdmin(holder), true);
       });
@@ -133,6 +163,15 @@ contract(
           from: holder,
         });
         assert.equal(result.receipt.status, 1);
+        // Test the RoleRemoved event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+        assert.equal(eventName, "RoleRemoved");
+        assert.equal(eventRes[0], recipient);
+        assert.equal(
+          eventRes[1],
+          web3.utils.keccak256("allowblock.roles.blocklisted")
+        );
 
         assert.equal(await blocklistToken.isBlocklisted(recipient), false);
       });
@@ -179,6 +218,13 @@ contract(
         });
 
         assert.equal(result.receipt.status, 1);
+        // Test the ExtensionUpgraded event
+        let eventName = result.logs[0].event;
+        let eventRes = result.logs[0].args;
+
+        assert.equal(eventName, "ExtensionUpgraded");
+        assert.equal(eventRes[0], blockExt);
+        assert.equal(eventRes[1], newExt.address);
         assert.equal((await token.allExtensionsRegistered()).length, 1);
 
         const blocklistToken = await MockBlockExtension.at(token.address);
