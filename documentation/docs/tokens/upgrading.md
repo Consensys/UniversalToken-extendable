@@ -1,6 +1,6 @@
 # Upgrading Token Logic
 
-To upgrade/change the underlying [token logic](./token-logic.md) contract a [token proxy](./token-proxy.md) is using, simply run the `upgradeTo(address logic, bytes memory data)` function in the token proxy.
+To upgrade/change the underlying [token logic](./token-logic.md) contract a [token proxy](./overview.md) is using, simply run the `upgradeTo(address logic, bytes memory data)` function in the token proxy.
 
 The `address` provided will be the new logic contract that will be used, and the `data` provided will be passed to the logic contract's `_onInitialize` function
 

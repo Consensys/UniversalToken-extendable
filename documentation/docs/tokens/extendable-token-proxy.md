@@ -1,4 +1,4 @@
-## Extendable Token Proxy
+# Extendable Token Proxy
 
 The `ExtendableTokenProxy` is the smart contract responsible for managing both the [EIP1967 Proxy](https://eips.ethereum.org/EIPS/eip-1967) logic as well as the extension registration/execution logic. This contract also has functions to manage roles through the `TokenRoles` contract. 
 

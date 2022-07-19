@@ -24,18 +24,18 @@ nav:
   - Overview: 
       - Welcome: overview/welcome.md
       - Releases: overview/releases.md
-  - Token API: 
+  - Token: 
       - Overview: tokens/overview.md
-      - Token Proxy: tokens/token-proxy.md
+      - Extendable Token Proxy: tokens/extendable-token-proxy.md
       - Token Logic: tokens/token-logic.md
       - Token Roles: tokens/token-roles.md
       - Upgrading Token Logic: tokens/upgrading.md
   - Extensions: 
-      - Getting started: extensions/getting-started.md
+      - Overview: extensions/getting-started.md
       - Building extensions: extensions/building-extensions.md
       - Token events: extensions/token-events.md
       - Controlled transfers: extensions/controlled-transfers.md
-      - API: extensions/api.md
+      - TokenExtension API: extensions/api.md
   - Solidity API:
       - ERC20:  API/ERC20.md
       - ERC721:  API/ERC721.md

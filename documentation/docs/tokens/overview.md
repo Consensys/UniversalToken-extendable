@@ -1,10 +1,23 @@
-## TokenProxy API
+# Overview
+
+The token smart contracts consist of two primary contracts. The `TokenProxy` and the `TokenLogic`. The token proxy is responsible for
+
+1. Managing token roles
+2. Managing the current token logic implementation contract
+
+The primary smart contract used by all implementations in the repo is the [ExtendableTokenProxy](./extendable-token-proxy.md) which adds supports
+for extensions and is responsible for
+
+1. Managing token extensions
+2. Routing calls to either the token logic contract or extensions (based on function selector)
+
+# TokenProxy Functionality
 
 This section discusses the different functions of the `TokenProxy` that is used by every token standard contract deployed (`ERC20`, `ERC721`, etc.).
 
 This section assumes you have a token deployed on-chain and you have access to the token contract via a Truffle contract variable named `token` inside a script. However, these functions can be used by any client such as with Etherscan or with Hardhat. 
 
-# Token Interface
+## Interface
 
 The `IToken` interface is the interface that all token contracts must adhere to. 
 
