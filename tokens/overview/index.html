@@ -15,7 +15,7 @@
         <link rel="canonical" href="http://127.0.0.1:8000/tokens/overview/">
       
       <link rel="icon" href="../../cdn/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.0.5">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.0.5">
     
     
       
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tokenproxy-api" class="md-skip">
+        <a href="#overview" class="md-skip">
           Skip to content
         </a>
       
@@ -203,7 +203,7 @@
   
     <li class="md-tabs__item">
       <a href="./" class="md-tabs__link md-tabs__link--active">
-        Token API
+        Token
       </a>
     </li>
   
@@ -392,14 +392,14 @@
       
       
         <label class="md-nav__link" for="__nav_3">
-          Token API
+          Token
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Token API" data-md-level="1">
+      <nav class="md-nav" aria-label="Token" data-md-level="1">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
-          Token API
+          Token
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -415,232 +415,12 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Overview
-          <span class="md-nav__icon md-icon"></span>
-        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Overview
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tokenproxy-api" class="md-nav__link">
-    TokenProxy API
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#token-interface" class="md-nav__link">
-    Token Interface
-  </a>
-  
-    <nav class="md-nav" aria-label="Token Interface">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tokentransfertransferdata-onlycontrollers" class="md-nav__link">
-    tokenTransfer(TransferData) onlyControllers
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tokenstandard-pure-returns-tokenstandard" class="md-nav__link">
-    tokenStandard() pure returns (TokenStandard)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#token-roles" class="md-nav__link">
-    Token Roles
-  </a>
-  
-    <nav class="md-nav" aria-label="Token Roles">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manager-view-returns-address" class="md-nav__link">
-    manager() view returns (address)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#changemanageraddress-onlymanager" class="md-nav__link">
-    changeManager(address) onlyManager
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#iscontrolleraddress-view-returns-bool" class="md-nav__link">
-    isController(address) view returns (bool)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#isminteraddress-view-returns-bool" class="md-nav__link">
-    isMinter(address) view returns (bool)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#addcontrolleraddress-onlycontroller" class="md-nav__link">
-    addController(address) onlyController
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removecontrolleraddress-onlycontroller" class="md-nav__link">
-    removeController(address) onlyController
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#addminteraddress-onlyminter" class="md-nav__link">
-    addMinter(address) onlyMinter
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removeminteraddress-onlyminter" class="md-nav__link">
-    removeMinter(address) onlyMinter
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#owner-view-returns-address" class="md-nav__link">
-    owner() view returns (address)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#renounceownership-onlyowner" class="md-nav__link">
-    renounceOwnership() onlyOwner
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#transferownershipaddress-onlyowner" class="md-nav__link">
-    transferOwnership(address) onlyOwner
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#addroleaddressbytes32-onlymanager" class="md-nav__link">
-    addRole(address,bytes32) onlyManager
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removeroleaddressbytes32-onlymanager" class="md-nav__link">
-    removeRole(address,bytes32) onlyManager
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extensions" class="md-nav__link">
-    Extensions
-  </a>
-  
-    <nav class="md-nav" aria-label="Extensions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#allextensionsregistered-view-returns-address" class="md-nav__link">
-    allExtensionsRegistered() view returns (address[])
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#allextensionproxies-view-returns-address" class="md-nav__link">
-    allExtensionProxies() view returns (address[])
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#proxyaddressforextensionaddress-view-returns-address" class="md-nav__link">
-    proxyAddressForExtension(address) view returns (address)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#registerextensionaddress-onlymanager" class="md-nav__link">
-    registerExtension(address) onlyManager
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removeextensionaddress-onlymanager" class="md-nav__link">
-    removeExtension(address) onlyManager
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#disableextensionaddress-onlymanager" class="md-nav__link">
-    disableExtension(address) onlyManager
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#enableextensionaddress-onlymanager" class="md-nav__link">
-    enableExtension(address) onlyManager
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -653,8 +433,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../token-proxy/" class="md-nav__link">
-        Token Proxy
+      <a href="../extendable-token-proxy/" class="md-nav__link">
+        Extendable Token Proxy
       </a>
     </li>
   
@@ -756,7 +536,7 @@
   
     <li class="md-nav__item">
       <a href="../../extensions/getting-started/" class="md-nav__link">
-        Getting started
+        Overview
       </a>
     </li>
   
@@ -812,7 +592,7 @@
   
     <li class="md-nav__item">
       <a href="../../extensions/api/" class="md-nav__link">
-        API
+        TokenExtension API
       </a>
     </li>
   
@@ -2623,214 +2403,8 @@
   
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tokenproxy-api" class="md-nav__link">
-    TokenProxy API
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#token-interface" class="md-nav__link">
-    Token Interface
-  </a>
-  
-    <nav class="md-nav" aria-label="Token Interface">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tokentransfertransferdata-onlycontrollers" class="md-nav__link">
-    tokenTransfer(TransferData) onlyControllers
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tokenstandard-pure-returns-tokenstandard" class="md-nav__link">
-    tokenStandard() pure returns (TokenStandard)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#token-roles" class="md-nav__link">
-    Token Roles
-  </a>
-  
-    <nav class="md-nav" aria-label="Token Roles">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manager-view-returns-address" class="md-nav__link">
-    manager() view returns (address)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#changemanageraddress-onlymanager" class="md-nav__link">
-    changeManager(address) onlyManager
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#iscontrolleraddress-view-returns-bool" class="md-nav__link">
-    isController(address) view returns (bool)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#isminteraddress-view-returns-bool" class="md-nav__link">
-    isMinter(address) view returns (bool)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#addcontrolleraddress-onlycontroller" class="md-nav__link">
-    addController(address) onlyController
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removecontrolleraddress-onlycontroller" class="md-nav__link">
-    removeController(address) onlyController
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#addminteraddress-onlyminter" class="md-nav__link">
-    addMinter(address) onlyMinter
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removeminteraddress-onlyminter" class="md-nav__link">
-    removeMinter(address) onlyMinter
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#owner-view-returns-address" class="md-nav__link">
-    owner() view returns (address)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#renounceownership-onlyowner" class="md-nav__link">
-    renounceOwnership() onlyOwner
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#transferownershipaddress-onlyowner" class="md-nav__link">
-    transferOwnership(address) onlyOwner
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#addroleaddressbytes32-onlymanager" class="md-nav__link">
-    addRole(address,bytes32) onlyManager
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removeroleaddressbytes32-onlymanager" class="md-nav__link">
-    removeRole(address,bytes32) onlyManager
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extensions" class="md-nav__link">
-    Extensions
-  </a>
-  
-    <nav class="md-nav" aria-label="Extensions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#allextensionsregistered-view-returns-address" class="md-nav__link">
-    allExtensionsRegistered() view returns (address[])
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#allextensionproxies-view-returns-address" class="md-nav__link">
-    allExtensionProxies() view returns (address[])
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#proxyaddressforextensionaddress-view-returns-address" class="md-nav__link">
-    proxyAddressForExtension(address) view returns (address)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#registerextensionaddress-onlymanager" class="md-nav__link">
-    registerExtension(address) onlyManager
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removeextensionaddress-onlymanager" class="md-nav__link">
-    removeExtension(address) onlyManager
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#disableextensionaddress-onlymanager" class="md-nav__link">
-    disableExtension(address) onlyManager
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#enableextensionaddress-onlymanager" class="md-nav__link">
-    enableExtension(address) onlyManager
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -2843,10 +2417,22 @@
               
                 
 
-<h2 id="tokenproxy-api">TokenProxy API<a class="headerlink" href="#tokenproxy-api" title="Link to this section">&para;</a></h2>
+<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Link to this section">&para;</a></h1>
+<p>The token smart contracts consist of two primary contracts. The <code>TokenProxy</code> and the <code>TokenLogic</code>. The token proxy is responsible for</p>
+<ol>
+<li>Managing token roles</li>
+<li>Managing the current token logic implementation contract</li>
+</ol>
+<p>The primary smart contract used by all implementations in the repo is the <a href="../extendable-token-proxy/">ExtendableTokenProxy</a> which adds supports
+for extensions and is responsible for</p>
+<ol>
+<li>Managing token extensions</li>
+<li>Routing calls to either the token logic contract or extensions (based on function selector)</li>
+</ol>
+<h1 id="tokenproxy-functionality">TokenProxy Functionality<a class="headerlink" href="#tokenproxy-functionality" title="Link to this section">&para;</a></h1>
 <p>This section discusses the different functions of the <code>TokenProxy</code> that is used by every token standard contract deployed (<code>ERC20</code>, <code>ERC721</code>, etc.).</p>
 <p>This section assumes you have a token deployed on-chain and you have access to the token contract via a Truffle contract variable named <code>token</code> inside a script. However, these functions can be used by any client such as with Etherscan or with Hardhat. </p>
-<h1 id="token-interface">Token Interface<a class="headerlink" href="#token-interface" title="Link to this section">&para;</a></h1>
+<h2 id="interface">Interface<a class="headerlink" href="#interface" title="Link to this section">&para;</a></h2>
 <p>The <code>IToken</code> interface is the interface that all token contracts must adhere to. </p>
 <p>The <code>IToken</code> interface allows for token transfer interoperability as well as basic introspection about the token standard that it supports</p>
 <h2 id="tokentransfertransferdata-onlycontrollers">tokenTransfer(TransferData) onlyControllers<a class="headerlink" href="#tokentransfertransferdata-onlycontrollers" title="Link to this section">&para;</a></h2>
@@ -3087,13 +2673,13 @@
       
       
         
-        <a href="../token-proxy/" class="md-footer__link md-footer__link--next" aria-label="Next: Token Proxy" rel="next">
+        <a href="../extendable-token-proxy/" class="md-footer__link md-footer__link--next" aria-label="Next: Extendable Token Proxy" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Token Proxy
+              Extendable Token Proxy
             </div>
           </div>
           <div class="md-footer__button md-icon">
