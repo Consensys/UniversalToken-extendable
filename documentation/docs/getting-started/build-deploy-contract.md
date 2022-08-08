@@ -1,5 +1,8 @@
 ## Building
 
+!!! note
+    I haven't followed the steps so I don't know if it's working.
+
 First, compile all contracts in your cloned repo:
 
 ```shell

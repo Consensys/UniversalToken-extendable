@@ -26,6 +26,7 @@ nav:
       - Releases: overview/releases.md
       - Change logs: 
           - 434c657: overview/changelogs/434c657.md
+      - Test: overview/test.md
   - Getting started:
       - Prequisites: getting-started/prerequisites.md
       - Truffle set up: getting-started/truffle-setup.md
