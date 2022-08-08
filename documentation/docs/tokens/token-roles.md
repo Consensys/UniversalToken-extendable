@@ -1,5 +1,3 @@
-## Token roles
-
 Each token deployment has an access control mechanism that allows the creation of roles. Addresses can be assigned and de-assigned to roles. Roles can be used to limit access to specific functions. All token deployments come with four default roles, they are:
 
 1. [Minter](#minter)

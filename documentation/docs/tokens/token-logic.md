@@ -1,4 +1,4 @@
-## Token Logic
+# Token Logic
 
 The `TokenLogic` is the smart contract responsible for
 
@@ -14,7 +14,7 @@ This is the contract you must inherit from to build custom token implementations
 
 To extend the token logic to add functionality, you can simply inherit from `ERC20Logic` or `ERC721Logic`. These two contracts work great on their own, but can also be extended to add additional functionality or change the behavior.
 
-When adding additional functions, be sure to update the [token proxy](./token-proxy.md) to protect any new functions.
+When adding additional functions, be sure to update the [token proxy](./extendable-token-proxy.md) to protect any new functions.
 
 ## Example of extending token logic
 

@@ -13,7 +13,6 @@ cd UniversalToken-extendable
 ```bash
 yarn add truffle
 yarn add dotenv
-yarn add @truffle/hdwallet-provider
 ```
 
 !!! note
