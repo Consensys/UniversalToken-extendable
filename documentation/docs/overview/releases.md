@@ -1,4 +1,6 @@
-This page has both released versions and milestone commits. Each release/commit has a changelog
+!!!	important
+	* This page contains released versions and milestone commits. 
+	* Each release/commit has a changelog.
 
 # Versions
 

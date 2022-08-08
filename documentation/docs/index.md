@@ -8,7 +8,11 @@
 .md-content__button, 
 .md-sidebar {
     display: none;
-  }
+}
+
+.md-sidebar.md-sidebar--secondary {
+    display: none !important;
+}
 
 .grid-item a {     
     display: inline-block;     
@@ -124,11 +128,11 @@ h1 {
       <img src="cdn/images/index-icons/5.png" alt=""></a>
   </div>
 
-  <div class="grid-item"><a href="/getting-started"><h2>Getting started</h2>
+  <div class="grid-item"><a href="/getting-started/prerequisites"><h2>Getting started</h2>
       <img src="cdn/images/index-icons/4.png" alt=""></a>
   </div>
   
-  <div class="grid-item"><a href="/tokens/token-roles"><h2>Token API</h2>  
+  <div class="grid-item"><a href="/tokens/overview"><h2>Token</h2>  
         <img src="cdn/images/index-icons/10.png" alt=""></a>
   </div>
   

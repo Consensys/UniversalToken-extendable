@@ -23,10 +23,10 @@ nav:
   - Home: index.md
   - Overview: 
       - Welcome: overview/welcome.md
-      - Releases: overview/releases.md
-      - Change logs: 
-          - 434c657: overview/changelogs/434c657.md
-      - Test: overview/test.md
+      - Releases: 
+          - Release summary: overview/releases.md
+          - Change logs: 
+              - 434c657: overview/changelogs/434c657.md
   - Getting started:
       - Prequisites: getting-started/prerequisites.md
       - Truffle set up: getting-started/truffle-setup.md
@@ -167,7 +167,7 @@ extra:
     - icon: material/web
       link: https://consensys.net/codefi/assets/universal-token/
     - icon: fontawesome/brands/github-square
-      link: https://github.com/ConsenSys/UniversalToken
+      link: https://github.com/ConsenSys/UniversalToken-extendable/
 
 
 
