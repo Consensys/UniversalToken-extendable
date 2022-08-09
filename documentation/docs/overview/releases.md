@@ -1,11 +1,11 @@
 !!!	important
-	* This page contains released versions and milestone commits. 
+	* This page contains links to released versions and milestone commits. 
 	* Each release/commit has a changelog.
 
-# Versions
+## Versions
 
 There are currently no released versions of UniversalToken
 
-# Commits
+## Commits
 
 * [434c657](./changelogs/434c657.md)

@@ -29,10 +29,8 @@ nav:
               - 434c657: overview/changelogs/434c657.md
   - Getting started:
       - Prequisites: getting-started/prerequisites.md
-      - Truffle set up: getting-started/truffle-setup.md
-      - ERC1820: getting-started/ERC1820.md
-      - Build and deploy contract: getting-started/build-deploy-contract.md
-      - Running deploy scripts: getting-started/run-deploy-scripts.md
+      - Build and deploy manually: getting-started/build-deploy-contract.md
+      - Build and deploy with scripts: getting-started/run-deploy-scripts.md
   - Token: 
       - Overview: tokens/overview.md
       - Extendable Token Proxy: tokens/extendable-token-proxy.md
