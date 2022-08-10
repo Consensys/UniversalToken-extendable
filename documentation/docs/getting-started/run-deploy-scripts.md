@@ -26,17 +26,17 @@ For example:
 Then, run the following command:
 
 ```shell
-yarn truffle exec scripts/deployments/tokens/erc20.js
+yarn truffle exec scripts/deployments/tokens/erc20.js --network env
 ```
 
 ## ERC721
 
-To deploy a new ERC20 token, first edit the config file in `scripts/deployments/configs/erc721TokenConfig.json` with your own details as above. 
+To deploy a new ERC721 token, first edit the config file in `scripts/deployments/configs/erc721TokenConfig.json` with your own details as above. 
 
 Then, run the following command:
 
 ```shell
-yarn truffle exec scripts/deployments/tokens/erc721.js
+yarn truffle exec scripts/deployments/tokens/erc721.js --network env
 ```
 
 ## Extensions

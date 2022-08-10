@@ -423,7 +423,7 @@ ETHERSCAN_API_KEY=fake_etherscan_api_key
 
 ## Truffle configurations
 
-Truffle will pick up these variables for the `env` network.
+* Truffle picks up the `.env` variables for the `env` network configurations.
 
 ```javascript
 module.exports = {
@@ -452,9 +452,9 @@ module.exports = {
   },
 ```
 
-The `development` network in Truffle is set up for Ganache.
+* The `development` network in Truffle is set up for Ganache.
 
-The `coverage` network is ???.
+* The `coverage` network is used when running `yarn coverage` which runs a code coverage report for the unit tests in the repo.
 
 
 ## Ensure ERC1820 registry library is deployed

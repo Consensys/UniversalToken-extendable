@@ -36,19 +36,25 @@ Once you have compiled the contracts, get an ERC20 logic contract address for th
     console.log("Logic address:", logicAddress);
     ```
 
-    Both these options return a deployed contract address.
+    Both these options return a deployed logic contract address.
 
 
 2. Using one of the already deployed ERC20 logic contracts:
-    * Rinkeby: `0x9FE61B546b4bBCdf28fAe9588d18aD7233fFa4b9`
-    * Kovan: 
-    * Ropsten: 
-    * Goreli: 
+    * Rinkeby: `0x9FE61B546b4bBCdf28fAe9588d18aD7233fFa4b9`: https://rinkeby.etherscan.io/address/0x9FE61B546b4bBCdf28fAe9588d18aD7233fFa4b9#code
+    * Kovan: tbc
+    * Ropsten: tbc
+    * Goreli: tbc
 
 
-### Logic versus non-logic contract versus
+### Logic contract
 
-Words.
+For development flexibility we use a logic contract alongside the regular ERC20 contract.
+
+This is because the UniversalToken-extendable service uses a Proxy -> Logic pattern which means that contract code can be edited and upgraded by swapping out the logic contract after deployment of the token. 
+
+The logic contract and a regular ERC are quite similar, the only difference is that a regular ERC is deployed without a proxy contract and cannot be updated after deployment.
+
+For more information on this pattern, see the [open zeppelin docs on the proxy pattern](https://docs.openzeppelin.com/upgrades-plugins/1.x/proxies#upgrading-via-the-proxy-pattern).
 
 
 ## Deploy token
