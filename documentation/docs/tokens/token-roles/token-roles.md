@@ -1,4 +1,6 @@
-Each token deployment has an access control mechanism that allows the creation of roles. Addresses can be assigned and de-assigned to roles. Roles can be used to limit access to specific functions. All token deployments come with four default roles, they are:
+Each token deployment has an access control mechanism that allows the creation of roles. Addresses can be assigned and de-assigned to roles. Roles can be used to limit access to specific functions. 
+
+All token deployments come with four default roles, they are:
 
 1. [Minter](#minter)
 2. [Owner](#owner)
@@ -7,7 +9,7 @@ Each token deployment has an access control mechanism that allows the creation o
 
 You can add an address to any role by using the `_addRole(address, bytes32)`.
 
-### Minter
+## Minter
 
 A minter is allowed to mint tokens using the `mint` function. By default, the owner is a minter. 
 
@@ -15,7 +17,7 @@ There can be multiple minters, and minters can add and remove other minters.
 
 A function can check if the caller is a minter using the `onlyMinter` function modifier.
 
-### Owner
+## Owner
 
 An owner allows an address to perform administrative actions on a token. 
 
@@ -25,7 +27,7 @@ The owner can add and remove any role from any address. By default, an owner is 
 
 A function can check if a caller is an owner by using the `onlyOwner` function modifier.
 
-### Manager
+## Manager
 
 A manager is responsible for registering, removing, enabling, or disabling extensions.
 
@@ -35,7 +37,7 @@ If an ownership transfer occurs, and the manager is also the initial owner befor
 
 A function can check if the caller is manager by using the `onlyManager` function modifier.
 
-### Controller
+## Controller
 
 A controller allows an address to perform controlled transfers, only if the token has the controllable feature enabled. If this feature is not enabled, then this role does nothing. 
 

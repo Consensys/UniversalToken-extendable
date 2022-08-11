@@ -4,7 +4,7 @@ This page goes over the different internal functions that can be used when writi
 
 # Constants
 
-The `TokenExtension` contract exposes several constants for [token roles](../tokens/token-roles.md) and for [token events](./token-events.md).
+The `TokenExtension` contract exposes several constants for [token roles](../tokens/token-roles/token-roles.md) and for [token events](./token-events.md).
 
 * TOKEN_ALLOW_BURN
     - The storage slot where the burn option toggle is stored
@@ -13,11 +13,11 @@ The `TokenExtension` contract exposes several constants for [token roles](../tok
 * TOKEN_OWNER
     - The storage slot where the token owner address is stored
 * TOKEN_MINTER_ROLE
-    - The `roleId` for the [token minter](../tokens/token-roles.md#minter) role
+    - The `roleId` for the [token minter](../tokens/token-roles/token-roles.md#minter) role
 * TOKEN_MANAGER_ADDRESS
     - The storage slot where the token manager address is stored
 * TOKEN_CONTROLLER_ROLE
-    - The `roleId` for the [token controller](../tokens/token-roles.md#controller) role
+    - The `roleId` for the [token controller](../tokens/token-roles/token-roles.md#controller) role
 * TOKEN_TRANSFER_EVENT
     - The `eventId` for the token transfer event
 * TOKEN_BEFORE_TRANSFER_EVENT

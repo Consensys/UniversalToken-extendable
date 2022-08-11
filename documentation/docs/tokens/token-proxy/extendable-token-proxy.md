@@ -1,25 +1,24 @@
-# Extendable Token Proxy
-
 The `ExtendableTokenProxy` is the smart contract responsible for managing both the [EIP1967 Proxy](https://eips.ethereum.org/EIPS/eip-1967) logic as well as the extension registration/execution logic. This contract also has functions to manage roles through the `TokenRoles` contract. 
 
 This is the contract you must inherit from to build custom token implementations. The repo comes with both `ERC20.sol` and `ERC721.sol` implementations.
 
-# Building a custom token
+## Building a custom token
 
-To build a custom token implementation, you must inherit from the `ExtendableTokenProxy` contract. The `ExtendableTokenProxy` contract requires that you 
+To build a custom token implementation, you must inherit from the `ExtendableTokenProxy` contract. The `ExtendableTokenProxy` contract requires that you:
 
-1. Invoke its constructor with the following arguments
-    - ABI encoded initialization data to send to logic contract's `_onInitialize` function. This data usually comes from the constructor arguments
-2. Protect any token standard functions so extensions don't override them with their own functions
+1. Invoke its constructor with the following arguments:
+    - ABI encoded initialization data to send to logic contract's `_onInitialize` function. This data usually comes from the constructor arguments.
+1. Protect any token standard functions so extensions don't override them with their own functions:
     - This can be done with the `protectFunction(bytes4)` function or the `protectFunctions(bytes4[])` function.
-3. Implement the `function _domainName() internal override view returns(bytes memory)` function.
-    - This function is used for building the [EIP712](https://eips.ethereum.org/EIPS/eip-712#definition-of-domainseparator) domain separator and should return a unique bytes. For example this can be the token name
-4. Implement the `function tokenStandard() external pure override returns (TokenStandard)`
-    - This function should return the token standard this contract implements
-    - This function is a pure function, so it shouldn't rely on storage or any input for its return value
+1. Implement the `function _domainName() internal override view returns(bytes memory)` function:
+    - This function is used for building the [EIP712](https://eips.ethereum.org/EIPS/eip-712#definition-of-domainseparator) domain separator and should return a unique bytes. For example this can be the token name.
+1. Implement the `function tokenStandard() external pure override returns (TokenStandard)`:
+    - This function should return the token standard this contract implements.
+    - This function is a pure function, so it shouldn't rely on storage or any input for its return value.
 
-## Example ERC20 implementation
+### Example ERC20 implementation
 
+```solidity
     pragma solidity ^0.8.0;
 
     import {ExtendableTokenProxy} from "@consensys-software/UniversalToken-extendable/tokens/proxy/ExtendableTokenProxy.sol";
@@ -84,4 +83,4 @@ To build a custom token implementation, you must inherit from the `ExtendableTok
             return abi.encode("TokenName");
         }
 
-
+```

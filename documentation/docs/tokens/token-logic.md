@@ -1,23 +1,25 @@
-# Token Logic
+The `TokenLogic` is the smart contract responsible for:
 
-The `TokenLogic` is the smart contract responsible for
+1. Providing functions to access token roles.
+2. Managing event callback listeners.
+3. Trigger events and their callback listeners.
+4. `initialize` logic.
+5. Core token logic.
 
-1. Providing functions to access token roles
-2. Managing event callback listeners
-3. Trigger events and their callback listeners
-4. Logic `initialize`
-5. Core token logic
+!!! important
+    This is the contract you must inherit from to build custom token implementations. 
 
-This is the contract you must inherit from to build custom token implementations. The repo comes with both `ERC20Logic.sol` and `ERC721Logic.sol` implementations. They both use the [OpenZeppelin Upgradable](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable) smart contracts to implement each token standard.
+The repo comes with both `ERC20Logic.sol` and `ERC721Logic.sol` implementations. They both use the [OpenZeppelin Upgradable](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable) smart contracts to implement each token standard.
 
-# Extending the token logic
+## Extending the token logic
 
 To extend the token logic to add functionality, you can simply inherit from `ERC20Logic` or `ERC721Logic`. These two contracts work great on their own, but can also be extended to add additional functionality or change the behavior.
 
-When adding additional functions, be sure to update the [token proxy](./extendable-token-proxy.md) to protect any new functions.
+When adding additional functions, be sure to update the [token proxy](./token-proxy/extendable-token-proxy.md) to protect any new functions.
 
-## Example of extending token logic
+### Example of extending token logic
 
+```solidity
     pragma solidity ^0.8.0;
 
     import {ERC20Logic} from "@consensys-software/UniversalToken-extendable/tokens/logic/erc20/ERC20Logic.sol";
@@ -191,5 +193,4 @@ If you need to add support for a custom token standard or you wish to build a cu
 
             _triggerTokenTransferEvent(data);
         }
-
-
+```
