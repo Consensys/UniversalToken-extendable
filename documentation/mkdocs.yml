@@ -10,7 +10,7 @@
 # specific language governing permissions and limitations under the License.
 
 # Project information
-site_name: ConsenSys Universal Token
+site_name: ConsenSys Universal Token - extendable
 site_description: Technical documentation for the ConsenSys Universal Token
 
 # Project information
@@ -164,7 +164,7 @@ extra:
       link: https://consensys.net/codefi/contact/
     - icon: material/web
       link: https://consensys.net/codefi/assets/universal-token/
-    - icon: fontawesome/brands/github-square
+    - icon: fontawesome/brands/github
       link: https://github.com/ConsenSys/UniversalToken-extendable/
 
 
@@ -226,8 +226,8 @@ plugins:
     lang: en
     separator: '[\s\-\.\_]+'
     prebuild_index: true
-#  git-revision-date-localized:
-#    locale: en
+  git-revision-date-localized:
+    locale: en
   markdownextradata: {}
 #  minify:
 #    minify_html: true
