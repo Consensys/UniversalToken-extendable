@@ -10,7 +10,7 @@
 # specific language governing permissions and limitations under the License.
 
 # Project information
-site_name: ConsenSys Universal Token
+site_name: ConsenSys Universal Token - extendable
 site_description: Technical documentation for the ConsenSys Universal Token
 
 # Project information
@@ -23,7 +23,14 @@ nav:
   - Home: index.md
   - Overview: 
       - Welcome: overview/welcome.md
-      - Releases: overview/releases.md
+      - Releases: 
+          - Release summary: overview/releases.md
+          - Change logs: 
+              - 434c657: overview/changelogs/434c657.md
+  - Getting started:
+      - Prequisites: getting-started/prerequisites.md
+      - Build and deploy manually: getting-started/build-deploy-contract.md
+      - Build and deploy with scripts: getting-started/run-deploy-scripts.md
   - Token: 
       - Overview: tokens/overview.md
       - Extendable Token Proxy: tokens/extendable-token-proxy.md
@@ -157,8 +164,8 @@ extra:
       link: https://consensys.net/codefi/contact/
     - icon: material/web
       link: https://consensys.net/codefi/assets/universal-token/
-    - icon: fontawesome/brands/github-square
-      link: https://github.com/ConsenSys/UniversalToken
+    - icon: fontawesome/brands/github
+      link: https://github.com/ConsenSys/UniversalToken-extendable/
 
 
 
@@ -219,8 +226,8 @@ plugins:
     lang: en
     separator: '[\s\-\.\_]+'
     prebuild_index: true
-#  git-revision-date-localized:
-#    locale: en
+  git-revision-date-localized:
+    locale: en
   markdownextradata: {}
 #  minify:
 #    minify_html: true
