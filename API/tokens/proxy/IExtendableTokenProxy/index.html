@@ -15,31 +15,33 @@
         <link rel="canonical" href="http://127.0.0.1:8000/API/tokens/proxy/IExtendableTokenProxy/">
       
       <link rel="icon" href="../../../../cdn/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.0.5">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.0">
     
     
       
-        <title>IExtendableTokenProxy - ConsenSys Universal Token</title>
+        <title>IExtendableTokenProxy - ConsenSys Universal Token - extendable</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a617204b.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.69437709.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9204c3b2.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
           <meta name="theme-color" content="#000000">
         
       
+      
     
     
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -48,7 +50,7 @@
     
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
-    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -88,19 +90,19 @@
 
 <header class="md-header md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="ConsenSys Universal Token" class="md-header__button md-logo" aria-label="ConsenSys Universal Token" data-md-component="logo">
+    <a href="../../../.." title="ConsenSys Universal Token - extendable" class="md-header__button md-logo" aria-label="ConsenSys Universal Token - extendable" data-md-component="logo">
       
   <img src="../../../../cdn/images/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ConsenSys Universal Token
+            ConsenSys Universal Token - extendable
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -116,7 +118,7 @@
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -124,17 +126,17 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
           <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
           </a>
         
         <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -186,6 +188,22 @@
     <li class="md-tabs__item">
       <a href="../../../../overview/welcome/" class="md-tabs__link">
         Overview
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../getting-started/prerequisites/" class="md-tabs__link">
+        Getting started
       </a>
     </li>
   
@@ -268,12 +286,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="ConsenSys Universal Token" class="md-nav__button md-logo" aria-label="ConsenSys Universal Token" data-md-component="logo">
+    <a href="../../../.." title="ConsenSys Universal Token - extendable" class="md-nav__button md-logo" aria-label="ConsenSys Universal Token - extendable" data-md-component="logo">
       
   <img src="../../../../cdn/images/logo.svg" alt="logo">
 
     </a>
-    ConsenSys Universal Token
+    ConsenSys Universal Token - extendable
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -346,10 +364,100 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Releases
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Releases" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Releases
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../../overview/releases/" class="md-nav__link">
-        Releases
+        Release summary
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_2" type="checkbox" id="__nav_2_2_2" >
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_2">
+          Change logs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Change logs" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Change logs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../overview/changelogs/434c657/" class="md-nav__link">
+        434c657
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -383,19 +491,103 @@
         
           
         
-          
-        
-          
-        
       
       
         <label class="md-nav__link" for="__nav_3">
+          Getting started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Getting started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting-started/prerequisites/" class="md-nav__link">
+        Prequisites
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting-started/build-deploy-contract/" class="md-nav__link">
+        Build and deploy manually
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting-started/run-deploy-scripts/" class="md-nav__link">
+        Build and deploy with scripts
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
           Token
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Token" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Token
         </label>
@@ -488,7 +680,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
@@ -505,13 +697,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_5">
           Extensions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Extensions" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Extensions
         </label>
@@ -606,7 +798,7 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
       
       
       
@@ -640,14 +832,14 @@
         <div class="md-nav__link md-nav__link--index ">
           <a href="../../../">Solidity API</a>
           
-            <label for="__nav_5">
+            <label for="__nav_6">
               <span class="md-nav__icon md-icon"></span>
             </label>
           
         </div>
       
       <nav class="md-nav" aria-label="Solidity API" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Solidity API
         </label>
@@ -724,7 +916,6 @@
             
           
             
-            
           
             
               
@@ -735,7 +926,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7" type="checkbox" id="__nav_5_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_7" type="checkbox" id="__nav_6_7" >
       
       
       
@@ -750,13 +941,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_7">
+        <label class="md-nav__link" for="__nav_6_7">
           Examples
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Examples" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_7">
+        <label class="md-nav__title" for="__nav_6_7">
           <span class="md-nav__icon md-icon"></span>
           Examples
         </label>
@@ -771,7 +962,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7_1" type="checkbox" id="__nav_5_7_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_7_1" type="checkbox" id="__nav_6_7_1" >
       
       
       
@@ -782,13 +973,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_7_1">
+        <label class="md-nav__link" for="__nav_6_7_1">
           Allowblock
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Allowblock" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_7_1">
+        <label class="md-nav__title" for="__nav_6_7_1">
           <span class="md-nav__icon md-icon"></span>
           Allowblock
         </label>
@@ -803,7 +994,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7_1_1" type="checkbox" id="__nav_5_7_1_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_7_1_1" type="checkbox" id="__nav_6_7_1_1" >
       
       
       
@@ -816,13 +1007,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_7_1_1">
+        <label class="md-nav__link" for="__nav_6_7_1_1">
           Allow
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Allow" data-md-level="4">
-        <label class="md-nav__title" for="__nav_5_7_1_1">
+        <label class="md-nav__title" for="__nav_6_7_1_1">
           <span class="md-nav__icon md-icon"></span>
           Allow
         </label>
@@ -886,7 +1077,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7_1_2" type="checkbox" id="__nav_5_7_1_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_7_1_2" type="checkbox" id="__nav_6_7_1_2" >
       
       
       
@@ -899,13 +1090,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_7_1_2">
+        <label class="md-nav__link" for="__nav_6_7_1_2">
           Block
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Block" data-md-level="4">
-        <label class="md-nav__title" for="__nav_5_7_1_2">
+        <label class="md-nav__title" for="__nav_6_7_1_2">
           <span class="md-nav__icon md-icon"></span>
           Block
         </label>
@@ -976,7 +1167,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7_2" type="checkbox" id="__nav_5_7_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_7_2" type="checkbox" id="__nav_6_7_2" >
       
       
       
@@ -989,13 +1180,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_7_2">
+        <label class="md-nav__link" for="__nav_6_7_2">
           Certificates
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Certificates" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_7_2">
+        <label class="md-nav__title" for="__nav_6_7_2">
           <span class="md-nav__icon md-icon"></span>
           Certificates
         </label>
@@ -1059,7 +1250,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7_3" type="checkbox" id="__nav_5_7_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_7_3" type="checkbox" id="__nav_6_7_3" >
       
       
       
@@ -1070,13 +1261,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_7_3">
+        <label class="md-nav__link" for="__nav_6_7_3">
           Holds
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Holds" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_7_3">
+        <label class="md-nav__title" for="__nav_6_7_3">
           <span class="md-nav__icon md-icon"></span>
           Holds
         </label>
@@ -1126,7 +1317,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7_4" type="checkbox" id="__nav_5_7_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_7_4" type="checkbox" id="__nav_6_7_4" >
       
       
       
@@ -1137,13 +1328,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_7_4">
+        <label class="md-nav__link" for="__nav_6_7_4">
           Pausable
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Pausable" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_7_4">
+        <label class="md-nav__title" for="__nav_6_7_4">
           <span class="md-nav__icon md-icon"></span>
           Pausable
         </label>
@@ -1200,7 +1391,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_8" type="checkbox" id="__nav_5_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_8" type="checkbox" id="__nav_6_8" >
       
       
       
@@ -1217,13 +1408,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_8">
+        <label class="md-nav__link" for="__nav_6_8">
           Extensions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Extensions" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_8">
+        <label class="md-nav__title" for="__nav_6_8">
           <span class="md-nav__icon md-icon"></span>
           Extensions
         </label>
@@ -1317,7 +1508,7 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_9" type="checkbox" id="__nav_5_9" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9" type="checkbox" id="__nav_6_9" checked>
       
       
       
@@ -1338,13 +1529,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_9">
+        <label class="md-nav__link" for="__nav_6_9">
           Tokens
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Tokens" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_9">
+        <label class="md-nav__title" for="__nav_6_9">
           <span class="md-nav__icon md-icon"></span>
           Tokens
         </label>
@@ -1387,7 +1578,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_9_3" type="checkbox" id="__nav_5_9_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9_3" type="checkbox" id="__nav_6_9_3" >
       
       
       
@@ -1400,13 +1591,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_9_3">
+        <label class="md-nav__link" for="__nav_6_9_3">
           Eventmanager
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Eventmanager" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_9_3">
+        <label class="md-nav__title" for="__nav_6_9_3">
           <span class="md-nav__icon md-icon"></span>
           Eventmanager
         </label>
@@ -1470,7 +1661,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_9_4" type="checkbox" id="__nav_5_9_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9_4" type="checkbox" id="__nav_6_9_4" >
       
       
       
@@ -1485,13 +1676,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_9_4">
+        <label class="md-nav__link" for="__nav_6_9_4">
           Logic
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Logic" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_9_4">
+        <label class="md-nav__title" for="__nav_6_9_4">
           <span class="md-nav__icon md-icon"></span>
           Logic
         </label>
@@ -1534,7 +1725,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_9_4_3" type="checkbox" id="__nav_5_9_4_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9_4_3" type="checkbox" id="__nav_6_9_4_3" >
       
       
       
@@ -1545,13 +1736,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_9_4_3">
+        <label class="md-nav__link" for="__nav_6_9_4_3">
           Erc20
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Erc20" data-md-level="4">
-        <label class="md-nav__title" for="__nav_5_9_4_3">
+        <label class="md-nav__title" for="__nav_6_9_4_3">
           <span class="md-nav__icon md-icon"></span>
           Erc20
         </label>
@@ -1601,7 +1792,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_9_4_4" type="checkbox" id="__nav_5_9_4_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9_4_4" type="checkbox" id="__nav_6_9_4_4" >
       
       
       
@@ -1612,13 +1803,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_9_4_4">
+        <label class="md-nav__link" for="__nav_6_9_4_4">
           Erc721
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Erc721" data-md-level="4">
-        <label class="md-nav__title" for="__nav_5_9_4_4">
+        <label class="md-nav__title" for="__nav_6_9_4_4">
           <span class="md-nav__icon md-icon"></span>
           Erc721
         </label>
@@ -1677,7 +1868,7 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_9_5" type="checkbox" id="__nav_5_9_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9_5" type="checkbox" id="__nav_6_9_5" checked>
       
       
       
@@ -1692,13 +1883,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_9_5">
+        <label class="md-nav__link" for="__nav_6_9_5">
           Proxy
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Proxy" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_9_5">
+        <label class="md-nav__title" for="__nav_6_9_5">
           <span class="md-nav__icon md-icon"></span>
           Proxy
         </label>
@@ -1875,7 +2066,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_9_6" type="checkbox" id="__nav_5_9_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9_6" type="checkbox" id="__nav_6_9_6" >
       
       
       
@@ -1888,13 +2079,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_9_6">
+        <label class="md-nav__link" for="__nav_6_9_6">
           Registry
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Registry" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_9_6">
+        <label class="md-nav__title" for="__nav_6_9_6">
           <span class="md-nav__icon md-icon"></span>
           Registry
         </label>
@@ -1958,7 +2149,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_9_7" type="checkbox" id="__nav_5_9_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9_7" type="checkbox" id="__nav_6_9_7" >
       
       
       
@@ -1971,13 +2162,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_9_7">
+        <label class="md-nav__link" for="__nav_6_9_7">
           Storage
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Storage" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_9_7">
+        <label class="md-nav__title" for="__nav_6_9_7">
           <span class="md-nav__icon md-icon"></span>
           Storage
         </label>
@@ -2048,7 +2239,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_10" type="checkbox" id="__nav_5_10" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_10" type="checkbox" id="__nav_6_10" >
       
       
       
@@ -2067,13 +2258,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_10">
+        <label class="md-nav__link" for="__nav_6_10">
           Utils
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Utils" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_10">
+        <label class="md-nav__title" for="__nav_6_10">
           <span class="md-nav__icon md-icon"></span>
           Utils
         </label>
@@ -2130,7 +2321,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_10_4" type="checkbox" id="__nav_5_10_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_10_4" type="checkbox" id="__nav_6_10_4" >
       
       
       
@@ -2147,13 +2338,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_10_4">
+        <label class="md-nav__link" for="__nav_6_10_4">
           Erc1820
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Erc1820" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_10_4">
+        <label class="md-nav__title" for="__nav_6_10_4">
           <span class="md-nav__icon md-icon"></span>
           Erc1820
         </label>
@@ -2245,7 +2436,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_10_5" type="checkbox" id="__nav_5_10_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_10_5" type="checkbox" id="__nav_6_10_5" >
       
       
       
@@ -2262,13 +2453,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_10_5">
+        <label class="md-nav__link" for="__nav_6_10_5">
           Mocks
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Mocks" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_10_5">
+        <label class="md-nav__title" for="__nav_6_10_5">
           <span class="md-nav__icon md-icon"></span>
           Mocks
         </label>
@@ -2360,7 +2551,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_10_6" type="checkbox" id="__nav_5_10_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_10_6" type="checkbox" id="__nav_6_10_6" >
       
       
       
@@ -2377,13 +2568,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5_10_6">
+        <label class="md-nav__link" for="__nav_6_10_6">
           Roles
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Roles" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_10_6">
+        <label class="md-nav__title" for="__nav_6_10_6">
           <span class="md-nav__icon md-icon"></span>
           Roles
         </label>
@@ -2585,6 +2776,7 @@
               
                 
 
+
   <h1>IExtendableTokenProxy</h1>
 
 <h2 id="iextendabletokenproxy"><code>IExtendableTokenProxy</code><a class="headerlink" href="#iextendabletokenproxy" title="Link to this section">&para;</a></h2>
@@ -2621,13 +2813,28 @@ enabled or disabled</p>
 This function assumes the given global extension address has been registered using
  _registerExtension.</p>
 
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 17, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
               
             </article>
+            
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
             Back to top
           </a>
         
@@ -2635,12 +2842,13 @@ This function assumes the given global extension address has been registered usi
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../ExtendableTokenProxy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: ExtendableTokenProxy" rel="prev">
           <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
           <div class="md-footer__title">
             <div class="md-ellipsis">
@@ -2664,7 +2872,7 @@ This function assumes the given global extension address has been registered usi
             </div>
           </div>
           <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
           </div>
         </a>
       
@@ -2688,7 +2896,7 @@ This function assumes the given global extension address has been registered usi
       
     
     <a href="https://consensys.net/codefi/contact/" target="_blank" rel="noopener" title="consensys.net" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M464 64c26.5 0 48 21.49 48 48 0 15.1-7.1 29.3-19.2 38.4L275.2 313.6a32.1 32.1 0 0 1-38.4 0L19.2 150.4C7.113 141.3 0 127.1 0 112c0-26.51 21.49-48 48-48h416zM217.6 339.2a63.9 63.9 0 0 0 76.8 0L512 176v208c0 35.3-28.7 64-64 64H64c-35.35 0-64-28.7-64-64V176l217.6 163.2z"/></svg>
     </a>
   
     
@@ -2697,7 +2905,7 @@ This function assumes the given global extension address has been registered usi
       
     
     <a href="https://consensys.net/codefi/assets/universal-token/" target="_blank" rel="noopener" title="consensys.net" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2 0-.68.06-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.923 7.923 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8.008 8.008 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.65 15.65 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2 0-.68.06-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.923 7.923 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8.008 8.008 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.65 15.65 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/></svg>
     </a>
   
     
@@ -2705,8 +2913,8 @@ This function assumes the given global extension address has been registered usi
       
       
     
-    <a href="https://github.com/ConsenSys/UniversalToken" target="_blank" rel="noopener" title="github.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM277.3 415.7c-8.4 1.5-11.5-3.7-11.5-8 0-5.4.2-33 .2-55.3 0-15.6-5.2-25.5-11.3-30.7 37-4.1 76-9.2 76-73.1 0-18.2-6.5-27.3-17.1-39 1.7-4.3 7.4-22-1.7-45-13.9-4.3-45.7 17.9-45.7 17.9-13.2-3.7-27.5-5.6-41.6-5.6-14.1 0-28.4 1.9-41.6 5.6 0 0-31.8-22.2-45.7-17.9-9.1 22.9-3.5 40.6-1.7 45-10.6 11.7-15.6 20.8-15.6 39 0 63.6 37.3 69 74.3 73.1-4.8 4.3-9.1 11.7-10.6 22.3-9.5 4.3-33.8 11.7-48.3-13.9-9.1-15.8-25.5-17.1-25.5-17.1-16.2-.2-1.1 10.2-1.1 10.2 10.8 5 18.4 24.2 18.4 24.2 9.7 29.7 56.1 19.7 56.1 19.7 0 13.9.2 36.5.2 40.6 0 4.3-3 9.5-11.5 8-66-22.1-112.2-84.9-112.2-158.3 0-91.8 70.2-161.5 162-161.5S388 165.6 388 257.4c.1 73.4-44.7 136.3-110.7 158.3zm-98.1-61.1c-1.9.4-3.7-.4-3.9-1.7-.2-1.5 1.1-2.8 3-3.2 1.9-.2 3.7.6 3.9 1.9.3 1.3-1 2.6-3 3zm-9.5-.9c0 1.3-1.5 2.4-3.5 2.4-2.2.2-3.7-.9-3.7-2.4 0-1.3 1.5-2.4 3.5-2.4 1.9-.2 3.7.9 3.7 2.4zm-13.7-1.1c-.4 1.3-2.4 1.9-4.1 1.3-1.9-.4-3.2-1.9-2.8-3.2.4-1.3 2.4-1.9 4.1-1.5 2 .6 3.3 2.1 2.8 3.4zm-12.3-5.4c-.9 1.1-2.8.9-4.3-.6-1.5-1.3-1.9-3.2-.9-4.1.9-1.1 2.8-.9 4.3.6 1.3 1.3 1.8 3.3.9 4.1zm-9.1-9.1c-.9.6-2.6 0-3.7-1.5s-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3 1.1 1.5 1.1 3.3 0 4.1zm-6.5-9.7c-.9.9-2.4.4-3.5-.6-1.1-1.3-1.3-2.8-.4-3.5.9-.9 2.4-.4 3.5.6 1.1 1.3 1.3 2.8.4 3.5zm-6.7-7.4c-.4.9-1.7 1.1-2.8.4-1.3-.6-1.9-1.7-1.5-2.6.4-.6 1.5-.9 2.8-.4 1.3.7 1.9 1.8 1.5 2.6z"/></svg>
+    <a href="https://github.com/ConsenSys/UniversalToken-extendable/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
     </a>
   
 </div>
@@ -2719,10 +2927,11 @@ This function assumes the given global extension address has been registered usi
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["search.suggest", "search.highlight", "search.share", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.cefbb252.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["search.suggest", "search.highlight", "search.share", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.a5f8ea78.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>
       
     
   </body>
