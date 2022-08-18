@@ -1,5 +1,3 @@
-# Token Events
-
 Extensinos can choose to listen to specific token events on-chain (such as transfers or approvals) to trigger specific checks or actions. The `TokenExtension` base contract provides helper methods to listen to common token events.
 
 The only thing extensions cannot do inside an event callback is perform an action that would cause the same event to be triggered again. This is to prevent reentry attacks and potential recurrsion problems.
