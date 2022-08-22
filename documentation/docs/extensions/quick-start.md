@@ -89,7 +89,7 @@ Start by writing all the logic for your extension, including any event callback 
 
 Any external function you want to register on the token must be declared in the [constructor](#constructor) and must be marked as `external` or `public`. Besides these two requirements, extension functions can do anything a normal smart contract function can do, and can also be marked as `view`. 
 
-An example extension function could be toggling a `pause` state to pause/unpause token transfers.
+An example extension function could be toggling a `pause` state to pause/un-pause token transfers.
 
 ```solidity
 import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/extensions/TokenExtension.sol";

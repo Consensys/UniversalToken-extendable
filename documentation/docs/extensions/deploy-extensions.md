@@ -6,7 +6,7 @@ Once you have your custom token extension built, deploy it on-chain and begin us
 !!! important
     Do we need more steps here @eddie?
 
-There should be no constructor arguments when deploying an extension, as arguments are inccessible to the extension when it's attached to the token.
+There should be no constructor arguments when deploying an extension, as arguments are inaccessible to the extension when it's attached to the token.
 
 ```js
 const AllowExtension = artifacts.require("AllowExtension");

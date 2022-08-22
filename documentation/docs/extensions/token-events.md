@@ -3,13 +3,13 @@ Extensions can choose to listen to specific token events on-chain (such as trans
 !!! info
     The `TokenExtension` base contract provides helper methods to listen to common token events.
 
-The only thing extensions cannot do inside an event callback is perform an action that would cause the same event to be triggered again. This is to prevent reentry attacks and potential recurrsion problems.
+The only thing extensions cannot do inside an event callback is perform an action that would cause the same event to be triggered again. This is to prevent reentry attacks and potential recursion problems.
 
-* `_listenForTokenTransfers(function (TransferData memory) external returns (bool) callback)`: listens for token transfers and invokes the provided callback function. When the callback is invoked, the transfer has already occured.
-* `_listenForTokenApprovals(function (TransferData memory) external returns (bool) callback)`: listens for token approvals and invokes the provided callback function. When the callback is invoked, the approval has already occured.
+* `_listenForTokenTransfers(function (TransferData memory) external returns (bool) callback)`: listens for token transfers and invokes the provided callback function. When the callback is invoked, the transfer has already occurred.
+* `_listenForTokenApprovals(function (TransferData memory) external returns (bool) callback)`: listens for token approvals and invokes the provided callback function. When the callback is invoked, the approval has already occurred.
 * `_listenForTokenBeforeTransfers(function (TransferData memory) external returns (bool) callback)`: listens for token transfers and invokes the provided callback function. The callback is invoked right before the transfer occurs.
 
-If an extension wishes to listen to an event, it should subscribe to the event inside its `initialize` function. However, an extension can choose to subscirbe whenever they like.
+If an extension wishes to listen to an event, it should subscribe to the event inside its `initialize` function. However, an extension can choose to subscribe whenever they like.
 
 ```solidity
 import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
