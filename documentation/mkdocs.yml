@@ -44,12 +44,14 @@ nav:
       - Upgrading token togic: tokens/upgrading.md
   - Extensions: 
       - Overview: extensions/overview.md
-      - Managing extensions:
-          - Build extensions: extensions/build-extensions.md
-          - Token events: extensions/token-events.md
-          - Controlled transfers: extensions/controlled-transfers.md
-          - Deploy extensions: extensions/deploy-extensions.md
-          - Register extensions: extensions/register-extensions.md
+      - Manage extensions:
+          - Build: 
+              - Quick start: extensions/quick-start.md
+              - Events and callbacks: extensions/token-events.md
+              - Controlled transfers: extensions/controlled-transfers.md
+          - Deploy: extensions/deploy-extensions.md
+          - Register: extensions/register-extensions.md
+          - Initialize: extensions/initialize.md
       - TokenExtension API: extensions/api.md
   - Solidity API:
       - ERC20:  API/ERC20.md
