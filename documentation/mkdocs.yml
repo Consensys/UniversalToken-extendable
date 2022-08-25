@@ -33,10 +33,15 @@ nav:
       - Build and deploy with scripts: getting-started/run-deploy-scripts.md
   - Token: 
       - Overview: tokens/overview.md
-      - Extendable Token Proxy: tokens/extendable-token-proxy.md
-      - Token Logic: tokens/token-logic.md
-      - Token Roles: tokens/token-roles.md
-      - Upgrading Token Logic: tokens/upgrading.md
+      - Token proxy: 
+          - Token proxy functionality: tokens/token-proxy/token-proxy-functionality.md
+          - Extendable token proxy: tokens/token-proxy/extendable-token-proxy.md
+      - Token roles: 
+          - Roles: tokens/token-roles/token-roles.md
+          - Functionality: tokens/token-roles/token-roles-functionality.md
+      - Token extensions: tokens/token-extensions.md
+      - Token logic: tokens/token-logic.md
+      - Upgrading token togic: tokens/upgrading.md
   - Extensions: 
       - Overview: extensions/getting-started.md
       - Building extensions: extensions/building-extensions.md
