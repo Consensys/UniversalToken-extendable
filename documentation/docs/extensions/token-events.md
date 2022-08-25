@@ -12,7 +12,7 @@ The only thing extensions cannot do inside an event callback is perform an actio
 If an extension wishes to listen to an event, it should subscribe to the event inside its `initialize` function. However, an extension can choose to subscribe whenever they like.
 
 ```solidity
-import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
+import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/contracts/extensions/TokenExtension.sol";
 
 contract PauseExtension is TokenExtension {
     bytes32 constant internal ALLOWLIST_ROLE = keccak256("allowblock.roles.allowlisted");

@@ -7,7 +7,7 @@ A controlled transfer allows an extension to perform a transfer from one address
 An extension can request the `TOKEN_CONTROLLER_ROLE` token role during registration by specifying it as a required role using `_requireRole(TOKEN_CONTROLLER_ROLE)`. 
 
 ```solidity
-import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
+import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/contracts/extensions/TokenExtension.sol";
 
 contract HoldExtension is TokenExtension {
         
@@ -28,7 +28,7 @@ Create a `TransferData` object specifying the details of the transfer. Do this m
 When you have a `TransferData` object, invoke the `_tokenTransfer(TransferData)` function inside of `TokenExtension`.
 
 ```solidity
-import {TokenExtension, TransferData} from "@consensys-software/UniversalToken/extensions/TokenExtension.sol";
+import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/contracts/extensions/TokenExtension.sol";
 
 contract HoldExtension is TokenExtension {
 

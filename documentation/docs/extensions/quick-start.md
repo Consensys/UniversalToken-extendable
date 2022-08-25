@@ -3,7 +3,7 @@
 Import the `TokenExtension` and `TransferData` from the `TokenExtension.sol` file.
 
 ```solidity
-import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/extensions/TokenExtension.sol";
+import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/contracts/extensions/TokenExtension.sol";
 ```
 
 ## Constructor
@@ -11,7 +11,7 @@ import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-e
 Now create a new contract, with an empty constructor, that inherits from `TokenExtension`, and override the `initialize` function:
 
 ```solidity
-import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/extensions/TokenExtension.sol";
+import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/contracts/extensions/TokenExtension.sol";
 
 contract PauseExtension is TokenExtension {
 
@@ -48,7 +48,7 @@ Optionally, extensions may also call the following inside the constructor:
 * `_supportInterface(bytes4)`: specifies a specific interface label that this extension supports.
 
 ```solidity
-import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/extensions/TokenExtension.sol";
+import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/contracts/extensions/TokenExtension.sol";
 
 contract PriceOracleExtension is TokenExtension {
 
@@ -92,7 +92,7 @@ Any external function you want to register on the token must be declared in the 
 An example extension function could be toggling a `pause` state to pause/un-pause token transfers.
 
 ```solidity
-import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/extensions/TokenExtension.sol";
+import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/contracts/extensions/TokenExtension.sol";
 
 contract PauseExtension is TokenExtension {
     bool paused;
@@ -120,7 +120,7 @@ contract PauseExtension is TokenExtension {
 We can then use the `paused` state variable inside a transfer callback to prevent transfers if the `paused` variable is `true`.
 
 ```solidity
-import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/extensions/TokenExtension.sol";
+import {TokenExtension, TransferData} from "@consensys-software/UniversalToken-extendable/contracts/extensions/TokenExtension.sol";
 
 contract PauseExtension is TokenExtension {
     bool paused;
