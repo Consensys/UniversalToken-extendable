@@ -15,7 +15,7 @@
         <link rel="canonical" href="http://127.0.0.1:8000/tokens/overview/">
       
       <link rel="icon" href="../../cdn/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.0">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.1">
     
     
       
@@ -72,11 +72,6 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
-      
-        
-        <a href="#overview" class="md-skip">
-          Skip to content
-        </a>
       
     </div>
     <div data-md-component="announce">
@@ -581,6 +576,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4">
@@ -607,8 +604,6 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-        
-      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Overview
@@ -624,9 +619,143 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Token proxy
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Token proxy" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Token proxy
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../extendable-token-proxy/" class="md-nav__link">
-        Extendable Token Proxy
+      <a href="../token-proxy/token-proxy-functionality/" class="md-nav__link">
+        Token proxy functionality
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../token-proxy/extendable-token-proxy/" class="md-nav__link">
+        Extendable token proxy
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Token roles
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Token roles" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Token roles
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../token-roles/token-roles/" class="md-nav__link">
+        Roles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../token-roles/token-roles-functionality/" class="md-nav__link">
+        Functionality
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../token-extensions/" class="md-nav__link">
+        Token extensions
       </a>
     </li>
   
@@ -640,21 +769,7 @@
   
     <li class="md-nav__item">
       <a href="../token-logic/" class="md-nav__link">
-        Token Logic
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../token-roles/" class="md-nav__link">
-        Token Roles
+        Token logic
       </a>
     </li>
   
@@ -668,7 +783,7 @@
   
     <li class="md-nav__item">
       <a href="../upgrading/" class="md-nav__link">
-        Upgrading Token Logic
+        Upgrading token togic
       </a>
     </li>
   
@@ -2594,8 +2709,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -2609,235 +2722,34 @@
                 
 
 
-<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Link to this section">&para;</a></h1>
-<p>The token smart contracts consist of two primary contracts. The <code>TokenProxy</code> and the <code>TokenLogic</code>. The token proxy is responsible for</p>
-<ol>
-<li>Managing token roles</li>
-<li>Managing the current token logic implementation contract</li>
-</ol>
-<p>The primary smart contract used by all implementations in the repo is the <a href="../extendable-token-proxy/">ExtendableTokenProxy</a> which adds supports
-for extensions and is responsible for</p>
-<ol>
-<li>Managing token extensions</li>
-<li>Routing calls to either the token logic contract or extensions (based on function selector)</li>
-</ol>
-<h1 id="tokenproxy-functionality">TokenProxy Functionality<a class="headerlink" href="#tokenproxy-functionality" title="Link to this section">&para;</a></h1>
-<p>This section discusses the different functions of the <code>TokenProxy</code> that is used by every token standard contract deployed (<code>ERC20</code>, <code>ERC721</code>, etc.).</p>
-<p>This section assumes you have a token deployed on-chain and you have access to the token contract via a Truffle contract variable named <code>token</code> inside a script. However, these functions can be used by any client such as with Etherscan or with Hardhat. </p>
-<h2 id="interface">Interface<a class="headerlink" href="#interface" title="Link to this section">&para;</a></h2>
-<p>The <code>IToken</code> interface is the interface that all token contracts must adhere to. </p>
-<p>The <code>IToken</code> interface allows for token transfer interoperability as well as basic introspection about the token standard that it supports</p>
-<h2 id="tokentransfertransferdata-onlycontrollers">tokenTransfer(TransferData) onlyControllers<a class="headerlink" href="#tokentransfertransferdata-onlycontrollers" title="Link to this section">&para;</a></h2>
-<p>This function enables the transfer of tokens given an interoperable struct <code>TransferData</code> representing data about the transfer request. The structure used has the following fields:</p>
+  <h1>Overview</h1>
+
+<p>The token smart contracts consist of two primary contracts:</p>
 <ul>
-<li>token<ul>
-<li>Token address that is executing this extension.</li>
-</ul>
+<li>
+<p><code>TokenProxy</code></p>
+<p>Responsible for the following:</p>
+<ol>
+<li>Managing token roles.</li>
+<li>Managing the current token logic implementation contract.</li>
+</ol>
 </li>
-<li>payload<ul>
-<li>The full payload of the initial transaction.</li>
-</ul>
-</li>
-<li>partition<ul>
-<li>Name of the partition (left empty for ERC20 transfer).</li>
-</ul>
-</li>
-<li>operator<ul>
-<li>Address which triggered the balance decrease (through transfer or redemption).</li>
-</ul>
-</li>
-<li>from<ul>
-<li>Token holder.</li>
-</ul>
-</li>
-<li>to<ul>
-<li>Token recipient for a transfer and 0x for a redemption.</li>
-</ul>
-</li>
-<li>value<ul>
-<li>Number of tokens the token holder balance is decreased by.</li>
-</ul>
-</li>
-<li>data<ul>
-<li>Extra information (if any).</li>
-</ul>
-</li>
-<li>operatorData<ul>
-<li>Extra information, attached by the operator (if any).</li>
-</ul>
+<li>
+<p><code>TokenLogic</code> </p>
 </li>
 </ul>
-<p>This function can only be used by <a href="../token-roles/#controller">token controllers</a>, and is mainly used to perform <a href="../../extensions/controlled-transfers/">controlled transfers</a> inside of extensions.</p>
-<h2 id="tokenstandard-pure-returns-tokenstandard">tokenStandard() pure returns (TokenStandard)<a class="headerlink" href="#tokenstandard-pure-returns-tokenstandard" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">supportedTokenStandard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">tokenStandard</span><span class="p">();</span><span class="w"></span>
-</code></pre></div>
-
-<p>A pure function that returns the <code>TokenStandard</code> this token supports.</p>
-<p>This function can be used to determine what kinds of functions the token may support.</p>
-<h1 id="token-roles"><a href="../token-roles/">Token Roles</a><a class="headerlink" href="#token-roles" title="Link to this section">&para;</a></h1>
-<p>Token Roles give special permissions to given addresses to invoke specific functions. For example, the <code>Minter</code> role can invoke a token mint.</p>
-<p>These class of functions show you how to manage these roles.</p>
-<h2 id="manager-view-returns-address">manager() view returns (address)<a class="headerlink" href="#manager-view-returns-address" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">managerAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">manager</span><span class="p">();</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function returns the current token manager. The token manager can register, enable, disable, and remove extensions. The <a href="../token-roles/#manager">token manager</a> is also able to act as a Role admin for the token, meaning they can add/remove arbitrary roles to/from addresses.</p>
-<h2 id="changemanageraddress-onlymanager">changeManager(address) onlyManager<a class="headerlink" href="#changemanageraddress-onlymanager" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">newManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x78F7911996e6803f26e180d21d78949f0fa386EA&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">changeManager</span><span class="p">(</span><span class="n">newManager</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function allows the current token manager to transfer their role to another <code>address</code></p>
-<h2 id="iscontrolleraddress-view-returns-bool">isController(address) view returns (bool)<a class="headerlink" href="#iscontrolleraddress-view-returns-bool" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">isController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">isController</span><span class="p">(</span><span class="s2">&quot;0x78F7911996e6803f26e180d21d78949f0fa386EA&quot;</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function returns true if the given <code>address</code> is a <a href="../token-roles/#controller">token controller</a>.</p>
-<h2 id="isminteraddress-view-returns-bool">isMinter(address) view returns (bool)<a class="headerlink" href="#isminteraddress-view-returns-bool" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">isMinter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">isMinter</span><span class="p">(</span><span class="s2">&quot;0x78F7911996e6803f26e180d21d78949f0fa386EA&quot;</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function returns true if the given <code>address</code> is a <a href="../token-roles/#minter">token minter</a></p>
-<h2 id="addcontrolleraddress-onlycontroller">addController(address) onlyController<a class="headerlink" href="#addcontrolleraddress-onlycontroller" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">newController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x78F7911996e6803f26e180d21d78949f0fa386EA&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">addController</span><span class="p">(</span><span class="n">newController</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function allows any token controller to add another token controller <code>address</code></p>
-<h2 id="removecontrolleraddress-onlycontroller">removeController(address) onlyController<a class="headerlink" href="#removecontrolleraddress-onlycontroller" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x78F7911996e6803f26e180d21d78949f0fa386EA&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">removeController</span><span class="p">(</span><span class="n">controller</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function allows any token controller to remove another token controller <code>address</code></p>
-<h2 id="addminteraddress-onlyminter">addMinter(address) onlyMinter<a class="headerlink" href="#addminteraddress-onlyminter" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">newMinter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x78F7911996e6803f26e180d21d78949f0fa386EA&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">addMinter</span><span class="p">(</span><span class="n">newMinter</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function allows any token minter to add another token minter <code>address</code></p>
-<h2 id="removeminteraddress-onlyminter">removeMinter(address) onlyMinter<a class="headerlink" href="#removeminteraddress-onlyminter" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">minter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x78F7911996e6803f26e180d21d78949f0fa386EA&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">removeMinter</span><span class="p">(</span><span class="n">minter</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function allows any token minter to remove another token minter <code>address</code></p>
-<h2 id="owner-view-returns-address">owner() view returns (address)<a class="headerlink" href="#owner-view-returns-address" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">currentOwner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">owner</span><span class="p">();</span><span class="w"></span>
-</code></pre></div>
-
-<p>View the current token owner.</p>
-<h2 id="renounceownership-onlyowner">renounceOwnership() onlyOwner<a class="headerlink" href="#renounceownership-onlyowner" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>await token.renounceOwnership();
-</code></pre></div>
-
-<p>This function removes the current owner from the token, leaving the contract as owner-less. </p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If the current token owner address is the same as the current token manager, this will also renounce the manager role as well. Leaving the contract without a token manager</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This action cannot be undone</p>
-</div>
-<h2 id="transferownershipaddress-onlyowner">transferOwnership(address) onlyOwner<a class="headerlink" href="#transferownershipaddress-onlyowner" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">newOwner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x78F7911996e6803f26e180d21d78949f0fa386EA&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">transferOwnership</span><span class="p">(</span><span class="n">newOwner</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function allows the current owner to transfer ownership to another address.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If the current token owner is the same address as the current token manager, then the manager role will also be transferred to the new owner <code>address</code></p>
-</div>
-<h2 id="addroleaddressbytes32-onlymanager">addRole(address,bytes32) onlyManager<a class="headerlink" href="#addroleaddressbytes32-onlymanager" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="o">//</span><span class="w"> </span><span class="n">RoleID</span><span class="w"> </span><span class="n">defined</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">TokenRolesConstants</span><span class="o">.</span><span class="n">sol</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="n">minterRoleId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keccak256</span><span class="p">(</span><span class="s2">&quot;token.proxy.core.mint.role&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="n">newMinter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x78F7911996e6803f26e180d21d78949f0fa386EA&quot;</span><span class="p">;</span><span class="w"></span>
-
-<span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">addRole</span><span class="p">(</span><span class="n">newMinter</span><span class="p">,</span><span class="w"> </span><span class="n">minterRoleId</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function allows the current token manager to add any <code>roleId</code> to any <code>caller</code> address.</p>
-<h2 id="removeroleaddressbytes32-onlymanager">removeRole(address,bytes32) onlyManager<a class="headerlink" href="#removeroleaddressbytes32-onlymanager" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="o">//</span><span class="w"> </span><span class="n">RoleID</span><span class="w"> </span><span class="n">defined</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">TokenRolesConstants</span><span class="o">.</span><span class="n">sol</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="n">minterRoleId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keccak256</span><span class="p">(</span><span class="s2">&quot;token.proxy.core.mint.role&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="n">minter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x78F7911996e6803f26e180d21d78949f0fa386EA&quot;</span><span class="p">;</span><span class="w"></span>
-
-<span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">removeRole</span><span class="p">(</span><span class="n">minter</span><span class="p">,</span><span class="w"> </span><span class="n">minterRoleId</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function allows the current token manager to remove any <code>roleId</code> from any <code>caller</code> address.</p>
-<h1 id="extensions"><a href="../../extensions/getting-started/">Extensions</a><a class="headerlink" href="#extensions" title="Link to this section">&para;</a></h1>
-<p>These functions allow you to view the current state of extensions on the token as well as manage extensions.</p>
-<p>All extension management related functions can only be invoked by the current <a href="../token-roles/#manager">token manager</a></p>
-<h2 id="allextensionsregistered-view-returns-address">allExtensionsRegistered() view returns (address[])<a class="headerlink" href="#allextensionsregistered-view-returns-address" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">extensionAddressList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">allExtensionsRegistered</span><span class="p">();</span><span class="w"></span>
-</code></pre></div>
-
-<p>Return a list of all registered extensions by their deployed address. </p>
-<h2 id="allextensionproxies-view-returns-address">allExtensionProxies() view returns (address[])<a class="headerlink" href="#allextensionproxies-view-returns-address" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">extensionProxyAddressList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">allExtensionProxies</span><span class="p">();</span><span class="w"></span>
-</code></pre></div>
-
-<p>Return a list of all registered extensions by their deployed proxy address.</p>
-<h2 id="proxyaddressforextensionaddress-view-returns-address">proxyAddressForExtension(address) view returns (address)<a class="headerlink" href="#proxyaddressforextensionaddress-view-returns-address" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">extensionAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="n">proxyAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">proxyAddressForExtension</span><span class="p">(</span><span class="n">extensionAddress</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>Given the <code>address</code> of an extension deployed on-chain, return the <code>address</code> of the registered deployed proxy contract that this token is using. </p>
-<p>If the token does not have the given extension <code>address</code> registered, then the zero address is returned</p>
-<h2 id="registerextensionaddress-onlymanager">registerExtension(address) onlyManager<a class="headerlink" href="#registerextensionaddress-onlymanager" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">extensionAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"></span>
-<span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">registerExtension</span><span class="p">(</span><span class="n">extensionAddress</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>Register the extension at <code>address</code> on the token. This will deploy a new <code>ExtensionProxy</code> pointing to the provided <code>extensionAddress</code>, grant required roles to the <code>ExtensionProxy</code>, register any extension functions and then invoke <code>initialize</code> in the extension.</p>
-<p>Only the current token manager can invoke this function.</p>
-<h2 id="removeextensionaddress-onlymanager">removeExtension(address) onlyManager<a class="headerlink" href="#removeextensionaddress-onlymanager" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">extensionAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"></span>
-<span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">removeExtension</span><span class="p">(</span><span class="n">extensionAddress</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>Remove the extension at <code>address</code>, this will </p>
-<ul>
-<li>Delete metadata about the <code>ExtensionProxy</code></li>
-<li>Revoke any required roles the <code>ExtensionProxy</code> was granted</li>
-<li>Delete all token event listeners the <code>ExtensionProxy</code> used</li>
-<li>Remove any registered extension functions</li>
-</ul>
-<p>The only thing this doesn&rsquo;t do is delete the <code>ExtensionProxy</code>. The <code>ExtensionProxy</code> will remain on-chain as an inactive smart contract proxy</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This is to avoid the usage of <code>selfdestruct</code> and its side-effects</p>
-</div>
-<p>Only the current token manager can invoke this function.</p>
-<h2 id="disableextensionaddress-onlymanager">disableExtension(address) onlyManager<a class="headerlink" href="#disableextensionaddress-onlymanager" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">extensionAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"></span>
-<span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">disableExtension</span><span class="p">(</span><span class="n">extensionAddress</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function disables the registered <code>ExtensionProxy</code> at the given address. This does not delete the registration metadata or clear any event listeners. </p>
-<p>Any event listeners of a disabled extension are skipped.</p>
-<p>Any registered extension functions are disabled and ignored when doing extension function lookup.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The function signature is still reserved for extension even if its disabled, it is just ignored during execution. This means new extension registrations cannot conflict with any disabled extension. </p>
-</div>
-<h2 id="enableextensionaddress-onlymanager">enableExtension(address) onlyManager<a class="headerlink" href="#enableextensionaddress-onlymanager" title="Link to this section">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">extensionAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"></span>
-<span class="n">await</span><span class="w"> </span><span class="n">token</span><span class="o">.</span><span class="n">enableExtension</span><span class="p">(</span><span class="n">extensionAddress</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-
-<p>This function enables the registered (but disabled) <code>ExtensionProxy</code> at the given address. This is the inverse of <a href="#disableextensionaddress-onlymanager">disableExtension</a>. Enabled extensions are the same as newly registered extensions.</p>
+<p>The primary smart contract used by all implementations in the repo is the <a href="../token-proxy/extendable-token-proxy/">ExtendableTokenProxy</a> which adds support for extensions and is responsible for:</p>
+<ol>
+<li>Managing token extensions.</li>
+<li>Routing calls to either the token logic contract or extensions (based on function selector).</li>
+</ol>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 17, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 25, 2022</span>
       
     
   </small>
@@ -2881,13 +2793,13 @@ for extensions and is responsible for</p>
       
       
         
-        <a href="../extendable-token-proxy/" class="md-footer__link md-footer__link--next" aria-label="Next: Extendable Token Proxy" rel="next">
+        <a href="../token-proxy/token-proxy-functionality/" class="md-footer__link md-footer__link--next" aria-label="Next: Token proxy functionality" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Extendable Token Proxy
+              Token proxy functionality
             </div>
           </div>
           <div class="md-footer__button md-icon">

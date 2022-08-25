@@ -12,21 +12,21 @@
         <meta name="author" content="ConsenSys">
       
       
-        <link rel="canonical" href="http://127.0.0.1:8000/API/tokens/logic/ERC20/IERC20Logic/">
+        <link rel="canonical" href="http://127.0.0.1:8000/tokens/token-proxy/extendable-token-proxy/">
       
-      <link rel="icon" href="../../../../../cdn/images/favicon.png">
+      <link rel="icon" href="../../../cdn/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.1">
     
     
       
-        <title>IERC20Logic - ConsenSys Universal Token - extendable</title>
+        <title>Extendable token proxy - ConsenSys Universal Token - extendable</title>
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.69437709.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.69437709.min.css">
       
         
-        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
@@ -46,11 +46,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../styles/custom.css">
+      <link rel="stylesheet" href="../../../styles/custom.css">
     
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
-    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ierc20logic" class="md-skip">
+        <a href="#building-a-custom-token" class="md-skip">
           Skip to content
         </a>
       
@@ -90,9 +90,9 @@
 
 <header class="md-header md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../.." title="ConsenSys Universal Token - extendable" class="md-header__button md-logo" aria-label="ConsenSys Universal Token - extendable" data-md-component="logo">
+    <a href="../../.." title="ConsenSys Universal Token - extendable" class="md-header__button md-logo" aria-label="ConsenSys Universal Token - extendable" data-md-component="logo">
       
-  <img src="../../../../../cdn/images/logo.svg" alt="logo">
+  <img src="../../../cdn/images/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              IERC20Logic
+              Extendable token proxy
             
           </span>
         </div>
@@ -171,7 +171,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../../../.." class="md-tabs__link">
+    <a href="../../.." class="md-tabs__link">
       Home
     </a>
   </li>
@@ -186,7 +186,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../overview/welcome/" class="md-tabs__link">
+      <a href="../../../overview/welcome/" class="md-tabs__link">
         Overview
       </a>
     </li>
@@ -202,40 +202,8 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../getting-started/prerequisites/" class="md-tabs__link">
+      <a href="../../../getting-started/prerequisites/" class="md-tabs__link">
         Getting started
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../../../tokens/overview/" class="md-tabs__link">
-        Token
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../../../extensions/getting-started/" class="md-tabs__link">
-        Extensions
       </a>
     </li>
   
@@ -252,7 +220,39 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../ERC20/" class="md-tabs__link md-tabs__link--active">
+      <a href="../../overview/" class="md-tabs__link md-tabs__link--active">
+        Token
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../extensions/getting-started/" class="md-tabs__link">
+        Extensions
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../API/ERC20/" class="md-tabs__link">
         Solidity API
       </a>
     </li>
@@ -286,9 +286,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../.." title="ConsenSys Universal Token - extendable" class="md-nav__button md-logo" aria-label="ConsenSys Universal Token - extendable" data-md-component="logo">
+    <a href="../../.." title="ConsenSys Universal Token - extendable" class="md-nav__button md-logo" aria-label="ConsenSys Universal Token - extendable" data-md-component="logo">
       
-  <img src="../../../../../cdn/images/logo.svg" alt="logo">
+  <img src="../../../cdn/images/logo.svg" alt="logo">
 
     </a>
     ConsenSys Universal Token - extendable
@@ -304,7 +304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -351,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../overview/welcome/" class="md-nav__link">
+      <a href="../../../overview/welcome/" class="md-nav__link">
         Welcome
       </a>
     </li>
@@ -397,7 +397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../overview/releases/" class="md-nav__link">
+      <a href="../../../overview/releases/" class="md-nav__link">
         Release summary
       </a>
     </li>
@@ -441,7 +441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../overview/changelogs/434c657/" class="md-nav__link">
+      <a href="../../../overview/changelogs/434c657/" class="md-nav__link">
         434c657
       </a>
     </li>
@@ -511,7 +511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../getting-started/prerequisites/" class="md-nav__link">
+      <a href="../../../getting-started/prerequisites/" class="md-nav__link">
         Prequisites
       </a>
     </li>
@@ -525,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../getting-started/build-deploy-contract/" class="md-nav__link">
+      <a href="../../../getting-started/build-deploy-contract/" class="md-nav__link">
         Build and deploy manually
       </a>
     </li>
@@ -539,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../getting-started/run-deploy-scripts/" class="md-nav__link">
+      <a href="../../../getting-started/run-deploy-scripts/" class="md-nav__link">
         Build and deploy with scripts
       </a>
     </li>
@@ -559,12 +559,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       
       
@@ -601,7 +603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../tokens/overview/" class="md-nav__link">
+      <a href="../../overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -613,12 +615,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
       
       
       
@@ -647,7 +651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../tokens/token-proxy/token-proxy-functionality/" class="md-nav__link">
+      <a href="../token-proxy-functionality/" class="md-nav__link">
         Token proxy functionality
       </a>
     </li>
@@ -659,11 +663,61 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../../../tokens/token-proxy/extendable-token-proxy/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Extendable token proxy
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Extendable token proxy
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-custom-token" class="md-nav__link">
+    Building a custom token
+  </a>
+  
+    <nav class="md-nav" aria-label="Building a custom token">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-erc20-implementation" class="md-nav__link">
+    Example ERC20 implementation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -714,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../tokens/token-roles/token-roles/" class="md-nav__link">
+      <a href="../../token-roles/token-roles/" class="md-nav__link">
         Roles
       </a>
     </li>
@@ -728,7 +782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../tokens/token-roles/token-roles-functionality/" class="md-nav__link">
+      <a href="../../token-roles/token-roles-functionality/" class="md-nav__link">
         Functionality
       </a>
     </li>
@@ -749,7 +803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../tokens/token-extensions/" class="md-nav__link">
+      <a href="../../token-extensions/" class="md-nav__link">
         Token extensions
       </a>
     </li>
@@ -763,7 +817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../tokens/token-logic/" class="md-nav__link">
+      <a href="../../token-logic/" class="md-nav__link">
         Token logic
       </a>
     </li>
@@ -777,7 +831,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../tokens/upgrading/" class="md-nav__link">
+      <a href="../../upgrading/" class="md-nav__link">
         Upgrading token togic
       </a>
     </li>
@@ -837,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../extensions/getting-started/" class="md-nav__link">
+      <a href="../../../extensions/getting-started/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -851,7 +905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../extensions/building-extensions/" class="md-nav__link">
+      <a href="../../../extensions/building-extensions/" class="md-nav__link">
         Building extensions
       </a>
     </li>
@@ -865,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../extensions/token-events/" class="md-nav__link">
+      <a href="../../../extensions/token-events/" class="md-nav__link">
         Token events
       </a>
     </li>
@@ -879,7 +933,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../extensions/controlled-transfers/" class="md-nav__link">
+      <a href="../../../extensions/controlled-transfers/" class="md-nav__link">
         Controlled transfers
       </a>
     </li>
@@ -893,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../extensions/api/" class="md-nav__link">
+      <a href="../../../extensions/api/" class="md-nav__link">
         TokenExtension API
       </a>
     </li>
@@ -913,14 +967,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
       
       
       
@@ -952,7 +1004,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../../">Solidity API</a>
+          <a href="../../../API/">Solidity API</a>
           
             <label for="__nav_6">
               <span class="md-nav__icon md-icon"></span>
@@ -973,7 +1025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ERC20/" class="md-nav__link">
+      <a href="../../../API/ERC20/" class="md-nav__link">
         ERC20
       </a>
     </li>
@@ -987,7 +1039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ERC721/" class="md-nav__link">
+      <a href="../../../API/ERC721/" class="md-nav__link">
         ERC721
       </a>
     </li>
@@ -1001,7 +1053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../IERC20Extendable/" class="md-nav__link">
+      <a href="../../../API/IERC20Extendable/" class="md-nav__link">
         IERC20Extendable
       </a>
     </li>
@@ -1015,7 +1067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../IERC721Extendable/" class="md-nav__link">
+      <a href="../../../API/IERC721Extendable/" class="md-nav__link">
         IERC721Extendable
       </a>
     </li>
@@ -1029,7 +1081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Migrations/" class="md-nav__link">
+      <a href="../../../API/Migrations/" class="md-nav__link">
         Migrations
       </a>
     </li>
@@ -1147,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/allowblock/allow/AllowExtension/" class="md-nav__link">
+      <a href="../../../API/examples/allowblock/allow/AllowExtension/" class="md-nav__link">
         AllowExtension
       </a>
     </li>
@@ -1161,7 +1213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/allowblock/allow/IAllowlistedAdminRole/" class="md-nav__link">
+      <a href="../../../API/examples/allowblock/allow/IAllowlistedAdminRole/" class="md-nav__link">
         IAllowlistedAdminRole
       </a>
     </li>
@@ -1175,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/allowblock/allow/IAllowlistedRole/" class="md-nav__link">
+      <a href="../../../API/examples/allowblock/allow/IAllowlistedRole/" class="md-nav__link">
         IAllowlistedRole
       </a>
     </li>
@@ -1230,7 +1282,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/allowblock/block/BlockExtension/" class="md-nav__link">
+      <a href="../../../API/examples/allowblock/block/BlockExtension/" class="md-nav__link">
         BlockExtension
       </a>
     </li>
@@ -1244,7 +1296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/allowblock/block/IBlocklistedAdminRole/" class="md-nav__link">
+      <a href="../../../API/examples/allowblock/block/IBlocklistedAdminRole/" class="md-nav__link">
         IBlocklistedAdminRole
       </a>
     </li>
@@ -1258,7 +1310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/allowblock/block/IBlocklistedRole/" class="md-nav__link">
+      <a href="../../../API/examples/allowblock/block/IBlocklistedRole/" class="md-nav__link">
         IBlocklistedRole
       </a>
     </li>
@@ -1320,7 +1372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/certificates/CertificateLib/" class="md-nav__link">
+      <a href="../../../API/examples/certificates/CertificateLib/" class="md-nav__link">
         CertificateLib
       </a>
     </li>
@@ -1334,7 +1386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/certificates/CertificateValidatorExtension/" class="md-nav__link">
+      <a href="../../../API/examples/certificates/CertificateValidatorExtension/" class="md-nav__link">
         CertificateValidatorExtension
       </a>
     </li>
@@ -1348,7 +1400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/certificates/ICertificateValidator/" class="md-nav__link">
+      <a href="../../../API/examples/certificates/ICertificateValidator/" class="md-nav__link">
         ICertificateValidator
       </a>
     </li>
@@ -1401,7 +1453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/holds/HoldExtension/" class="md-nav__link">
+      <a href="../../../API/examples/holds/HoldExtension/" class="md-nav__link">
         HoldExtension
       </a>
     </li>
@@ -1415,7 +1467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/holds/IHoldableToken/" class="md-nav__link">
+      <a href="../../../API/examples/holds/IHoldableToken/" class="md-nav__link">
         IHoldableToken
       </a>
     </li>
@@ -1468,7 +1520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/pausable/IPausable/" class="md-nav__link">
+      <a href="../../../API/examples/pausable/IPausable/" class="md-nav__link">
         IPausable
       </a>
     </li>
@@ -1482,7 +1534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../examples/pausable/PauseExtension/" class="md-nav__link">
+      <a href="../../../API/examples/pausable/PauseExtension/" class="md-nav__link">
         PauseExtension
       </a>
     </li>
@@ -1548,7 +1600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../extensions/ExtensionBase/" class="md-nav__link">
+      <a href="../../../API/extensions/ExtensionBase/" class="md-nav__link">
         ExtensionBase
       </a>
     </li>
@@ -1562,7 +1614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../extensions/ExtensionProxy/" class="md-nav__link">
+      <a href="../../../API/extensions/ExtensionProxy/" class="md-nav__link">
         ExtensionProxy
       </a>
     </li>
@@ -1576,7 +1628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../extensions/IExtension/" class="md-nav__link">
+      <a href="../../../API/extensions/IExtension/" class="md-nav__link">
         IExtension
       </a>
     </li>
@@ -1590,7 +1642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../extensions/IExtensionMetadata/" class="md-nav__link">
+      <a href="../../../API/extensions/IExtensionMetadata/" class="md-nav__link">
         IExtensionMetadata
       </a>
     </li>
@@ -1604,7 +1656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../extensions/TokenExtension/" class="md-nav__link">
+      <a href="../../../API/extensions/TokenExtension/" class="md-nav__link">
         TokenExtension
       </a>
     </li>
@@ -1623,14 +1675,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9" type="checkbox" id="__nav_6_9" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9" type="checkbox" id="__nav_6_9" >
       
       
       
@@ -1669,7 +1719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../IToken/" class="md-nav__link">
+      <a href="../../../API/tokens/IToken/" class="md-nav__link">
         IToken
       </a>
     </li>
@@ -1683,7 +1733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../TokenERC1820Provider/" class="md-nav__link">
+      <a href="../../../API/tokens/TokenERC1820Provider/" class="md-nav__link">
         TokenERC1820Provider
       </a>
     </li>
@@ -1731,7 +1781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../eventmanager/ITokenEventManager/" class="md-nav__link">
+      <a href="../../../API/tokens/eventmanager/ITokenEventManager/" class="md-nav__link">
         ITokenEventManager
       </a>
     </li>
@@ -1745,7 +1795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../eventmanager/TokenEventConstants/" class="md-nav__link">
+      <a href="../../../API/tokens/eventmanager/TokenEventConstants/" class="md-nav__link">
         TokenEventConstants
       </a>
     </li>
@@ -1759,7 +1809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../eventmanager/TokenEventManager/" class="md-nav__link">
+      <a href="../../../API/tokens/eventmanager/TokenEventManager/" class="md-nav__link">
         TokenEventManager
       </a>
     </li>
@@ -1778,14 +1828,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9_4" type="checkbox" id="__nav_6_9_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9_4" type="checkbox" id="__nav_6_9_4" >
       
       
       
@@ -1818,7 +1866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ITokenLogic/" class="md-nav__link">
+      <a href="../../../API/tokens/logic/ITokenLogic/" class="md-nav__link">
         ITokenLogic
       </a>
     </li>
@@ -1832,7 +1880,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../TokenLogic/" class="md-nav__link">
+      <a href="../../../API/tokens/logic/TokenLogic/" class="md-nav__link">
         TokenLogic
       </a>
     </li>
@@ -1844,14 +1892,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9_4_3" type="checkbox" id="__nav_6_9_4_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9_4_3" type="checkbox" id="__nav_6_9_4_3" >
       
       
       
@@ -1880,7 +1926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ERC20Logic/" class="md-nav__link">
+      <a href="../../../API/tokens/logic/ERC20/ERC20Logic/" class="md-nav__link">
         ERC20Logic
       </a>
     </li>
@@ -1892,110 +1938,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          IERC20Logic
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../API/tokens/logic/ERC20/IERC20Logic/" class="md-nav__link">
         IERC20Logic
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#ierc20logic" class="md-nav__link">
-    IERC20Logic
-  </a>
-  
-    <nav class="md-nav" aria-label="IERC20Logic">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#burnuint256-amount-bool-external" class="md-nav__link">
-    burn(uint256 amount) → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mintaddress-recipient-uint256-amount-bool-external" class="md-nav__link">
-    mint(address recipient, uint256 amount) → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#burnfromaddress-account-uint256-amount-bool-external" class="md-nav__link">
-    burnFrom(address account, uint256 amount) → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#decreaseallowanceaddress-spender-uint256-amount-bool-external" class="md-nav__link">
-    decreaseAllowance(address spender, uint256 amount) → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#increaseallowanceaddress-spender-uint256-amount-bool-external" class="md-nav__link">
-    increaseAllowance(address spender, uint256 amount) → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mintingallowed-bool-external" class="md-nav__link">
-    mintingAllowed() → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#burningallowed-bool-external" class="md-nav__link">
-    burningAllowed() → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#maxsupply-uint256-external" class="md-nav__link">
-    maxSupply() → uint256 (external)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2046,7 +1993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ERC721/ERC721Logic/" class="md-nav__link">
+      <a href="../../../API/tokens/logic/ERC721/ERC721Logic/" class="md-nav__link">
         ERC721Logic
       </a>
     </li>
@@ -2060,7 +2007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ERC721/IERC721Logic/" class="md-nav__link">
+      <a href="../../../API/tokens/logic/ERC721/IERC721Logic/" class="md-nav__link">
         IERC721Logic
       </a>
     </li>
@@ -2124,7 +2071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../proxy/ExtendableTokenProxy/" class="md-nav__link">
+      <a href="../../../API/tokens/proxy/ExtendableTokenProxy/" class="md-nav__link">
         ExtendableTokenProxy
       </a>
     </li>
@@ -2138,7 +2085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../proxy/IExtendableTokenProxy/" class="md-nav__link">
+      <a href="../../../API/tokens/proxy/IExtendableTokenProxy/" class="md-nav__link">
         IExtendableTokenProxy
       </a>
     </li>
@@ -2152,7 +2099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../proxy/ITokenProxy/" class="md-nav__link">
+      <a href="../../../API/tokens/proxy/ITokenProxy/" class="md-nav__link">
         ITokenProxy
       </a>
     </li>
@@ -2166,7 +2113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../proxy/TokenProxy/" class="md-nav__link">
+      <a href="../../../API/tokens/proxy/TokenProxy/" class="md-nav__link">
         TokenProxy
       </a>
     </li>
@@ -2221,7 +2168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../registry/ERC1155TokenInterface/" class="md-nav__link">
+      <a href="../../../API/tokens/registry/ERC1155TokenInterface/" class="md-nav__link">
         ERC1155TokenInterface
       </a>
     </li>
@@ -2235,7 +2182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../registry/ERC20TokenInterface/" class="md-nav__link">
+      <a href="../../../API/tokens/registry/ERC20TokenInterface/" class="md-nav__link">
         ERC20TokenInterface
       </a>
     </li>
@@ -2249,7 +2196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../registry/ERC721TokenInterface/" class="md-nav__link">
+      <a href="../../../API/tokens/registry/ERC721TokenInterface/" class="md-nav__link">
         ERC721TokenInterface
       </a>
     </li>
@@ -2304,7 +2251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../storage/RegisteredExtensionStorage/" class="md-nav__link">
+      <a href="../../../API/tokens/storage/RegisteredExtensionStorage/" class="md-nav__link">
         RegisteredExtensionStorage
       </a>
     </li>
@@ -2318,7 +2265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../storage/TokenEventManagerStorage/" class="md-nav__link">
+      <a href="../../../API/tokens/storage/TokenEventManagerStorage/" class="md-nav__link">
         TokenEventManagerStorage
       </a>
     </li>
@@ -2332,7 +2279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../storage/TokenProxyStorage/" class="md-nav__link">
+      <a href="../../../API/tokens/storage/TokenProxyStorage/" class="md-nav__link">
         TokenProxyStorage
       </a>
     </li>
@@ -2400,7 +2347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/DomainAware/" class="md-nav__link">
+      <a href="../../../API/utils/DomainAware/" class="md-nav__link">
         DomainAware
       </a>
     </li>
@@ -2414,7 +2361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/Errors/" class="md-nav__link">
+      <a href="../../../API/utils/Errors/" class="md-nav__link">
         Errors
       </a>
     </li>
@@ -2428,7 +2375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/IDomainAware/" class="md-nav__link">
+      <a href="../../../API/utils/IDomainAware/" class="md-nav__link">
         IDomainAware
       </a>
     </li>
@@ -2480,7 +2427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/erc1820/ERC1820Client/" class="md-nav__link">
+      <a href="../../../API/utils/erc1820/ERC1820Client/" class="md-nav__link">
         ERC1820Client
       </a>
     </li>
@@ -2494,7 +2441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/erc1820/ERC1820Implementer/" class="md-nav__link">
+      <a href="../../../API/utils/erc1820/ERC1820Implementer/" class="md-nav__link">
         ERC1820Implementer
       </a>
     </li>
@@ -2508,7 +2455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/erc1820/ERC1820ImplementerInterface/" class="md-nav__link">
+      <a href="../../../API/utils/erc1820/ERC1820ImplementerInterface/" class="md-nav__link">
         ERC1820ImplementerInterface
       </a>
     </li>
@@ -2522,7 +2469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/erc1820/ERC1820Registry/" class="md-nav__link">
+      <a href="../../../API/utils/erc1820/ERC1820Registry/" class="md-nav__link">
         ERC1820Registry
       </a>
     </li>
@@ -2536,7 +2483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/erc1820/IERC1820Implementer/" class="md-nav__link">
+      <a href="../../../API/utils/erc1820/IERC1820Implementer/" class="md-nav__link">
         IERC1820Implementer
       </a>
     </li>
@@ -2595,7 +2542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/mocks/ClockMock/" class="md-nav__link">
+      <a href="../../../API/utils/mocks/ClockMock/" class="md-nav__link">
         ClockMock
       </a>
     </li>
@@ -2609,7 +2556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/mocks/ERC20LogicMock/" class="md-nav__link">
+      <a href="../../../API/utils/mocks/ERC20LogicMock/" class="md-nav__link">
         ERC20LogicMock
       </a>
     </li>
@@ -2623,7 +2570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/mocks/ERC721LogicMock/" class="md-nav__link">
+      <a href="../../../API/utils/mocks/ERC721LogicMock/" class="md-nav__link">
         ERC721LogicMock
       </a>
     </li>
@@ -2637,7 +2584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/mocks/MockAllowExtension/" class="md-nav__link">
+      <a href="../../../API/utils/mocks/MockAllowExtension/" class="md-nav__link">
         MockAllowExtension
       </a>
     </li>
@@ -2651,7 +2598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/mocks/MockBlockExtension/" class="md-nav__link">
+      <a href="../../../API/utils/mocks/MockBlockExtension/" class="md-nav__link">
         MockBlockExtension
       </a>
     </li>
@@ -2710,7 +2657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/roles/ITokenRoles/" class="md-nav__link">
+      <a href="../../../API/utils/roles/ITokenRoles/" class="md-nav__link">
         ITokenRoles
       </a>
     </li>
@@ -2724,7 +2671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/roles/Roles/" class="md-nav__link">
+      <a href="../../../API/utils/roles/Roles/" class="md-nav__link">
         Roles
       </a>
     </li>
@@ -2738,7 +2685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/roles/RolesBase/" class="md-nav__link">
+      <a href="../../../API/utils/roles/RolesBase/" class="md-nav__link">
         RolesBase
       </a>
     </li>
@@ -2752,7 +2699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/roles/TokenRoles/" class="md-nav__link">
+      <a href="../../../API/utils/roles/TokenRoles/" class="md-nav__link">
         TokenRoles
       </a>
     </li>
@@ -2766,7 +2713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/roles/TokenRolesConstants/" class="md-nav__link">
+      <a href="../../../API/utils/roles/TokenRolesConstants/" class="md-nav__link">
         TokenRolesConstants
       </a>
     </li>
@@ -2819,65 +2766,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ierc20logic" class="md-nav__link">
-    IERC20Logic
+  <a href="#building-a-custom-token" class="md-nav__link">
+    Building a custom token
   </a>
   
-    <nav class="md-nav" aria-label="IERC20Logic">
+    <nav class="md-nav" aria-label="Building a custom token">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#burnuint256-amount-bool-external" class="md-nav__link">
-    burn(uint256 amount) → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mintaddress-recipient-uint256-amount-bool-external" class="md-nav__link">
-    mint(address recipient, uint256 amount) → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#burnfromaddress-account-uint256-amount-bool-external" class="md-nav__link">
-    burnFrom(address account, uint256 amount) → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#decreaseallowanceaddress-spender-uint256-amount-bool-external" class="md-nav__link">
-    decreaseAllowance(address spender, uint256 amount) → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#increaseallowanceaddress-spender-uint256-amount-bool-external" class="md-nav__link">
-    increaseAllowance(address spender, uint256 amount) → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mintingallowed-bool-external" class="md-nav__link">
-    mintingAllowed() → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#burningallowed-bool-external" class="md-nav__link">
-    burningAllowed() → bool (external)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#maxsupply-uint256-external" class="md-nav__link">
-    maxSupply() → uint256 (external)
+  <a href="#example-erc20-implementation" class="md-nav__link">
+    Example ERC20 implementation
   </a>
   
 </li>
@@ -2901,55 +2799,96 @@
                 
 
 
-  <h1>IERC20Logic</h1>
+  <h1>Extendable token proxy</h1>
 
-<h2 id="ierc20logic"><code>IERC20Logic</code><a class="headerlink" href="#ierc20logic" title="Link to this section">&para;</a></h2>
-<p>An interface to interact with an ERC20 Token (logic).</p>
-<h3 id="burnuint256-amount-bool-external"><code>burn(uint256 amount) → bool</code> (external)<a class="headerlink" href="#burnuint256-amount-bool-external" title="Link to this section">&para;</a></h3>
-<p>Destroys <code>amount</code> tokens from the caller.</p>
-<p>See {ERC20-_burn}.</p>
-<h3 id="mintaddress-recipient-uint256-amount-bool-external"><code>mint(address recipient, uint256 amount) → bool</code> (external)<a class="headerlink" href="#mintaddress-recipient-uint256-amount-bool-external" title="Link to this section">&para;</a></h3>
-<p>Creates <code>amount</code> new tokens for <code>to</code>.</p>
-<p>See {ERC20-_mint}.</p>
-<p>Requirements:</p>
-<ul>
-<li>the caller must have the <code>MINTER_ROLE</code>.</li>
+<p>The <code>ExtendableTokenProxy</code> is the smart contract responsible for managing both the <a href="https://eips.ethereum.org/EIPS/eip-1967">EIP1967 Proxy</a> logic as well as the extension registration/execution logic. This contract also has functions to manage roles through the <code>TokenRoles</code> contract. </p>
+<p>This is the contract you must inherit from to build custom token implementations. The repo comes with both <code>ERC20.sol</code> and <code>ERC721.sol</code> implementations.</p>
+<h2 id="building-a-custom-token">Building a custom token<a class="headerlink" href="#building-a-custom-token" title="Link to this section">&para;</a></h2>
+<p>To build a custom token implementation, you must inherit from the <code>ExtendableTokenProxy</code> contract. The <code>ExtendableTokenProxy</code> contract requires that you:</p>
+<ol>
+<li>Invoke its constructor with the following arguments:<ul>
+<li>ABI encoded initialization data to send to logic contract&rsquo;s <code>_onInitialize</code> function. This data usually comes from the constructor arguments.</li>
 </ul>
-<h3 id="burnfromaddress-account-uint256-amount-bool-external"><code>burnFrom(address account, uint256 amount) → bool</code> (external)<a class="headerlink" href="#burnfromaddress-account-uint256-amount-bool-external" title="Link to this section">&para;</a></h3>
-<p>Destroys <code>amount</code> tokens from <code>account</code>, deducting from the caller&rsquo;s
-allowance.</p>
-<p>See {ERC20-_burn} and {ERC20-allowance}.</p>
-<p>Requirements:</p>
-<ul>
-<li>the caller must have allowance for <code>accounts</code>&lsquo;s tokens of at least
-<code>amount</code>.</li>
+</li>
+<li>Protect any token standard functions so extensions don&rsquo;t override them with their own functions:<ul>
+<li>This can be done with the <code>protectFunction(bytes4)</code> function or the <code>protectFunctions(bytes4[])</code> function.</li>
 </ul>
-<h3 id="decreaseallowanceaddress-spender-uint256-amount-bool-external"><code>decreaseAllowance(address spender, uint256 amount) → bool</code> (external)<a class="headerlink" href="#decreaseallowanceaddress-spender-uint256-amount-bool-external" title="Link to this section">&para;</a></h3>
-<p>Atomically decreases the allowance granted to <code>spender</code> by the caller.</p>
-<p>This is an alternative to {approve} that can be used as a mitigation for
-problems described in {IERC20-approve}.</p>
-<p>Emits an {Approval} event indicating the updated allowance.</p>
-<p>Requirements:</p>
-<ul>
-<li><code>spender</code> cannot be the zero address.</li>
-<li><code>spender</code> must have allowance for the caller of at least
-<code>subtractedValue</code>.</li>
+</li>
+<li>Implement the <code>function _domainName() internal override view returns(bytes memory)</code> function:<ul>
+<li>This function is used for building the <a href="https://eips.ethereum.org/EIPS/eip-712#definition-of-domainseparator">EIP712</a> domain separator and should return a unique bytes. For example this can be the token name.</li>
 </ul>
-<h3 id="increaseallowanceaddress-spender-uint256-amount-bool-external"><code>increaseAllowance(address spender, uint256 amount) → bool</code> (external)<a class="headerlink" href="#increaseallowanceaddress-spender-uint256-amount-bool-external" title="Link to this section">&para;</a></h3>
-<p>Atomically increases the allowance granted to <code>spender</code> by the caller.</p>
-<p>This is an alternative to {approve} that can be used as a mitigation for
-problems described in {IERC20-approve}.</p>
-<p>Emits an {Approval} event indicating the updated allowance.</p>
-<p>Requirements:</p>
-<ul>
-<li><code>spender</code> cannot be the zero address.</li>
+</li>
+<li>Implement the <code>function tokenStandard() external pure override returns (TokenStandard)</code>:<ul>
+<li>This function should return the token standard this contract implements.</li>
+<li>This function is a pure function, so it shouldn&rsquo;t rely on storage or any input for its return value.</li>
 </ul>
-<h3 id="mintingallowed-bool-external"><code>mintingAllowed() → bool</code> (external)<a class="headerlink" href="#mintingallowed-bool-external" title="Link to this section">&para;</a></h3>
-<p>Returns true if minting is allowed on this token, otherwise false</p>
-<h3 id="burningallowed-bool-external"><code>burningAllowed() → bool</code> (external)<a class="headerlink" href="#burningallowed-bool-external" title="Link to this section">&para;</a></h3>
-<p>Returns true if burning is allowed on this token, otherwise false</p>
-<h3 id="maxsupply-uint256-external"><code>maxSupply() → uint256</code> (external)<a class="headerlink" href="#maxsupply-uint256-external" title="Link to this section">&para;</a></h3>
-<p>Returns the maximum value the totalSupply() can be for this token</p>
+</li>
+</ol>
+<h3 id="example-erc20-implementation">Example ERC20 implementation<a class="headerlink" href="#example-erc20-implementation" title="Link to this section">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span><span class="k">pragma solidity</span><span class="w"> </span><span class="o">^</span><span class="k">0.8.0</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">import</span><span class="w"> </span><span class="p">{</span>ExtendableTokenProxy<span class="p">}</span><span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;@consensys-software/UniversalToken-extendable/contracts/tokens/proxy/ExtendableTokenProxy.sol&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">contract</span><span class="w"> </span><span class="ni">CustomERC20</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>ExtendableTokenProxy<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="kt">constructor</span><span class="p">(</span><span class="w"></span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_name<span class="p">,</span><span class="w"></span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_symbol<span class="p">,</span><span class="w"></span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="kt">address</span><span class="w"> </span><span class="nv">_owner</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="kt">address</span><span class="w"> </span><span class="nv">_logicAddress</span><span class="w"></span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span>ExtendableTokenProxy<span class="p">(</span><span class="w"></span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">            </span>abi<span class="p">.</span>encode<span class="p">(</span>_name<span class="p">,</span><span class="w"> </span>_symbol<span class="p">),</span><span class="w"></span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">            </span>_logicAddress<span class="p">,</span><span class="w"></span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">            </span>_owner<span class="w"></span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">            </span><span class="c1">// Allocate an array of function selectors to protect</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">            </span>bytes4<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_protectedFunctions<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>bytes4<span class="p">[](</span><span class="m m-Decimal">6</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">            </span>_protectedFunctions<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">.</span>totalSupply<span class="p">.</span>selector<span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">            </span>_protectedFunctions<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">.</span>balanceOf<span class="p">.</span>selector<span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">            </span>_protectedFunctions<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">.</span>transfer<span class="p">.</span>selector<span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">            </span>_protectedFunctions<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">.</span>transferFrom<span class="p">.</span>selector<span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">            </span>_protectedFunctions<span class="p">[</span><span class="m m-Decimal">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">.</span>approve<span class="p">.</span>selector<span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">            </span>_protectedFunctions<span class="p">[</span><span class="m m-Decimal">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">.</span>allowance<span class="p">.</span>selector<span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">            </span><span class="c1">// Mark the ERC20 standard functions as protected, meaning extensions cannot override them</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">            </span>_protectFunctions<span class="p">(</span>_protectedFunctions<span class="p">);</span><span class="w"></span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">            </span><span class="c1">// ... constructor logic ...</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">            </span><span class="c1">//Update the doamin seperator now that</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">            </span><span class="c1">//we&#39;ve setup everything</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">            </span>_updateDomainSeparator<span class="p">();</span><span class="w"></span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">        </span><span class="cm">/**</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="cm">        * @notice This Token Proxy supports the ERC20 standard</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="cm">        * @dev This value does not change, will always return TokenStandard.ERC20</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="cm">        * @return The name of this Token standard</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="cm">        */</span><span class="w"></span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">        </span><span class="kt">function</span><span class="w"> </span><span class="nv">tokenStandard</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>pure<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TokenStandard<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">            </span><span class="kt">return</span><span class="w"> </span>TokenStandard<span class="p">.</span>ERC20<span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">        </span><span class="cm">/**</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="cm">        * @dev The domain name of this ERC20 Token Proxy will be the ERC20 Token name().</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="cm">        * This value does not change.</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="cm">        * @return The domain name of this ERC20 Token Proxy</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="cm">        */</span><span class="w"></span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">        </span><span class="kt">function</span><span class="w"> </span><span class="nv">_domainName</span><span class="p">()</span><span class="w"></span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">            </span><span class="kt">internal</span><span class="w"></span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">            </span>view<span class="w"></span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">            </span>virtual<span class="w"></span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">            </span>override<span class="w"></span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">            </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">            </span><span class="c1">// TODO You could also grab the name using the name() function</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="w">            </span><span class="kt">return</span><span class="w"> </span>abi<span class="p">.</span>encode<span class="p">(</span><span class="s2">&quot;TokenName&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -2984,7 +2923,7 @@ problems described in {IERC20-approve}.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../ERC20Logic/" class="md-footer__link md-footer__link--prev" aria-label="Previous: ERC20Logic" rel="prev">
+        <a href="../token-proxy-functionality/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Token proxy functionality" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2993,20 +2932,20 @@ problems described in {IERC20-approve}.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              ERC20Logic
+              Token proxy functionality
             </div>
           </div>
         </a>
       
       
         
-        <a href="../../ERC721/ERC721Logic/" class="md-footer__link md-footer__link--next" aria-label="Next: ERC721Logic" rel="next">
+        <a href="../../token-roles/token-roles/" class="md-footer__link md-footer__link--next" aria-label="Next: Roles" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              ERC721Logic
+              Roles
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -3066,10 +3005,10 @@ problems described in {IERC20-approve}.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["search.suggest", "search.highlight", "search.share", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.indexes"], "search": "../../../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.suggest", "search.highlight", "search.share", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>
       
     
   </body>
