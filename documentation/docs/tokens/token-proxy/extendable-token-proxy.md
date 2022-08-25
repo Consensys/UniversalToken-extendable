@@ -21,7 +21,7 @@ To build a custom token implementation, you must inherit from the `ExtendableTok
 ```solidity
     pragma solidity ^0.8.0;
 
-    import {ExtendableTokenProxy} from "@consensys-software/UniversalToken-extendable/tokens/proxy/ExtendableTokenProxy.sol";
+    import {ExtendableTokenProxy} from "@consensys-software/UniversalToken-extendable/contracts/tokens/proxy/ExtendableTokenProxy.sol";
 
     contract CustomERC20 is ExtendableTokenProxy {
         constructor(
