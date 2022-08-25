@@ -22,7 +22,7 @@ When adding additional functions, be sure to update the [token proxy](./token-pr
 ```solidity
     pragma solidity ^0.8.0;
 
-    import {ERC20Logic} from "@consensys-software/UniversalToken-extendable/tokens/logic/erc20/ERC20Logic.sol";
+    import {ERC20Logic} from "@consensys-software/UniversalToken-extendable/contracts/tokens/logic/ERC20/ERC20Logic.sol";
 
     contract CustomERC20Logic is ERC20Logic {
         string private test;
@@ -72,7 +72,7 @@ If you need to add support for a custom token standard or you wish to build a cu
 
     pragma solidity ^0.8.0;
 
-    import {TokenLogic} from "@consensys-software/UniversalToken-extendable/tokens/logic/TokenLogic.sol";
+    import {TokenLogic} from "@consensys-software/UniversalToken-extendable/contracts/tokens/logic/TokenLogic.sol";
     import {ERC20Upgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 
 
