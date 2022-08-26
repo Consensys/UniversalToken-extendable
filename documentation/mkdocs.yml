@@ -43,10 +43,15 @@ nav:
       - Token logic: tokens/token-logic.md
       - Upgrading token togic: tokens/upgrading.md
   - Extensions: 
-      - Overview: extensions/getting-started.md
-      - Building extensions: extensions/building-extensions.md
-      - Token events: extensions/token-events.md
-      - Controlled transfers: extensions/controlled-transfers.md
+      - Overview: extensions/overview.md
+      - Manage extensions:
+          - Build: 
+              - Quick start: extensions/quick-start.md
+              - Events and callbacks: extensions/token-events.md
+              - Controlled transfers: extensions/controlled-transfers.md
+          - Deploy: extensions/deploy-extensions.md
+          - Register: extensions/register-extensions.md
+          - Initialize: extensions/initialize.md
       - TokenExtension API: extensions/api.md
   - Solidity API:
       - ERC20:  API/ERC20.md
@@ -231,8 +236,8 @@ plugins:
     lang: en
     separator: '[\s\-\.\_]+'
     prebuild_index: true
-  git-revision-date-localized:
-    locale: en
+#  git-revision-date-localized:
+#    locale: en
   markdownextradata: {}
 #  minify:
 #    minify_html: true

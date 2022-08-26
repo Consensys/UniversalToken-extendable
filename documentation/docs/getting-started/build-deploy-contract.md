@@ -43,7 +43,7 @@ Once you have compiled the contracts, get an ERC20 logic contract address for th
     * Rinkeby: `0x9FE61B546b4bBCdf28fAe9588d18aD7233fFa4b9`: https://rinkeby.etherscan.io/address/0x9FE61B546b4bBCdf28fAe9588d18aD7233fFa4b9#code
     * Kovan: tbc
     * Ropsten: tbc
-    * Goreli: tbc
+    * Goerli: tbc
 
 
 ### Logic contract

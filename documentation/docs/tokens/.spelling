@@ -1,0 +1,20 @@
+# markdown-spellcheck spelling configuration file
+# Format - lines beginning # are comments
+# global dictionary is at the start, file overrides afterwards
+# one word per line, to define a file override use ' - filename'
+# where filename is relative to this configuration file
+ExtendableTokenProxy
+disableExtension
+OpenZeppelin
+EIP1967
+EIP712
+ERC20
+Etherscan
+Hardhat
+ - token-logic.md
+behavior
+ - token-proxy/extendable-token-proxy.md
+ABI
+ - token-proxy/token-proxy-functionality.md
+struct
+0x

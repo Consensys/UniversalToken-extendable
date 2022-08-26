@@ -13,7 +13,7 @@ Extensions can do the following:
 * Add external (user-facing) functions to your token.
 * Store additional data for your token.
 * Listen for token events on-chain such as transfers and approvals.
-    - This enables custom functionality for token transfers and other token releated events.
+    - This enables custom functionality for token transfers and other token related events.
 
 Using the Universal Token API, developers can deploy smart contract extensions. Token contracts can then plug-and-play these extensions, either at token deployment or in real-time on-chain. 
 

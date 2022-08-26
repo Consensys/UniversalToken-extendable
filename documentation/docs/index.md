@@ -136,7 +136,7 @@ h1 {
         <img src="cdn/images/index-icons/10.png" alt=""></a>
   </div>
   
-  <div class="grid-item"><a href="/extensions/getting-started"><h2>Extensions</h2>
+  <div class="grid-item"><a href="/extensions/overview"><h2>Extensions</h2>
         <img src="cdn/images/index-icons/12.png" alt=""></a>
   </div>
   

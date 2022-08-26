@@ -25,7 +25,7 @@ yarn
 	warning Resolution field "web3@1.7.3" is incompatible with requested version "web3@1.5.3"
 	warning Resolution field "web3@1.7.3" is incompatible with requested version "web3@1.5.3"
 	[2/4] 🚚  Fetching packages...
-	warning Pattern ["@truffle/hdwallet-provider@latest"] is trying to unpack in the same destination "/Users/katharine/Library/Caches/Yarn/v6/npm-@truffle-hdwallet-provider-2.0.8-4f2edde26b36356ac8dfe993ed4dece415005be8-integrity/node_modules/@truffle/hdwallet-provider" as pattern ["@truffle/hdwallet-provider@^2.0.8"]. This could result in non-deterministic behavior, skipping.
+	warning Pattern ["@truffle/hdwallet-provider@latest"] is trying to unpack in the same destination "/Users/XX/Library/Caches/Yarn/v6/npm-@truffle-hdwallet-provider-2.0.8-4f2edde26b36356ac8dfe993ed4dece415005be8-integrity/node_modules/@truffle/hdwallet-provider" as pattern ["@truffle/hdwallet-provider@^2.0.8"]. This could result in non-deterministic behavior, skipping.
 	[3/4] 🔗  Linking dependencies...
 	warning "@openzeppelin/test-helpers > chai-bn@0.2.2" has unmet peer dependency "bn.js@^4.11.0".
 	warning " > @typechain/ethers-v5@8.0.5" has incorrect peer dependency "typechain@^6.0.4".
