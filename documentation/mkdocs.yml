@@ -119,7 +119,7 @@ nav:
           - DomainAware:  API/utils/DomainAware.md
           - Errors:  API/utils/Errors.md
           - IDomainAware:  API/utils/IDomainAware.md
-          - Erc1820:
+          - ERC1820:
               - ERC1820Client:  API/utils/erc1820/ERC1820Client.md
               - ERC1820Implementer:  API/utils/erc1820/ERC1820Implementer.md
               - ERC1820ImplementerInterface:  API/utils/erc1820/ERC1820ImplementerInterface.md
