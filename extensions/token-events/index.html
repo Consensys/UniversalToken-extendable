@@ -19,7 +19,7 @@
     
     
       
-        <title>Token events - ConsenSys Universal Token - extendable</title>
+        <title>Events and callbacks - ConsenSys Universal Token - extendable</title>
       
     
     
@@ -73,11 +73,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#token-events" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -108,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Token events
+              Events and callbacks
             
           </span>
         </div>
@@ -236,7 +231,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../getting-started/" class="md-tabs__link md-tabs__link--active">
+      <a href="../overview/" class="md-tabs__link md-tabs__link--active">
         Extensions
       </a>
     </li>
@@ -815,10 +810,6 @@
         
           
         
-          
-        
-          
-        
       
       
         <label class="md-nav__link" for="__nav_5">
@@ -839,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -851,10 +842,84 @@
               
   
   
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Manage extensions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Manage extensions" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Manage extensions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2_1" type="checkbox" id="__nav_5_2_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_2_1">
+          Build
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Build" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Build
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
   
     <li class="md-nav__item">
-      <a href="../building-extensions/" class="md-nav__link">
-        Building extensions
+      <a href="../quick-start/" class="md-nav__link">
+        Quick start
       </a>
     </li>
   
@@ -873,11 +938,9 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-        
-      
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Token events
+        Events and callbacks
       </a>
       
     </li>
@@ -894,6 +957,62 @@
       <a href="../controlled-transfers/" class="md-nav__link">
         Controlled transfers
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy-extensions/" class="md-nav__link">
+        Deploy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../register-extensions/" class="md-nav__link">
+        Register
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../initialize/" class="md-nav__link">
+        Initialize
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -2716,8 +2835,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -2731,55 +2848,51 @@
                 
 
 
-<h1 id="token-events">Token Events<a class="headerlink" href="#token-events" title="Link to this section">&para;</a></h1>
-<p>Extensinos can choose to listen to specific token events on-chain (such as transfers or approvals) to trigger specific checks or actions. The <code>TokenExtension</code> base contract provides helper methods to listen to common token events.</p>
-<p>The only thing extensions cannot do inside an event callback is perform an action that would cause the same event to be triggered again. This is to prevent reentry attacks and potential recurrsion problems.</p>
-<ul>
-<li><code>_listenForTokenTransfers(function (TransferData memory) external returns (bool) callback)</code> - Listen for token transfers and invoke the provided callback function. When the callback is invoked, the transfer has already occured</li>
-<li><code>_listenForTokenApprovals(function (TransferData memory) external returns (bool) callback)</code> - Listen for token approvals and invoke the provided callback function. When the callback is invoked, the approval has already occured</li>
-<li><code>_listenForTokenBeforeTransfers(function (TransferData memory) external returns (bool) callback)</code> - Listen for token transfers and invoke the provided callback function. The callback is invoked right before the transfer occurs</li>
-</ul>
-<p>If an extension wishes to listen to an event, it should subscribe to the event inside its <code>initialize</code> function. However, an extension can choose to subscirbe whenever they like.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="p">{</span><span class="n">TokenExtension</span><span class="p">,</span> <span class="n">TransferData</span><span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;@consensys-software/UniversalToken/extensions/TokenExtension.sol&quot;</span><span class="p">;</span>
+  <h1>Events and callbacks</h1>
 
-<span class="n">contract</span> <span class="n">PauseExtension</span> <span class="ow">is</span> <span class="n">TokenExtension</span> <span class="p">{</span>
-    <span class="n">bytes32</span> <span class="n">constant</span> <span class="n">internal</span> <span class="n">ALLOWLIST_ROLE</span> <span class="o">=</span> <span class="n">keccak256</span><span class="p">(</span><span class="s2">&quot;allowblock.roles.allowlisted&quot;</span><span class="p">);</span>
-
-    <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
-        <span class="o">//</span> <span class="o">...</span>
-    <span class="p">}</span>
-
-    <span class="n">function</span> <span class="n">initialize</span><span class="p">()</span> <span class="n">external</span> <span class="n">override</span> <span class="p">{</span>
-        <span class="n">_listenForTokenTransfers</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">onTransferExecuted</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="n">function</span> <span class="n">onTransferExecuted</span><span class="p">(</span><span class="n">TransferData</span> <span class="n">memory</span> <span class="n">data</span><span class="p">)</span> <span class="n">external</span> <span class="n">onlyToken</span> <span class="n">returns</span> <span class="p">(</span><span class="nb">bool</span><span class="p">)</span> <span class="p">{</span>
-        <span class="o">//</span> <span class="n">hasRole</span> <span class="ow">is</span> <span class="n">provided</span> <span class="n">by</span> <span class="n">the</span> <span class="n">TokenExtension</span> <span class="n">base</span> <span class="n">contract</span>
-        <span class="nb">bool</span> <span class="n">fromAllowed</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="kn">from</span> <span class="o">==</span> <span class="n">address</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="n">hasRole</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">from</span><span class="p">,</span> <span class="n">ALLOWLIST_ROLE</span><span class="p">);</span>
-        <span class="nb">bool</span> <span class="n">toAllowed</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span> <span class="o">==</span> <span class="n">address</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="n">hasRole</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">,</span> <span class="n">ALLOWLIST_ROLE</span><span class="p">);</span>
-
-        <span class="n">require</span><span class="p">(</span><span class="n">fromAllowed</span><span class="p">,</span> <span class="s2">&quot;from address is not allowlisted&quot;</span><span class="p">);</span>
-        <span class="n">require</span><span class="p">(</span><span class="n">toAllowed</span><span class="p">,</span> <span class="s2">&quot;to address is not allowlisted&quot;</span><span class="p">);</span>
-
-        <span class="k">return</span> <span class="n">fromAllowed</span> <span class="o">&amp;&amp;</span> <span class="n">toAllowed</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It&rsquo;s very important that event callback functions are marked as either <code>external</code> or <code>public</code> and <strong>MUST</strong> include the <code>onlyToken</code> modifier. The <code>onlyToken</code> modifier ensures that only the token can execute the callback function</p>
+<p>Extensions can choose to listen to specific token events on-chain (such as transfers or approvals) which trigger specific checks or actions. </p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <code>TokenExtension</code> base contract provides helper methods to listen to common token events.</p>
 </div>
-
-  <hr>
-<div class="md-source-file">
-  <small>
-    
-      Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 25, 2022</span>
-      
-    
-  </small>
+<p>The only thing extensions cannot do inside an event callback is perform an action that would cause the same event to be triggered again. This is to prevent reentry attacks and potential recursion problems.</p>
+<ul>
+<li><code>_listenForTokenTransfers(function (TransferData memory) external returns (bool) callback)</code>: listens for token transfers and invokes the provided callback function. When the callback is invoked, the transfer has already occurred.</li>
+<li><code>_listenForTokenApprovals(function (TransferData memory) external returns (bool) callback)</code>: listens for token approvals and invokes the provided callback function. When the callback is invoked, the approval has already occurred.</li>
+<li><code>_listenForTokenBeforeTransfers(function (TransferData memory) external returns (bool) callback)</code>: listens for token transfers and invokes the provided callback function. The callback is invoked right before the transfer occurs.</li>
+</ul>
+<p>If an extension wishes to listen to an event, it should subscribe to the event inside its <code>initialize</code> function. However, an extension can choose to subscribe whenever they like.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">import</span><span class="w"> </span><span class="p">{</span>TokenExtension<span class="p">,</span><span class="w"> </span>TransferData<span class="p">}</span><span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;@consensys-software/UniversalToken-extendable/contracts/extensions/TokenExtension.sol&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">contract</span><span class="w"> </span><span class="ni">PauseExtension</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>TokenExtension<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>ALLOWLIST_ROLE<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;allowblock.roles.allowlisted&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="kt">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="c1">// ...</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">initialize</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span>_listenForTokenTransfers<span class="p">(</span><span class="kt">this</span><span class="p">.</span>onTransferExecuted<span class="p">);</span><span class="w"></span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">onTransferExecuted</span><span class="p">(</span>TransferData<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyToken<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="c1">// hasRole is provided by the TokenExtension base contract</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">fromAllowed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>data<span class="p">.</span>from<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="err">||</span><span class="w"> </span>hasRole<span class="p">(</span>data<span class="p">.</span>from<span class="p">,</span><span class="w"> </span>ALLOWLIST_ROLE<span class="p">);</span><span class="w"></span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">toAllowed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>data<span class="p">.</span>to<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="err">||</span><span class="w"> </span>hasRole<span class="p">(</span>data<span class="p">.</span>to<span class="p">,</span><span class="w"> </span>ALLOWLIST_ROLE<span class="p">);</span><span class="w"></span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="kt">require</span><span class="p">(</span>fromAllowed<span class="p">,</span><span class="w"> </span><span class="s2">&quot;from address is not allowlisted&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="kt">require</span><span class="p">(</span>toAllowed<span class="p">,</span><span class="w"> </span><span class="s2">&quot;to address is not allowlisted&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span><span class="kt">return</span><span class="w"> </span>fromAllowed<span class="w"> </span><span class="err">&amp;&amp;</span><span class="w"> </span>toAllowed<span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul>
+<li>Event callback functions must be marked as either <code>external</code> or <code>public</code> and <strong>MUST</strong> include the <code>onlyToken</code> modifier. </li>
+<li>The <code>onlyToken</code> modifier ensures that only the token can execute the callback function.</li>
+</ul>
 </div>
 
 
@@ -2804,7 +2917,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../building-extensions/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Building extensions" rel="prev">
+        <a href="../quick-start/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quick start" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2813,7 +2926,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Building extensions
+              Quick start
             </div>
           </div>
         </a>

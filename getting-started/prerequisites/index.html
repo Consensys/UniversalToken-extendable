@@ -236,7 +236,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../extensions/getting-started/" class="md-tabs__link">
+      <a href="../../extensions/overview/" class="md-tabs__link">
         Extensions
       </a>
     </li>
@@ -880,10 +880,6 @@
         
           
         
-          
-        
-          
-        
       
       
         <label class="md-nav__link" for="__nav_5">
@@ -904,7 +900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extensions/getting-started/" class="md-nav__link">
+      <a href="../../extensions/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -917,9 +913,79 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Manage extensions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Manage extensions" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Manage extensions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2_1" type="checkbox" id="__nav_5_2_1" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_2_1">
+          Build
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Build" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Build
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../extensions/building-extensions/" class="md-nav__link">
-        Building extensions
+      <a href="../../extensions/quick-start/" class="md-nav__link">
+        Quick start
       </a>
     </li>
   
@@ -933,7 +999,7 @@
   
     <li class="md-nav__item">
       <a href="../../extensions/token-events/" class="md-nav__link">
-        Token events
+        Events and callbacks
       </a>
     </li>
   
@@ -949,6 +1015,62 @@
       <a href="../../extensions/controlled-transfers/" class="md-nav__link">
         Controlled transfers
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/deploy-extensions/" class="md-nav__link">
+        Deploy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/register-extensions/" class="md-nav__link">
+        Register
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/initialize/" class="md-nav__link">
+        Initialize
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -2848,7 +2970,7 @@ warning Resolution field &ldquo;web3@1.7.3&rdquo; is incompatible with requested
 warning Resolution field &ldquo;web3@1.7.3&rdquo; is incompatible with requested version &ldquo;web3@1.5.3&rdquo;
 warning Resolution field &ldquo;web3@1.7.3&rdquo; is incompatible with requested version &ldquo;web3@1.5.3&rdquo;
 [2/4] 🚚  Fetching packages&hellip;
-warning Pattern [&ldquo;@truffle/hdwallet-provider@latest&rdquo;] is trying to unpack in the same destination &ldquo;/Users/katharine/Library/Caches/Yarn/v6/npm-@truffle-hdwallet-provider-2.0.8-4f2edde26b36356ac8dfe993ed4dece415005be8-integrity/node_modules/@truffle/hdwallet-provider&rdquo; as pattern [&ldquo;@truffle/hdwallet-provider@^2.0.8&rdquo;]. This could result in non-deterministic behavior, skipping.
+warning Pattern [&ldquo;@truffle/hdwallet-provider@latest&rdquo;] is trying to unpack in the same destination &ldquo;/Users/XX/Library/Caches/Yarn/v6/npm-@truffle-hdwallet-provider-2.0.8-4f2edde26b36356ac8dfe993ed4dece415005be8-integrity/node_modules/@truffle/hdwallet-provider&rdquo; as pattern [&ldquo;@truffle/hdwallet-provider@^2.0.8&rdquo;]. This could result in non-deterministic behavior, skipping.
 [&frac34;] 🔗  Linking dependencies&hellip;
 warning &ldquo;@openzeppelin/test-helpers &gt; chai-bn@0.2.2&rdquo; has unmet peer dependency &ldquo;bn.js@^4.11.0&rdquo;.
 warning &rdquo; &gt; @typechain/ethers-v5@8.0.5&rdquo; has incorrect peer dependency &ldquo;typechain@^6.0.4&rdquo;.
@@ -3247,17 +3369,6 @@ husky - Git hooks installed
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The <code>&gt; ERC1820 deployment: Unknown error { code: -32000, message: 'nonce too low' }</code> error indicates the registry is already deployed on the network.</p>
-</div>
-
-  <hr>
-<div class="md-source-file">
-  <small>
-    
-      Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 25, 2022</span>
-      
-    
-  </small>
 </div>
 
 

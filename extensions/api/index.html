@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tokenextension-api" class="md-skip">
+        <a href="#constants" class="md-skip">
           Skip to content
         </a>
       
@@ -236,7 +236,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../getting-started/" class="md-tabs__link md-tabs__link--active">
+      <a href="../overview/" class="md-tabs__link md-tabs__link--active">
         Extensions
       </a>
     </li>
@@ -815,10 +815,6 @@
         
           
         
-          
-        
-          
-        
       
       
         <label class="md-nav__link" for="__nav_5">
@@ -839,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -852,9 +848,79 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Manage extensions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Manage extensions" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Manage extensions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2_1" type="checkbox" id="__nav_5_2_1" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_2_1">
+          Build
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Build" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Build
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../building-extensions/" class="md-nav__link">
-        Building extensions
+      <a href="../quick-start/" class="md-nav__link">
+        Quick start
       </a>
     </li>
   
@@ -868,7 +934,7 @@
   
     <li class="md-nav__item">
       <a href="../token-events/" class="md-nav__link">
-        Token events
+        Events and callbacks
       </a>
     </li>
   
@@ -889,6 +955,62 @@
 
             
           
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy-extensions/" class="md-nav__link">
+        Deploy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../register-extensions/" class="md-nav__link">
+        Register
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../initialize/" class="md-nav__link">
+        Initialize
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
             
               
   
@@ -901,12 +1023,246 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-        
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          TokenExtension API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         TokenExtension API
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#constants" class="md-nav__link">
+    Constants
+  </a>
+  
+    <nav class="md-nav" aria-label="Constants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token_allow_burn" class="md-nav__link">
+    TOKEN_ALLOW_BURN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_allow_mint" class="md-nav__link">
+    TOKEN_ALLOW_MINT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_owner" class="md-nav__link">
+    TOKEN_OWNER
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_minter_role" class="md-nav__link">
+    TOKEN_MINTER_ROLE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_manager_address" class="md-nav__link">
+    TOKEN_MANAGER_ADDRESS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_controller_role" class="md-nav__link">
+    TOKEN_CONTROLLER_ROLE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_transfer_event" class="md-nav__link">
+    TOKEN_TRANSFER_EVENT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_before_transfer_event" class="md-nav__link">
+    TOKEN_BEFORE_TRANSFER_EVENT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_approve_event" class="md-nav__link">
+    TOKEN_APPROVE_EVENT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-functions" class="md-nav__link">
+    Metadata functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Metadata functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_setversionuint256" class="md-nav__link">
+    _setVersion(uint256)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_setpackagenamestring" class="md-nav__link">
+    _setPackageName(string)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_supportstokenstandardtokenstandard" class="md-nav__link">
+    _supportsTokenStandard(TokenStandard)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_setinterfacelabelstring" class="md-nav__link">
+    _setInterfaceLabel(string)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_supportsalltokenstandards" class="md-nav__link">
+    _supportsAllTokenStandards()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_requirerolebytes32" class="md-nav__link">
+    _requireRole(bytes32)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_registerfunctionbytes4" class="md-nav__link">
+    _registerFunction(bytes4)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_registerfunctionnamestring" class="md-nav__link">
+    _registerFunctionName(string)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension-metadata" class="md-nav__link">
+    Extension Metadata
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extensiondeployer-view-returns-address" class="md-nav__link">
+    extensionDeployer() view returns (address)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#packagehash-view-returns-bytes32" class="md-nav__link">
+    packageHash() view returns (bytes32)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-view-returns-uint256" class="md-nav__link">
+    version() view returns (uint256)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#istokenstandardsupportedtokenstandard-view-returns-bool" class="md-nav__link">
+    isTokenStandardSupported(TokenStandard) view returns (bool)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalfunctions-view-returns-bytes4" class="md-nav__link">
+    externalFunctions() view returns (bytes4[])
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requiredroles-view-returns-bytes32" class="md-nav__link">
+    requiredRoles() view returns (bytes32[])
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfacelabel-view-returns-string" class="md-nav__link">
+    interfaceLabel() view returns (string)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-metadata" class="md-nav__link">
+    Internal metadata
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2716,8 +3072,228 @@
   
   
   
-    
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#constants" class="md-nav__link">
+    Constants
+  </a>
+  
+    <nav class="md-nav" aria-label="Constants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token_allow_burn" class="md-nav__link">
+    TOKEN_ALLOW_BURN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_allow_mint" class="md-nav__link">
+    TOKEN_ALLOW_MINT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_owner" class="md-nav__link">
+    TOKEN_OWNER
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_minter_role" class="md-nav__link">
+    TOKEN_MINTER_ROLE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_manager_address" class="md-nav__link">
+    TOKEN_MANAGER_ADDRESS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_controller_role" class="md-nav__link">
+    TOKEN_CONTROLLER_ROLE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_transfer_event" class="md-nav__link">
+    TOKEN_TRANSFER_EVENT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_before_transfer_event" class="md-nav__link">
+    TOKEN_BEFORE_TRANSFER_EVENT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token_approve_event" class="md-nav__link">
+    TOKEN_APPROVE_EVENT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-functions" class="md-nav__link">
+    Metadata functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Metadata functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_setversionuint256" class="md-nav__link">
+    _setVersion(uint256)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_setpackagenamestring" class="md-nav__link">
+    _setPackageName(string)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_supportstokenstandardtokenstandard" class="md-nav__link">
+    _supportsTokenStandard(TokenStandard)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_setinterfacelabelstring" class="md-nav__link">
+    _setInterfaceLabel(string)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_supportsalltokenstandards" class="md-nav__link">
+    _supportsAllTokenStandards()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_requirerolebytes32" class="md-nav__link">
+    _requireRole(bytes32)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_registerfunctionbytes4" class="md-nav__link">
+    _registerFunction(bytes4)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_registerfunctionnamestring" class="md-nav__link">
+    _registerFunctionName(string)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension-metadata" class="md-nav__link">
+    Extension Metadata
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extensiondeployer-view-returns-address" class="md-nav__link">
+    extensionDeployer() view returns (address)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#packagehash-view-returns-bytes32" class="md-nav__link">
+    packageHash() view returns (bytes32)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-view-returns-uint256" class="md-nav__link">
+    version() view returns (uint256)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#istokenstandardsupportedtokenstandard-view-returns-bool" class="md-nav__link">
+    isTokenStandardSupported(TokenStandard) view returns (bool)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalfunctions-view-returns-bytes4" class="md-nav__link">
+    externalFunctions() view returns (bytes4[])
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requiredroles-view-returns-bytes32" class="md-nav__link">
+    requiredRoles() view returns (bytes32[])
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfacelabel-view-returns-string" class="md-nav__link">
+    interfaceLabel() view returns (string)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-metadata" class="md-nav__link">
+    Internal metadata
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2731,99 +3307,68 @@
                 
 
 
-<h1 id="tokenextension-api">TokenExtension API<a class="headerlink" href="#tokenextension-api" title="Link to this section">&para;</a></h1>
+  <h1>TokenExtension API</h1>
+
 <p>This page goes over the different internal functions that can be used when writing your own token extensions (or extending from the <code>TokenExtension</code> abstract contract).</p>
-<h1 id="constants">Constants<a class="headerlink" href="#constants" title="Link to this section">&para;</a></h1>
+<h2 id="constants">Constants<a class="headerlink" href="#constants" title="Link to this section">&para;</a></h2>
 <p>The <code>TokenExtension</code> contract exposes several constants for <a href="../../tokens/token-roles/token-roles/">token roles</a> and for <a href="../token-events/">token events</a>.</p>
-<ul>
-<li>TOKEN_ALLOW_BURN<ul>
-<li>The storage slot where the burn option toggle is stored</li>
-</ul>
-</li>
-<li>TOKEN_ALLOW_MINT<ul>
-<li>The storage slot where the mint option toggle is stored</li>
-</ul>
-</li>
-<li>TOKEN_OWNER<ul>
-<li>The storage slot where the token owner address is stored</li>
-</ul>
-</li>
-<li>TOKEN_MINTER_ROLE<ul>
-<li>The <code>roleId</code> for the <a href="../../tokens/token-roles/token-roles/#minter">token minter</a> role</li>
-</ul>
-</li>
-<li>TOKEN_MANAGER_ADDRESS<ul>
-<li>The storage slot where the token manager address is stored</li>
-</ul>
-</li>
-<li>TOKEN_CONTROLLER_ROLE<ul>
-<li>The <code>roleId</code> for the <a href="../../tokens/token-roles/token-roles/#controller">token controller</a> role</li>
-</ul>
-</li>
-<li>TOKEN_TRANSFER_EVENT<ul>
-<li>The <code>eventId</code> for the token transfer event</li>
-</ul>
-</li>
-<li>TOKEN_BEFORE_TRANSFER_EVENT<ul>
-<li>The <code>eventId</code> for the before token transfer event</li>
-</ul>
-</li>
-<li>TOKEN_APPROVE_EVENT<ul>
-<li>The <code>eventId</code> for the token approval event</li>
-</ul>
-</li>
-</ul>
-<h1 id="extension-metadata-functions">Extension Metadata Functions<a class="headerlink" href="#extension-metadata-functions" title="Link to this section">&para;</a></h1>
-<p>These functions set specific extension metadata used during extension registration and upgrading. These functions can only be invoked inside the extension&rsquo;s constructor</p>
-<h2 id="_setversionuint256">_setVersion(uint256)<a class="headerlink" href="#_setversionuint256" title="Link to this section">&para;</a></h2>
-<p>Set the extension&rsquo;s version number. The version number must be higher when upgrading</p>
-<h2 id="_setpackagenamestring">_setPackageName(string)<a class="headerlink" href="#_setpackagenamestring" title="Link to this section">&para;</a></h2>
-<p>Set the extension&rsquo;s package hash to match the hash of <code>keccak256(abi.encodePacked(msg.sender, string))</code>. This hash must match when upgrading to a new extension</p>
-<h2 id="_supportstokenstandardtokenstandard">_supportsTokenStandard(TokenStandard)<a class="headerlink" href="#_supportstokenstandardtokenstandard" title="Link to this section">&para;</a></h2>
+<h3 id="token_allow_burn"><code>TOKEN_ALLOW_BURN</code><a class="headerlink" href="#token_allow_burn" title="Link to this section">&para;</a></h3>
+<p>The storage slot where the burn option toggle is stored.</p>
+<h3 id="token_allow_mint"><code>TOKEN_ALLOW_MINT</code><a class="headerlink" href="#token_allow_mint" title="Link to this section">&para;</a></h3>
+<p>The storage slot where the mint option toggle is stored.</p>
+<h3 id="token_owner"><code>TOKEN_OWNER</code><a class="headerlink" href="#token_owner" title="Link to this section">&para;</a></h3>
+<p>The storage slot where the token owner address is stored.</p>
+<h3 id="token_minter_role"><code>TOKEN_MINTER_ROLE</code><a class="headerlink" href="#token_minter_role" title="Link to this section">&para;</a></h3>
+<p>The <code>roleId</code> for the <a href="../../tokens/token-roles/token-roles/#minter">token minter</a> role.</p>
+<h3 id="token_manager_address"><code>TOKEN_MANAGER_ADDRESS</code><a class="headerlink" href="#token_manager_address" title="Link to this section">&para;</a></h3>
+<p>The storage slot where the token manager address is stored.</p>
+<h3 id="token_controller_role"><code>TOKEN_CONTROLLER_ROLE</code><a class="headerlink" href="#token_controller_role" title="Link to this section">&para;</a></h3>
+<p>The <code>roleId</code> for the <a href="../../tokens/token-roles/token-roles/#controller">token controller</a> role.</p>
+<h3 id="token_transfer_event"><code>TOKEN_TRANSFER_EVENT</code><a class="headerlink" href="#token_transfer_event" title="Link to this section">&para;</a></h3>
+<p>The <code>eventId</code> for the token transfer event.</p>
+<h3 id="token_before_transfer_event"><code>TOKEN_BEFORE_TRANSFER_EVENT</code><a class="headerlink" href="#token_before_transfer_event" title="Link to this section">&para;</a></h3>
+<p>The <code>eventId</code> for the before token transfer event.</p>
+<h3 id="token_approve_event"><code>TOKEN_APPROVE_EVENT</code><a class="headerlink" href="#token_approve_event" title="Link to this section">&para;</a></h3>
+<p>The <code>eventId</code> for the token approval event.</p>
+<h2 id="metadata-functions">Metadata functions<a class="headerlink" href="#metadata-functions" title="Link to this section">&para;</a></h2>
+<p>These functions set specific extension metadata used during extension registration and upgrading. </p>
+<p>These functions can only be invoked inside the extension&rsquo;s constructor.</p>
+<h3 id="_setversionuint256"><code>_setVersion(uint256)</code><a class="headerlink" href="#_setversionuint256" title="Link to this section">&para;</a></h3>
+<p>Set the extension&rsquo;s version number. The version number must be higher when upgrading.</p>
+<h3 id="_setpackagenamestring"><code>_setPackageName(string)</code><a class="headerlink" href="#_setpackagenamestring" title="Link to this section">&para;</a></h3>
+<p>Set the extension&rsquo;s package hash to match the hash of <code>keccak256(abi.encodePacked(msg.sender, string))</code>. This hash must match when upgrading to a new extension.</p>
+<h3 id="_supportstokenstandardtokenstandard"><code>_supportsTokenStandard(TokenStandard)</code><a class="headerlink" href="#_supportstokenstandardtokenstandard" title="Link to this section">&para;</a></h3>
 <p>Set a specific <code>TokenStandard</code> that is supported. </p>
-<h2 id="_setinterfacelabelstring">_setInterfaceLabel(string)<a class="headerlink" href="#_setinterfacelabelstring" title="Link to this section">&para;</a></h2>
-<p>Set the interface label for this extension. The interface label must match when upgrading to a newer version</p>
-<h2 id="_supportsalltokenstandards">_supportsAllTokenStandards()<a class="headerlink" href="#_supportsalltokenstandards" title="Link to this section">&para;</a></h2>
-<p>Set all token standards as supported</p>
-<h2 id="_requirerolebytes32">_requireRole(bytes32)<a class="headerlink" href="#_requirerolebytes32" title="Link to this section">&para;</a></h2>
+<h3 id="_setinterfacelabelstring"><code>_setInterfaceLabel(string)</code><a class="headerlink" href="#_setinterfacelabelstring" title="Link to this section">&para;</a></h3>
+<p>Set the interface label for this extension. The interface label must match when upgrading to a newer version.</p>
+<h3 id="_supportsalltokenstandards"><code>_supportsAllTokenStandards()</code><a class="headerlink" href="#_supportsalltokenstandards" title="Link to this section">&para;</a></h3>
+<p>Set all token standards as supported.</p>
+<h3 id="_requirerolebytes32"><code>_requireRole(bytes32)</code><a class="headerlink" href="#_requirerolebytes32" title="Link to this section">&para;</a></h3>
 <p>Set a specific <code>roleId</code> that this extension requires when being registered by a token.</p>
-<h2 id="_registerfunctionbytes4">_registerFunction(bytes4)<a class="headerlink" href="#_registerfunctionbytes4" title="Link to this section">&para;</a></h2>
+<h3 id="_registerfunctionbytes4"><code>_registerFunction(bytes4)</code><a class="headerlink" href="#_registerfunctionbytes4" title="Link to this section">&para;</a></h3>
 <p>Set a specific function selector that should be registered when being registered by a token.</p>
-<h2 id="_registerfunctionnamestring">_registerFunctionName(string)<a class="headerlink" href="#_registerfunctionnamestring" title="Link to this section">&para;</a></h2>
-<p>A convenience function if the function selector is not available. 
-This is the same as doing</p>
-<div class="codehilite"><pre><span></span><code><span class="n">_registerFunction</span><span class="p">(</span><span class="n">bytes4</span><span class="p">(</span><span class="n">keccak256</span><span class="p">(</span><span class="n">abi</span><span class="p">.</span><span class="n">encodePacked</span><span class="p">(</span><span class="k">string</span><span class="p">))))</span><span class="w"></span>
+<h3 id="_registerfunctionnamestring"><code>_registerFunctionName(string)</code><a class="headerlink" href="#_registerfunctionnamestring" title="Link to this section">&para;</a></h3>
+<p>A convenience function if the function selector is not available. This is the same as:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span><span class="nx">_registerFunction</span><span class="p">(</span><span class="nx">bytes4</span><span class="p">(</span><span class="nx">keccak256</span><span class="p">(</span><span class="nx">abi</span><span class="p">.</span><span class="nx">encodePacked</span><span class="p">(</span><span class="nx">string</span><span class="p">))))</span><span class="w"></span>
 </code></pre></div>
-
-<h1 id="extension-metadata">Extension Metadata<a class="headerlink" href="#extension-metadata" title="Link to this section">&para;</a></h1>
-<p>These are all <code>view</code> functions that describe the extension</p>
-<h2 id="extensiondeployer-view-returns-address">extensionDeployer() view returns (address)<a class="headerlink" href="#extensiondeployer-view-returns-address" title="Link to this section">&para;</a></h2>
+<h2 id="extension-metadata">Extension Metadata<a class="headerlink" href="#extension-metadata" title="Link to this section">&para;</a></h2>
+<p>These are all <code>view</code> functions that describe the extension.</p>
+<h3 id="extensiondeployer-view-returns-address"><code>extensionDeployer() view returns (address)</code><a class="headerlink" href="#extensiondeployer-view-returns-address" title="Link to this section">&para;</a></h3>
 <p>The <code>address</code> that deployed this extension</p>
-<h2 id="packagehash-view-returns-bytes32">packageHash() view returns (bytes32)<a class="headerlink" href="#packagehash-view-returns-bytes32" title="Link to this section">&para;</a></h2>
+<h3 id="packagehash-view-returns-bytes32"><code>packageHash() view returns (bytes32)</code><a class="headerlink" href="#packagehash-view-returns-bytes32" title="Link to this section">&para;</a></h3>
 <p>The hash of the package that was set by the extension&rsquo;s constructor</p>
-<h2 id="version-view-returns-uint256">version() view returns (uint256)<a class="headerlink" href="#version-view-returns-uint256" title="Link to this section">&para;</a></h2>
+<h3 id="version-view-returns-uint256"><code>version() view returns (uint256)</code><a class="headerlink" href="#version-view-returns-uint256" title="Link to this section">&para;</a></h3>
 <p>The version of this extension that was set by the extension&rsquo;s constructor</p>
-<h2 id="istokenstandardsupportedtokenstandard-view-returns-bool">isTokenStandardSupported(TokenStandard) view returns (bool)<a class="headerlink" href="#istokenstandardsupportedtokenstandard-view-returns-bool" title="Link to this section">&para;</a></h2>
+<h3 id="istokenstandardsupportedtokenstandard-view-returns-bool"><code>isTokenStandardSupported(TokenStandard) view returns (bool)</code><a class="headerlink" href="#istokenstandardsupportedtokenstandard-view-returns-bool" title="Link to this section">&para;</a></h3>
 <p>Given a <code>TokenStandard</code>, return true if this extension supports that token standard, otherwise false.</p>
-<h2 id="externalfunctions-view-returns-bytes4">externalFunctions() view returns (bytes4[])<a class="headerlink" href="#externalfunctions-view-returns-bytes4" title="Link to this section">&para;</a></h2>
+<h3 id="externalfunctions-view-returns-bytes4"><code>externalFunctions() view returns (bytes4[])</code><a class="headerlink" href="#externalfunctions-view-returns-bytes4" title="Link to this section">&para;</a></h3>
 <p>A list of function selectors that <strong>must</strong> be attached to the <code>TokenProxy</code> when this extension is registered to a <code>TokenProxy</code>.</p>
-<h2 id="requiredroles-view-returns-bytes32">requiredRoles() view returns (bytes32[])<a class="headerlink" href="#requiredroles-view-returns-bytes32" title="Link to this section">&para;</a></h2>
+<h3 id="requiredroles-view-returns-bytes32"><code>requiredRoles() view returns (bytes32[])</code><a class="headerlink" href="#requiredroles-view-returns-bytes32" title="Link to this section">&para;</a></h3>
 <p>A list of <code>roleId</code>s that <strong>must</strong> be granted by the <code>TokenProxy</code> registering this extension.</p>
-<h2 id="interfacelabel-view-returns-string">interfaceLabel() view returns (string)<a class="headerlink" href="#interfacelabel-view-returns-string" title="Link to this section">&para;</a></h2>
+<h3 id="interfacelabel-view-returns-string"><code>interfaceLabel() view returns (string)</code><a class="headerlink" href="#interfacelabel-view-returns-string" title="Link to this section">&para;</a></h3>
 <p>The interface label set by the extension in the constructor</p>
-<h1 id="internal-metadata">Internal Metadata<a class="headerlink" href="#internal-metadata" title="Link to this section">&para;</a></h1>
-<p>These are internal functions that represent </p>
-
-  <hr>
-<div class="md-source-file">
-  <small>
-    
-      Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 25, 2022</span>
-      
-    
-  </small>
-</div>
+<h2 id="internal-metadata">Internal metadata<a class="headerlink" href="#internal-metadata" title="Link to this section">&para;</a></h2>
+<p>These are internal functions that represent &hellip; ???</p>
 
 
 
@@ -2847,7 +3392,7 @@ This is the same as doing</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../controlled-transfers/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Controlled transfers" rel="prev">
+        <a href="../initialize/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Initialize" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2856,7 +3401,7 @@ This is the same as doing</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Controlled transfers
+              Initialize
             </div>
           </div>
         </a>

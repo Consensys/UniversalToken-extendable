@@ -73,11 +73,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#controlled-transfers" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -236,7 +231,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../getting-started/" class="md-tabs__link md-tabs__link--active">
+      <a href="../overview/" class="md-tabs__link md-tabs__link--active">
         Extensions
       </a>
     </li>
@@ -815,10 +810,6 @@
         
           
         
-          
-        
-          
-        
       
       
         <label class="md-nav__link" for="__nav_5">
@@ -839,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -851,10 +842,84 @@
               
   
   
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Manage extensions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Manage extensions" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Manage extensions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2_1" type="checkbox" id="__nav_5_2_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_2_1">
+          Build
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Build" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Build
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
   
     <li class="md-nav__item">
-      <a href="../building-extensions/" class="md-nav__link">
-        Building extensions
+      <a href="../quick-start/" class="md-nav__link">
+        Quick start
       </a>
     </li>
   
@@ -868,7 +933,7 @@
   
     <li class="md-nav__item">
       <a href="../token-events/" class="md-nav__link">
-        Token events
+        Events and callbacks
       </a>
     </li>
   
@@ -887,13 +952,67 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-        
-      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Controlled transfers
       </a>
       
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy-extensions/" class="md-nav__link">
+        Deploy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../register-extensions/" class="md-nav__link">
+        Register
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../initialize/" class="md-nav__link">
+        Initialize
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -2716,8 +2835,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -2731,69 +2848,61 @@
                 
 
 
-<h1 id="controlled-transfers">Controlled Transfers<a class="headerlink" href="#controlled-transfers" title="Link to this section">&para;</a></h1>
-<p>A controlled transfer allows for an Extension to perform a transfer from one address to another without needing prior approval. This can only be done by Extensions granted with the <code>TOKEN_CONTROLLER_ROLE</code> token role. </p>
+  <h1>Controlled transfers</h1>
+
+<p>A controlled transfer allows an extension to perform a transfer from one address to another without needing prior approval. This is only possible for extensions granted with the <code>TOKEN_CONTROLLER_ROLE</code> token role. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p><em>When an Extension (<strong>or any address</strong>) is granted the <code>TOKEN_CONTROLLER_ROLE</code> token role, <strong>the granted address has approval on all token balance holders</strong>. It&rsquo;s important to ensure only <strong>trusted addresses</strong> have the <code>TOKEN_CONTROLLER_ROLE</code> token role.</em></p>
+<ul>
+<li>When an extension (<strong>or any address</strong>) is granted the <code>TOKEN_CONTROLLER_ROLE</code> token role, <strong>the granted address has approval on all token balance holders</strong>. </li>
+<li>Make sure only <strong>trusted addresses</strong> have the <code>TOKEN_CONTROLLER_ROLE</code> token role.</li>
+</ul>
 </div>
 <p>An extension can request the <code>TOKEN_CONTROLLER_ROLE</code> token role during registration by specifying it as a required role using <code>_requireRole(TOKEN_CONTROLLER_ROLE)</code>. </p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="p">{</span><span class="n">TokenExtension</span><span class="p">,</span> <span class="n">TransferData</span><span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;@consensys-software/UniversalToken/extensions/TokenExtension.sol&quot;</span><span class="p">;</span>
-
-<span class="n">contract</span> <span class="n">HoldExtension</span> <span class="ow">is</span> <span class="n">TokenExtension</span> <span class="p">{</span>
-
-    <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">_requireRole</span><span class="p">(</span><span class="n">TOKEN_CONTROLLER_ROLE</span><span class="p">)</span>
-    <span class="p">}</span>
-
-    <span class="n">function</span> <span class="n">initialize</span><span class="p">()</span> <span class="n">external</span> <span class="n">override</span> <span class="p">{</span>
-    <span class="o">//</span> <span class="o">...</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">import</span><span class="w"> </span><span class="p">{</span>TokenExtension<span class="p">,</span><span class="w"> </span>TransferData<span class="p">}</span><span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;@consensys-software/UniversalToken-extendable/contracts/extensions/TokenExtension.sol&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">contract</span><span class="w"> </span><span class="ni">HoldExtension</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>TokenExtension<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="kt">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span>_requireRole<span class="p">(</span>TOKEN_CONTROLLER_ROLE<span class="p">)</span><span class="w"></span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">initialize</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-
-<p>Once your extension has the required token role, you can perform a controlled transfer. To do this, you must create a <code>TransferData</code> object specify the details of the transfer. This can be done manually by instantiating the <code>TransferData</code> struct, or by using the <code>_buildTransfer</code> helper function from <code>TokenExtension</code>.</p>
-<p>Once you have a <code>TransferData</code> object, simply invoke the <code>_tokenTransfer(TransferData)</code> function inside of <code>TokenExtension</code></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="p">{</span><span class="n">TokenExtension</span><span class="p">,</span> <span class="n">TransferData</span><span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;@consensys-software/UniversalToken/extensions/TokenExtension.sol&quot;</span><span class="p">;</span>
-
-<span class="n">contract</span> <span class="n">HoldExtension</span> <span class="ow">is</span> <span class="n">TokenExtension</span> <span class="p">{</span>
-
-    <span class="o">//</span> <span class="o">...</span>
-
-    <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">_requireRole</span><span class="p">(</span><span class="n">TOKEN_CONTROLLER_ROLE</span><span class="p">)</span>
-    <span class="p">}</span>
-
-    <span class="n">function</span> <span class="n">initialize</span><span class="p">()</span> <span class="n">external</span> <span class="n">override</span> <span class="p">{</span>
-    <span class="o">//</span> <span class="o">...</span>
-    <span class="p">}</span>
-
-    <span class="n">function</span> <span class="n">_executeHold</span><span class="p">(</span><span class="n">bytes32</span> <span class="n">holdId</span><span class="p">,</span> <span class="n">bytes32</span> <span class="n">lockPreimage</span><span class="p">,</span> <span class="n">address</span> <span class="n">recipient</span><span class="p">)</span> <span class="n">internal</span> <span class="n">isHeld</span><span class="p">(</span><span class="n">holdId</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">HoldExtensionData</span> <span class="n">storage</span> <span class="n">data</span> <span class="o">=</span> <span class="n">holdData</span><span class="p">();</span>
-        <span class="n">require</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">holds</span><span class="p">[</span><span class="n">holdId</span><span class="p">]</span><span class="o">.</span><span class="n">notary</span> <span class="o">==</span> <span class="n">_msgSender</span><span class="p">(),</span> <span class="s2">&quot;executeHold: caller must be the hold notary&quot;</span><span class="p">);</span>
-
-        <span class="n">TransferData</span> <span class="n">memory</span> <span class="n">transferData</span> <span class="o">=</span> <span class="n">_buildTransfer</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">holds</span><span class="p">[</span><span class="n">holdId</span><span class="p">]</span><span class="o">.</span><span class="n">sender</span><span class="p">,</span> <span class="n">recipient</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">holds</span><span class="p">[</span><span class="n">holdId</span><span class="p">]</span><span class="o">.</span><span class="n">amount</span><span class="p">);</span>
-        <span class="n">_tokenTransfer</span><span class="p">(</span><span class="n">transferData</span><span class="p">);</span>
-        <span class="o">//</span> <span class="n">equivalent</span> <span class="n">to</span><span class="p">:</span>
-        <span class="o">//</span> <span class="n">_transfer</span><span class="p">(</span><span class="n">holds</span><span class="p">[</span><span class="n">holdId</span><span class="p">]</span><span class="o">.</span><span class="n">sender</span><span class="p">,</span> <span class="n">recipient</span><span class="p">,</span> <span class="n">holds</span><span class="p">[</span><span class="n">holdId</span><span class="p">]</span><span class="o">.</span><span class="n">amount</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<p>When your extension has the required token role, you can perform a controlled transfer. </p>
+<p>Create a <code>TransferData</code> object specifying the details of the transfer. Do this manually by instantiating the <code>TransferData</code> struct, or by using the <code>_buildTransfer</code> helper function from <code>TokenExtension</code>.</p>
+<p>When you have a <code>TransferData</code> object, invoke the <code>_tokenTransfer(TransferData)</code> function inside of <code>TokenExtension</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">import</span><span class="w"> </span><span class="p">{</span>TokenExtension<span class="p">,</span><span class="w"> </span>TransferData<span class="p">}</span><span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;@consensys-software/UniversalToken-extendable/contracts/extensions/TokenExtension.sol&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">contract</span><span class="w"> </span><span class="ni">HoldExtension</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>TokenExtension<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="kt">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span>_requireRole<span class="p">(</span>TOKEN_CONTROLLER_ROLE<span class="p">)</span><span class="w"></span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">initialize</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_executeHold</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">holdId</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">lockPreimage</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>isHeld<span class="p">(</span>holdId<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span>HoldExtensionData<span class="w"> </span>storage<span class="w"> </span>data<span class="w"> </span><span class="o">=</span><span class="w"> </span>holdData<span class="p">();</span><span class="w"></span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">        </span><span class="kt">require</span><span class="p">(</span>data<span class="p">.</span>holds<span class="p">[</span>holdId<span class="p">].</span>notary<span class="w"> </span><span class="o">==</span><span class="w"> </span>_msgSender<span class="p">(),</span><span class="w"> </span><span class="s2">&quot;executeHold: caller must be the hold notary&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">        </span>TransferData<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>transferData<span class="w"> </span><span class="o">=</span><span class="w"> </span>_buildTransfer<span class="p">(</span>data<span class="p">.</span>holds<span class="p">[</span>holdId<span class="p">].</span>sender<span class="p">,</span><span class="w"> </span>recipient<span class="p">,</span><span class="w"> </span>data<span class="p">.</span>holds<span class="p">[</span>holdId<span class="p">].</span>amount<span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">        </span>_tokenTransfer<span class="p">(</span>transferData<span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">        </span><span class="c1">// equivalent to:</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">        </span><span class="c1">// _transfer(holds[holdId].sender, recipient, holds[holdId].amount);</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>A controlled transfer will trigger both a <code>TOKEN_BEFORE_TRANSFER_EVENT</code> and a <code>TOKEN_TRANSFER_EVENT</code>. This means that controlled transfers can still be restricted by Extensions and controlled transfers cannot occur inside a <code>TOKEN_BEFORE_TRANSFER_EVENT</code> or <code>TOKEN_TRANSFER_EVENT</code> callback.</strong></p>
-</div>
-
-  <hr>
-<div class="md-source-file">
-  <small>
-    
-      Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 25, 2022</span>
-      
-    
-  </small>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A controlled transfer triggers both a <code>TOKEN_BEFORE_TRANSFER_EVENT</code> and a <code>TOKEN_TRANSFER_EVENT</code>. This means that controlled transfers can still be restricted by extensions and controlled transfers cannot occur inside a <code>TOKEN_BEFORE_TRANSFER_EVENT</code> or <code>TOKEN_TRANSFER_EVENT</code> callback.</p>
 </div>
 
 
@@ -2818,7 +2927,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../token-events/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Token events" rel="prev">
+        <a href="../token-events/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Events and callbacks" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2827,20 +2936,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Token events
+              Events and callbacks
             </div>
           </div>
         </a>
       
       
         
-        <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Next: TokenExtension API" rel="next">
+        <a href="../deploy-extensions/" class="md-footer__link md-footer__link--next" aria-label="Next: Deploy" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              TokenExtension API
+              Deploy
             </div>
           </div>
           <div class="md-footer__button md-icon">
