@@ -11,3 +11,9 @@ dist
 coverage.json
 README.md
 contracts/tokens/storage/TokenEventManagerStorage.sol
+contracts/flatten/ERC20flat.sol
+contracts/flatten/ERC20Logicflat.sol
+contracts/flatten/ERC20LogicMockflat.sol
+contracts/flatten/ERC721flat.sol
+contracts/flatten/ERC721Logicflat.sol
+contracts/flatten/ExtensionProxyflat.sol
