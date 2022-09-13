@@ -11,3 +11,4 @@ dist
 coverage.json
 README.md
 contracts/tokens/storage/TokenEventManagerStorage.sol
+demo
