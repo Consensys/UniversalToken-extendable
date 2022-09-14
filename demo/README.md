@@ -2,6 +2,8 @@
 
 # Universal Token Extendable Demo
 
+### [Live Demo](https://main--chipper-kangaroo-1ad0c0.netlify.app/)
+
 This demo react app can be used to both deploy and manage extendable tokens. Simply build/launch the app to get started.
 
 ![preview](https://i.imgur.com/GqcD4yl.png)
