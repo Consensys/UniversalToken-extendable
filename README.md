@@ -44,6 +44,14 @@ There are several Truffle exec scripts to get started with the extendable Univer
 yarn
 ```
 
+## Building
+
+The easiest way to get started is by first compiling all contracts 
+
+```shell
+yarn build
+```
+
 ## Usage
 
 All scripts are located under `scripts/`, tests are located under `test/` and Truffle migration files are located under `migrations/`.
@@ -159,13 +167,5 @@ To deploy the PauseExtension, run the following command:
 
 ```shell
 yarn truffle exec scripts/deployments/extensions/pauseExtension.js
-```
-
-## Building
-
-The easiest way to get started is by first compiling all contracts 
-
-```shell
-yarn build
 ```
 
