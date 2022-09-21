@@ -13,6 +13,27 @@ Dapp developers may use the Universal Token framework to:
 
 Using the Universal Token API, developers can deploy extensions contracts and plug extensions contract to Token contracts, either at token deployment or in real-time on-chain.
 
+# Documentation
+
+Explore the ➡️ [documentation site](https://legendary-dollop-dc5f4669.pages.github.io/) to learn how to
+
+* Build custom Token Extensions
+* Extend token logic contracts to add custom token functionality
+* Build support for custom token standards
+
+# Live Demo
+
+Experiment with the Universal Token Extendable using the ➡️ [Live Demo](https://main--chipper-kangaroo-1ad0c0.netlify.app/)
+
+# Contributing
+
+UniversalToken framework is built on open source and we invite you to contribute enhancements. We welcome all contributions, and are currently looking for contributors to help imeplement the following token standards
+
+* [ERC1155](https://eips.ethereum.org/EIPS/eip-1155)
+* [ERC1400](https://polymath.network/erc-1400)
+
+Upon review you will be required to complete a Contributor License Agreement (CLA) before we are able to merge. If you have any questions about the contribution process, please feel free to send an email to [email@consensys.net](mailto:email@consensys.net). Please see the [Contributors guide](.github/CONTRIBUTING.md) for more information about the process.
+
 # Quickstart
 
 The repo uses Truffle to manage unit tests, deployment scripts and migrations. 
@@ -148,14 +169,3 @@ The easiest way to get started is by first compiling all contracts
 yarn build
 ```
 
-## Explore
-
-Explore the [documentation site](#) to learn how to
-
-* Build custom Token Extensions
-* Extend token logic contracts to add custom token functionality
-* Build support for custom token standards
-
-# Contributing
-
-UniversalToken framework is built on open source and we invite you to contribute enhancements. Upon review you will be required to complete a Contributor License Agreement (CLA) before we are able to merge. If you have any questions about the contribution process, please feel free to send an email to [email@consensys.net](mailto:email@consensys.net). Please see the [Contributors guide](.github/CONTRIBUTING.md) for more information about the process.
