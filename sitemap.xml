@@ -2,432 +2,432 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>http://127.0.0.1:8000/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/ERC20/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/ERC721/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/IERC20Extendable/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/IERC721Extendable/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/Migrations/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/allowblock/allow/AllowExtension/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/allowblock/allow/IAllowlistedAdminRole/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/allowblock/allow/IAllowlistedRole/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/allowblock/block/BlockExtension/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/allowblock/block/IBlocklistedAdminRole/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/allowblock/block/IBlocklistedRole/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/certificates/CertificateLib/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/certificates/CertificateValidatorExtension/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/certificates/ICertificateValidator/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/holds/HoldExtension/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/holds/IHoldableToken/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/pausable/IPausable/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/examples/pausable/PauseExtension/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/extensions/ExtensionBase/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/extensions/ExtensionProxy/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/extensions/IExtension/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/extensions/IExtensionMetadata/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/extensions/TokenExtension/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/IToken/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/TokenERC1820Provider/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/eventmanager/ITokenEventManager/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/eventmanager/TokenEventConstants/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/eventmanager/TokenEventManager/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/logic/ITokenLogic/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/logic/TokenLogic/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/logic/ERC20/ERC20Logic/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/logic/ERC20/IERC20Logic/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/logic/ERC721/ERC721Logic/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/logic/ERC721/IERC721Logic/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/proxy/ExtendableTokenProxy/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/proxy/IExtendableTokenProxy/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/proxy/ITokenProxy/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/proxy/TokenProxy/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/registry/ERC1155TokenInterface/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/registry/ERC20TokenInterface/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/registry/ERC721TokenInterface/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/storage/RegisteredExtensionStorage/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/storage/TokenEventManagerStorage/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/tokens/storage/TokenProxyStorage/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/DomainAware/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/Errors/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/IDomainAware/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/erc1820/ERC1820Client/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/erc1820/ERC1820Implementer/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/erc1820/ERC1820ImplementerInterface/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/erc1820/ERC1820Registry/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/erc1820/IERC1820Implementer/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/mocks/ClockMock/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/mocks/ERC20LogicMock/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/mocks/ERC721LogicMock/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/mocks/MockAllowExtension/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/mocks/MockBlockExtension/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/roles/ITokenRoles/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/roles/Roles/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/roles/RolesBase/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/roles/TokenRoles/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/API/utils/roles/TokenRolesConstants/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/extensions/api/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/extensions/controlled-transfers/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/extensions/deploy-extensions/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/extensions/initialize/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/extensions/overview/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/extensions/quick-start/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/extensions/register-extensions/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/extensions/token-events/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/getting-started/build-deploy-contract/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/getting-started/prerequisites/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/getting-started/run-deploy-scripts/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/overview/releases/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/overview/welcome/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/overview/changelogs/434c657/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/tokens/overview/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/tokens/token-extensions/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/tokens/token-logic/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/tokens/upgrading/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/tokens/token-proxy/extendable-token-proxy/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/tokens/token-proxy/token-proxy-functionality/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/tokens/token-roles/token-roles-functionality/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/tokens/token-roles/token-roles/</loc>
-         <lastmod>2022-09-14</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
