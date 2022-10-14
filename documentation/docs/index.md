@@ -124,7 +124,7 @@ h1 {
     Landing page demo title
   </div>-->
 
-  <div class="grid-item"><a href="/UniversalToken-extendable/overview/welcome"><h2>Overview</h2>
+  <div class="grid-item"><a href="/UniversalToken-extendable/overview/welcome"><h2>Overview </h2>
       <img src="cdn/images/index-icons/5.png" alt=""></a>
   </div>
 
