@@ -14,7 +14,7 @@ site_name: ConsenSys Universal Token - extendable
 site_description: Technical documentation for the ConsenSys Universal Token
 
 # Project information
-site_url: http://127.0.0.1:8000/
+site_url: https://consensys.github.io/UniversalToken-extendable/
 site_author: ConsenSys
 copyright: <a href="https://consensys.net">ConsenSys</a> © 2022
 
