@@ -124,23 +124,24 @@ h1 {
     Landing page demo title
   </div>-->
 
-  <div class="grid-item"><a href="UniversalToken-extendable/overview/welcome"><h2>Overview</h2>
+
+  <div class="grid-item"><a href="/UniversalToken-extendable/overview/welcome"><h2>Overview </h2>
       <img src="cdn/images/index-icons/5.png" alt=""></a>
   </div>
 
-  <div class="grid-item"><a href="UniversalToken-extendable/getting-started/prerequisites"><h2>Getting started</h2>
+  <div class="grid-item"><a href="/UniversalToken-extendable/getting-started/prerequisites"><h2>Getting started</h2>
       <img src="cdn/images/index-icons/4.png" alt=""></a>
   </div>
   
-  <div class="grid-item"><a href="UniversalToken-extendable/tokens/overview"><h2>Token</h2>  
+  <div class="grid-item"><a href="/UniversalToken-extendable/tokens/overview"><h2>Token</h2>  
         <img src="cdn/images/index-icons/10.png" alt=""></a>
   </div>
   
-  <div class="grid-item"><a href="UniversalToken-extendable/extensions/overview"><h2>Extensions</h2>
+  <div class="grid-item"><a href="/UniversalToken-extendable/extensions/overview"><h2>Extensions</h2>
         <img src="cdn/images/index-icons/12.png" alt=""></a>
   </div>
   
-  <div class="grid-item"><a href="UniversalToken-extendable/API/ERC20"><h2>Solidity API</h2>
+  <div class="grid-item"><a href="/UniversalToken-extendable/API/ERC20"><h2>Solidity API</h2>
       <img src="cdn/images/index-icons/8.png" alt=""></a>
   </div>
 

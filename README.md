@@ -15,7 +15,7 @@ Using the Universal Token API, developers can deploy extensions contracts and pl
 
 # Documentation
 
-Explore the ➡️ [documentation site](https://legendary-dollop-dc5f4669.pages.github.io/) to learn how to
+Explore the ➡️ [documentation site](https://consensys.github.io/UniversalToken-extendable/) to learn how to
 
 * Build custom Token Extensions
 * Extend token logic contracts to add custom token functionality
