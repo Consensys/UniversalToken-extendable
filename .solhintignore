@@ -1,1 +1,4 @@
 contracts/tokens/eventmanager/TokenEventManager.sol
+contracts/flatten/erc20_flat.sol
+contracts/flatten/erc20_flat.sol
+contracts/flatten/extension_proxy_flat.sol

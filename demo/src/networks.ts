@@ -4,6 +4,7 @@ import polygon from './images/polygon.png';
 import avalanche from './images/avalanche.svg';
 import arbitrum from './images/arbitrum.svg';
 import optimism from './images/optimism.png';
+import zkevm from './images/zkevm.svg';
 import { initializeConnector, Web3ReactHooks } from '@web3-react/core'
 import { MetaMask } from '@web3-react/metamask'
 import { AddEthereumChainParameter } from '@web3-react/types';
@@ -102,20 +103,19 @@ export const networks: NetworkInfo[] = [
         ]
     },
     {
-        image: testnet,
-        chainId: 4,
-        chainName: 'Rinkeby Testnet',
+        image: zkevm,
+        chainId: 59140,
+        chainName: 'ConsenSys zkEVM',
         nativeCurrency: {
-          name: 'ETH',
-          symbol: 'ETH',
+          name: 'crETH',
+          symbol: 'crETH',
           decimals: 18
         },
         rpcUrls: [
-          'https://rpc.ankr.com/eth_rinkeby',
-          'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
+          'https://consensys-zkevm-goerli-prealpha.infura.io/v3/86c66c2142384175860a3de5a303c518',
         ],
         blockExplorerUrls: [
-          'https://rinkeby.etherscan.io/'
+          'https://explorer.goerli.zkevm.consensys.net/'
         ]
     },
     {

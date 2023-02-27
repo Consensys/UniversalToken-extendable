@@ -3277,14 +3277,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
-axios@^0.20.0:
-  version "0.20.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
-  integrity sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
-  dependencies:
-    follow-redirects "^1.10.0"
-
-axios@^0.26.1:
+axios@0.26.1, axios@^0.26.1:
   version "0.26.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.1.tgz#1ede41c51fcf51bbbd6fd43669caaa4f0495aaa9"
   integrity sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==
@@ -4040,7 +4033,7 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
 circular@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/circular/-/circular-1.0.5.tgz#7da77af98bbde9ce4b5b358cd556b5dded2d3149"
-  integrity sha1-fad6+Yu96c5LWzWM1Va13e0tMUk=
+  integrity sha512-n4Sspha+wxUl5zeA3JYp1zFCjsLz2VfXIe2gRKNQBrIX+7iPdGcCGZOF8W8IULtllZ/aejXtySfdFFt1wy/3JQ==
 
 class-is@^1.1.0:
   version "1.1.0"
@@ -4076,7 +4069,7 @@ cli-cursor@^3.0.0, cli-cursor@^3.1.0:
 cli-logger@^0.5.40:
   version "0.5.40"
   resolved "https://registry.yarnpkg.com/cli-logger/-/cli-logger-0.5.40.tgz#097f0e11b072c7c698a26c47f588a29c20b48b0b"
-  integrity sha1-CX8OEbByx8aYomxH9YiinCC0iws=
+  integrity sha512-piXVCa0TLm/+A7xdVEhw7t4OSrsmJaZIekWcoGrVMY1bHtLJTXgiNzgHlKT0EVHQ14sCKWorQJazU7UWgZhXOQ==
   dependencies:
     circular "^1.0.5"
     cli-util "~1.1.27"
@@ -4084,7 +4077,7 @@ cli-logger@^0.5.40:
 cli-regexp@~0.1.0:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/cli-regexp/-/cli-regexp-0.1.2.tgz#6bcd93b09fb2ed1025d30a1155d5997954a53512"
-  integrity sha1-a82TsJ+y7RAl0woRVdWZeVSlNRI=
+  integrity sha512-L++cAQ5g0Nu6aV56B3uaR+c7jEGSAa4WApY1ZN7XiD8niJ5jRfXE/qvMwgz3uZBG0rft4hJS75Vpz2F3mSm4Mg==
 
 cli-table@^0.3.1:
   version "0.3.11"
@@ -4112,7 +4105,7 @@ cli-truncate@^3.1.0:
 cli-util@~1.1.27:
   version "1.1.27"
   resolved "https://registry.yarnpkg.com/cli-util/-/cli-util-1.1.27.tgz#42d69e36a040a321fc9cf851c1513cadc5093054"
-  integrity sha1-QtaeNqBAoyH8nPhRwVE8rcUJMFQ=
+  integrity sha512-Z6+zI0kIrqf9Oi+PmUm8J9AELp8bTf2vCLYseudYtdOPNJvzpNiExO95aHIm477IbPdu/8SE9Wvc/M1kJl4Anw==
   dependencies:
     cli-regexp "~0.1.0"
 
@@ -6118,7 +6111,7 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.5.tgz#76c8584f4fc843db64702a6bd04ab7a8bd666da3"
   integrity sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==
 
-follow-redirects@^1.10.0, follow-redirects@^1.14.8:
+follow-redirects@^1.14.8:
   version "1.15.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.0.tgz#06441868281c86d0dda4ad8bdaead2d02dca89d4"
   integrity sha512-aExlJShTV4qOUOL7yF1U5tvLCB0xQuudbf6toyYA0E/acBNw71mvjFTnLaRp50aQaYocMR0a/RMMBIHeZnGyjQ==
@@ -11498,10 +11491,10 @@ truffle-contract-size@^2.0.1:
     cli-table "^0.3.1"
     yargs "^15.3.1"
 
-truffle-plugin-verify@^0.5.26:
-  version "0.5.26"
-  resolved "https://registry.yarnpkg.com/truffle-plugin-verify/-/truffle-plugin-verify-0.5.26.tgz#5bdec00b83c6cea9448dc5807ccedc88c35399c2"
-  integrity sha512-TFpmh2vBNLLFo9GxV+vf91XPs5cox9C5yd+cTKeLF1j2e/C1izUsc+5upG7fLJhuDOvKMB8X8S8ELKmSKRh+/g==
+truffle-plugin-verify@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/truffle-plugin-verify/-/truffle-plugin-verify-0.6.1.tgz#b8d45b6c62ff00a4416c04796ac8b8f09b2e72b2"
+  integrity sha512-9Wxscxtmv1njVJKmG9nywx19QZrQqXrdcgHQs/8SeGNts8VjP6K9/CWO0uCMnBcmuew42LjlgxYB7cajSWR0CA==
   dependencies:
     axios "^0.26.1"
     cli-logger "^0.5.40"

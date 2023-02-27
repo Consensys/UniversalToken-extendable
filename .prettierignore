@@ -12,3 +12,7 @@ coverage.json
 README.md
 contracts/tokens/storage/TokenEventManagerStorage.sol
 demo
+*_flat.sol
+yarn.lock
+.prettierignore
+package.json
