@@ -112,7 +112,7 @@ export const networks: NetworkInfo[] = [
           decimals: 18
         },
         rpcUrls: [
-          'https://consensys-zkevm-goerli-prealpha.infura.io/v3/86c66c2142384175860a3de5a303c518',
+          `https://consensys-zkevm-goerli-prealpha.infura.io/v3/${process.env.REACT_APP_INFURA_PROJECT_ID}}`,
         ],
         blockExplorerUrls: [
           'https://explorer.goerli.zkevm.consensys.net/'
