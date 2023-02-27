@@ -1,6 +1,7 @@
 const propagateError = require("./propagateError.js");
 
 const __deployContract = async function (artifacts, contractName) {
+  console.log("\n   > Deploying " + contractName + " contract...");
   const ContractFactory = artifacts.require(contractName);
   let contract;
   try {
